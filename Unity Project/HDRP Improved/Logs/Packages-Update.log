@@ -12,3 +12,11 @@ The following packages were added:
   com.unity.ide.rider@1.1.0
   com.unity.ugui@1.0.0
   com.unity.modules.androidjni@1.0.0
+
+=== Thu Oct 10 13:05:23 2019
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.ide.vscode from version 1.0.7 to 1.1.0

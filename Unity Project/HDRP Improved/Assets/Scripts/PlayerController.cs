@@ -88,7 +88,10 @@ public class PlayerController : MonoBehaviour
         {
             if (moving || items.pressed || aim.aim || CC.point)
             {
-                modelTrans.rotation = camTrans.transform.rotation;
+                //modelTrans.rotation = camTrans.transform.rotation;
+                Vector3 newPlayerForward = Vector3.ProjectOnPlane(camTrans.forward, Vector3.up);
+                Quaternion newPlayerQuaternion = Quaternion.LookRotation(newPlayerForward, Vector3.up);
+                modelTrans.rotation = newPlayerQuaternion;
             }
         }
 
