@@ -7,8 +7,8 @@ Ernest es un adolescente de 19 años dolido y atormentado por la pérdida de su 
 
 # Team
 
-Andreu Carrasquet: Modelador, Rigger, Animador, VFX, Texturizador. <Enter>
-Iñaki Iribertegui: Concept Artist, Modelador, Texturizador. <Enter>
-Miguel Angel Merino: Concept Artist, Modelador, Rigger, Animador, Audio, Texturizador. <Enter>
-Oscar Cerro: Game Designer, Rigger, Programador. <Enter>
-Xavier Labrador: Game Designer, Environment Artist, Texturizador, Story Telling. <Enter>
+Andreu Carrasquet: Modelador, Rigger, Animador, VFX, Texturizador. <br>
+Iñaki Iribertegui: Concept Artist, Modelador, Texturizador. <br>
+Miguel Angel Merino: Concept Artist, Modelador, Rigger, Animador, Audio, Texturizador. <br>
+Oscar Cerro: Game Designer, Rigger, Programador. <br>
+Xavier Labrador: Game Designer, Environment Artist, Texturizador, Story Telling. <br>
