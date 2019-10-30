@@ -7,7 +7,7 @@ Ernest es un adolescente de 19 años dolido y atormentado por la pérdida de su 
 
 # Team
 
-Andreu Carrasquet: Modelador, Rigger, Animador, VFX, Texturizador. <br>
+Andreu Carrasquet: Modelador, Rigger, Animador, VFX, Texturizador. ([ArtStation](https://www.artstation.com/andropolf)) <br>
 Iñaki Iribertegui: Concept Artist, Modelador, Texturizador. <br>
 Miguel Angel Merino: Concept Artist, Modelador, Rigger, Animador, Audio, Texturizador. <br>
 Oscar Cerro: Game Designer, Rigger, Programador. <br>
