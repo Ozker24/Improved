@@ -29,7 +29,7 @@ public class Inventory : MonoBehaviour
 
     public void MyUpdate()
     {
-        actualGun = weapons.WeaponSelected;
+        actualGun = weapons.weaponPreSelected;
 
         if (startCountdown)
         {

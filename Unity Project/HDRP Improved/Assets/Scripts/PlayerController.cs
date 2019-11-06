@@ -179,7 +179,7 @@ public class PlayerController : MonoBehaviour
     {
         if (movingForward)
         {
-            if (!stop && WM.ableToRun)
+            if (!stop)
             {
                 running = state;
             }

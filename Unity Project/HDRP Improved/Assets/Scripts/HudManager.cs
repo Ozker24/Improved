@@ -23,7 +23,7 @@ public class HudManager : MonoBehaviour
     public Text rifleText;
     public Text snipperText;
 
-    public Text showTotalAmmo;
+    //public Text showTotalAmmo;
     public Text currentAmmo;
 
     public int whatItem;
@@ -95,11 +95,6 @@ public class HudManager : MonoBehaviour
     public void UpdateSnipper(int snipper)
     {
         snipperText.text = snipper.ToString();
-    }
-
-    public void UpdateTotalAmmo(int total)
-    {
-        showTotalAmmo.text = total.ToString();
     }
 
     public void UpdateCurrentAmmo(int ammo)

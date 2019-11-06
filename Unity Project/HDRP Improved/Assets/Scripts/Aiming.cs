@@ -13,6 +13,7 @@ public class Aiming : MonoBehaviour
     public GameObject point;
     public GameObject ammo;
     public PlayerController player;
+    public WeaponManager WM;
 
     public float originalLens;
     public float aimLens;
@@ -20,10 +21,9 @@ public class Aiming : MonoBehaviour
     public void Initialize()
     {
         //vCam = GetComponent<Cinemachine.CinemachineVirtualCameraBase>();
-
         freeLook = GetComponent<Cinemachine.CinemachineFreeLook>();
-
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        WM = player.GetComponentInChildren<WeaponManager>();
 
         point.SetActive(false);
         ammo.SetActive(false);
@@ -33,7 +33,7 @@ public class Aiming : MonoBehaviour
     {
         if (freeLook != null)
         {
-            if (aim && !player.stop)
+            if (aim && !player.stop && WM.ableGun)
             {
                 //vCam.Priority = 11;
                 freeLook.m_Lens.FieldOfView = aimLens;
@@ -45,7 +45,7 @@ public class Aiming : MonoBehaviour
             }
         }
 
-        if (aim && !player.stop && !player.climb)
+        if (aim && !player.stop && !player.climb && WM.ableGun)
         {
             point.SetActive(true);
             ammo.SetActive(true);

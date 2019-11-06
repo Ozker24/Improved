@@ -36,7 +36,6 @@ public class ImputManager : MonoBehaviour
             ChangeGun();
             ActiveItem();
             Aim();
-            ReloadBullet();
             Shot();
             ChangeItem();
             Hit();
@@ -135,19 +134,6 @@ public class ImputManager : MonoBehaviour
         if (Input.GetMouseButtonUp(1))
         {
             aim.NotAim();
-        }
-    }
-
-    public void ReloadBullet()
-    {
-        if (Input.GetButton("Bullet"))
-        {
-            weapon.SetPressing();
-        }
-
-        if (Input.GetButtonUp("Bullet"))
-        {
-            weapon.SetRealised();
         }
     }
 

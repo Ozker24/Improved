@@ -34,10 +34,10 @@ public class Items : MonoBehaviour
     public int InjectionCount;
 
     public bool canDoItem = true;
-    public float waitTimeItem;
+    public float waitTimeItem; //no ha de ser mayor que waitTimeGun
 
-    public bool canDoGun = true;
-    public float waitTimeGun;
+    public bool canDoGun = true; //Lo llamaremos por animacion
+    public float waitTimeGun; //no ha de ser mayor que waitTimeItem
 
     public TimeManager time;
 
@@ -74,7 +74,7 @@ public class Items : MonoBehaviour
 
     public void ActiveItem()
     {
-        if (!player.stop && !player.climb && WM.ableToLunch)
+        if (!player.stop && !player.climb)
         {
             Molotov();
             Granade();
@@ -310,16 +310,17 @@ public class Items : MonoBehaviour
         audPlay.PlayIgnoringTime(1, 1);
     }
 
-    public IEnumerator CanDoGun()
+    public IEnumerator CanDoGun(float time)
     {
-        yield return new WaitForSeconds(waitTimeGun);
+        yield return new WaitForSeconds(time);
         canDoGun = true;
     }
 
     public void CantGunCantItem(bool gun, bool item, bool first)
     {
         canDoGun = gun;
-        StartCoroutine(CanDoGun());
+        StartCoroutine(CanDoGun(WM.itemTimeToGun[WM.WeaponSelected]));
+        Debug.Log(WM.itemTimeToGun[WM.WeaponSelected]);
 
         canDoItem = item;
         firstTime = first;
