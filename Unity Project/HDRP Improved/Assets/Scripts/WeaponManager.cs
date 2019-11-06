@@ -20,6 +20,8 @@ public class WeaponManager : MonoBehaviour
 
     public GameManager gm;
 
+    public Items items;
+
     //public bool searchingBullet;
 
     public int WeaponSelected = 0;
@@ -59,6 +61,8 @@ public class WeaponManager : MonoBehaviour
 
         gm = GameObject.FindGameObjectWithTag("Managers").GetComponent<GameManager>();
 
+        items = player.GetComponentInChildren<Items>();
+
         //audPlay = GetComponent<AudioPlayer>();
 
         maxWeapons = weapons.Length;
@@ -81,12 +85,12 @@ public class WeaponManager : MonoBehaviour
 
         if (startSearching)
         {
-            ReloadBullet();
+            //ReloadBullet();
             HUD.UpdateTotalAmmo(weapons[WeaponSelected].totalAmmo);
         }
     }
 
-    public void ReloadBullet()
+    /*public void ReloadBullet()
     {
         if (pressing && realised != 1 && !magazineFull && weapons[WeaponSelected].totalAmmo > 0)
         {
@@ -108,13 +112,6 @@ public class WeaponManager : MonoBehaviour
                 }
 
                 else ableToBullet = false;
-                //weapons[WeaponSelected].ammoInMagazine++;
-
-                /*if (weapons[WeaponSelected].currentAmmo < weapons[WeaponSelected].magazineAmmo)
-                {
-                    weapons[WeaponSelected].currentAmmo++;
-                }*/
-
             }
             else
             {
@@ -161,7 +158,7 @@ public class WeaponManager : MonoBehaviour
             magazineFull = true;
             StartCoroutine(SearchingMagazine());
         }
-    }
+    }*/
 
     public void SetPressing()
     {
@@ -225,13 +222,13 @@ public class WeaponManager : MonoBehaviour
 
     public void Shot()
     {
-        if (!player.climb && !player.stop) weapons[WeaponSelected].Shot();
+        if (!player.climb && !player.stop && items.canDoGun) weapons[WeaponSelected].Shot();
         gm.detected = true;
     }
 
     public void Reload()
     {
-        if (!player.climb && !player.stop)  weapons[WeaponSelected].Reload();
+        if (!player.climb && !player.stop && items.canDoGun)  weapons[WeaponSelected].Reload();
     }
 
     public void ChangeGunRight()

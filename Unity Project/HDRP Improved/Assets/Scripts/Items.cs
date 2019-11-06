@@ -33,8 +33,11 @@ public class Items : MonoBehaviour
     public int FirstAidCount;
     public int InjectionCount;
 
-    public bool canDo = true;
-    public float waitTime;
+    public bool canDoItem = true;
+    public float waitTimeItem;
+
+    public bool canDoGun = true;
+    public float waitTimeGun;
 
     public TimeManager time;
 
@@ -66,7 +69,7 @@ public class Items : MonoBehaviour
     {
         itemSelected = inv.actualItem;
 
-        if (canDo) ActiveItem();
+        if (canDoItem) ActiveItem();
     }
 
     public void ActiveItem()
@@ -121,10 +124,7 @@ public class Items : MonoBehaviour
             audPlay.Play(5, 1, Random.Range(0.95f, 1.05f)); // esta antes por temas de velocidad del audio
             InstantiateThings(MolotovPrefab);
 
-            canDo = false;
-            firstTime = false;
-
-            StartCoroutine(CanDoTrue());
+            CantGunCantItem(false, false, false);
         }
     }
 
@@ -150,10 +150,7 @@ public class Items : MonoBehaviour
 
             audPlay.Play(6, 1, Random.Range(0.95f, 1.05f));
 
-            canDo = false;
-            firstTime = false;
-
-            StartCoroutine(CanDoTrue());
+            CantGunCantItem(false, false, false);
         }
     }
 
@@ -176,10 +173,7 @@ public class Items : MonoBehaviour
             Debug.Log("Launched Sound");
             InstantiateThings(SoundPrefab);
 
-            canDo = false;
-            firstTime = false;
-
-            StartCoroutine(CanDoTrue());
+            CantGunCantItem(false, false, false);
         }
     }
 
@@ -202,9 +196,6 @@ public class Items : MonoBehaviour
                     healthAnim.SetBool("Health", false);
                     TimeCounter = 0;
 
-                    canDo = false;
-                    firstTime = false;
-
                     peace.Health();
 
                     AudioSource source = GetComponentInChildren<AudioSource>();
@@ -216,7 +207,7 @@ public class Items : MonoBehaviour
 
                     audPlay.Play(4, 1, Random.Range(0.95f, 1.05f));
 
-                    StartCoroutine(CanDoTrue());
+                    CantGunCantItem(false, false, false);
                 }
                 else
                 {
@@ -273,10 +264,7 @@ public class Items : MonoBehaviour
 
                     StartCoroutine(PlayBackZaWarudo());
 
-                    canDo = false;
-                    firstTime = false;
-
-                    StartCoroutine(CanDoTrue());
+                    CantGunCantItem(false, false, false);
                 }
                 else
                 {
@@ -310,15 +298,32 @@ public class Items : MonoBehaviour
         rb.AddForce(cam.transform.forward * throwForce);
     }
 
-    IEnumerator CanDoTrue()
+    IEnumerator CanDoItem()
     {
-        yield return new WaitForSeconds(waitTime);
-        canDo = true;
+        yield return new WaitForSeconds(waitTimeItem);
+        canDoItem = true;
     }
 
     public IEnumerator PlayBackZaWarudo()
     {
         yield return new WaitForSeconds(time.injectedTime);
         audPlay.PlayIgnoringTime(1, 1);
+    }
+
+    public IEnumerator CanDoGun()
+    {
+        yield return new WaitForSeconds(waitTimeGun);
+        canDoGun = true;
+    }
+
+    public void CantGunCantItem(bool gun, bool item, bool first)
+    {
+        canDoGun = gun;
+        StartCoroutine(CanDoGun());
+
+        canDoItem = item;
+        firstTime = first;
+
+        StartCoroutine(CanDoItem());
     }
 }
