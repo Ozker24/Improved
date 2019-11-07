@@ -245,9 +245,10 @@ public class EnemyTest : MonoBehaviour
         states = State.Attack;
     }
 
-    public void StunnedSet()
+    public void StunnedSet(float time)
     {
         agent.isStopped = true;
+        timeStunned = time;
         states = State.Stunned;
     }
 

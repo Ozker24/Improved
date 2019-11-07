@@ -7,6 +7,8 @@ public class HitArea : MonoBehaviour
     public BoxCollider coll;
     public PlayerController player;
 
+    public float StunedTime;
+
     public void Initialize()
     {
         player = GetComponentInParent<PlayerController>();
@@ -26,7 +28,7 @@ public class HitArea : MonoBehaviour
         if (other.tag == "Enemy")
         {
             EnemyTest enemy = other.GetComponent<EnemyTest>();
-            enemy.StunnedSet();
+            enemy.StunnedSet(StunedTime);
             enemy.Damage(player.fistDamage);
         }
     }

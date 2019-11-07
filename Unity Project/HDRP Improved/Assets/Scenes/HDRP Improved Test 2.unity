@@ -868,6 +868,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coll: {fileID: 276592072}
   player: {fileID: 0}
+  StunedTime: 0.5
 --- !u!65 &276592072
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1016,6 +1017,7 @@ MonoBehaviour:
   reloadTime: 1.5
   fireDist: 20
   bulletDamage: 1
+  stunedTime: 0.5
   shotGunSpreads: 0
   spread: 0
   bulletHole: {fileID: 8829030398595018009, guid: 2bd88bdd325af914c8d5d7491a39ca7c,
@@ -1092,7 +1094,7 @@ GameObject:
   m_Component:
   - component: {fileID: 388360979}
   - component: {fileID: 388360980}
-  m_Layer: 12
+  m_Layer: 9
   m_Name: Audio Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1280,13 +1282,15 @@ MonoBehaviour:
     type: 3}
   SoundPrefab: {fileID: 1949416055720489262, guid: 4656adc9b53ec5b40bb142f1e8dfcf88,
     type: 3}
+  empPrefab: {fileID: 2692277122108718696, guid: 39892ff43c164e146bbc2da35a376996,
+    type: 3}
   throwTrans: {fileID: 218318119}
   throwForce: 1000
   molotovCount: 1
   GranadeCount: 1
   SoundCount: 1
   FirstAidCount: 1
-  InjectionCount: 1
+  EmpCount: 1
   canDoItem: 1
   waitTimeItem: 2
   canDoGun: 1
@@ -11696,6 +11700,7 @@ MonoBehaviour:
   reloadTime: 2
   fireDist: 100
   bulletDamage: 1
+  stunedTime: 0.5
   shotGunSpreads: 0
   spread: 0
   bulletHole: {fileID: 8829030398595018009, guid: 2bd88bdd325af914c8d5d7491a39ca7c,
@@ -25257,6 +25262,7 @@ MonoBehaviour:
   reloadTime: 2
   fireDist: 30
   bulletDamage: 1
+  stunedTime: 0.5
   shotGunSpreads: 0
   spread: 0
   bulletHole: {fileID: 8829030398595018009, guid: 2bd88bdd325af914c8d5d7491a39ca7c,
@@ -25314,6 +25320,7 @@ MonoBehaviour:
   timeCounter: 0
   timeToVanish: 1
   weapons: {fileID: 709269306}
+  items: {fileID: 0}
   actualItem: 2
   maxItem: 4
   actualGun: 0
@@ -30886,6 +30893,7 @@ MonoBehaviour:
   reloadTime: 2
   fireDist: 15
   bulletDamage: 1
+  stunedTime: 0.5
   shotGunSpreads: 8
   spread: 0.2
   bulletHole: {fileID: 8829030398595018009, guid: 2bd88bdd325af914c8d5d7491a39ca7c,
@@ -31000,7 +31008,7 @@ GameObject:
   - component: {fileID: 1476348606}
   - component: {fileID: 1476348605}
   - component: {fileID: 1476348604}
-  m_Layer: 12
+  m_Layer: 9
   m_Name: enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}

@@ -32,7 +32,7 @@ public class Items : MonoBehaviour
     public int GranadeCount;
     public int SoundCount;
     public int FirstAidCount;
-    public int InjectionCount;
+    public int EmpCount;
 
     public bool canDoItem = true;
     public float waitTimeItem; //no ha de ser mayor que waitTimeGun
@@ -234,7 +234,25 @@ public class Items : MonoBehaviour
 
     public void EMP()
     {
+        if (itemSelected == 0 && pressed && EmpCount > 0)
+        {
+            if (!firstTime)
+            {
+                Debug.Log("EMP");
+                //audio de apuntando
+                firstTime = true;
+            }
 
+            Debug.Log("Apunting with EMP");
+        }
+
+        if (itemSelected == 0 && realised == 1 && EmpCount > 0)
+        {
+            Debug.Log("Launched EMP");
+            InstantiateThings(empPrefab);
+
+            CantGunCantItem(false, false, false);
+        }
     }
 
     #endregion

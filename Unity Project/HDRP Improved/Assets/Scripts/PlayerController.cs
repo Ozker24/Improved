@@ -253,7 +253,7 @@ public class PlayerController : MonoBehaviour
         if (HUD.whatItem == 3) items.GranadeCount++;
         if (HUD.whatItem == 2) items.SoundCount++;
         if (HUD.whatItem == 1) items.FirstAidCount++;
-        if (HUD.whatItem == 0) items.InjectionCount++;
+        if (HUD.whatItem == 0) items.EmpCount++;
     }
 
     public void SetAnims()

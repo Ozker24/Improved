@@ -29,6 +29,7 @@ public class Weapon : MonoBehaviour
     public float reloadTime;
     public float fireDist;
     public int bulletDamage;
+    public float stunedTime;
 
     public int shotGunSpreads;
     public float spread;
@@ -64,7 +65,7 @@ public class Weapon : MonoBehaviour
 
                 if (hit.transform.tag == "Enemy")
                 {
-                    hit.transform.SendMessage("StunnedSet", SendMessageOptions.RequireReceiver);
+                    hit.transform.SendMessage("StunnedSet", stunedTime, SendMessageOptions.RequireReceiver);
                     hit.transform.SendMessage("Damage", bulletDamage, SendMessageOptions.RequireReceiver);
                 }
             }

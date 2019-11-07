@@ -45,7 +45,7 @@ public class HudManager : MonoBehaviour
         UpdateGrande(items.GranadeCount);
         UpdateSound(items.SoundCount);
         UpdateFirstAid(items.FirstAidCount);
-        UpdateInjections(items.InjectionCount);
+        UpdateInjections(items.EmpCount);
         UpdatePistol(weapon.weapons[0].ammoReloaded + weapon.weapons[0].currentAmmo);
         UpdateShotgun(weapon.weapons[1].ammoReloaded + weapon.weapons[1].currentAmmo);
         UpdateRifle(weapon.weapons[2].ammoReloaded + weapon.weapons[2].currentAmmo);

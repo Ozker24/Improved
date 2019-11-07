@@ -3,7 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Object
+  - Item
+  - Managers
+  - TPCamera
+  - Inventory
+  - Climb
+  - Enemy
+  - Canvas
+  - FireZone
   layers:
   - Default
   - TransparentFX
@@ -14,7 +23,7 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
+  - Enemy
   - 
   - 
   - 

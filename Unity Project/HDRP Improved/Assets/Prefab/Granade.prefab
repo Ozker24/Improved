@@ -159,7 +159,7 @@ MonoBehaviour:
   force: 700
   layer:
     serializedVersion: 2
-    m_Bits: 6144
+    m_Bits: 4294967295
   audPlay: {fileID: 451891963230707621}
   mesh: {fileID: 8014949743119193745}
   coll: {fileID: 8014949743119193744}
