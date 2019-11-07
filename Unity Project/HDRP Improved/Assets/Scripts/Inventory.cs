@@ -11,6 +11,7 @@ public class Inventory : MonoBehaviour
     public float timeCounter = 0;
     public float timeToVanish;
     public WeaponManager weapons;
+    public Items items;
 
     public int actualItem = 2;
     public int maxItem = 4;
@@ -24,6 +25,7 @@ public class Inventory : MonoBehaviour
     {
         Inv.SetActive(false);
         maxGun = weapons.maxWeapons;
+        items = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Items>();
         //anim = GetComponentInChildren<Animator>();
     }
 
@@ -48,25 +50,31 @@ public class Inventory : MonoBehaviour
 
     public void UpInventory()
     {
-        Inv.SetActive(true);
-        startCountdown = true;
-        timeCounter = 0;
-        if (actualItem < maxItem)
+        if (!items.pressed)
         {
-            actualItem++;
-            anim.SetTrigger("Up");
+            Inv.SetActive(true);
+            startCountdown = true;
+            timeCounter = 0;
+            if (actualItem < maxItem)
+            {
+                actualItem++;
+                anim.SetTrigger("Up");
+            }
         }
     }
 
     public void DownInventory()
     {
-        Inv.SetActive(true);
-        startCountdown = true;
-        timeCounter = 0;
-        if (actualItem > 0)
+        if (!items.pressed)
         {
-            actualItem--;
-            anim.SetTrigger("Down");
+            Inv.SetActive(true);
+            startCountdown = true;
+            timeCounter = 0;
+            if (actualItem > 0)
+            {
+                actualItem--;
+                anim.SetTrigger("Down");
+            }
         }
     }
 

@@ -24,6 +24,7 @@ public class Items : MonoBehaviour
     public GameObject GranadePrefab;
     public GameObject MolotovPrefab;
     public GameObject SoundPrefab;
+    public GameObject empPrefab;
     public Transform throwTrans;
     public float throwForce;
 
@@ -38,8 +39,6 @@ public class Items : MonoBehaviour
 
     public bool canDoGun = true; //Lo llamaremos por animacion
     public float waitTimeGun; //no ha de ser mayor que waitTimeItem
-
-    public TimeManager time;
 
     public AudioPlayer audPlay;
 
@@ -59,7 +58,6 @@ public class Items : MonoBehaviour
         WM = player.GetComponentInChildren<WeaponManager>();
 
         cam = Camera.main;
-        time = GameObject.FindGameObjectWithTag("Managers").GetComponent<TimeManager>();
         peace = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<HealthPeace>();
         audPlay = GetComponentInChildren<AudioPlayer>();
 
@@ -80,7 +78,7 @@ public class Items : MonoBehaviour
             Granade();
             SoundItem();
             FirstAid();
-            Inject();
+            EMP();
         }
     }
 
@@ -234,59 +232,9 @@ public class Items : MonoBehaviour
         }
     }
 
-    public void Inject()
+    public void EMP()
     {
-        if (itemSelected == 0 && InjectionCount > 0)
-        {
-            if (pressed && realised != 1)
-            {
-                if (!firstTime)
-                {
-                    //Debug.Log("I");
-                    audPlay.Play(2, 1, Random.Range(0.95f, 1.05f));
-                    firstTime = true;
-                }
 
-                if (TimeCounter >= timeInject)
-                {
-                    Debug.Log("Injected");
-                    TimeCounter = 0;
-
-                    AudioSource source = GetComponentInChildren<AudioSource>();
-
-                    if (source != null)
-                    {
-                        Destroy(source);
-                    }
-
-                    audPlay.PlayIgnoringTime(0, 1);
-                    time.ZaWarudo();
-
-                    StartCoroutine(PlayBackZaWarudo());
-
-                    CantGunCantItem(false, false, false);
-                }
-                else
-                {
-                    TimeCounter += Time.deltaTime;
-                }
-            }
-
-            if (realised == 1)
-            {
-                Debug.Log("Interrumpted");
-                TimeCounter = 0;
-
-                AudioSource source = GetComponentInChildren<AudioSource>();
-
-                if (source != null)
-                {
-                    Destroy(source);
-                }
-
-                firstTime = false;
-            }
-        }
     }
 
     #endregion
@@ -302,12 +250,6 @@ public class Items : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTimeItem);
         canDoItem = true;
-    }
-
-    public IEnumerator PlayBackZaWarudo()
-    {
-        yield return new WaitForSeconds(time.injectedTime);
-        audPlay.PlayIgnoringTime(1, 1);
     }
 
     public IEnumerator CanDoGun(float time)

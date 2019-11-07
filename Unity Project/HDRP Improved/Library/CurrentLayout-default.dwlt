@@ -45,7 +45,7 @@ MonoBehaviour:
     y: 0
     width: 1920
     height: 997
-  m_MinSize: {x: 950, y: 544}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &3
 MonoBehaviour:
@@ -114,7 +114,7 @@ MonoBehaviour:
   m_MinSize: {x: 887, y: 494}
   m_MaxSize: {x: 18004, y: 14044}
   vertical: 0
-  controlID: 193
+  controlID: 87
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -269,7 +269,7 @@ MonoBehaviour:
   m_MinSize: {x: 332, y: 272}
   m_MaxSize: {x: 14002, y: 10022}
   vertical: 0
-  controlID: 111
+  controlID: 155
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -461,9 +461,9 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: c44d0000
-      m_LastClickedID: 19908
+      scrollPos: {x: 0, y: 49}
+      m_SelectedIDs: 484d0000
+      m_LastClickedID: 19784
       m_ExpandedIDs: 6efbffff524d0000e84e0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -524,9 +524,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -4.4254217, y: -6.7392864, z: -5.930759}
+    m_Target: {x: -4.92, y: 0.5, z: 16.87}
     speed: 2
-    m_Value: {x: -4.4254217, y: -6.7392864, z: -5.930759}
+    m_Value: {x: -4.92, y: 0.5, z: 16.87}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -555,13 +555,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: -0.0014115706, y: -0.9926382, z: 0.120596, w: -0.011619091}
+    m_Target: {x: -0.001463841, y: -0.9920854, z: 0.12506163, w: -0.011612622}
     speed: 2
-    m_Value: {x: -0.001411563, y: -0.99263287, z: 0.12059535, w: -0.011619029}
+    m_Value: {x: -0.0014638331, y: -0.9920801, z: 0.12506096, w: -0.01161256}
   m_Size:
-    m_Target: 1320.5759
+    m_Target: 7.1921835
     speed: 2
-    m_Value: 1320.5759
+    m_Value: 7.1921835
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -652,19 +652,19 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Scripts
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets
+  - Assets/Scripts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: E:\GitHub\Improved\Unity Project\HDRP Improved
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 31}
-    m_SelectedIDs: e23c0000
-    m_LastClickedID: 15586
+    m_SelectedIDs: 06470000
+    m_LastClickedID: 18182
     m_ExpandedIDs: 00000000e23c0000044b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -720,7 +720,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000b6640000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -745,7 +745,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 0}
+    m_ScrollPosition: {x: 0, y: 41.5}
     m_GridSize: 64
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 115

@@ -27,8 +27,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private HealthPeace peace;
     [SerializeField]
-    private TimeManager time;
-    [SerializeField]
     private CloseCombat CC;
     [SerializeField]
     private HitArea Hit;
@@ -48,7 +46,6 @@ public class GameManager : MonoBehaviour
         Items = player.GetComponentInChildren<Items>();
         sound = GetComponent<SoundManager>();
         peace = player.GetComponentInChildren<HealthPeace>();
-        time = GetComponent<TimeManager>();
         CC = player.GetComponent<CloseCombat>();
         Hit = playerAnims.GetComponentInChildren<HitArea>();
 
@@ -85,7 +82,6 @@ public class GameManager : MonoBehaviour
         sound.MyUpdate();
         Aim.MyUpdate();
         peace.MyUpdate();
-        time.MyUpdate();
         CC.MyUpdate();
     }
 
