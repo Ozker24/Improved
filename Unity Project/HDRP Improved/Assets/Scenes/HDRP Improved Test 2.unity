@@ -786,6 +786,7 @@ MonoBehaviour:
   WM: {fileID: 0}
   originalLens: 0
   aimLens: 0
+  speedAim: 0
 --- !u!114 &271762353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24568,6 +24569,7 @@ MonoBehaviour:
   WM: {fileID: 0}
   originalLens: 40
   aimLens: 20
+  speedAim: 5
 --- !u!114 &1178095234
 MonoBehaviour:
   m_ObjectHideFlags: 0
