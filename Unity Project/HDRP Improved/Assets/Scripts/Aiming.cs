@@ -18,6 +18,8 @@ public class Aiming : MonoBehaviour
     public float originalLens;
     public float aimLens;
 
+    public float speedAim;
+
     public void Initialize()
     {
         //vCam = GetComponent<Cinemachine.CinemachineVirtualCameraBase>();
@@ -36,11 +38,13 @@ public class Aiming : MonoBehaviour
             if (aim && !player.stop && WM.ableGun)
             {
                 //vCam.Priority = 11;
+                //freeLook.m_Lens.FieldOfView = Mathf.Lerp(originalLens, aimLens, speedAim);
                 freeLook.m_Lens.FieldOfView = aimLens;
             }
             else
             {
                 //vCam.Priority = 9;
+                //freeLook.m_Lens.FieldOfView = Mathf.Lerp(aimLens, originalLens, speedAim);
                 freeLook.m_Lens.FieldOfView = originalLens;
             }
         }

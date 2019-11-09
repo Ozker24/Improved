@@ -10,11 +10,11 @@ public class Emp : MonoBehaviour
     public float empTime;
 
     public float radius;
-    //public float force;
     public LayerMask layer;
 
-    public AudioPlayer audPlay;
+    //public AudioPlayer audPlay;
 
+    [Header ("When Explode")]
     public MeshRenderer mesh;
     public Collider coll;
     public Rigidbody rb;
