@@ -4,44 +4,49 @@ using UnityEngine;
 
 public class Items : MonoBehaviour
 {
+    [Header ("Dependencies")]
     public PlayerController player;
     public WeaponManager WM;
-
     public Inventory inv;
+    public Animator healthAnim;
+    public HealthPeace peace;
+    public Camera cam;
+    public AudioPlayer audPlay;
+
+    [Header("Imputs")]
     public int itemSelected;
     public bool pressed;
     public int realised;
+
+    [Header("Time Variables")]
     public float timeFirstAid;
-    public float timeInject;
     public float TimeCounter;
     public bool interrupted;
     public bool firstTime;
 
-    public Animator healthAnim;
-    public HealthPeace peace;
-
-    public Camera cam;
+    [Header("Prefabs")]
     public GameObject GranadePrefab;
     public GameObject MolotovPrefab;
     public GameObject SoundPrefab;
     public GameObject empPrefab;
+
+    [Header("Throw Variables")]
     public Transform throwTrans;
     public float throwForce;
 
+    [Header("Items Count")]
     public int molotovCount;
     public int GranadeCount;
     public int SoundCount;
     public int FirstAidCount;
     public int EmpCount;
 
+    [Header("Cooldown Variables")]
     public bool canDoItem = true;
     public float waitTimeItem; //no ha de ser mayor que waitTimeGun
 
     public bool canDoGun = true; //Lo llamaremos por animacion
     public float waitTimeGun; //no ha de ser mayor que waitTimeItem
-
-    public AudioPlayer audPlay;
-
     /*
         4 molotov apuntar y disparar
         3 granade apuntar y disparar

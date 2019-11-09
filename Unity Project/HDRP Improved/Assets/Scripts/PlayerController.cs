@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header ("Dependencies")]
     [SerializeField]
     private CharacterController controler;
     public PlayerAnimations anims;
@@ -11,8 +12,12 @@ public class PlayerController : MonoBehaviour
     public WeaponManager WM;
     public Aiming aim;
     public GameManager GM;
+    public GameObject hitArea;
+    public HealthPeace life;
+    public Items items;
+    public CloseCombat CC;
 
-    [Header("Movement")]
+    [Header("States")]
     public bool moving;
     public bool movingForward;
     public bool walking;
@@ -22,22 +27,21 @@ public class PlayerController : MonoBehaviour
     public bool climb;
     public bool aiming;
 
+    [Header("Speed Values")]
     public float speed;
     public float walkSpeed = 5;
     public float runSpeed = 10;
     public float crouchSpeed = 2;
 
+    [Header("Movement")]
     public Vector2 axis = Vector2.zero;
     public Vector3 moveDir = Vector3.zero;
 
     [Header("Rotation")]
-    public float angleRot;
-
-    public Transform lookTarget;
-
     public Camera cam;
+    public float angleRot;
+    public Transform lookTarget;
     public Transform camTrans;
-
     public Transform modelTrans;
 
     [Header("Climb")]
@@ -46,16 +50,9 @@ public class PlayerController : MonoBehaviour
 
     [Header("Item")]
     public bool canCollect;
-    public Items items;
 
     [Header("Combat")]
-    public CloseCombat CC;
-
-    public GameObject hitArea;
-
     public int fistDamage;
-
-    public HealthPeace life;
 
     public void Initialize()
     {
@@ -86,9 +83,9 @@ public class PlayerController : MonoBehaviour
 
         if (!stop && !climb)
         {
-            if (moving || items.pressed || aim.aim || CC.point)
+            if (moving || (items.pressed && items.canDoItem) || aim.aim || CC.point)
             {
-                if (!items.canDoItem) return;
+                //if (!items.canDoItem) return;
                 //modelTrans.rotation = camTrans.transform.rotation;
                 Vector3 newPlayerForward = Vector3.ProjectOnPlane(camTrans.forward, Vector3.up);
                 Quaternion newPlayerQuaternion = Quaternion.LookRotation(newPlayerForward, Vector3.up);
