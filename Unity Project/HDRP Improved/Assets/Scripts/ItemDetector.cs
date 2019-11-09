@@ -7,7 +7,10 @@ public class ItemDetector : MonoBehaviour
     public float radius;
     public LayerMask layer;
     public float distanceClosestItem;
+    public float constantDisToItem;
     public GameObject closestItem;
+    public float distanceToReset;
+    public float mergeOfReset;
 
     public void Initialize()
     {
@@ -16,16 +19,38 @@ public class ItemDetector : MonoBehaviour
 
     public void MyUpdate()
     {
-        //Collider[] colliders = Physics.OverlapSphere(transform.position, radius, layer);
-        ItemBase[] items = GameObject.FindObjectsOfType<ItemBase>();
-        foreach (ItemBase nearbyObject in items)
+        if (closestItem != null)
         {
-            float distanceToItem = (nearbyObject.transform.position - gameObject.transform.position).sqrMagnitude;
+            constantDisToItem = Vector3.Distance(gameObject.transform.position, closestItem.transform.position);
+        }
+
+        Collider[] items = Physics.OverlapSphere(gameObject.transform.position, radius, layer);
+
+        foreach (Collider nearbyObject in items)
+        {
+            Debug.Log(nearbyObject.name);
+
+            float distanceToItem = Vector3.Distance(nearbyObject.transform.position, gameObject.transform.position);
             if (distanceToItem <= distanceClosestItem)
             {
                 distanceClosestItem = distanceToItem;
                 closestItem = nearbyObject.gameObject;
             }
+        }
+
+        if (closestItem != null)
+        {
+            if (Vector3.Distance(gameObject.transform.position, closestItem.transform.position) >= distanceClosestItem + mergeOfReset)
+            {
+                distanceClosestItem = distanceClosestItem = Mathf.Infinity;
+            }
+        }
+
+        if (constantDisToItem >= distanceToReset)
+        {
+            distanceClosestItem = Mathf.Infinity;
+            closestItem = null;
+            constantDisToItem = 0;
         }
     }
 }

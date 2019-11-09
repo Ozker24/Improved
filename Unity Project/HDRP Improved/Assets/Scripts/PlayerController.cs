@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public HealthPeace life;
     public Items items;
     public CloseCombat CC;
+    public ItemDetector itemDetector;
 
     [Header("States")]
     public bool moving;
@@ -64,6 +65,7 @@ public class PlayerController : MonoBehaviour
         WM = GetComponentInChildren<WeaponManager>();
         CC = GetComponent<CloseCombat>();
         life = GetComponentInChildren<HealthPeace>();
+        itemDetector = items.GetComponent<ItemDetector>();
 
 
         speed = walkSpeed;
@@ -234,23 +236,23 @@ public class PlayerController : MonoBehaviour
 
     public void Collect()
     {
-        if (HUD.actualItem != null && canCollect)
+        if (itemDetector.closestItem != null && canCollect)
         {
             CheckItem();
-            HUD.actualItem.SetActive(false);
-            Destroy(HUD.actualItem, 10);
-            HUD.actualItem = null;
-            HUD.actualLogo = null;
+            itemDetector.closestItem.SetActive(false);
+            Destroy(itemDetector.closestItem, 10);
+            itemDetector.closestItem = null;
+            //HUD.actualLogo = null;
         }
     }
 
     public void CheckItem()
     {
-        if (HUD.whatItem == 4) items.molotovCount++;
-        if (HUD.whatItem == 3) items.GranadeCount++;
-        if (HUD.whatItem == 2) items.SoundCount++;
-        if (HUD.whatItem == 1) items.FirstAidCount++;
-        if (HUD.whatItem == 0) items.EmpCount++;
+        if (itemDetector.closestItem.GetComponent<ItemBase>().WhichItem == 4) items.molotovCount++;
+        if (itemDetector.closestItem.GetComponent<ItemBase>().WhichItem == 4) items.GranadeCount++;
+        if (itemDetector.closestItem.GetComponent<ItemBase>().WhichItem == 4) items.SoundCount++;
+        if (itemDetector.closestItem.GetComponent<ItemBase>().WhichItem == 4) items.FirstAidCount++;
+        if (itemDetector.closestItem.GetComponent<ItemBase>().WhichItem == 4) items.EmpCount++;
     }
 
     public void SetAnims()
