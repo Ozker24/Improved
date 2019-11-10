@@ -4,13 +4,22 @@ using UnityEngine;
 
 public class ItemDetector : MonoBehaviour
 {
+    [Header ("Overlap")]
     public float radius;
     public LayerMask layer;
+
+    [Header("Closest Item")]
+    public GameObject closestItem;
     public float distanceClosestItem;
     public float constantDisToItem;
-    public GameObject closestItem;
+
+    [Header("Restart")]
     public float distanceToReset;
     public float mergeOfReset;
+
+    [Header("Grab")]
+    public float distanceToGrab;
+    public bool canGrab;
 
     public void Initialize()
     {
@@ -22,6 +31,15 @@ public class ItemDetector : MonoBehaviour
         if (closestItem != null)
         {
             constantDisToItem = Vector3.Distance(gameObject.transform.position, closestItem.transform.position);
+
+            if (Vector3.Distance(gameObject.transform.position, closestItem.transform.position) <= distanceToGrab)
+            {
+                canGrab = true;
+            }
+            else
+            {
+                canGrab = false;
+            }
         }
 
         Collider[] items = Physics.OverlapSphere(gameObject.transform.position, radius, layer);
@@ -51,6 +69,11 @@ public class ItemDetector : MonoBehaviour
             distanceClosestItem = Mathf.Infinity;
             closestItem = null;
             constantDisToItem = 0;
+        }
+
+        if (closestItem == null)
+        {
+            canGrab = false;
         }
     }
 }

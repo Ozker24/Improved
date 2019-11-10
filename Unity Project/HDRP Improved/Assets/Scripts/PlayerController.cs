@@ -49,9 +49,6 @@ public class PlayerController : MonoBehaviour
     public bool canClimb;
     public Vector3 endedClimb;
 
-    [Header("Item")]
-    public bool canCollect;
-
     [Header("Combat")]
     public int fistDamage;
 
@@ -104,10 +101,6 @@ public class PlayerController : MonoBehaviour
         {
             canClimb = true;
         }
-        if (other.tag == "Item")
-        {
-            canCollect = true;
-        }
     }
 
     public void OnTriggerExit(Collider other)
@@ -115,10 +108,6 @@ public class PlayerController : MonoBehaviour
         if (other.tag == "Climb")
         {
             canClimb = false;
-        }
-        if (other.tag == "Item")
-        {
-            canCollect = false;
         }
     }
 
@@ -236,7 +225,7 @@ public class PlayerController : MonoBehaviour
 
     public void Collect()
     {
-        if (itemDetector.closestItem != null && canCollect)
+        if (itemDetector.closestItem != null && itemDetector.canGrab)
         {
             CheckItem();
             itemDetector.closestItem.SetActive(false);
