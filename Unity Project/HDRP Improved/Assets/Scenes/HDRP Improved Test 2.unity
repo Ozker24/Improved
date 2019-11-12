@@ -779,14 +779,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e6ea4e2d2f0bf349a7388aadcb7c95d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aim: 0
   point: {fileID: 2117005814}
   ammo: {fileID: 1075604721}
   player: {fileID: 0}
   WM: {fileID: 0}
+  aim: 0
+  actualLens: 0
   originalLens: 0
   aimLens: 0
-  speedAim: 0
+  direction: 0
+  dontDo: 1
+  timeCounter: 0
+  timeOfZoom: 0
 --- !u!114 &271762353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7985,7 +7989,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 544915715}
-  m_LocalRotation: {x: 0.03759282, y: -0.0052196635, z: 0.0001963635, w: 0.9992795}
+  m_LocalRotation: {x: 0.03759035, y: -0.012590977, z: 0.0004736715, w: 0.9992138}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -11629,6 +11633,11 @@ MonoBehaviour:
   - 1
   - 1.5
   - 1.8
+  timeToAim:
+  - 1
+  - 2
+  - 3
+  - 4
 --- !u!114 &709269307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11926,7 +11935,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 742023942}
-  m_LocalRotation: {x: 0.037592825, y: -0.005219662, z: 0.00019636555, w: 0.9992795}
+  m_LocalRotation: {x: 0.037590355, y: -0.012590977, z: 0.00047367366, w: 0.9992138}
   m_LocalPosition: {x: 0.4048535, y: 1.871525, z: -22.46109}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -12356,7 +12365,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 876096895}
-  m_LocalRotation: {x: 0.037592817, y: -0.005219666, z: 0.00019635625, w: 0.99927956}
+  m_LocalRotation: {x: 0.03759035, y: -0.012590972, z: 0.0004736639, w: 0.9992138}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -24586,14 +24595,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e6ea4e2d2f0bf349a7388aadcb7c95d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aim: 0
   point: {fileID: 1220652481}
   ammo: {fileID: 1075604721}
   player: {fileID: 1208180129}
   WM: {fileID: 0}
+  aim: 0
+  actualLens: 0
   originalLens: 40
   aimLens: 20
-  speedAim: 5
+  direction: 0
+  dontDo: 1
+  timeCounter: 0
+  timeOfZoom: 1
 --- !u!114 &1178095234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28433,7 +28446,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1379034324}
-  m_LocalRotation: {x: 0.037592817, y: -0.005219662, z: 0.00019636573, w: 0.9992795}
+  m_LocalRotation: {x: 0.03759035, y: -0.012590977, z: 0.00047367383, w: 0.9992138}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

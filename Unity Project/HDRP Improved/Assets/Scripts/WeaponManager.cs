@@ -31,6 +31,7 @@ public class WeaponManager : MonoBehaviour
     public float[] timeAbleGun;
     public bool ableGun = true;
     public float[] itemTimeToGun;
+    public float[] timeToAim;
 
     public void Initialize()
     {

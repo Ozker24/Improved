@@ -101,12 +101,12 @@ public class ImputManager : MonoBehaviour
 
     public void ChangeGun()
     {
-        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+        if (Input.GetButtonDown("Gun Right"))
         {
             weapon.ChangeGunRight();
         }
 
-        if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+        if (Input.GetButtonDown("Gun Left"))
         {
             weapon.ChangeGunLeft();
         }
@@ -157,7 +157,7 @@ public class ImputManager : MonoBehaviour
 
     public void ItemUp()
     {
-        if (Input.GetButtonDown("Item Up"))
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
             inv.UpInventory();
         }
@@ -165,7 +165,7 @@ public class ImputManager : MonoBehaviour
 
     public void ItemDown()
     {
-        if (Input.GetButtonDown("Item Down"))
+        if (Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
             inv.DownInventory();
         }

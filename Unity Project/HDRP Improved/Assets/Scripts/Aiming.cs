@@ -5,20 +5,28 @@ using Cinemachine;
 
 public class Aiming : MonoBehaviour
 {
-    Cinemachine.CinemachineVirtualCameraBase vCam;
-
-    Cinemachine.CinemachineFreeLook freeLook;
-    public bool aim;
-
+    [Header ("Dependences")]
     public GameObject point;
     public GameObject ammo;
     public PlayerController player;
     public WeaponManager WM;
 
+    [Header("Cinemachine")]
+    Cinemachine.CinemachineVirtualCameraBase vCam;
+    Cinemachine.CinemachineFreeLook freeLook;
+
+    [Header("Zooms")]
+    public bool aim;
+    public float actualLens;
     public float originalLens;
     public float aimLens;
 
-    public float speedAim;
+    [Header ("Zoom Interpolation")]
+    public bool direction = false;
+    public bool dontDo = true;
+    public float timeCounter;
+    public float timeOfZoom;
+    //public float speed;
 
     public void Initialize()
     {
@@ -35,17 +43,45 @@ public class Aiming : MonoBehaviour
     {
         if (freeLook != null)
         {
-            if (aim && !player.stop && WM.ableGun)
+            actualLens = freeLook.m_Lens.FieldOfView; // it is always calculating the actual lens, it is the begining point of the lerp
+
+            if (aim && !player.stop && WM.ableGun) //if i am aiming and other bools dont interrupt me
             {
-                //vCam.Priority = 11;
-                //freeLook.m_Lens.FieldOfView = Mathf.Lerp(originalLens, aimLens, speedAim);
-                freeLook.m_Lens.FieldOfView = aimLens;
+                if (!direction) // and i am actually aming
+                {
+                    dontDo = false;
+                    timeCounter = 0;
+                    direction = true;
+                }
+                else if (timeCounter < timeOfZoom) //while the time counter does not arrive to the limit
+                {
+                    freeLook.m_Lens.FieldOfView = Mathf.Lerp(actualLens, aimLens, timeCounter);
+                    timeCounter += Time.deltaTime * WM.timeToAim[WM.WeaponSelected];
+                }
+                else if (timeCounter >= timeOfZoom) // when the time counter aarives to the limit
+                {
+                    freeLook.m_Lens.FieldOfView = aimLens;
+                }
             }
             else
             {
-                //vCam.Priority = 9;
-                //freeLook.m_Lens.FieldOfView = Mathf.Lerp(aimLens, originalLens, speedAim);
-                freeLook.m_Lens.FieldOfView = originalLens;
+                if (!dontDo) // this avoids to do the function becouse at the begining you aren't aming.
+                {
+                    if (direction) // and i am not aming
+                    {
+                        timeCounter = 0;
+                        direction = false;
+                    }
+                    else if (timeCounter < timeOfZoom) //while the time counter does not arrive to the limit
+                    {
+                        freeLook.m_Lens.FieldOfView = Mathf.Lerp(actualLens, originalLens, timeCounter);
+                        timeCounter += Time.deltaTime * WM.timeToAim[WM.WeaponSelected];
+                    }
+                    else if (timeCounter >= timeOfZoom) // when the time counter aarives to the limit
+                    {
+                        freeLook.m_Lens.FieldOfView = originalLens;
+                    }
+                }
             }
         }
 
@@ -61,12 +97,12 @@ public class Aiming : MonoBehaviour
         }
     }
 
-    public void Aim()
+    public void Aim() //Returns true while the imput is pressed.
     {
         aim = true;
     }
 
-    public void NotAim()
+    public void NotAim() //Returns false while the imput is pressed.
     {
         aim = false;
     }
