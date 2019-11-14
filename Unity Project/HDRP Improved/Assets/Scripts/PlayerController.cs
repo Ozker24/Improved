@@ -52,6 +52,11 @@ public class PlayerController : MonoBehaviour
     [Header("Combat")]
     public int fistDamage;
 
+    [Header("Dodge")]
+    public Rigidbody rb;
+    public Vector3 dodgeDir;
+    public float DodgeForce;
+
     public void Initialize()
     {
         controler = GetComponent<CharacterController>();
@@ -63,7 +68,7 @@ public class PlayerController : MonoBehaviour
         CC = GetComponent<CloseCombat>();
         life = GetComponentInChildren<HealthPeace>();
         itemDetector = items.GetComponent<ItemDetector>();
-
+        rb = GetComponent<Rigidbody>();
 
         speed = walkSpeed;
 
@@ -221,6 +226,13 @@ public class PlayerController : MonoBehaviour
         {
             anims.ClimbAnimation();
         }
+    }
+
+    public void Dodge()
+    {
+        Debug.Log("Dodge");
+        dodgeDir = new Vector3 (moveDir.x, DodgeForce, moveDir.z);
+        rb.AddForce(dodgeDir);
     }
 
     public void Collect()

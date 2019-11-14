@@ -39,6 +39,7 @@ public class ImputManager : MonoBehaviour
             Shot();
             ChangeItem();
             Hit();
+            SetDodge();
         }
     }
 
@@ -88,6 +89,14 @@ public class ImputManager : MonoBehaviour
         if (Input.GetButtonDown("Climb"))
         {
             player.Climb();
+        }
+    }
+
+    public void SetDodge()
+    {
+        if (Input.GetButtonDown("Climb"))
+        {
+            player.Dodge();
         }
     }
 
