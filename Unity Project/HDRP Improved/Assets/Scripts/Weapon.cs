@@ -61,7 +61,7 @@ public class Weapon : MonoBehaviour
             if (Physics.Raycast(ray, out hit, fireDist))
             {
                 Debug.Log(hit.transform.tag);
-                Instantiate(bulletHole, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
+                //Instantiate(bulletHole, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
 
                 if (hit.transform.tag == "Enemy")
                 {
@@ -80,7 +80,7 @@ public class Weapon : MonoBehaviour
 
                 if (Physics.Raycast(ray, out hit, fireDist))
                 {
-                    Instantiate(bulletHole, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
+                    //Instantiate(bulletHole, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
                 }
 
                 Debug.Log(hit.point);
