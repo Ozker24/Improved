@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
     private HitArea Hit;
     [SerializeField]
     private ItemDetector itemDetector;
+    [SerializeField]
+    private ThrowImpact throwImpact;
 
     public bool ableToInput = true;
     public bool detected = false;
@@ -51,6 +53,7 @@ public class GameManager : MonoBehaviour
         CC = player.GetComponent<CloseCombat>();
         Hit = playerAnims.GetComponentInChildren<HitArea>();
         itemDetector = Items.GetComponent<ItemDetector>();
+        throwImpact = player.GetComponentInChildren<ThrowImpact>();
 
 
         //Cursor.visible = false;
@@ -72,6 +75,7 @@ public class GameManager : MonoBehaviour
         CC.Initialize();
         Hit.Initialize();
         itemDetector.Initialize();
+        throwImpact.Initialize();
     }
 
     private void Update()
@@ -88,6 +92,7 @@ public class GameManager : MonoBehaviour
         peace.MyUpdate();
         CC.MyUpdate();
         itemDetector.MyUpdate();
+        throwImpact.MyUpdate();
     }
 
     public void FixedUpdate()
