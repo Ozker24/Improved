@@ -576,7 +576,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 33
+  m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &218318118
 GameObject:
@@ -1089,6 +1089,38 @@ MonoBehaviour:
   clips:
   - {fileID: 8300000, guid: 2e3d2df66f5a0b04d936c92ebe11342c, type: 3}
   - {fileID: 8300000, guid: bc3dccea12d08814c9b0539941ae7fff, type: 3}
+--- !u!1 &343438773
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 343438774}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &343438774
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343438773}
+  m_LocalRotation: {x: -0, y: 0.6078542, z: -0, w: -0.7940487}
+  m_LocalPosition: {x: 0.43199778, y: 1.78, z: -19.41}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 920127680}
+  - {fileID: 1845801080}
+  m_Father: {fileID: 0}
+  m_RootOrder: 32
+  m_LocalEulerAnglesHint: {x: 0, y: -434.86902, z: 0}
 --- !u!1 &388360978
 GameObject:
   m_ObjectHideFlags: 0
@@ -12776,12 +12808,12 @@ GameObject:
   - component: {fileID: 920127682}
   - component: {fileID: 920127681}
   m_Layer: 0
-  m_Name: Particle System (1)
+  m_Name: ActualGrenade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &920127680
 Transform:
   m_ObjectHideFlags: 0
@@ -12790,11 +12822,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 920127679}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.432, y: 1.78, z: -19.41}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 31
+  m_Father: {fileID: 343438774}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -104.536995, y: 74.979996, z: 67.468994}
 --- !u!199 &920127681
 ParticleSystemRenderer:
@@ -12867,9 +12899,9 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 920127679}
   serializedVersion: 6
-  lengthInSec: 1000
+  lengthInSec: 1
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 3
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -12932,7 +12964,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -16621,7 +16653,7 @@ ParticleSystem:
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
@@ -22565,7 +22597,7 @@ GameObject:
   - component: {fileID: 971012670}
   - component: {fileID: 971012671}
   m_Layer: 0
-  m_Name: Particle System (1)
+  m_Name: GrenadeCollision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55538,12 +55570,12 @@ GameObject:
   - component: {fileID: 1845801079}
   - component: {fileID: 1845801078}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: GrenadePath
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!199 &1845801078
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -55859,7 +55891,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -60273,12 +60305,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1845801077}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.432, y: 1.78, z: -19.41}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 971012672}
-  m_Father: {fileID: 0}
-  m_RootOrder: 32
+  m_Father: {fileID: 343438774}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1867844183
 GameObject:

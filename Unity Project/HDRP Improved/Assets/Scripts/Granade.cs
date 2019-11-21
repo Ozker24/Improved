@@ -19,6 +19,7 @@ public class Granade : MonoBehaviour
     public Rigidbody rb;
 
     public GameObject explosionEffect;
+    public ParticleSystem grenadeParticle;
 
     public void Update()
     {
@@ -74,4 +75,10 @@ public class Granade : MonoBehaviour
 
         Destroy(gameObject, 5);
     }
+
+    public void OnParticleSystemStopped()
+    {
+
+    }
+
 }
