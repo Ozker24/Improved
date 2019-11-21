@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
         CC.Initialize();
         Hit.Initialize();
         itemDetector.Initialize();
-        throwImpact.Initialize();
+        //throwImpact.Initialize();
     }
 
     private void Update()
@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
         peace.MyUpdate();
         CC.MyUpdate();
         itemDetector.MyUpdate();
-        throwImpact.MyUpdate();
+        //throwImpact.MyUpdate();
     }
 
     public void FixedUpdate()

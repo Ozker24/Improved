@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Granade : MonoBehaviour
 {
+    public bool startExplode;
     public float timeToExplode;
     public float timeCounter;
     public bool exploded;
@@ -20,19 +21,28 @@ public class Granade : MonoBehaviour
 
     public GameObject explosionEffect;
     public ParticleSystem grenadeParticle;
+    public ParticleSystem.Particle[] grenadePart;
+
+    public void Start()
+    {
+        grenadePart = new ParticleSystem.Particle[grenadeParticle.main.maxParticles];
+    }
 
     public void Update()
     {
-        if (timeCounter >= timeToExplode)
+        if(startExplode)
         {
-            Explode();
-            timeCounter = 0;
-            exploded = true;
-        }
+            if (timeCounter >= timeToExplode)
+            {
+                Explode();
+                timeCounter = 0;
+                exploded = true;
+            }
 
-        if (!exploded)
-        {
-            timeCounter += Time.deltaTime;
+            if (!exploded)
+            {
+                timeCounter += Time.deltaTime;
+            }
         }
     }
 
@@ -78,7 +88,7 @@ public class Granade : MonoBehaviour
 
     public void OnParticleSystemStopped()
     {
-
+        Debug.Log(grenadePart[0].position);
     }
 
 }

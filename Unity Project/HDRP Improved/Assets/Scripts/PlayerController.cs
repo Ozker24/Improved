@@ -224,7 +224,7 @@ public class PlayerController : MonoBehaviour
     {
         if (canClimb && !climb)
         {
-            anims.ClimbAnimation();
+            //anims.ClimbAnimation();
         }
     }
 
