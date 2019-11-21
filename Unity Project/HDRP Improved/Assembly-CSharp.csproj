@@ -62,6 +62,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Externals\GrenadeTrajectory\Trajectory.cs" />
     <Compile Include="Assets\Scripts\AAAAA.cs" />
     <Compile Include="Assets\Scripts\Aiming.cs" />
     <Compile Include="Assets\Scripts\AudioPlayer.cs" />
