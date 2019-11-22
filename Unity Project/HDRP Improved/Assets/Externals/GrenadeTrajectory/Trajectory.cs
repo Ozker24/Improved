@@ -15,7 +15,8 @@ public class Trajectory : MonoBehaviour
     private int currentPoint;
     public int maxPoints;
 
-    private Vector3 startPos;
+    public Transform startTrans;
+    public Vector3 startPos;
     private Vector3 previousPos;
 
     [SerializeField] bool drawing;
@@ -36,7 +37,7 @@ public class Trajectory : MonoBehaviour
         {
             timeCounter = 0;
             currentPoint = 0;
-            startPos = this.transform.position;
+            startPos = Vector3.one;
             previousPos = startPos;
             drawing = true;
             points.Clear();
