@@ -25,10 +25,10 @@ TagManager:
   - PostProcessing
   - Enemy
   - Item
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - Wall
+  - Objects
+  - ClimbWall
   - 
   - 
   - 

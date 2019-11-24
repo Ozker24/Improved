@@ -12,6 +12,8 @@ public class Items : MonoBehaviour
     public HealthPeace peace;
     public Camera cam;
     public AudioPlayer audPlay;
+    public Trajectory trajectory;
+    public GameObject trajectoryPrefab;
 
     [Header("Imputs")]
     public int itemSelected;
@@ -66,13 +68,23 @@ public class Items : MonoBehaviour
         peace = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<HealthPeace>();
         audPlay = GetComponentInChildren<AudioPlayer>();
 
+        trajectoryPrefab.SetActive(false);
+        trajectory = trajectoryPrefab.GetComponent<Trajectory>();
     }
 
     public void MyUpdate()
     {
         itemSelected = inv.actualItem;
 
+        trajectory.direction = cam.transform.forward;
+        trajectory.velocity = throwForce;
+
         if (canDoItem) ActiveItem();
+
+        if (pressed && canDoItem)
+        {
+            trajectoryPrefab.SetActive(true);
+        }
     }
 
     public void ActiveItem()
@@ -90,6 +102,11 @@ public class Items : MonoBehaviour
     public void SetButtonPressed()
     {
         pressed = true;
+
+        if (canDoItem)
+        {
+            trajectoryPrefab.SetActive(true);
+        }
     }
 
     public void SetButtonRealised()
@@ -97,6 +114,12 @@ public class Items : MonoBehaviour
         realised = 1;
         StartCoroutine(RealisedFalse());
         pressed = false;
+
+        if (canDoItem)
+        {
+            trajectoryPrefab.SetActive(false);
+            trajectory.drawing = false;
+        }
     }
 
     IEnumerator RealisedFalse()
@@ -264,9 +287,10 @@ public class Items : MonoBehaviour
 
     public void InstantiateThings(GameObject prefab)
     {
-        GameObject granade = Instantiate(prefab, throwTrans.position, throwTrans.rotation);
-        Rigidbody rb = granade.GetComponent<Rigidbody>();
-        rb.AddForce(cam.transform.forward * throwForce);
+        GameObject grenade = Instantiate(prefab, trajectoryPrefab.transform.position, Quaternion.Euler(0, 0, 0));
+        Rigidbody rb = grenade.GetComponent<Rigidbody>();
+
+        rb.velocity = trajectory.velocity * trajectory.direction;
     }
 
     IEnumerator CanDoItem()

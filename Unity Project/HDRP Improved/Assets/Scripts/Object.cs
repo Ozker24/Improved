@@ -15,6 +15,24 @@ public class Object : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "FireZone")
+        {
+            if (gameObject.tag == "Enemy")
+            {
+                EnemyTest enemy = GetComponent<EnemyTest>();
+
+                if (enemy.dead)
+                {
+                    return;
+                }
+            }
+
+            timeCounter += Time.deltaTime;
+        }
+    }
+
     /*public void OnTriggerStay(Collider other)
     {
         if (other.tag == "FireZone")

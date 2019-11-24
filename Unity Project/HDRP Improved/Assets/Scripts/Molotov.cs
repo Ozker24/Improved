@@ -50,8 +50,10 @@ public class Molotov : MonoBehaviour
             {
                 EnemyTest enemy = nearbyObject.GetComponent<EnemyTest>();
                 enemy.Damage(enemy.currentLife);
+                enemy.dead = true;
+                Debug.Log("Killed By Molotov");
             }
-            else
+            else if (nearbyObject.tag == "Object")
             {
                 Destroy(nearbyObject.gameObject, 2f);
             }

@@ -51,6 +51,7 @@ public class EnemyTest : MonoBehaviour
     [Header("Die")]
 
     public float timeToDie;
+    public bool dead;
 
     // Start is called before the first frame update
     void Start()
@@ -205,6 +206,7 @@ public class EnemyTest : MonoBehaviour
 
     public void DieUpdate()
     {
+        dead = true;
         Destroy(gameObject, timeToDie);
     }
 

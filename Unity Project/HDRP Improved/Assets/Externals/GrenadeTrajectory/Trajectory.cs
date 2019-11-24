@@ -5,21 +5,22 @@ using UnityEngine;
 public class Trajectory : MonoBehaviour
 {
     public Transform endTransform;
-    public Vector3 startVel;
+    public Vector3 direction;
+    public float velocity;
     public float duration;
     private float timeCounter;
     public float drawTime;
 
     public LineRenderer lineRenderer;
+    public LayerMask layer;
 
     private int currentPoint;
     public int maxPoints;
 
-    public Transform startTrans;
     public Vector3 startPos;
     private Vector3 previousPos;
 
-    [SerializeField] bool drawing;
+    public bool drawing;
 
     public List<Vector3> points;
 
@@ -33,11 +34,11 @@ public class Trajectory : MonoBehaviour
 
     public void Update()
     {
-        if(!drawing)
+        if (!drawing)
         {
             timeCounter = 0;
             currentPoint = 0;
-            startPos = Vector3.one;
+            startPos = this.transform.position;
             previousPos = startPos;
             drawing = true;
             points.Clear();
@@ -49,7 +50,7 @@ public class Trajectory : MonoBehaviour
     {
         while(timeCounter < duration)
         {
-            PlotTrajectory(startPos, startVel, timeCounter, duration);
+            PlotTrajectory(startPos, direction * velocity, timeCounter, duration);
             timeCounter += duration / maxPoints;
         }        
 
@@ -79,7 +80,7 @@ public class Trajectory : MonoBehaviour
         }
 
         RaycastHit hit = new RaycastHit();
-        if(Physics.Linecast(previousPos, currentPos, out hit))
+        if(Physics.Linecast(previousPos, currentPos, out hit, layer))
         {
             currentPos = hit.point;
             timeCounter = duration;

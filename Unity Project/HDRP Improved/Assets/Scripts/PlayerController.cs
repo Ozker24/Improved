@@ -228,12 +228,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Dodge()
+    /*public void Dodge()
     {
         Debug.Log("Dodge");
         dodgeDir = new Vector3 (moveDir.x, DodgeForce, moveDir.z);
         rb.AddForce(dodgeDir);
-    }
+    }*/
 
     public void Collect()
     {

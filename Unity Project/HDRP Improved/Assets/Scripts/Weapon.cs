@@ -34,7 +34,7 @@ public class Weapon : MonoBehaviour
     public int shotGunSpreads;
     public float spread;
 
-    public GameObject bulletHole;
+    public GameObject bloodParticle;
 
     public Transform whereToShot;
 
@@ -80,7 +80,7 @@ public class Weapon : MonoBehaviour
 
                 if (Physics.Raycast(ray, out hit, fireDist))
                 {
-                    //Instantiate(bulletHole, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
+                    Instantiate(bloodParticle, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
                 }
 
                 Debug.Log(hit.point);

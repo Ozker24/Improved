@@ -23,7 +23,7 @@ public class FireZone : MonoBehaviour
         }
     }
 
-    public void OnTriggerStay(Collider other)
+    /*public void OnTriggerStay(Collider other)
     {
         Collider[] colliders = Physics.OverlapBox(transform.position, halfExtent, transform.rotation, layer);
 
@@ -38,7 +38,7 @@ public class FireZone : MonoBehaviour
                 obj.timeCounter += Time.deltaTime;
             }
         }
-    }
+    }*/
 
     public void OnDrawGizmos()
     {

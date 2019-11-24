@@ -20,29 +20,19 @@ public class Granade : MonoBehaviour
     public Rigidbody rb;
 
     public GameObject explosionEffect;
-    public ParticleSystem grenadeParticle;
-    public ParticleSystem.Particle[] grenadePart;
-
-    public void Start()
-    {
-        grenadePart = new ParticleSystem.Particle[grenadeParticle.main.maxParticles];
-    }
 
     public void Update()
     {
-        if(startExplode)
+        if (timeCounter >= timeToExplode)
         {
-            if (timeCounter >= timeToExplode)
-            {
-                Explode();
-                timeCounter = 0;
-                exploded = true;
-            }
+            Explode();
+            timeCounter = 0;
+            exploded = true;
+        }
 
-            if (!exploded)
-            {
-                timeCounter += Time.deltaTime;
-            }
+        if (!exploded)
+        {
+            timeCounter += Time.deltaTime;
         }
     }
 
@@ -51,7 +41,7 @@ public class Granade : MonoBehaviour
         Debug.Log("Booom");
 
         // Show Effects
-        //Instantiate(explosionEffect, transform.position, transform.rotation);
+        Instantiate(explosionEffect, transform.position, transform.rotation);
 
         audPlay.Play(0, 1, 1);
 
@@ -85,10 +75,4 @@ public class Granade : MonoBehaviour
 
         Destroy(gameObject, 5);
     }
-
-    public void OnParticleSystemStopped()
-    {
-        Debug.Log(grenadePart[0].position);
-    }
-
 }

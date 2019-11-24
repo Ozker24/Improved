@@ -173,7 +173,7 @@ MonoBehaviour:
   radius: 5
   layer:
     serializedVersion: 2
-    m_Bits: 6144
+    m_Bits: 8704
   audPlay: {fileID: 6949311030985668335}
   mesh: {fileID: 6442462936046615428}
   coll: {fileID: 6442462936046615427}
