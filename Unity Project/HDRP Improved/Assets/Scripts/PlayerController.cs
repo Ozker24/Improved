@@ -5,8 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header ("Dependencies")]
-    [SerializeField]
-    private CharacterController controler;
+    [SerializeField] CharacterController controler;
     public PlayerAnimations anims;
     public HudManager HUD;
     public WeaponManager WM;
@@ -53,9 +52,13 @@ public class PlayerController : MonoBehaviour
     public int fistDamage;
 
     [Header("Dodge")]
-    public Rigidbody rb;
     public Vector3 dodgeDir;
     public float DodgeForce;
+    public bool dodge;
+
+    [Header("Gravity Values")]
+    private float forceToGround = Physics.gravity.y;
+    public float gravityMagnitude = 1.0f;
 
     public void Initialize()
     {
@@ -68,7 +71,6 @@ public class PlayerController : MonoBehaviour
         CC = GetComponent<CloseCombat>();
         life = GetComponentInChildren<HealthPeace>();
         itemDetector = items.GetComponent<ItemDetector>();
-        rb = GetComponent<Rigidbody>();
 
         speed = walkSpeed;
 
@@ -78,6 +80,8 @@ public class PlayerController : MonoBehaviour
 
     public void MyUpdate()
     {
+        GravitySimulation();
+
         aiming = aim.aim;
 
         /*if (WM.searchingBullet) stop = true;
@@ -160,6 +164,21 @@ public class PlayerController : MonoBehaviour
         dir.Set(dir.x, 0, dir.z);
 
         return dir.normalized * moveDir.magnitude;
+    }
+
+    void GravitySimulation()
+    {
+        if (controler.isGrounded && !dodge)
+        {
+            Debug.Log(controler.isGrounded);
+            //moveDir.y = forceToGround;
+            //controler.Move(new Vector3(0, forceToGround, 0));
+        }
+        else
+        {
+            //moveDir += Physics.gravity * gravityMagnitude * Time.deltaTime; // constantemente se le suma acceleracion de la grabedad
+            dodge = false;
+        }
     }
 
     #region Speeds
