@@ -34863,8 +34863,11 @@ MonoBehaviour:
   limitTimeToRest: 4
   initialStealth: 30
   stealthIndicator: 0
-  restValue: 4
+  addStealth: 0
   walkValue: 3
+  runValue: 20
+  restValue: 4
+  enemyDetection: 100
   resting: 0
 --- !u!143 &1208180132
 CharacterController:

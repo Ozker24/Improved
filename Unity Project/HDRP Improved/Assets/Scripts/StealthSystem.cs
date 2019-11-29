@@ -18,8 +18,11 @@ public class StealthSystem : MonoBehaviour
     public float stealthIndicator;
 
     [Header("Stealth Values")]
-    public float restValue;
+    public float addStealth;
     public float walkValue;
+    public float runValue;
+    public float restValue;
+    public float enemyDetection;
     public bool resting;
 
     public void Initialize()
@@ -32,12 +35,23 @@ public class StealthSystem : MonoBehaviour
     {
         if (player.moving)
         {
+            DetectAction();
+
             if (resting)
             {
                 timeCounter = 0;
                 resting = false;
             }
-            AddStealth();
+
+            if (stealthIndicator < enemyDetection)
+            {
+                AddStealth();
+            }
+
+            else if (stealthIndicator >= enemyDetection)
+            {
+                stealthIndicator = enemyDetection;
+            }
         }
         else
         {
@@ -58,12 +72,25 @@ public class StealthSystem : MonoBehaviour
         }
     }
 
+    public void DetectAction()
+    {
+        if (player.walking)
+        {
+            addStealth = walkValue;
+        }
+
+        else if (player.running)
+        {
+            addStealth = runValue;
+        }
+    }
+
     public void AddStealth()
     {
         if (timeCounter >= limitTime)
         {
             timeCounter = 0;
-            stealthIndicator += walkValue;
+            stealthIndicator += addStealth;
         }
         else
         {
