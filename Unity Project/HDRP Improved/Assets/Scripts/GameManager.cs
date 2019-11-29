@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour
     private ItemDetector itemDetector;
     [SerializeField]
     private ThrowImpact throwImpact;
+    [SerializeField]
+    private StealthSystem stealth;
 
     public bool ableToInput = true;
     public bool detected = false;
@@ -54,6 +56,7 @@ public class GameManager : MonoBehaviour
         Hit = playerAnims.GetComponentInChildren<HitArea>();
         itemDetector = Items.GetComponent<ItemDetector>();
         throwImpact = player.GetComponentInChildren<ThrowImpact>();
+        stealth = player.GetComponent<StealthSystem>();
 
 
         //Cursor.visible = false;
@@ -75,6 +78,7 @@ public class GameManager : MonoBehaviour
         CC.Initialize();
         Hit.Initialize();
         itemDetector.Initialize();
+        stealth.Initialize();
         //throwImpact.Initialize();
     }
 
@@ -92,6 +96,7 @@ public class GameManager : MonoBehaviour
         peace.MyUpdate();
         CC.MyUpdate();
         itemDetector.MyUpdate();
+        stealth.MyUpdate();
         //throwImpact.MyUpdate();
     }
 
