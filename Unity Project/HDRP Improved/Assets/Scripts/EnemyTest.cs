@@ -8,11 +8,11 @@ public class EnemyTest : MonoBehaviour
     public enum State { Chase, Sound, Patrol, Attack, Stunned, die};
     public State states;
 
+    [Header ("Dependences")]
     public NavMeshAgent agent;
-
     public AudioPlayer audPlay;
-
     public GameManager gm;
+    [SerializeField] EnemyPlayerDetector playerDetector;
 
     [Header ("Sound")]
     public SoundManager sound;
@@ -49,9 +49,13 @@ public class EnemyTest : MonoBehaviour
     public float stunnedTimeCounter;
 
     [Header("Die")]
-
     public float timeToDie;
     public bool dead;
+
+
+    [Header("Call Other Enemies")]
+    public float timeToCall;
+    public bool callEnemies;
 
     // Start is called before the first frame update
     void Start()
@@ -68,7 +72,11 @@ public class EnemyTest : MonoBehaviour
 
         audPlay = GetComponentInChildren<AudioPlayer>();
 
+        playerDetector = GetComponentInChildren<EnemyPlayerDetector>();
+
         attackArea.enabled = false;
+
+        playerDetector.Initialize();
 
         states = State.Patrol;
     }
@@ -76,6 +84,14 @@ public class EnemyTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        playerDetector.MyUpdate();
+
+        if (Detected && !callEnemies)
+        {
+            CallOtherEnemies();
+            callEnemies = true;
+        }
+
         switch (states)
         {
             case State.Sound:
@@ -111,7 +127,7 @@ public class EnemyTest : MonoBehaviour
 
     public void SoundUpdate()
     {
-        if(!Detected)
+        if(!Detected | !gm.detected)
         {
             agent.SetDestination(positionWhereSound);
 
@@ -130,7 +146,7 @@ public class EnemyTest : MonoBehaviour
 
     public void PatrolUpdate()
     {
-        Detected = gm.detected;
+        //Detected = gm.detected;
 
         positionWhereSound = sound.soundPosition; //cuando ya pase un rato alomejor te interesa que cambien a la nueva posicion
 
@@ -139,7 +155,7 @@ public class EnemyTest : MonoBehaviour
             SoundSet();
         }
 
-        if (Detected)
+        if (Detected | gm.detected)
         {
             ChaseSet();
         }
@@ -147,7 +163,7 @@ public class EnemyTest : MonoBehaviour
 
     public void ChaseUpdate()
     {
-        if (Detected)
+        if (Detected | gm.detected)
         {
             playerPos = player.transform.position;
 
@@ -189,7 +205,7 @@ public class EnemyTest : MonoBehaviour
         {
             stunnedTimeCounter = 0;
 
-            if (Detected)
+            if (Detected | gm.detected)
             {
                 ChaseSet();
             }
@@ -269,7 +285,7 @@ public class EnemyTest : MonoBehaviour
         audPlay.Play(0, 1, 1);
 
         attackArea.enabled = true;
-        //Debug.Log("Active");
+        Debug.Log("Attacking");
 
         StartCoroutine(DissableAttackArea());
     }
@@ -304,5 +320,17 @@ public class EnemyTest : MonoBehaviour
         yield return new WaitForEndOfFrame();
 
         attackArea.enabled = false;
+    }
+
+    IEnumerator CallEnemies()
+    {
+        yield return new WaitForSeconds(timeToCall);
+
+        gm.detected = true;
+    }
+
+    public void CallOtherEnemies()
+    {
+        StartCoroutine(CallEnemies());
     }
 }

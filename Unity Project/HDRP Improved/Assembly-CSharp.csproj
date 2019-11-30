@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\CamaraAdjustment.cs" />
     <Compile Include="Assets\Scripts\CloseCombat.cs" />
     <Compile Include="Assets\Scripts\Emp.cs" />
+    <Compile Include="Assets\Scripts\EnemyPlayerDetector.cs" />
     <Compile Include="Assets\Scripts\EnemyTest.cs" />
     <Compile Include="Assets\Scripts\FireZone.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />

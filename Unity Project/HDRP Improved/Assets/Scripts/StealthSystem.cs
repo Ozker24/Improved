@@ -33,7 +33,7 @@ public class StealthSystem : MonoBehaviour
 
     public void MyUpdate()
     {
-        if (player.moving)
+        /*if (player.moving)
         {
             DetectAction();
 
@@ -69,7 +69,7 @@ public class StealthSystem : MonoBehaviour
             {
                 stealthIndicator = initialStealth;
             }
-        }
+        }*/
     }
 
     public void DetectAction()

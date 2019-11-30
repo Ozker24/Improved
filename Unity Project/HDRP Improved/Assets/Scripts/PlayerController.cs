@@ -56,6 +56,9 @@ public class PlayerController : MonoBehaviour
     public float DodgeForce;
     public bool dodge;
 
+    [Header("Dodge")]
+    public StealthSystem stealth;
+
     [Header("Gravity Values")]
     private float forceToGround = Physics.gravity.y;
     public float gravityMagnitude = 1.0f;
@@ -71,6 +74,7 @@ public class PlayerController : MonoBehaviour
         CC = GetComponent<CloseCombat>();
         life = GetComponentInChildren<HealthPeace>();
         itemDetector = items.GetComponent<ItemDetector>();
+        stealth = GetComponentInChildren<StealthSystem>();
 
         speed = walkSpeed;
 
