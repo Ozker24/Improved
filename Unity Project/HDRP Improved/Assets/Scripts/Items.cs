@@ -81,7 +81,7 @@ public class Items : MonoBehaviour
 
         if (canDoItem) ActiveItem();
 
-        if (pressed && canDoItem)
+        if (pressed && canDoItem && itemSelected != 1)
         {
             trajectoryPrefab.SetActive(true);
         }
@@ -103,7 +103,7 @@ public class Items : MonoBehaviour
     {
         pressed = true;
 
-        if (canDoItem)
+        if (canDoItem && itemSelected != 1)
         {
             trajectoryPrefab.SetActive(true);
         }

@@ -49,7 +49,7 @@ public class HudManager : MonoBehaviour
         UpdatePistol(weapon.weapons[0].ammoReloaded + weapon.weapons[0].currentAmmo);
         UpdateShotgun(weapon.weapons[1].ammoReloaded + weapon.weapons[1].currentAmmo);
         UpdateRifle(weapon.weapons[2].ammoReloaded + weapon.weapons[2].currentAmmo);
-        UpdateSnipper(weapon.weapons[3].ammoReloaded + +weapon.weapons[3].currentAmmo);
+        UpdateSnipper(weapon.weapons[3].ammoReloaded + weapon.weapons[3].currentAmmo);
     }
 
     public void UpdateMolotov(int molotovs)

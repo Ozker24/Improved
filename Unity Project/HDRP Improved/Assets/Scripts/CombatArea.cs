@@ -4,23 +4,41 @@ using UnityEngine;
 
 public class CombatArea : MonoBehaviour
 {
-    public GameObject[] enemies;
+    [Header ("Dependences")]
+    public PlayerController player;
 
+    [Header("Player Location")]
+    public Vector3 playerPos;
+
+    [Header("Enemies")]
+    public GameObject[] enemies;
     public int enemiesNumber;
 
-    public bool inCombat;
-
+    [Header("Combat Variables")]
+    public float distToAvoidCombat;
     public float secondsToDestroy;
-
+    public bool inCombat;
     public bool detected;
 
     public void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        playerPos = player.transform.position;
         enemiesNumber = enemies.Length;
     }
 
     public void Update()
     {
+        if (inCombat)
+        {
+            playerPos = player.transform.position;
+
+            if (Vector3.Distance (transform.position, playerPos) >= distToAvoidCombat)
+            {
+                inCombat = false;
+            }
+        }
+
         if (enemiesNumber <= 0)
         {
             inCombat = false;

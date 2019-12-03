@@ -7,113 +7,34 @@ public class StealthSystem : MonoBehaviour
     [Header("Dependances")]
     [SerializeField] PlayerController player;
 
-    [Header("Time Values")]
-    public float timeCounter;
-    public float limitTime;
-    public float limitTimeToRest;
-    //public float walkLimitTime;
-
-    [Header("Stealth")]
-    public float initialStealth;
-    public float stealthIndicator;
-
-    [Header("Stealth Values")]
-    public float addStealth;
-    public float walkValue;
-    public float runValue;
-    public float restValue;
-    public float enemyDetection;
-    public bool resting;
-
+    [Header("Can Be Detected")]
+    public bool canBeDetected = false;
 
     public void Initialize()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        stealthIndicator = initialStealth;
     }
 
     public void MyUpdate()
     {
-        /*if (player.moving)
-        {
-            DetectAction();
-
-            if (resting)
-            {
-                timeCounter = 0;
-                resting = false;
-            }
-
-            if (stealthIndicator < enemyDetection)
-            {
-                AddStealth();
-            }
-
-            else if (stealthIndicator >= enemyDetection)
-            {
-                stealthIndicator = enemyDetection;
-            }
-        }
-        else
-        {
-            if (stealthIndicator > initialStealth)
-            {
-                if (!resting)
-                {
-                    timeCounter = 0;
-                    resting = true;
-                }
-
-                RestStealth();
-            }
-            else if (stealthIndicator <= initialStealth)
-            {
-                stealthIndicator = initialStealth;
-            }
-        }*/
+        DetectAction();
     }
 
     public void DetectAction()
     {
-        if (player.walking)
+        if (player.walking | player.running && !player.crouching)
         {
-            addStealth = walkValue;
+            canBeDetected = true;
         }
 
-        else if (player.running)
+        else if (!player.moving)
         {
-            addStealth = runValue;
+            canBeDetected = false;
         }
 
-        else if  (player.crouching)
+        else if (player.crouching && !player.walking && !player.running)
         {
-
-        }
-    }
-
-    public void AddStealth()
-    {
-        if (timeCounter >= limitTime)
-        {
-            timeCounter = 0;
-            stealthIndicator += addStealth;
-        }
-        else
-        {
-            timeCounter += Time.deltaTime;
-        }
-    }
-
-    public void RestStealth()
-    {
-        if (timeCounter >= limitTimeToRest)
-        {
-            timeCounter = 0;
-            stealthIndicator -= restValue;
-        }
-        else
-        {
-            timeCounter += Time.deltaTime;
+            canBeDetected = false;
         }
     }
 }

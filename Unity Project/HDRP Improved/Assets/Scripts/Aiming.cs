@@ -10,6 +10,7 @@ public class Aiming : MonoBehaviour
     public GameObject ammo;
     public PlayerController player;
     public WeaponManager WM;
+    public Items items;
 
     [Header("Cinemachine")]
     Cinemachine.CinemachineVirtualCameraBase vCam;
@@ -34,6 +35,7 @@ public class Aiming : MonoBehaviour
         freeLook = GetComponent<Cinemachine.CinemachineFreeLook>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         WM = player.GetComponentInChildren<WeaponManager>();
+        items = player.GetComponentInChildren<Items>();
 
         point.SetActive(false);
         ammo.SetActive(false);
@@ -45,7 +47,7 @@ public class Aiming : MonoBehaviour
         {
             actualLens = freeLook.m_Lens.FieldOfView; // it is always calculating the actual lens, it is the begining point of the lerp
 
-            if (aim && !player.stop && WM.ableGun) //if i am aiming and other bools dont interrupt me
+            if (aim && !player.stop && WM.ableGun && !items.pressed) //if i am aiming and other bools dont interrupt me
             {
                 if (!direction) // and i am actually aming
                 {
@@ -85,7 +87,7 @@ public class Aiming : MonoBehaviour
             }
         }
 
-        if (aim && !player.stop && !player.climb && WM.ableGun)
+        if (aim && !player.stop && !player.climb && WM.ableGun && !items.pressed)
         {
             point.SetActive(true);
             ammo.SetActive(true);
