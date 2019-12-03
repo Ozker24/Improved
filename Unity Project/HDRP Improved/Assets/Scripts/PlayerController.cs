@@ -150,6 +150,7 @@ public class PlayerController : MonoBehaviour
         moveDir.z = localRot.z * speed;
 
         moveDir = RotateWithView();
+        //transform.localRotation = Quaternion.Euler(RotateWithView());
 
         controler.Move(moveDir * Time.deltaTime);
 

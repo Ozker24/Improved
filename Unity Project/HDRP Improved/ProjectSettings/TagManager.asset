@@ -13,6 +13,7 @@ TagManager:
   - Enemy
   - Canvas
   - FireZone
+  - Combat Area
   layers:
   - Default
   - TransparentFX

@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\AudioPlayer.cs" />
     <Compile Include="Assets\Scripts\CamaraAdjustment.cs" />
     <Compile Include="Assets\Scripts\CloseCombat.cs" />
+    <Compile Include="Assets\Scripts\CombatArea.cs" />
     <Compile Include="Assets\Scripts\Emp.cs" />
     <Compile Include="Assets\Scripts\EnemyPlayerDetector.cs" />
     <Compile Include="Assets\Scripts\EnemyTest.cs" />

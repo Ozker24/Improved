@@ -25,6 +25,7 @@ public class StealthSystem : MonoBehaviour
     public float enemyDetection;
     public bool resting;
 
+
     public void Initialize()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
@@ -82,6 +83,11 @@ public class StealthSystem : MonoBehaviour
         else if (player.running)
         {
             addStealth = runValue;
+        }
+
+        else if  (player.crouching)
+        {
+
         }
     }
 

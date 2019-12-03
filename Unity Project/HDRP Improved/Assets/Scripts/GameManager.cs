@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     private StealthSystem stealth;
 
     public bool ableToInput = true;
-    public bool detected = false;
+    //public bool detected = false;
 
     private void Awake()
     {
@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
         player.Initialize();
         inputs.Initialize();
         weapon.Initialize();
-        camera.Initialize();
+        //camera.Initialize();
         HUD.Initialize();
         playerAnims.Initialize();
         inv.Initialize();
@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
         player.MyUpdate();
         inputs.MyUpdate();
         weapon.MyUpdate();
-        camera.MyUpdate();
+//camera.MyUpdate();
         HUD.MyUpdate();
         inv.MyUpdate();
         Items.MyUpdate();

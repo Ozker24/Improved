@@ -68,7 +68,7 @@ public class WeaponManager : MonoBehaviour
     public void Shot()
     {
         if (!player.climb && !player.stop && items.canDoGun && ableGun) weapons[WeaponSelected].Shot();
-        gm.detected = true;
+        //gm.detected = true;
     }
 
     public void Reload()
