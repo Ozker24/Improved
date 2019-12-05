@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     [Header("Movement")]
     public Vector2 axis = Vector2.zero;
     public Vector3 moveDir = Vector3.zero;
+    public float verticalSpeed = 0;
 
     [Header("Rotation")]
     public Camera cam;
@@ -84,7 +85,7 @@ public class PlayerController : MonoBehaviour
 
     public void MyUpdate()
     {
-        GravitySimulation();
+        //GravitySimulation();
 
         aiming = aim.aim;
 
@@ -152,6 +153,8 @@ public class PlayerController : MonoBehaviour
         moveDir = RotateWithView();
         //transform.localRotation = Quaternion.Euler(RotateWithView());
 
+        GravitySimulation();
+
         controler.Move(moveDir * Time.deltaTime);
 
         anims.ForwardAnimation();
@@ -176,14 +179,18 @@ public class PlayerController : MonoBehaviour
         if (controler.isGrounded && !dodge)
         {
             Debug.Log(controler.isGrounded);
+            verticalSpeed = 0f;
             //moveDir.y = forceToGround;
             //controler.Move(new Vector3(0, forceToGround, 0));
         }
         else
         {
             //moveDir += Physics.gravity * gravityMagnitude * Time.deltaTime; // constantemente se le suma acceleracion de la grabedad
+            verticalSpeed -= gravityMagnitude * Time.deltaTime;
             dodge = false;
         }
+
+        moveDir.y = verticalSpeed;
     }
 
     #region Speeds
