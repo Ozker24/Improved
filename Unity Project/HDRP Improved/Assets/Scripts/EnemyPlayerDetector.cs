@@ -17,8 +17,12 @@ public class EnemyPlayerDetector : MonoBehaviour
     public float initialRestValue;
     public float finalRestValue;
     public float restValue;
-    public float radius;
+    public bool canRest;
+    public float radiusOfDetection;
     public bool onArea;
+
+    [Header("Sound Detector Variables")]
+    public float distanceToDetectSound;
 
     public void Initialize()
     {
@@ -26,11 +30,20 @@ public class EnemyPlayerDetector : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         playerDetector = GetComponent<SphereCollider>();
         timeToRest = initialRestValue;
+        playerDetector.radius = radiusOfDetection;
     }
 
     public void MyUpdate()
     {
-        playerDetector.radius = radius;
+        if (player.stealth.importantAudio)
+        {
+            CalculateDistanceSound();
+        }
+
+        if (canRest)
+        {
+            RestStealth();
+        }
     }
 
     public void CountTimeToDetect()
@@ -63,6 +76,20 @@ public class EnemyPlayerDetector : MonoBehaviour
             {
                 timeRestCounter += Time.deltaTime;
             }
+
+            if (timeCounter < 0 )
+            {
+                canRest = false;
+                timeCounter = 0;
+            }
+        }
+    }
+
+    public void CalculateDistanceSound()
+    {
+        if (Vector3.Distance(transform.position, player.transform.position) <= player.stealth.actualSoundDistance)
+        {
+            enemy.Detected = true;
         }
     }
 
@@ -82,15 +109,15 @@ public class EnemyPlayerDetector : MonoBehaviour
             {
                 CountTimeToDetect();
                 timeToRest = initialRestValue;
+                canRest = false;
+                timeRestCounter = 0;
             }
             else
             {
-                RestStealth();
-            }
-
-            if (timeCounter < 0)
-            {
-                timeCounter = 0;
+                if (timeCounter > 0)
+                {
+                    canRest = true;
+                }
             }
         }
     }
@@ -100,8 +127,8 @@ public class EnemyPlayerDetector : MonoBehaviour
         if (other.tag == "Player")
         {
             onArea = false;
-            restValue = initialRestValue;
-            timeCounter = 0;
+            finalRestValue = initialRestValue;
+            canRest = true;
         }
     }
 }

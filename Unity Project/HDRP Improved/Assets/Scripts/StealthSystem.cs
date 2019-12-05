@@ -9,6 +9,8 @@ public class StealthSystem : MonoBehaviour
 
     [Header("Can Be Detected")]
     public bool canBeDetected = false;
+    public bool importantAudio;
+    public float actualSoundDistance;
 
     public void Initialize()
     {
@@ -36,5 +38,19 @@ public class StealthSystem : MonoBehaviour
         {
             canBeDetected = false;
         }
+    }
+
+    public void MakeImportantAudio (float distance)
+    {
+        importantAudio = true;
+        actualSoundDistance = distance;
+        StartCoroutine(ImportantAudioFalse());
+    }
+
+    IEnumerator ImportantAudioFalse()
+    {
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        importantAudio = false;
     }
 }

@@ -6,6 +6,7 @@ public class CombatArea : MonoBehaviour
 {
     [Header ("Dependences")]
     public PlayerController player;
+    public SphereCollider coll;
 
     [Header("Player Location")]
     public Vector3 playerPos;
@@ -15,6 +16,7 @@ public class CombatArea : MonoBehaviour
     public int enemiesNumber;
 
     [Header("Combat Variables")]
+    public float radious;
     public float distToAvoidCombat;
     public float secondsToDestroy;
     public bool inCombat;
@@ -25,6 +27,8 @@ public class CombatArea : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         playerPos = player.transform.position;
         enemiesNumber = enemies.Length;
+        coll = GetComponent<SphereCollider>();
+        coll.radius = radious;
     }
 
     public void Update()

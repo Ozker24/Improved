@@ -1349,8 +1349,10 @@ MonoBehaviour:
   initialRestValue: 1
   finalRestValue: 0.5
   restValue: 0.2
-  radius: 10
+  canRest: 0
+  radiusOfDetection: 10
   onArea: 0
+  distanceToDetectSound: 20
 --- !u!1 &388360978
 GameObject:
   m_ObjectHideFlags: 0
@@ -8273,7 +8275,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 544915715}
-  m_LocalRotation: {x: 0.0375932, y: -0.0026122797, z: 0.00009827357, w: 0.99928975}
+  m_LocalRotation: {x: 0.037593205, y: -0.0026122818, z: 0.0000982743, w: 0.99928975}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -11895,6 +11897,7 @@ MonoBehaviour:
   aiming: {fileID: 1178095233}
   gm: {fileID: 0}
   items: {fileID: 0}
+  stealth: {fileID: 0}
   weapons:
   - {fileID: 290803126}
   - {fileID: 1450550959}
@@ -11922,6 +11925,11 @@ MonoBehaviour:
   - 2
   - 3
   - 4
+  distanceToSound:
+  - 20
+  - 30
+  - 40
+  - 50
 --- !u!114 &709269307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12219,7 +12227,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 742023942}
-  m_LocalRotation: {x: 0.037593212, y: -0.0026122797, z: 0.000098276316, w: 0.99928975}
+  m_LocalRotation: {x: 0.037593212, y: -0.0026122818, z: 0.00009827634, w: 0.99928975}
   m_LocalPosition: {x: 0.4048535, y: 1.865525, z: -22.46109}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -12649,7 +12657,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 876096895}
-  m_LocalRotation: {x: 0.0375932, y: -0.0026122788, z: 0.000098266835, w: 0.99928975}
+  m_LocalRotation: {x: 0.037593205, y: -0.00261228, z: 0.00009826681, w: 0.99928975}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -30010,7 +30018,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   inputs: {fileID: 0}
-  camera: {fileID: 0}
+  camera: {fileID: 1178095234}
   playerAnims: {fileID: 0}
   HUD: {fileID: 0}
   inv: {fileID: 1277552870}
@@ -34509,6 +34517,7 @@ GameObject:
   - component: {fileID: 1178095236}
   - component: {fileID: 1178095235}
   - component: {fileID: 1178095233}
+  - component: {fileID: 1178095234}
   m_Layer: 0
   m_Name: CM Third Person Camera
   m_TagString: TPCamera
@@ -34541,6 +34550,20 @@ MonoBehaviour:
   dontDo: 1
   timeCounter: 0
   timeOfZoom: 1
+--- !u!114 &1178095234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178095232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 319104c17e76545448246eec12bc687e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camaraTP: {fileID: 0}
+  player: {fileID: 0}
 --- !u!114 &1178095235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34912,6 +34935,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   canBeDetected: 1
+  importantAudio: 0
+  actualSoundDistance: 0
 --- !u!143 &1208180132
 CharacterController:
   m_ObjectHideFlags: 0
@@ -38366,7 +38391,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1379034324}
-  m_LocalRotation: {x: 0.037593205, y: -0.0026122797, z: 0.00009827659, w: 0.99928975}
+  m_LocalRotation: {x: 0.037593205, y: -0.0026122842, z: 0.00009827662, w: 0.99928975}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -41370,8 +41395,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1616545628}
-  - component: {fileID: 1616545627}
   - component: {fileID: 1616545626}
+  - component: {fileID: 1616545627}
   m_Layer: 2
   m_Name: Combat Area
   m_TagString: Combat Area
@@ -41392,16 +41417,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  coll: {fileID: 0}
   playerPos: {x: 0, y: 0, z: 0}
   enemies:
   - {fileID: 1476348603}
   enemiesNumber: 0
+  radious: 15
   distToAvoidCombat: 20
   secondsToDestroy: 2
   inCombat: 0
   detected: 0
---- !u!65 &1616545627
-BoxCollider:
+--- !u!135 &1616545627
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -41411,8 +41438,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 30, y: 5, z: 20}
-  m_Center: {x: 0.4877081, y: 2.5, z: 6.9566197}
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1616545628
 Transform:
   m_ObjectHideFlags: 0
@@ -41421,7 +41448,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1616545625}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.76427174, y: 0, z: -13.85}
+  m_LocalPosition: {x: -0.76427174, y: 0, z: 2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

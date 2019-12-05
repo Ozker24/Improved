@@ -13,6 +13,7 @@ public class WeaponManager : MonoBehaviour
     public Aiming aiming;
     public GameManager gm;
     public Items items;
+    public StealthSystem stealth;
 
     //public bool searchingBullet;
 
@@ -32,12 +33,14 @@ public class WeaponManager : MonoBehaviour
     public bool ableGun = true;
     public float[] itemTimeToGun;
     public float[] timeToAim;
+    public float[] distanceToSound;
 
     public void Initialize()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         HUD = GameObject.FindGameObjectWithTag("Managers").GetComponent<HudManager>();
         gm = GameObject.FindGameObjectWithTag("Managers").GetComponent<GameManager>();
+        stealth = player.stealth;
         items = player.GetComponentInChildren<Items>();
         //audPlay = GetComponent<AudioPlayer>();
         maxWeapons = weapons.Length;
@@ -68,6 +71,7 @@ public class WeaponManager : MonoBehaviour
     public void Shot()
     {
         if (!player.climb && !player.stop && items.canDoGun && ableGun) weapons[WeaponSelected].Shot();
+        stealth.MakeImportantAudio(distanceToSound[WeaponSelected]);
         //gm.detected = true;
     }
 

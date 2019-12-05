@@ -5,25 +5,23 @@ using Cinemachine;
 
 public class CamaraAdjustment : MonoBehaviour
 {
+    [Header("Dependences")]
     public CinemachineFreeLook camaraTP;
-
-    [Header ("PlayerSettings")]
     public PlayerController player;
-
-    public float camaraAxisX;
-    public float CamaraLocalRotY;
-    public float CamaraRotY;
 
     public void Initialize()
     {
-        camaraTP = GetComponent<CinemachineFreeLook>();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        /*camaraTP = GetComponent<CinemachineFreeLook>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();*/
     }
 
     public void MyUpdate()
     {
-        camaraAxisX = camaraTP.m_XAxis.Value;
-        CamaraLocalRotY = camaraTP.transform.localRotation.y;
-        CamaraRotY = camaraTP.transform.rotation.y;
+        /*Vector3 dir = cameraTransform.TransformDirection(player.moveDir);
+        dir.Set(dir.x, 0, dir.z);
+
+        Vector3 finalVector = dir.normalized * player.moveDir.magnitude;
+
+        player.transform.localRotation = Quaternion.FromToRotation();*/
     }
 }
