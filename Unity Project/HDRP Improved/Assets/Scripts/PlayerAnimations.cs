@@ -34,7 +34,7 @@ public class PlayerAnimations : MonoBehaviour
 
         if (Physics.Raycast(origin, direction, out hit, distance, mask))
         {
-            Debug.Log(hit.normal);
+            //Debug.Log(hit.normal);
             if (hit.normal.z <= -1)
             {
                 dir = -1;

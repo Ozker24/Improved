@@ -47,6 +47,11 @@ public class EnemyTest : MonoBehaviour
     public float attackTimeCounter;
     public float timeAttackFinished;
 
+    public float stunedTimeWhenMiss;
+
+    public bool canDetectPlayer;
+    public bool playerInArea;
+
     [Header("Life")]
     public int currentLife;
     public int maxLife;
@@ -76,7 +81,7 @@ public class EnemyTest : MonoBehaviour
 
         playerDetector = GetComponentInChildren<EnemyPlayerDetector>();
 
-        attackArea.enabled = false;
+        //attackArea.enabled = false;
 
         playerDetector.Initialize();
 
@@ -207,6 +212,7 @@ public class EnemyTest : MonoBehaviour
         if (attackTimeCounter >= timeAttackFinished)
         {
             attackTimeCounter = 0;
+
             DoAttack();
         }
         else
@@ -216,8 +222,8 @@ public class EnemyTest : MonoBehaviour
 
         if (Vector3.Distance(transform.position, player.transform.position) >= distToScape)
         {
-            DetectSet();
-            //ChaseSet();
+            //DetectSet();
+            ChaseSet();
         }
     }
 
@@ -245,8 +251,7 @@ public class EnemyTest : MonoBehaviour
 
     public void DieUpdate()
     {
-        dead = true;
-        Destroy(gameObject, timeToDie);
+        
     }
 
     #endregion
@@ -302,9 +307,16 @@ public class EnemyTest : MonoBehaviour
     public void DieSet()
     {
         agent.isStopped = true;
-        attackArea.enabled = false;
+        //attackArea.enabled = false;
+
         Detected = false;
+        playerInArea = false;
+        canDetectPlayer = false;
+
         combatArea.enemiesNumber--;
+        dead = true;
+        Destroy(gameObject, timeToDie);
+
         states = State.die;
     }
 
@@ -314,10 +326,11 @@ public class EnemyTest : MonoBehaviour
     {
         audPlay.Play(0, 1, 1);
 
-        attackArea.enabled = true;
+        //attackArea.enabled = true;
+        canDetectPlayer = true;
         Debug.Log("Attacking");
 
-        StartCoroutine(DissableAttackArea());
+        //StartCoroutine(DissableAttackArea());
     }
 
     public void Damage(int life)
@@ -332,23 +345,12 @@ public class EnemyTest : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            //Debug.Log("DAMAGE PLAYER");
-
-            player.Damage(hitDamage);
-
-            //Debug.Log(player.life.health);
-        }
-    }
-
-    IEnumerator DissableAttackArea()
+    /*IEnumerator DissableAttackArea()
     {
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
 
-        attackArea.enabled = false;
-    }
+        //canDetectPlayer = false;
+    }*/
 }

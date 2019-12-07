@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\CloseCombat.cs" />
     <Compile Include="Assets\Scripts\CombatArea.cs" />
     <Compile Include="Assets\Scripts\Emp.cs" />
+    <Compile Include="Assets\Scripts\EnemyAttackArea.cs" />
     <Compile Include="Assets\Scripts\EnemyPlayerDetector.cs" />
     <Compile Include="Assets\Scripts\EnemyTest.cs" />
     <Compile Include="Assets\Scripts\FireZone.cs" />

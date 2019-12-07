@@ -74,6 +74,5 @@ public class AvatarControl : MonoBehaviour
 		// Ugly
 		Vector3 pointToLookAt = transform.position + newCharacterForward;
 		transform.LookAt(pointToLookAt);
-		
     }
 }

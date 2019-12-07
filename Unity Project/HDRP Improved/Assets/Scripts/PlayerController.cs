@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public Items items;
     public CloseCombat CC;
     public ItemDetector itemDetector;
+    public StealthSystem stealth;
 
     [Header("States")]
     public bool moving;
@@ -36,7 +37,7 @@ public class PlayerController : MonoBehaviour
     [Header("Movement")]
     public Vector2 axis = Vector2.zero;
     public Vector3 moveDir = Vector3.zero;
-    public float verticalSpeed = 0;
+    public float verticalSpeed;
 
     [Header("Rotation")]
     public Camera cam;
@@ -53,12 +54,10 @@ public class PlayerController : MonoBehaviour
     public int fistDamage;
 
     [Header("Dodge")]
-    public Vector3 dodgeDir;
-    public float DodgeForce;
+    public float dodgeForce;
+    public float dodgeResetTime;
     public bool dodge;
-
-    [Header("Dodge")]
-    public StealthSystem stealth;
+    public bool canDodge = true;
 
     [Header("Gravity Values")]
     private float forceToGround = Physics.gravity.y;
@@ -141,6 +140,8 @@ public class PlayerController : MonoBehaviour
 
     public void MovePlayer()
     {
+        GravitySimulation();
+
         Vector3 localRot = axis.x * transform.right + axis.y * transform.forward;
 
         StablishSpeed();
@@ -151,9 +152,9 @@ public class PlayerController : MonoBehaviour
         moveDir.z = localRot.z * speed;
 
         moveDir = RotateWithView();
-        //transform.localRotation = Quaternion.Euler(RotateWithView());
 
-        GravitySimulation();
+        moveDir.y = verticalSpeed;
+        //transform.localRotation = Quaternion.Euler(RotateWithView());
 
         controler.Move(moveDir * Time.deltaTime);
 
@@ -168,6 +169,7 @@ public class PlayerController : MonoBehaviour
 
     public Vector3 RotateWithView()
     {
+        moveDir.y = 0;
         Vector3 dir = camTrans.TransformDirection(moveDir);
         dir.Set(dir.x, 0, dir.z);
 
@@ -178,19 +180,25 @@ public class PlayerController : MonoBehaviour
     {
         if (controler.isGrounded && !dodge)
         {
-            Debug.Log(controler.isGrounded);
-            verticalSpeed = 0f;
-            //moveDir.y = forceToGround;
-            //controler.Move(new Vector3(0, forceToGround, 0));
+            //Debug.Log(controler.isGrounded);
+            verticalSpeed = forceToGround;
         }
         else
         {
-            //moveDir += Physics.gravity * gravityMagnitude * Time.deltaTime; // constantemente se le suma acceleracion de la grabedad
-            verticalSpeed -= gravityMagnitude * Time.deltaTime;
+            verticalSpeed += forceToGround * gravityMagnitude * Time.deltaTime; // constantemente se le suma acceleracion de la grabedad
             dodge = false;
         }
+    }
 
-        moveDir.y = verticalSpeed;
+    public void Dodge()
+    {
+        if (!dodge && controler.isGrounded && canDodge)
+        {
+            dodge = true;
+            verticalSpeed = dodgeForce;
+            StartCoroutine(ResetDodge());
+            canDodge = false;
+        }
     }
 
     #region Speeds
@@ -307,5 +315,11 @@ public class PlayerController : MonoBehaviour
     public void Die()
     {
         Destroy(gameObject);
+    }
+
+    IEnumerator ResetDodge()
+    {
+        yield return new WaitForSeconds(dodgeResetTime);
+        canDodge = true;
     }
 }

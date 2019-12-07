@@ -30,10 +30,10 @@ TagManager:
   - Wall
   - Objects
   - ClimbWall
-  - 
-  - 
-  - 
-  - 
+  - Combat Area
+  - Attack Area
+  - Detection Area
+  - Player
   - 
   - 
   - 
