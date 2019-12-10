@@ -14,6 +14,7 @@ public class EnemyTest : MonoBehaviour
     public GameManager gm;
     [SerializeField] EnemyPlayerDetector playerDetector;
     [SerializeField] CombatArea combatArea;
+    [SerializeField] EnemyAttackArea attack;
 
     [Header ("Sound")]
     public SoundManager sound;
@@ -52,6 +53,11 @@ public class EnemyTest : MonoBehaviour
     public bool canDetectPlayer;
     public bool playerInArea;
 
+    [Header("Attack Area")]
+    public Transform attackAreaTrans;
+    public Vector3 HalfStent;
+    public LayerMask layer;
+
     [Header("Life")]
     public int currentLife;
     public int maxLife;
@@ -80,6 +86,8 @@ public class EnemyTest : MonoBehaviour
         audPlay = GetComponentInChildren<AudioPlayer>();
 
         playerDetector = GetComponentInChildren<EnemyPlayerDetector>();
+
+        attack = GetComponentInChildren<EnemyAttackArea>();
 
         //attackArea.enabled = false;
 
@@ -327,8 +335,20 @@ public class EnemyTest : MonoBehaviour
         audPlay.Play(0, 1, 1);
 
         //attackArea.enabled = true;
-        canDetectPlayer = true;
+        //canDetectPlayer = true;
         Debug.Log("Attacking");
+        
+        if (attack.playerInArea)
+        {
+            Debug.Log("Player hit");
+            player.Damage(hitDamage);
+        }
+
+        else if (!attack.playerInArea)
+        {
+            Debug.Log("Player Out");
+            StunnedSet(stunedTimeWhenMiss);
+        }
 
         //StartCoroutine(DissableAttackArea());
     }
@@ -343,6 +363,11 @@ public class EnemyTest : MonoBehaviour
             currentLife = 0;
             DieSet();
         }
+    }
+
+    public void nDrawGizmos()
+    {
+        Gizmos.DrawCube(attackAreaTrans.position, HalfStent * 2);
     }
 
     /*IEnumerator DissableAttackArea()

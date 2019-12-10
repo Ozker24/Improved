@@ -13,7 +13,7 @@ public class EnemyAttackArea : MonoBehaviour
         enemy = GetComponentInParent<EnemyTest>();
     }
 
-    private void OnTriggerStay(Collider other) // no pregunto por el tag puesto que la layer solo afecta al player
+    /*private void OnTriggerStay(Collider other) // no pregunto por el tag puesto que la layer solo afecta al player
     {
         Debug.Log("Enter");
 
@@ -36,6 +36,22 @@ public class EnemyAttackArea : MonoBehaviour
             other = null;
             playerInArea = false;
             enemy.canDetectPlayer = false;
+        }
+    }*/
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            playerInArea = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            playerInArea = false;
         }
     }
 }
