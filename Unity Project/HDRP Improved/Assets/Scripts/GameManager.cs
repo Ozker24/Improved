@@ -36,8 +36,12 @@ public class GameManager : MonoBehaviour
     private ThrowImpact throwImpact;
     [SerializeField]
     private StealthSystem stealth;
+    [SerializeField]
+    private PauseManager pauseMn;
 
     public bool ableToInput = true;
+    public bool pause;
+    public bool showControls;
     //public bool detected = false;
 
     private void Awake()
@@ -57,9 +61,9 @@ public class GameManager : MonoBehaviour
         itemDetector = Items.GetComponent<ItemDetector>();
         throwImpact = player.GetComponentInChildren<ThrowImpact>();
         stealth = player.GetComponent<StealthSystem>();
+        pauseMn = gameObject.GetComponent<PauseManager>();
 
-
-        //Cursor.visible = false;
+        Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -79,29 +83,39 @@ public class GameManager : MonoBehaviour
         Hit.Initialize();
         itemDetector.Initialize();
         stealth.Initialize();
+        pauseMn.Initialize();
         //throwImpact.Initialize();
     }
 
     private void Update()
     {
-        player.MyUpdate();
-        inputs.MyUpdate();
-        weapon.MyUpdate();
-        camera.MyUpdate();
-        HUD.MyUpdate();
-        inv.MyUpdate();
-        Items.MyUpdate();
-        sound.MyUpdate();
-        Aim.MyUpdate();
-        peace.MyUpdate();
-        CC.MyUpdate();
-        itemDetector.MyUpdate();
-        stealth.MyUpdate();
-        //throwImpact.MyUpdate();
+        inputs.CheckSetPause();
+        pauseMn.MyUpdate();
+
+        if (!pause && !showControls)
+        {
+            inputs.MyUpdate();
+            player.MyUpdate();
+            weapon.MyUpdate();
+            camera.MyUpdate();
+            HUD.MyUpdate();
+            inv.MyUpdate();
+            Items.MyUpdate();
+            sound.MyUpdate();
+            Aim.MyUpdate();
+            peace.MyUpdate();
+            CC.MyUpdate();
+            itemDetector.MyUpdate();
+            stealth.MyUpdate();
+            //throwImpact.MyUpdate();
+        }
     }
 
     public void FixedUpdate()
     {
-        playerAnims.MyFixedUpdate();
+        if (!pause)
+        {
+            playerAnims.MyFixedUpdate();
+        }
     }
 }

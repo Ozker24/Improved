@@ -13,6 +13,7 @@ public class ImputManager : MonoBehaviour
     public Inventory inv;
     public GameManager GM;
     public CloseCombat CC;
+    public PauseManager pause;
 
     public Vector2 axis;
 
@@ -25,6 +26,7 @@ public class ImputManager : MonoBehaviour
         //aim = player.GetComponent<Aiming>();
         weapon = player.GetComponentInChildren<WeaponManager>();
         CC = player.GetComponent<CloseCombat>();
+        pause = GameObject.FindGameObjectWithTag("Managers").GetComponent<PauseManager>();
     }
 
     public void MyUpdate()
@@ -41,6 +43,11 @@ public class ImputManager : MonoBehaviour
             Hit();
             SetDodge();
         }
+    }
+
+    public void CheckSetPause()// an exclusive Update so when the game is paused the GM still reads the imput
+    {
+        SetPause();
     }
 
     public void MovementImputs()
@@ -185,6 +192,14 @@ public class ImputManager : MonoBehaviour
         if (Input.GetButtonDown("Hit"))
         {
             CC.DoHit();
+        }
+    }
+
+    public void SetPause()
+    {
+        if (Input.GetButtonDown("Pause"))
+        {
+            pause.Pause();
         }
     }
 }
