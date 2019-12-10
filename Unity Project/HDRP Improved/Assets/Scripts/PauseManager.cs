@@ -8,6 +8,8 @@ public class PauseManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject previousControls;
 
+    public bool ableToPause;
+
     public void Initialize()
     {
         GM = GameObject.FindGameObjectWithTag("Managers").GetComponent<GameManager>();
@@ -27,14 +29,18 @@ public class PauseManager : MonoBehaviour
 
                 GM.showControls = false;
                 previousControls.SetActive(false);
+                StartCoroutine(AbleToPause());
             }
         }
     }
 
     public void Pause()
     {
-        GM.pause =! GM.pause;
-        CheckPause();
+        if (ableToPause)
+        {
+            GM.pause = !GM.pause;
+            CheckPause();
+        }
     }
 
     public void CheckPause()
@@ -53,5 +59,13 @@ public class PauseManager : MonoBehaviour
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
+    }
+
+    IEnumerator AbleToPause()
+    {
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+
+        ableToPause = true;
     }
 }

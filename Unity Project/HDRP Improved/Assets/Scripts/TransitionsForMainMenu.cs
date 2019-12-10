@@ -51,6 +51,8 @@ public class TransitionsForMainMenu : MonoBehaviour
 
         if (doFadeOut)
         {
+            anim.SetButtons(false);
+
             FadeOut();
         }
     }

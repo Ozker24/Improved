@@ -29,9 +29,7 @@ public class AnimationsControlMainMenu : MonoBehaviour
         ButtonsColor.a = 1;
         toFadebuttons.color = ButtonsColor;
 
-        playButton.interactable = false;
-        optionButton.interactable = false;
-        exitButton.interactable = false;
+        SetButtons(false);
     }
 
     public void Update()
@@ -89,12 +87,17 @@ public class AnimationsControlMainMenu : MonoBehaviour
             ButtonsColor.a = 0;
             doFadeInButtons = false;
 
-            playButton.interactable = true;
-            optionButton.interactable = true;
-            exitButton.interactable = true;
+            SetButtons(true);
         }
 
         toFadebuttons.color = ButtonsColor;
+    }
+
+    public void SetButtons(bool active)
+    {
+        playButton.interactable = active;
+        optionButton.interactable = active;
+        exitButton.interactable = active;
     }
 
     IEnumerator AppearPressStart()
