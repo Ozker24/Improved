@@ -10,11 +10,11 @@ public class Weapon : MonoBehaviour
 
     public int totalAmmo; //municion total
 
-    public float timeForBullet;
+    //public float timeForBullet;
 
-    public float timeForSearch;
+    //public float timeForSearch;
 
-    public float timeForFirstMagazine;
+    //public float timeForFirstMagazine;
 
     public int ammoReloaded; //municion recargada total
 

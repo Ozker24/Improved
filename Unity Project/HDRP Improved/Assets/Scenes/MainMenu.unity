@@ -1914,16 +1914,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2040126503}
     m_Modifications:
-    - target: {fileID: 7404172525290671148, guid: 4d6914fe0d7ebb3468b4b660b4d7379c,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1919499938}
-    - target: {fileID: 7404172525290671148, guid: 4d6914fe0d7ebb3468b4b660b4d7379c,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SwitchToggleAutoResolution
-      objectReference: {fileID: 0}
     - target: {fileID: 4932780641947114557, guid: 4d6914fe0d7ebb3468b4b660b4d7379c,
         type: 3}
       propertyPath: m_Name
@@ -1934,6 +1924,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4932780641947114559, guid: 4d6914fe0d7ebb3468b4b660b4d7379c,
+        type: 3}
+      propertyPath: dropQuality
+      value: 
+      objectReference: {fileID: 122645073}
+    - target: {fileID: 4932780641947114559, guid: 4d6914fe0d7ebb3468b4b660b4d7379c,
+        type: 3}
+      propertyPath: useActualResolution
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4932780641947114559, guid: 4d6914fe0d7ebb3468b4b660b4d7379c,
+        type: 3}
+      propertyPath: sliderMasterAud
+      value: 
+      objectReference: {fileID: 1367413609}
+    - target: {fileID: 4932780641947114559, guid: 4d6914fe0d7ebb3468b4b660b4d7379c,
+        type: 3}
+      propertyPath: AutoResToggle
+      value: 
+      objectReference: {fileID: 1071145317}
     - target: {fileID: 4932780641947114558, guid: 4d6914fe0d7ebb3468b4b660b4d7379c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2039,41 +2049,36 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 4932780641947114559, guid: 4d6914fe0d7ebb3468b4b660b4d7379c,
-        type: 3}
-      propertyPath: dropQuality
-      value: 
-      objectReference: {fileID: 122645073}
-    - target: {fileID: 4932780641947114559, guid: 4d6914fe0d7ebb3468b4b660b4d7379c,
-        type: 3}
-      propertyPath: useActualResolution
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4932780641947114559, guid: 4d6914fe0d7ebb3468b4b660b4d7379c,
-        type: 3}
-      propertyPath: sliderMasterAud
-      value: 
-      objectReference: {fileID: 1367413609}
-    - target: {fileID: 4932780641947114559, guid: 4d6914fe0d7ebb3468b4b660b4d7379c,
-        type: 3}
-      propertyPath: AutoResToggle
-      value: 
-      objectReference: {fileID: 1071145317}
     - target: {fileID: 4932780641506498642, guid: 4d6914fe0d7ebb3468b4b660b4d7379c,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4932780641421351778, guid: 4d6914fe0d7ebb3468b4b660b4d7379c,
+    - target: {fileID: 7404172525290671148, guid: 4d6914fe0d7ebb3468b4b660b4d7379c,
         type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1919499938}
+    - target: {fileID: 7404172525290671148, guid: 4d6914fe0d7ebb3468b4b660b4d7379c,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SwitchToggleAutoResolution
       objectReference: {fileID: 0}
     - target: {fileID: 4932780640419584768, guid: 4d6914fe0d7ebb3468b4b660b4d7379c,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 458955172}
+    - target: {fileID: 4932780641421351778, guid: 4d6914fe0d7ebb3468b4b660b4d7379c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787165326828945577, guid: 4d6914fe0d7ebb3468b4b660b4d7379c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d6914fe0d7ebb3468b4b660b4d7379c, type: 3}
 --- !u!1 &4932780642398642709 stripped

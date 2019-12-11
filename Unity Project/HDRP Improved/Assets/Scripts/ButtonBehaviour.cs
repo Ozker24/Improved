@@ -8,9 +8,9 @@ public class ButtonBehaviour : MonoBehaviour
 {
     public GameObject OptionMenu;
     public GameObject[] desactiveAtOptions;
+    public GameManager GM;
     public bool inOptions;
     public Button optionsButton;
-
 
     public void GoToMainMenu()
     {
@@ -44,6 +44,12 @@ public class ButtonBehaviour : MonoBehaviour
     public void SetOptions()
     {
         inOptions = !inOptions;
+
+        if (GM != null)
+        {
+            GM.options = !GM.options;
+        }
+
         TransitionOptions(inOptions);
     }
 

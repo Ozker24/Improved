@@ -36,7 +36,7 @@ public class PauseManager : MonoBehaviour
 
     public void Pause()
     {
-        if (ableToPause)
+        if (ableToPause && !GM.options)
         {
             GM.pause = !GM.pause;
             CheckPause();

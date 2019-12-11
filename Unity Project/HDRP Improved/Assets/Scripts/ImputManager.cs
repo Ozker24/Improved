@@ -14,6 +14,7 @@ public class ImputManager : MonoBehaviour
     public GameManager GM;
     public CloseCombat CC;
     public PauseManager pause;
+    public GodModeManager god;
 
     public Vector2 axis;
 
@@ -27,6 +28,7 @@ public class ImputManager : MonoBehaviour
         weapon = player.GetComponentInChildren<WeaponManager>();
         CC = player.GetComponent<CloseCombat>();
         pause = GameObject.FindGameObjectWithTag("Managers").GetComponent<PauseManager>();
+        god = GM.GetComponent<GodModeManager>();
     }
 
     public void MyUpdate()
@@ -42,6 +44,7 @@ public class ImputManager : MonoBehaviour
             ChangeItem();
             Hit();
             SetDodge();
+            GodMode();
         }
     }
 
@@ -200,6 +203,14 @@ public class ImputManager : MonoBehaviour
         if (Input.GetButtonDown("Pause"))
         {
             pause.Pause();
+        }
+    }
+
+    public void GodMode()
+    {
+        if (Input.GetButtonDown("GodMode"))
+        {
+            god.SetGodMode();
         }
     }
 }

@@ -42,11 +42,6 @@ public class OptionsMenu : MonoBehaviour
             AudioLoad();
         }
 
-        /*if (PlayerPrefs.HasKey ("UseActualResolution"))
-        {
-            AutoResoulutionLoad();
-        }*/
-
         Settings = Options.Graphics;
 
         InitializeResolutions();
@@ -210,15 +205,18 @@ public class OptionsMenu : MonoBehaviour
 
         dropdown.AddOptions(resolutionsList);
 
-        if (useActualResolution)
+        if (PlayerPrefs.HasKey("Resolution"))
         {
-            if (PlayerPrefs.HasKey("Resolution"))
-            {
-                currentResolution = PlayerPrefs.GetInt("Resolution");
-                dropdown.value = currentResolution;
-                dropdown.RefreshShownValue();
-            }
+            dropdown.value = PlayerPrefs.GetInt("Resolution");
         }
+
+        else
+        {
+            currentResolution = PlayerPrefs.GetInt("Resolution");
+            dropdown.value = currentResolution;
+        }
+
+        dropdown.RefreshShownValue();
 
         dropdown.RefreshShownValue();
 
@@ -248,40 +246,5 @@ public class OptionsMenu : MonoBehaviour
 
         sliderMasterAud.value = initialVolume;
     }
-
-    /*public void AutoResoulutionLoad()
-    {
-        int Toggle = PlayerPrefs.GetInt("UseActualResolution");
-
-        if (Toggle == 1)
-        {
-            useActualResolution = true;
-            AutoResToggle.isOn = true;
-        }
-
-        else if (Toggle == -1)
-        {
-            useActualResolution = false;
-            AutoResToggle.isOn = false;
-        }
-    }
-
-    public void SwitchToggleAutoResolution()
-    {
-        useActualResolution = !useActualResolution;
-
-        int toggleState = 0;
-        
-        if (useActualResolution)
-        {
-            toggleState = 1;
-        }
-        else
-        {
-            toggleState = -1;
-        }
-
-        PlayerPrefs.SetInt("UseActualResolution", toggleState);
-    }*/
     #endregion
 }

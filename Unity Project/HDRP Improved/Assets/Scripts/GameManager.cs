@@ -46,6 +46,9 @@ public class GameManager : MonoBehaviour
     public bool showControls;
     public bool dead;
     public bool win;
+    public bool options;
+
+    public bool godMode;
     //public bool detected = false;
 
     private void Awake()
@@ -96,7 +99,7 @@ public class GameManager : MonoBehaviour
         inputs.CheckSetPause();
         pauseMn.MyUpdate();
 
-        if (!pause && !showControls)
+        if (!pause && !showControls && !options)
         {
             inputs.MyUpdate();
             player.MyUpdate();

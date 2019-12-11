@@ -251,10 +251,13 @@ public class PlayerController : MonoBehaviour
 
     public void CalculateSpeeds()
     {
-        if (moving && !crouching && !running) speed = walkSpeed;
-        else if (running) speed = runSpeed;
-        else if (crouching) speed = crouchSpeed;
-        else if (stop) speed = 0;
+        //if (!GM.godMode)
+        //{
+            if (moving && !crouching && !running) speed = walkSpeed;
+            else if (running) speed = runSpeed;
+            else if (crouching) speed = crouchSpeed;
+            else if (stop) speed = 0;
+        //}
     }
 
     #endregion
