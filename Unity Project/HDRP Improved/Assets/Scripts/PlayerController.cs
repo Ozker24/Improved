@@ -314,7 +314,8 @@ public class PlayerController : MonoBehaviour
 
     public void Die()
     {
-        Destroy(gameObject);
+        GM.dead = true;
+        GM.winLose.doFadeOut = true;
     }
 
     IEnumerator ResetDodge()

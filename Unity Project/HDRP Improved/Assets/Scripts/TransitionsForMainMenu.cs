@@ -39,7 +39,6 @@ public class TransitionsForMainMenu : MonoBehaviour
 
         fadeOutColor.a = 0;
         toFadeOut.color = fadeOutColor;
-        //toFadeOut.color = fadeOutColor;
     }
 
     public void Update()

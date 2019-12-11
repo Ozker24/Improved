@@ -38,10 +38,14 @@ public class GameManager : MonoBehaviour
     private StealthSystem stealth;
     [SerializeField]
     private PauseManager pauseMn;
+    [SerializeField]
+    public TransitionWinLose winLose;
 
     public bool ableToInput = true;
     public bool pause;
     public bool showControls;
+    public bool dead;
+    public bool win;
     //public bool detected = false;
 
     private void Awake()
@@ -107,6 +111,7 @@ public class GameManager : MonoBehaviour
             CC.MyUpdate();
             itemDetector.MyUpdate();
             stealth.MyUpdate();
+            winLose.MyUpdate();
             //throwImpact.MyUpdate();
         }
     }

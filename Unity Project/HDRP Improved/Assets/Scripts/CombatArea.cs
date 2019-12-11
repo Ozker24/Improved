@@ -46,6 +46,7 @@ public class CombatArea : MonoBehaviour
         if (enemiesNumber <= 0)
         {
             inCombat = false;
+            detected = false;
             Destroy(gameObject, secondsToDestroy);
         }
     }

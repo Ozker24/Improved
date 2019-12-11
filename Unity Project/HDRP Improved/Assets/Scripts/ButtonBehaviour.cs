@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class ButtonBehaviour : MonoBehaviour
 {
+    public GameObject OptionMenu;
+    public GameObject[] desactiveAtOptions;
+    public bool inOptions;
+
     public void GoToMainMenu()
     {
         SceneManager.LoadScene(1);
@@ -24,4 +28,29 @@ public class ButtonBehaviour : MonoBehaviour
         Application.Quit();
     }
     
+    public void GoToWin()
+    {
+        SceneManager.LoadScene(3);
+    }
+
+    public void GoToLose()
+    {
+        SceneManager.LoadScene(4);
+    }
+
+    public void SetOptions()
+    {
+        inOptions = !inOptions;
+        TransitionOptions(inOptions);
+    }
+
+    public void TransitionOptions( bool options)
+    {
+        for (int i = 0; i < desactiveAtOptions.Length; i++)
+        {
+            desactiveAtOptions[i].SetActive(!options);
+        }
+
+        OptionMenu.SetActive(options);
+    }
 }
