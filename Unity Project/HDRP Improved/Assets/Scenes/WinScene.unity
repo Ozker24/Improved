@@ -616,6 +616,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eb23ee493e709242be152d8885fbb68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OptionMenu: {fileID: 0}
+  desactiveAtOptions: []
+  inOptions: 0
+  optionsButton: {fileID: 0}
 --- !u!114 &878010759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -640,6 +644,7 @@ MonoBehaviour:
   doFadeOut: 0
   menuButton: {fileID: 1527467634}
   gameplayButton: {fileID: 0}
+  toMenu: 1
 --- !u!1 &1148211102
 GameObject:
   m_ObjectHideFlags: 0

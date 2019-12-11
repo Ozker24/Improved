@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ButtonBehaviour : MonoBehaviour
 {
     public GameObject OptionMenu;
     public GameObject[] desactiveAtOptions;
     public bool inOptions;
+    public Button optionsButton;
+
 
     public void GoToMainMenu()
     {
