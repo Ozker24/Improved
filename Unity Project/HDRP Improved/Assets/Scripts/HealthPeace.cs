@@ -5,7 +5,7 @@ using UnityEngine;
 public class HealthPeace : MonoBehaviour
 {
     public float health = 100;
-    public float addHeralth;
+    public float addHealth;
     public SpriteRenderer sprite;
 
     public Color topHealth;
@@ -48,7 +48,7 @@ public class HealthPeace : MonoBehaviour
 
     public void Health()
     {
-        health += addHeralth;
+        health += addHealth;
 
         if (health >= 100)
         {

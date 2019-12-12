@@ -61,10 +61,10 @@ public class Weapon : MonoBehaviour
             if (Physics.Raycast(ray, out hit, fireDist))
             {
                 Debug.Log(hit.transform.tag);
-                //Instantiate(bulletHole, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
 
                 if (hit.transform.tag == "Enemy")
                 {
+                    Instantiate(bloodParticle, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
                     hit.transform.SendMessage("StunnedSet", stunedTime, SendMessageOptions.RequireReceiver);
                     hit.transform.SendMessage("Damage", bulletDamage, SendMessageOptions.RequireReceiver);
                 }
@@ -80,7 +80,7 @@ public class Weapon : MonoBehaviour
 
                 if (Physics.Raycast(ray, out hit, fireDist))
                 {
-                    Instantiate(bloodParticle, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
+                    //Instantiate(bloodParticle, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
                 }
 
                 Debug.Log(hit.point);

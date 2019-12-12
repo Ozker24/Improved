@@ -8,15 +8,25 @@ public class GodModeManager : MonoBehaviour
     public GameManager GM;
     public WeaponManager WM;
     public HudManager Hud;
+    public Items items;
+    public HealthPeace health;
 
     [Header("Old Variables")]
     public float oldSpeed;
     public float oldDodgeForce;
+    public float[] oldChangeGunTime;
+    public float[] oldGunsDistance;
+    public int oldHitDamage;
+    public float oldDodgeResetTime;
 
     [Header ("new Variables")]
     public float godSpeed;
     public float godDodgeForce;
     public int addBulletsCount;
+    public float godGunsDistance;
+
+    [Header("God States")]
+    public bool imposibleToDetect;
 
     public void Start()
     {
@@ -24,14 +34,32 @@ public class GodModeManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         WM = player.GetComponentInChildren<WeaponManager>();
         Hud = GetComponent<HudManager>();
+        items = player.GetComponentInChildren<Items>();
+        health = player.GetComponentInChildren<HealthPeace>();
+
+        for (int i = 0; i < WM.weapons.Length; i++)
+        {
+            oldGunsDistance[i] = WM.weapons[i].fireDist;
+            oldChangeGunTime[i] = WM.timeAbleGun[i];
+        }
 
         oldSpeed = player.runSpeed;
         oldDodgeForce = player.dodgeForce;
-    }
+        oldDodgeResetTime = player.dodgeResetTime;
+        oldHitDamage = player.fistDamage;
+}
 
     public void Update()
     {
-        SecretCommands();
+        if (GM.godMode)
+        {
+            SecretCommands();
+
+            if (imposibleToDetect)
+            {
+                player.stealth.canBeDetected = false;
+            }
+        }
     }
 
     public void SetGodMode()
@@ -52,17 +80,38 @@ public class GodModeManager : MonoBehaviour
     {
         player.runSpeed = godSpeed;
         player.dodgeForce = godDodgeForce;
+        //player.fistDamage = 3;
+        player.dodgeResetTime = 0;
+
+        for (int i = 0; i < WM.weapons.Length; i++)
+        {
+            WM.weapons[i].fireDist = godGunsDistance;
+            WM.weapons[i].bulletDamage = 3;
+            WM.timeAbleGun[i] = 0;
+        }
     }
 
     public void SetOldInfo()
     {
         player.dodgeForce = oldDodgeForce;
         player.runSpeed = oldSpeed;
+        //player.fistDamage = oldHitDamage;
+        player.dodgeResetTime = oldDodgeResetTime;
+
+        for (int i = 0; i < WM.weapons.Length; i++)
+        {
+            WM.weapons[i].fireDist = oldGunsDistance[i];
+            WM.weapons[i].bulletDamage = 1;
+            WM.timeAbleGun[i] = oldChangeGunTime[i];
+        }
     }
 
     public void SecretCommands()
     {
         AddBullets();
+        AddItems();
+        SetImposibleToDetect();
+        AddLife();
     }
 
     public void AddBullets()
@@ -72,6 +121,51 @@ public class GodModeManager : MonoBehaviour
             WM.weapons[WM.WeaponSelected].ammoReloaded += addBulletsCount;
 
             Hud.UpdateInventory();
+        }
+    }
+
+    public void AddItems()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            if (items.itemSelected == 4)
+            {
+                items.molotovCount++;
+            }
+            else if (items.itemSelected == 3)
+            {
+                items.GranadeCount++;
+            }
+            else if (items.itemSelected == 2)
+            {
+                items.SoundCount++;
+            }
+            else if (items.itemSelected == 1)
+            {
+                items.FirstAidCount++;
+            }
+            else if (items.itemSelected == 0)
+            {
+                items.EmpCount++;
+            }
+
+            Hud.UpdateInventory();
+        }
+    }
+
+    public void SetImposibleToDetect()
+    {
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            imposibleToDetect =! imposibleToDetect;
+        }
+    }
+
+    public void AddLife()
+    {
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            health.Health();
         }
     }
 }

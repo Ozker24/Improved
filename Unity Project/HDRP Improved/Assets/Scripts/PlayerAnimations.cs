@@ -48,7 +48,7 @@ public class PlayerAnimations : MonoBehaviour
 
     public void ForwardAnimation()
     {
-        anim.SetFloat("WalkForward", player.axis.y);
+        //anim.SetFloat("WalkForward", player.axis.y);
     }
 
     public void ClimbAnimation()
@@ -88,23 +88,23 @@ public class PlayerAnimations : MonoBehaviour
 
     public void CrouchAnimation(bool crouch)
     {
-        anim.SetBool("Crouch", crouch);
+        //anim.SetBool("Crouch", crouch);
     }
 
     public void RunAnimation(bool run)
     {
-        anim.SetBool("Run", run);
+        //anim.SetBool("Run", run);
     }
 
     public void WalkAnimation(bool walk)
     {
-        anim.SetBool("Walk", walk);
+        //anim.SetBool("Walk", walk);
     }
 
     public void HitAnimations()
     {
-        anim.SetInteger("Hit", player.CC.ActualHit);
-        player.anims.anim.SetBool("Hitting", player.CC.triggerAnim);
+        /*anim.SetInteger("Hit", player.CC.ActualHit);
+        player.anims.anim.SetBool("Hitting", player.CC.triggerAnim);*/
     }
 
     public void StopHit()
