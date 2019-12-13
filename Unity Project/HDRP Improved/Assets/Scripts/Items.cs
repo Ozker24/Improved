@@ -390,6 +390,8 @@ public class Items : MonoBehaviour
     {
         AudioSource source = gameObject.AddComponent<AudioSource>();
 
+        //source.PlayOneShot
+
         // Configurar audiosource
         source.playOnAwake = false;
         source.clip = ClipsLaunched.clips[index];
