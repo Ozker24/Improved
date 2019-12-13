@@ -15,6 +15,7 @@ public class EnemyTest : MonoBehaviour
     [SerializeField] EnemyPlayerDetector playerDetector;
     [SerializeField] CombatArea combatArea;
     [SerializeField] EnemyAttackArea attack;
+    public AudioArray clips;
 
     [Header ("Sound")]
     public SoundManager sound;
@@ -337,10 +338,13 @@ public class EnemyTest : MonoBehaviour
         //attackArea.enabled = true;
         //canDetectPlayer = true;
         Debug.Log("Attacking");
+
+        PlaySound(0,0);
         
         if (attack.playerInArea)
         {
             Debug.Log("Player hit");
+            PlaySound(1, 0.2f);
             player.Damage(hitDamage);
         }
 
@@ -378,4 +382,16 @@ public class EnemyTest : MonoBehaviour
 
         //canDetectPlayer = false;
     }*/
+
+    public void PlaySound(int index, float delay)
+    {
+        AudioSource source = gameObject.AddComponent<AudioSource>();
+
+        // Configurar audiosource
+        source.playOnAwake = false;
+        source.clip = clips.clips[index];
+        source.PlayDelayed(delay);
+
+        Destroy(source, source.clip.length);
+    }
 }

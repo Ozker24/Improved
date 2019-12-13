@@ -15,6 +15,7 @@ public class Inventory : MonoBehaviour
 
     public int actualItem = 2;
     public int maxItem = 4;
+    public int itemPreSelected = 2;
 
     public int actualGun;
     public int maxGun;
@@ -40,6 +41,7 @@ public class Inventory : MonoBehaviour
                 Inv.SetActive(false);
                 timeCounter = 0;
                 startCountdown = false;
+                actualItem = itemPreSelected;
             }
             else
             {
@@ -57,7 +59,7 @@ public class Inventory : MonoBehaviour
             timeCounter = 0;
             if (actualItem < maxItem)
             {
-                actualItem++;
+                itemPreSelected++;
                 anim.SetTrigger("Up");
             }
         }
@@ -72,7 +74,7 @@ public class Inventory : MonoBehaviour
             timeCounter = 0;
             if (actualItem > 0)
             {
-                actualItem--;
+                itemPreSelected--;
                 anim.SetTrigger("Down");
             }
         }

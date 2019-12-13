@@ -82,6 +82,7 @@ public class GodModeManager : MonoBehaviour
         player.dodgeForce = godDodgeForce;
         //player.fistDamage = 3;
         player.dodgeResetTime = 0;
+        player.fistDamage = 3;
 
         for (int i = 0; i < WM.weapons.Length; i++)
         {
@@ -97,7 +98,7 @@ public class GodModeManager : MonoBehaviour
         player.runSpeed = oldSpeed;
         //player.fistDamage = oldHitDamage;
         player.dodgeResetTime = oldDodgeResetTime;
-
+        player.fistDamage = oldHitDamage;
         for (int i = 0; i < WM.weapons.Length; i++)
         {
             WM.weapons[i].fireDist = oldGunsDistance[i];

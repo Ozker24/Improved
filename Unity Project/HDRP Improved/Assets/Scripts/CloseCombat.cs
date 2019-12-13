@@ -5,6 +5,7 @@ using UnityEngine;
 public class CloseCombat : MonoBehaviour
 {
     public PlayerController player;
+    public HitArea hit;
 
     public bool canHit = true;
     public bool Hited = false;
@@ -16,9 +17,16 @@ public class CloseCombat : MonoBehaviour
     public float TimeCounter = 0;
     public float TimeToChangeHit;
 
+    public float secondsAbleToImput;
+    public float initialSecondsAbleToInput;
+    public float finalSecondsAbleToInput;
+
+    public AudioClip hitClips;
+
     public void Initialize()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        hit = player.GetComponentInChildren<HitArea>();
     }
 
     public void MyUpdate()
@@ -64,9 +72,23 @@ public class CloseCombat : MonoBehaviour
 
             canHit = false;
 
-            player.anims.HitAnimations();
             //ejecutar animcion
+            player.anims.HitAnimations();
+
+            hit.AppearHit();
+
+            //PlaySound();
             ActualHit++;
+
+            if (ActualHit < maximumHits)
+            {
+                secondsAbleToImput = initialSecondsAbleToInput;
+            }
+            else if (ActualHit >= maximumHits)
+            {
+                secondsAbleToImput = finalSecondsAbleToInput;
+            }
+
             if (ActualHit > maximumHits)
             {
                 ActualHit = 1;
@@ -75,7 +97,11 @@ public class CloseCombat : MonoBehaviour
             {
                 Hited = false;
             }
+
+            Debug.Log(ActualHit);
             //canHit = true; // se ha de hacer al acabar la animacion.
+
+            StartCoroutine(SetAbleToImput());
         }
     }
 
@@ -84,5 +110,26 @@ public class CloseCombat : MonoBehaviour
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
         point = false;
+    }
+
+
+
+    IEnumerator SetAbleToImput()
+    {
+        yield return new WaitForSeconds(secondsAbleToImput);
+        canHit = true;
+        player.GM.ableToInput = true;
+    }
+
+    public void PlaySound()
+    {
+        AudioSource source = gameObject.AddComponent<AudioSource>();
+
+        // Configurar audiosource
+        source.playOnAwake = false;
+        source.clip = hitClips;
+        source.Play();
+
+        Destroy(source, source.clip.length);
     }
 }

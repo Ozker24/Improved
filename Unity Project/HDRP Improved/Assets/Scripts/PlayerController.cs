@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour
 
         if (!stop && !climb)
         {
-            if (moving || (items.pressed && items.canDoItem) || aim.aim || CC.point)
+            if (moving || (items.pressed && items.canDoItem && !items.inv.startCountdown) || aim.aim || CC.point)
             {
                 //if (!items.canDoItem) return;
                 //modelTrans.rotation = camTrans.transform.rotation;
@@ -286,16 +286,31 @@ public class PlayerController : MonoBehaviour
             Destroy(itemDetector.closestItem, 10);
             itemDetector.closestItem = null;
             //HUD.actualLogo = null;
+
+            //PUY HERE SOUND
         }
     }
 
     public void CheckItem()
     {
-        if (itemDetector.closestItem.GetComponent<ItemBase>().WhichItem == 4) items.molotovCount++;
-        if (itemDetector.closestItem.GetComponent<ItemBase>().WhichItem == 4) items.GranadeCount++;
-        if (itemDetector.closestItem.GetComponent<ItemBase>().WhichItem == 4) items.SoundCount++;
-        if (itemDetector.closestItem.GetComponent<ItemBase>().WhichItem == 4) items.FirstAidCount++;
-        if (itemDetector.closestItem.GetComponent<ItemBase>().WhichItem == 4) items.EmpCount++;
+        ItemBase itemCollected = itemDetector.closestItem.GetComponent<ItemBase>();
+
+        if (itemCollected.WhichItem == 4) items.molotovCount++;
+        if (itemCollected.WhichItem == 3) items.GranadeCount++;
+        if (itemCollected.WhichItem == 2) items.SoundCount++;
+        if (itemCollected.WhichItem == 1) items.FirstAidCount++;
+        if (itemCollected.WhichItem == 0) items.EmpCount++;
+        if (itemCollected.ammo) WM.weapons[itemCollected.ForWhatGun].currentAmmo += itemCollected.bullets;
+
+        if (itemCollected.collectSound != null)
+        {
+            AudioSource source = gameObject.AddComponent<AudioSource>();
+            source.clip = itemCollected.collectSound;
+            source.playOnAwake = false;
+
+            source.Play();
+            Destroy(source, source.clip.length);
+        }
     }
 
     public void SetAnims()

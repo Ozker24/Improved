@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\AAAAA.cs" />
     <Compile Include="Assets\Scripts\Aiming.cs" />
     <Compile Include="Assets\Scripts\AnimationsControlMainMenu.cs" />
+    <Compile Include="Assets\Scripts\AudioArray.cs" />
     <Compile Include="Assets\Scripts\AudioPlayer.cs" />
     <Compile Include="Assets\Scripts\AvatarControl.cs" />
     <Compile Include="Assets\Scripts\ButtonBehaviour.cs" />

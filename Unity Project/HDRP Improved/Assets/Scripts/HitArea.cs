@@ -9,6 +9,8 @@ public class HitArea : MonoBehaviour
 
     public float StunedTime;
 
+    public AudioClip HitSound;
+
     public void Initialize()
     {
         player = GetComponentInParent<PlayerController>();
@@ -27,9 +29,11 @@ public class HitArea : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
+            Debug.Log("Enemy");
             EnemyTest enemy = other.GetComponent<EnemyTest>();
             enemy.StunnedSet(StunedTime);
             enemy.Damage(player.fistDamage);
+            //PlaySound();
         }
     }
 
@@ -39,5 +43,17 @@ public class HitArea : MonoBehaviour
         yield return new WaitForEndOfFrame();
 
         coll.enabled = false;
+    }
+
+    public void PlaySound()
+    {
+        AudioSource source = gameObject.AddComponent<AudioSource>();
+
+        // Configurar audiosource
+        source.playOnAwake = false;
+        source.clip = HitSound;
+        source.PlayDelayed(0.3f);
+
+        Destroy(source, source.clip.length);
     }
 }

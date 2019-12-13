@@ -14,6 +14,8 @@ public class Items : MonoBehaviour
     public AudioPlayer audPlay;
     public Trajectory trajectory;
     public GameObject trajectoryPrefab;
+    public AudioArray ClipsSelected;
+    public AudioArray ClipsLaunched;
 
     [Header("Imputs")]
     public int itemSelected;
@@ -57,6 +59,7 @@ public class Items : MonoBehaviour
         0 injectofnanobots usar hasta final
 
      */
+    public AudioClip healing;
 
     public void Initialize()
     {
@@ -85,11 +88,16 @@ public class Items : MonoBehaviour
         {
             trajectoryPrefab.SetActive(true);
         }
+
+        if (inv.startCountdown)
+        {
+            trajectoryPrefab.SetActive(false);
+        }
     }
 
     public void ActiveItem()
     {
-        if (!player.stop && !player.climb)
+        if (!player.stop && !player.climb && !inv.startCountdown)
         {
             Molotov();
             Granade();
@@ -136,6 +144,12 @@ public class Items : MonoBehaviour
             if (!firstTime)
             {
                 Debug.Log("M");
+
+                if (ClipsSelected.clips[itemSelected] != null)
+                {
+                    PlaySound(itemSelected);
+                }
+
                 //audio de apuntando
                 firstTime = true;
             }
@@ -147,7 +161,12 @@ public class Items : MonoBehaviour
         {
             Debug.Log("Launched molotov");
 
-            audPlay.Play(5, 1, Random.Range(0.95f, 1.05f)); // esta antes por temas de velocidad del audio
+            if (ClipsLaunched.clips[itemSelected] != null)
+            {
+                PlaySound(itemSelected);
+            }
+
+            //audPlay.Play(5, 1, Random.Range(0.95f, 1.05f)); // esta antes por temas de velocidad del audio
             InstantiateThings(MolotovPrefab);
 
             CantGunCantItem(false, false, false);
@@ -162,6 +181,11 @@ public class Items : MonoBehaviour
             {
                 Debug.Log("G");
                 //audio de apuntando
+
+                if (ClipsSelected.clips[itemSelected] != null)
+                {
+                    PlaySound(itemSelected);
+                }
                 firstTime = true;
             }
 
@@ -174,7 +198,11 @@ public class Items : MonoBehaviour
 
             InstantiateThings(GranadePrefab);
 
-            audPlay.Play(6, 1, Random.Range(0.95f, 1.05f));
+            //audPlay.Play(6, 1, Random.Range(0.95f, 1.05f));
+            if (ClipsLaunched.clips[itemSelected] != null)
+            {
+                PlaySound(itemSelected);
+            }
 
             CantGunCantItem(false, false, false);
         }
@@ -187,7 +215,13 @@ public class Items : MonoBehaviour
             if (!firstTime)
             {
                 Debug.Log("S");
+
+                if (ClipsSelected.clips[itemSelected] != null)
+                {
+                    PlaySound(itemSelected);
+                }
                 //audio de apuntando
+
                 firstTime = true;
             }
 
@@ -197,6 +231,10 @@ public class Items : MonoBehaviour
         if (itemSelected == 2 && realised == 1 && SoundCount > 0)
         {
             Debug.Log("Launched Sound");
+            if (ClipsLaunched.clips[itemSelected] != null)
+            {
+                PlaySound(itemSelected);
+            }
             InstantiateThings(SoundPrefab);
 
             CantGunCantItem(false, false, false);
@@ -205,14 +243,30 @@ public class Items : MonoBehaviour
 
     public void FirstAid()
     {
-        if (itemSelected == 1 && FirstAidCount > 0)
+        if (itemSelected == 1 && FirstAidCount > 0 && player.life.health < 100)
         {
             if (pressed && realised != 1)
             {
                 if (!firstTime)
                 {
                     Debug.Log("F");
-                    audPlay.Play(3, 1, Random.Range(0.95f, 1.05f));
+                    //audPlay.Play(3, 1, Random.Range(0.95f, 1.05f));
+                    if (ClipsSelected.clips[itemSelected] != null)
+                    {
+                        PlaySound(itemSelected);
+                    }
+
+                    if (healing != null)
+                    {
+                        AudioSource source = gameObject.AddComponent<AudioSource>();
+
+                        // Configurar audiosource
+                        source.playOnAwake = false;
+                        source.clip = healing;
+                        source.PlayDelayed(0.3f);
+
+                        Destroy(source, source.clip.length);
+                    }
                     firstTime = true;
                 }
 
@@ -224,14 +278,20 @@ public class Items : MonoBehaviour
 
                     peace.Health();
 
-                    AudioSource source = GetComponentInChildren<AudioSource>();
+                    AudioSource source = GetComponent<AudioSource>();
 
                     if (source != null)
                     {
                         Destroy(source);
                     }
 
-                    audPlay.Play(4, 1, Random.Range(0.95f, 1.05f));
+                    //audPlay.Play(4, 1, Random.Range(0.95f, 1.05f));
+                    if (ClipsLaunched.clips[itemSelected] != null)
+                    {
+                        PlaySound(itemSelected);
+                    }
+
+                    pressed = false;
 
                     CantGunCantItem(false, false, false);
                 }
@@ -246,7 +306,7 @@ public class Items : MonoBehaviour
             {
                 Debug.Log("Interrumpted");
 
-                AudioSource source = GetComponentInChildren<AudioSource>();
+                AudioSource source = GetComponent<AudioSource>();
 
                 if (source != null)
                 {
@@ -267,6 +327,10 @@ public class Items : MonoBehaviour
             if (!firstTime)
             {
                 Debug.Log("EMP");
+                if (ClipsSelected.clips[itemSelected] != null)
+                {
+                    PlaySound(itemSelected);
+                }
                 //audio de apuntando
                 firstTime = true;
             }
@@ -277,6 +341,11 @@ public class Items : MonoBehaviour
         if (itemSelected == 0 && realised == 1 && EmpCount > 0)
         {
             Debug.Log("Launched EMP");
+            if (ClipsLaunched.clips[itemSelected] != null)
+            {
+                PlaySound(itemSelected);
+            }
+
             InstantiateThings(empPrefab);
 
             CantGunCantItem(false, false, false);
@@ -315,5 +384,17 @@ public class Items : MonoBehaviour
         firstTime = first;
 
         StartCoroutine(CanDoItem());
+    }
+
+    public void PlaySound(int index)
+    {
+        AudioSource source = gameObject.AddComponent<AudioSource>();
+
+        // Configurar audiosource
+        source.playOnAwake = false;
+        source.clip = ClipsLaunched.clips[index];
+        source.Play();
+
+        Destroy(source, source.clip.length);
     }
 }

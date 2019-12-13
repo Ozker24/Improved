@@ -15,6 +15,8 @@ public class Molotov : MonoBehaviour
 
     public GameObject fireZonePrefab;
 
+    public AudioClip initialSound;
+
     public void Update()
     {
         Rotate();

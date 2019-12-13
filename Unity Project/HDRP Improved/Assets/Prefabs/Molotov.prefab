@@ -180,3 +180,4 @@ MonoBehaviour:
   rb: {fileID: 6442462936046615426}
   fireZonePrefab: {fileID: 8356352593725634942, guid: ddd571c56b4b16949a63a77e7c2f4254,
     type: 3}
+  initialSound: {fileID: 8300000, guid: 79d47b0302502964a8625632e3a00389, type: 3}

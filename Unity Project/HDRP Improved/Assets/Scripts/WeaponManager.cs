@@ -14,6 +14,7 @@ public class WeaponManager : MonoBehaviour
     public GameManager gm;
     public Items items;
     public StealthSystem stealth;
+    public AudioArray changeGunClips;
 
     //public bool searchingBullet;
 
@@ -63,6 +64,7 @@ public class WeaponManager : MonoBehaviour
                 timeCounter = 0;
                 selecting = false;
                 ableGun = false;
+                PlaySound(WeaponSelected);
                 StartCoroutine(AbleGun(timeAbleGun[WeaponSelected]));
             }
             else
@@ -119,4 +121,16 @@ public class WeaponManager : MonoBehaviour
     }
 
     #endregion
+
+    public void PlaySound(int index)
+    {
+        AudioSource source = gameObject.AddComponent<AudioSource>();
+
+        // Configurar audiosource
+        source.playOnAwake = false;
+        source.clip = changeGunClips.clips[index];
+        source.Play();
+
+        Destroy(source, source.clip.length);
+    }
 }

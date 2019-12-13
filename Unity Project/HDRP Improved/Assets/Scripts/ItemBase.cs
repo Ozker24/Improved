@@ -8,6 +8,10 @@ public class ItemBase : MonoBehaviour
     public HudManager HUD;
 
     public int WhichItem;
+    public int bullets;
+    public int ForWhatGun;
+    public bool ammo;
+    public AudioClip collectSound;
 
     public void Start()
     {

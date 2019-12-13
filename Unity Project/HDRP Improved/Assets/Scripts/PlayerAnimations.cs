@@ -119,6 +119,6 @@ public class PlayerAnimations : MonoBehaviour
 
     public void ActiveHit()
     {
-        hit.AppearHit();
+        //hit.AppearHit();
     }
 }
