@@ -14,8 +14,6 @@ public class Items : MonoBehaviour
     public AudioPlayer audPlay;
     public Trajectory trajectory;
     public GameObject trajectoryPrefab;
-    public AudioArray ClipsSelected;
-    public AudioArray ClipsLaunched;
 
     [Header("Imputs")]
     public int itemSelected;
@@ -59,6 +57,13 @@ public class Items : MonoBehaviour
         0 injectofnanobots usar hasta final
 
      */
+
+    [Header("Sounds")]
+    public AudioSource baseSource;
+
+    public AudioArray ClipsSelected;
+    public AudioArray ClipsLaunched;
+
     public AudioClip healing;
 
     public void Initialize()
@@ -147,7 +152,7 @@ public class Items : MonoBehaviour
 
                 if (ClipsSelected.clips[itemSelected] != null)
                 {
-                    PlaySound(itemSelected);
+                    baseSource.PlayOneShot(ClipsSelected.clips[itemSelected]);
                 }
 
                 //audio de apuntando
@@ -163,7 +168,7 @@ public class Items : MonoBehaviour
 
             if (ClipsLaunched.clips[itemSelected] != null)
             {
-                PlaySound(itemSelected);
+                baseSource.PlayOneShot(ClipsLaunched.clips[itemSelected]);
             }
 
             //audPlay.Play(5, 1, Random.Range(0.95f, 1.05f)); // esta antes por temas de velocidad del audio
@@ -184,7 +189,7 @@ public class Items : MonoBehaviour
 
                 if (ClipsSelected.clips[itemSelected] != null)
                 {
-                    PlaySound(itemSelected);
+                    baseSource.PlayOneShot(ClipsSelected.clips[itemSelected]);
                 }
                 firstTime = true;
             }
@@ -201,7 +206,7 @@ public class Items : MonoBehaviour
             //audPlay.Play(6, 1, Random.Range(0.95f, 1.05f));
             if (ClipsLaunched.clips[itemSelected] != null)
             {
-                PlaySound(itemSelected);
+                baseSource.PlayOneShot(ClipsLaunched.clips[itemSelected]);
             }
 
             CantGunCantItem(false, false, false);
@@ -218,7 +223,7 @@ public class Items : MonoBehaviour
 
                 if (ClipsSelected.clips[itemSelected] != null)
                 {
-                    PlaySound(itemSelected);
+                    baseSource.PlayOneShot(ClipsSelected.clips[itemSelected]);
                 }
                 //audio de apuntando
 
@@ -233,7 +238,7 @@ public class Items : MonoBehaviour
             Debug.Log("Launched Sound");
             if (ClipsLaunched.clips[itemSelected] != null)
             {
-                PlaySound(itemSelected);
+                baseSource.PlayOneShot(ClipsLaunched.clips[itemSelected]);
             }
             InstantiateThings(SoundPrefab);
 
@@ -253,7 +258,7 @@ public class Items : MonoBehaviour
                     //audPlay.Play(3, 1, Random.Range(0.95f, 1.05f));
                     if (ClipsSelected.clips[itemSelected] != null)
                     {
-                        PlaySound(itemSelected);
+                        baseSource.PlayOneShot(ClipsSelected.clips[itemSelected]);
                     }
 
                     if (healing != null)
@@ -288,7 +293,7 @@ public class Items : MonoBehaviour
                     //audPlay.Play(4, 1, Random.Range(0.95f, 1.05f));
                     if (ClipsLaunched.clips[itemSelected] != null)
                     {
-                        PlaySound(itemSelected);
+                        baseSource.PlayOneShot(ClipsLaunched.clips[itemSelected]);
                     }
 
                     pressed = false;
@@ -329,7 +334,7 @@ public class Items : MonoBehaviour
                 Debug.Log("EMP");
                 if (ClipsSelected.clips[itemSelected] != null)
                 {
-                    PlaySound(itemSelected);
+                    baseSource.PlayOneShot(ClipsSelected.clips[itemSelected]);
                 }
                 //audio de apuntando
                 firstTime = true;
@@ -343,7 +348,7 @@ public class Items : MonoBehaviour
             Debug.Log("Launched EMP");
             if (ClipsLaunched.clips[itemSelected] != null)
             {
-                PlaySound(itemSelected);
+                baseSource.PlayOneShot(ClipsLaunched.clips[itemSelected]);
             }
 
             InstantiateThings(empPrefab);

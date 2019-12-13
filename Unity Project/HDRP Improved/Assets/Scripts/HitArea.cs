@@ -9,6 +9,8 @@ public class HitArea : MonoBehaviour
 
     public float StunedTime;
 
+    [Header("Sounds")]
+    public AudioSource basicSource;
     public AudioClip HitSound;
 
     public void Initialize()
@@ -33,7 +35,7 @@ public class HitArea : MonoBehaviour
             EnemyTest enemy = other.GetComponent<EnemyTest>();
             enemy.StunnedSet(StunedTime);
             enemy.Damage(player.fistDamage);
-            //PlaySound();
+            basicSource.PlayOneShot(HitSound);
         }
     }
 

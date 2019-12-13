@@ -8,13 +8,12 @@ public class WeaponManager : MonoBehaviour
     public PlayerController player;
     public HudManager HUD;
     public Inventory inv;
-    public AudioPlayer audPlay;
-    public AudioPlayer audPlayMag;
+    //public AudioPlayer audPlay;
+    //public AudioPlayer audPlayMag;
     public Aiming aiming;
     public GameManager gm;
     public Items items;
     public StealthSystem stealth;
-    public AudioArray changeGunClips;
 
     //public bool searchingBullet;
 
@@ -44,6 +43,10 @@ public class WeaponManager : MonoBehaviour
     public AudioArray shotClips;
     public AudioArray ReloadClips;
 
+    [Header("Sound")]
+    public AudioSource baseSource;
+    public AudioArray changeGunClips;
+
     public void Initialize()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
@@ -68,7 +71,7 @@ public class WeaponManager : MonoBehaviour
                 timeCounter = 0;
                 selecting = false;
                 ableGun = false;
-                PlaySound(WeaponSelected);
+                baseSource.PlayOneShot(changeGunClips.clips[WeaponSelected]);
                 StartCoroutine(AbleGun(timeAbleGun[WeaponSelected]));
             }
             else
@@ -125,16 +128,4 @@ public class WeaponManager : MonoBehaviour
     }
 
     #endregion
-
-    public void PlaySound(int index)
-    {
-        AudioSource source = gameObject.AddComponent<AudioSource>();
-
-        // Configurar audiosource
-        source.playOnAwake = false;
-        source.clip = changeGunClips.clips[index];
-        source.Play();
-
-        Destroy(source, source.clip.length);
-    }
 }

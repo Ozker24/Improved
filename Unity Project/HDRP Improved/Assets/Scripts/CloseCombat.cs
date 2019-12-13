@@ -21,6 +21,8 @@ public class CloseCombat : MonoBehaviour
     public float initialSecondsAbleToInput;
     public float finalSecondsAbleToInput;
 
+    [Header("Sounds")]
+    public AudioSource basicSource;
     public AudioClip hitClips;
 
     public void Initialize()
@@ -77,7 +79,7 @@ public class CloseCombat : MonoBehaviour
 
             hit.AppearHit();
 
-            //PlaySound();
+            //basicSource.PlayOneShot(hitClips);
             ActualHit++;
 
             if (ActualHit < maximumHits)

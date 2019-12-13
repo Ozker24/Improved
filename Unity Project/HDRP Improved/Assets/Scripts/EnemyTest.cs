@@ -15,7 +15,6 @@ public class EnemyTest : MonoBehaviour
     [SerializeField] EnemyPlayerDetector playerDetector;
     [SerializeField] CombatArea combatArea;
     [SerializeField] EnemyAttackArea attack;
-    public AudioArray clips;
 
     [Header ("Sound")]
     public SoundManager sound;
@@ -60,8 +59,8 @@ public class EnemyTest : MonoBehaviour
     public LayerMask layer;
 
     [Header("Life")]
-    public int currentLife;
-    public int maxLife;
+    public float currentLife;
+    public float maxLife;
 
     [Header("Stunned")]
     public float timeStunned;
@@ -70,6 +69,10 @@ public class EnemyTest : MonoBehaviour
     [Header("Die")]
     public float timeToDie;
     public bool dead;
+
+    [Header("Sounds")]
+    public AudioSource basicSource;
+    public AudioArray clips;
 
     // Start is called before the first frame update
     void Start()
@@ -339,12 +342,12 @@ public class EnemyTest : MonoBehaviour
         //canDetectPlayer = true;
         Debug.Log("Attacking");
 
-        //PlaySound(0,0);
-        
+        basicSource.PlayOneShot(clips.clips[0]);
+
         if (attack.playerInArea)
         {
             Debug.Log("Player hit");
-            //PlaySound(1, 0.2f);
+            basicSource.PlayOneShot(clips.clips[1]);
             player.Damage(hitDamage);
         }
 
@@ -357,7 +360,7 @@ public class EnemyTest : MonoBehaviour
         //StartCoroutine(DissableAttackArea());
     }
 
-    public void Damage(int life)
+    public void Damage(float life)
     {
         
         currentLife -= life;
@@ -367,7 +370,7 @@ public class EnemyTest : MonoBehaviour
             currentLife = 0;
             if (!dead)
             {
-                PlaySound(2, 0.2f);
+                basicSource.PlayOneShot(clips.clips[2]);
             }
             DieSet();
         }

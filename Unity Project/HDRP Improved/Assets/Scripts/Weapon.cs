@@ -28,7 +28,7 @@ public class Weapon : MonoBehaviour
     public float fireRate;
     public float reloadTime;
     public float fireDist;
-    public int bulletDamage;
+    public float bulletDamage;
     public float stunedTime;
 
     public int shotGunSpreads;
@@ -40,6 +40,8 @@ public class Weapon : MonoBehaviour
 
     public Transform whereToShot;
 
+    [Header("Sounds")]
+    public AudioSource basicSource;
     public AudioArray ShotClips;
     public AudioClip MetalClip;
     public AudioArray ReloadClips;
@@ -69,7 +71,7 @@ public class Weapon : MonoBehaviour
         //audPlay.Play(0, 1, Random.Range(0.95f, 1.05f));
         //ammoReloaded--;
 
-        PlayShotSound(weapon.WeaponSelected);
+        basicSource.PlayOneShot(ShotClips.clips[weapon.WeaponSelected]);
 
         muzzleParticle.Play();
 
@@ -94,7 +96,7 @@ public class Weapon : MonoBehaviour
                 else if (hit.transform.tag == "Metal")
                 {
                     GameObject particle = (GameObject)Instantiate(sparklePartcile, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
-                    PlaySound();
+                    basicSource.PlayOneShot(MetalClip);
                     Destroy(particle, 10);
                 }
             }
@@ -110,7 +112,22 @@ public class Weapon : MonoBehaviour
 
                 if (Physics.Raycast(ray, out hit, fireDist))
                 {
-                    Instantiate(bloodParticle, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
+                    if (hit.transform.tag == "Enemy")
+                    {
+                        GameObject particle = (GameObject)Instantiate(bloodParticle, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
+
+                        Destroy(particle, 10);
+
+                        hit.transform.SendMessage("StunnedSet", stunedTime, SendMessageOptions.RequireReceiver);
+                        hit.transform.SendMessage("Damage", bulletDamage, SendMessageOptions.RequireReceiver);
+                    }
+
+                    else if (hit.transform.tag == "Metal")
+                    {
+                        GameObject particle = (GameObject)Instantiate(sparklePartcile, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
+                        basicSource.PlayOneShot(MetalClip);
+                        Destroy(particle, 10);
+                    }
                 }
 
                 Debug.Log(hit.point);
@@ -145,7 +162,7 @@ public class Weapon : MonoBehaviour
         {
             isReloading = true;
 
-            PlayReloadSound(weapon.WeaponSelected);
+            basicSource.PlayOneShot(ReloadClips.clips[weapon.WeaponSelected]);
 
             StartCoroutine(ResetReload());
         }

@@ -64,6 +64,9 @@ public class PlayerController : MonoBehaviour
     private float forceToGround = Physics.gravity.y;
     public float gravityMagnitude = 1.0f;
 
+    [Header("Sound")]
+    public AudioSource CollectItemSource;
+
     public void Initialize()
     {
         controler = GetComponent<CharacterController>();
@@ -305,12 +308,12 @@ public class PlayerController : MonoBehaviour
 
         if (itemCollected.collectSound != null)
         {
-            AudioSource source = gameObject.AddComponent<AudioSource>();
-            source.clip = itemCollected.collectSound;
-            source.playOnAwake = false;
+            //AudioSource source = gameObject.AddComponent<AudioSource>();
+            //CollectItemSource.clip = itemCollected.collectSound;
+            //source.playOnAwake = false;
 
-            source.Play();
-            Destroy(source, source.clip.length);
+            CollectItemSource.PlayOneShot(itemCollected.collectSound);
+            //Destroy(source, source.clip.length);
         }
     }
 

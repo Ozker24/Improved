@@ -60,7 +60,7 @@ public class Inventory : MonoBehaviour
             Inv.SetActive(true);
             startCountdown = true;
             timeCounter = 0;
-            if (actualItem < maxItem)
+            if (itemPreSelected < maxItem)
             {
                 itemPreSelected++;
                 anim.SetTrigger("Up");
@@ -75,7 +75,7 @@ public class Inventory : MonoBehaviour
             Inv.SetActive(true);
             startCountdown = true;
             timeCounter = 0;
-            if (actualItem > 0)
+            if (itemPreSelected > 0)
             {
                 itemPreSelected--;
                 anim.SetTrigger("Down");
