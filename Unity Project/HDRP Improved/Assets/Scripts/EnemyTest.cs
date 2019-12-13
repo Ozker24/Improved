@@ -333,18 +333,18 @@ public class EnemyTest : MonoBehaviour
 
     public void DoAttack()
     {
-        audPlay.Play(0, 1, 1);
+        //audPlay.Play(0, 1, 1);
 
         //attackArea.enabled = true;
         //canDetectPlayer = true;
         Debug.Log("Attacking");
 
-        PlaySound(0,0);
+        //PlaySound(0,0);
         
         if (attack.playerInArea)
         {
             Debug.Log("Player hit");
-            PlaySound(1, 0.2f);
+            //PlaySound(1, 0.2f);
             player.Damage(hitDamage);
         }
 
@@ -365,6 +365,10 @@ public class EnemyTest : MonoBehaviour
         if (currentLife <= 0)
         {
             currentLife = 0;
+            if (!dead)
+            {
+                PlaySound(2, 0.2f);
+            }
             DieSet();
         }
     }
