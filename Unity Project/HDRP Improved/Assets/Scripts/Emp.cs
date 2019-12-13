@@ -43,6 +43,10 @@ public class Emp : MonoBehaviour
         // Show Effects
         //Instantiate(explosionEffect, transform.position, transform.rotation);
 
+        GameObject EMPExplosion = Instantiate(explosionEffect, transform.position, transform.rotation);
+
+        Destroy(EMPExplosion, 10);
+
         //audPlay.Play(0, 1, 1);
 
         //Get Objects

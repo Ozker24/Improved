@@ -35,8 +35,17 @@ public class Weapon : MonoBehaviour
     public float spread;
 
     public GameObject bloodParticle;
+    public ParticleSystem muzzleParticle;
+    public GameObject sparklePartcile;
 
     public Transform whereToShot;
+
+    public void Start()
+    {
+        bloodParticle = weapon.bloodParticle;
+        muzzleParticle = weapon.muzzleParticle;
+        sparklePartcile = weapon.sparklePartcile;
+    }
 
     public void Shot()
     {
@@ -53,6 +62,8 @@ public class Weapon : MonoBehaviour
         audPlay.Play(0, 1, Random.Range(0.95f, 1.05f));
         //ammoReloaded--;
 
+        muzzleParticle.Play();
+
         if (weapon.WeaponSelected != 1)
         {
             Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
@@ -64,9 +75,18 @@ public class Weapon : MonoBehaviour
 
                 if (hit.transform.tag == "Enemy")
                 {
-                    Instantiate(bloodParticle, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
+                    GameObject particle = (GameObject)Instantiate(bloodParticle, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
+
+                    Destroy(particle, 10);
                     hit.transform.SendMessage("StunnedSet", stunedTime, SendMessageOptions.RequireReceiver);
                     hit.transform.SendMessage("Damage", bulletDamage, SendMessageOptions.RequireReceiver);
+                }
+
+                else if (hit.transform.tag == "Metal")
+                {
+                    GameObject particle = (GameObject)Instantiate(sparklePartcile, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
+
+                    Destroy(particle, 10);
                 }
             }
         }

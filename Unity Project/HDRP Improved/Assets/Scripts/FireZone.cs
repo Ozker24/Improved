@@ -40,9 +40,9 @@ public class FireZone : MonoBehaviour
         }
     }*/
 
-    public void OnDrawGizmos()
+    /*public void OnDrawGizmos()
     {
         Gizmos.DrawCube(transform.position, halfExtent * 2);
         Gizmos.color = Color.red;
-    }
+    }*/
 }

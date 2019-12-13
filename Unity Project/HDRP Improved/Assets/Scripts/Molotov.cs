@@ -27,7 +27,7 @@ public class Molotov : MonoBehaviour
 
     public void Rotate()
     {
-        transform.Rotate(1 * rotateForce, 0, 0);
+        //transform.Rotate(1 * rotateForce, 0, 0);
     }
 
     public void Explode()

@@ -41,7 +41,9 @@ public class Granade : MonoBehaviour
         Debug.Log("Booom");
 
         // Show Effects
-        Instantiate(explosionEffect, transform.position, transform.rotation);
+        GameObject GranadeExplosion = Instantiate(explosionEffect, transform.position, transform.rotation);
+
+        Destroy(GranadeExplosion, 10);
 
         audPlay.Play(0, 1, 1);
 

@@ -131,8 +131,8 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 512
-  audPlay: {fileID: 0}
   mesh: {fileID: 7843920161008560685}
   coll: {fileID: 3070695463645084738}
   rb: {fileID: 1445037010051899419}
-  explosionEffect: {fileID: 0}
+  explosionEffect: {fileID: 6914953095409051168, guid: 921e0ad70c2b20f49abf76ab9c5275d3,
+    type: 3}

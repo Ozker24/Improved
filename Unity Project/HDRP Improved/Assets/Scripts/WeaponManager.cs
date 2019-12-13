@@ -35,6 +35,10 @@ public class WeaponManager : MonoBehaviour
     public float[] timeToAim;
     public float[] distanceToSound;
 
+    public GameObject bloodParticle;
+    public ParticleSystem muzzleParticle;
+    public GameObject sparklePartcile;
+
     public void Initialize()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
