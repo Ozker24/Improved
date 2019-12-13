@@ -40,11 +40,18 @@ public class Weapon : MonoBehaviour
 
     public Transform whereToShot;
 
+    public AudioArray ShotClips;
+    public AudioClip MetalClip;
+    public AudioArray ReloadClips;
+
     public void Start()
     {
         bloodParticle = weapon.bloodParticle;
         muzzleParticle = weapon.muzzleParticle;
         sparklePartcile = weapon.sparklePartcile;
+        ShotClips = weapon.shotClips;
+        ReloadClips = weapon.ReloadClips;
+        MetalClip = weapon.MetalClip;
     }
 
     public void Shot()
@@ -59,8 +66,10 @@ public class Weapon : MonoBehaviour
         isShoting = true;
         currentAmmo--;
 
-        audPlay.Play(0, 1, Random.Range(0.95f, 1.05f));
+        //audPlay.Play(0, 1, Random.Range(0.95f, 1.05f));
         //ammoReloaded--;
+
+        PlayShotSound(weapon.WeaponSelected);
 
         muzzleParticle.Play();
 
@@ -85,7 +94,7 @@ public class Weapon : MonoBehaviour
                 else if (hit.transform.tag == "Metal")
                 {
                     GameObject particle = (GameObject)Instantiate(sparklePartcile, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
-
+                    PlaySound();
                     Destroy(particle, 10);
                 }
             }
@@ -135,7 +144,7 @@ public class Weapon : MonoBehaviour
         {
             isReloading = true;
 
-            audPlay.Play(1, 1, 1);
+            PlayReloadSound(weapon.WeaponSelected);
 
             StartCoroutine(ResetReload());
         }
@@ -167,5 +176,41 @@ public class Weapon : MonoBehaviour
 
             ammoReloaded = 0;
         }
+    }
+
+    public void PlaySound()
+    {
+        AudioSource source = gameObject.AddComponent<AudioSource>();
+
+        // Configurar audiosource
+        source.playOnAwake = false;
+        source.clip = MetalClip;
+        source.PlayDelayed(0.3f);
+
+        Destroy(source, source.clip.length);
+    }
+
+    public void PlayShotSound(int index)
+    {
+        AudioSource source = gameObject.AddComponent<AudioSource>();
+
+        // Configurar audiosource
+        source.playOnAwake = false;
+        source.clip = ShotClips.clips[index];
+        source.PlayDelayed(0.0f);
+
+        Destroy(source, source.clip.length);
+    }
+
+    public void PlayReloadSound(int index)
+    {
+        AudioSource source = gameObject.AddComponent<AudioSource>();
+
+        // Configurar audiosource
+        source.playOnAwake = false;
+        source.clip = ShotClips.clips[index];
+        source.PlayDelayed(0.0f);
+
+        Destroy(source, source.clip.length);
     }
 }

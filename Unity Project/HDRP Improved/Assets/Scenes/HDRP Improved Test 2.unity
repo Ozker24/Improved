@@ -460,6 +460,54 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03ecb96a37ed3734285f43e82b5b1780, type: 3}
+--- !u!1 &76000452
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 76000453}
+  - component: {fileID: 76000454}
+  m_Layer: 18
+  m_Name: AudioReload
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &76000453
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 76000452}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 709269305}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &76000454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 76000452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 567fd051e0c31a245af962a1b91b6706, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 049d88856765b7549be5f406d071dd8e, type: 3}
+  - {fileID: 8300000, guid: dd486457f071ea64b87e188bbba70163, type: 3}
+  - {fileID: 8300000, guid: 2e3d2df66f5a0b04d936c92ebe11342c, type: 3}
+  - {fileID: 8300000, guid: bc3dccea12d08814c9b0539941ae7fff, type: 3}
 --- !u!1 &78148833
 GameObject:
   m_ObjectHideFlags: 0
@@ -1197,6 +1245,54 @@ Transform:
   m_Father: {fileID: 1035981314}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &280758149
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 280758150}
+  - component: {fileID: 280758151}
+  m_Layer: 18
+  m_Name: AudioShot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &280758150
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 280758149}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 709269305}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &280758151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 280758149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 567fd051e0c31a245af962a1b91b6706, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 049d88856765b7549be5f406d071dd8e, type: 3}
+  - {fileID: 8300000, guid: dd486457f071ea64b87e188bbba70163, type: 3}
+  - {fileID: 8300000, guid: 2e3d2df66f5a0b04d936c92ebe11342c, type: 3}
+  - {fileID: 8300000, guid: bc3dccea12d08814c9b0539941ae7fff, type: 3}
 --- !u!1 &289232206
 GameObject:
   m_ObjectHideFlags: 0
@@ -1415,6 +1511,9 @@ MonoBehaviour:
   muzzleParticle: {fileID: 0}
   sparklePartcile: {fileID: 0}
   whereToShot: {fileID: 0}
+  ShotClips: {fileID: 0}
+  MetalClip: {fileID: 0}
+  ReloadClips: {fileID: 0}
 --- !u!4 &290803127
 Transform:
   m_ObjectHideFlags: 0
@@ -1984,6 +2083,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1552611809}
   - {fileID: 1277552872}
   - {fileID: 1971040953}
   - {fileID: 2117005815}
@@ -12640,6 +12740,8 @@ Transform:
   - {fileID: 1251719909}
   - {fileID: 727443336}
   - {fileID: 1577139023}
+  - {fileID: 280758150}
+  - {fileID: 76000453}
   m_Father: {fileID: 1035981314}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12702,6 +12804,9 @@ MonoBehaviour:
   muzzleParticle: {fileID: 829695117}
   sparklePartcile: {fileID: 5942324983208238784, guid: 77cb55801b0f6664c8764fb416fc6053,
     type: 3}
+  MetalClip: {fileID: 8300000, guid: 8d041a274939c27429b4acbdea50265e, type: 3}
+  shotClips: {fileID: 280758151}
+  ReloadClips: {fileID: 76000454}
 --- !u!114 &709269307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12801,6 +12906,9 @@ MonoBehaviour:
   muzzleParticle: {fileID: 0}
   sparklePartcile: {fileID: 0}
   whereToShot: {fileID: 0}
+  ShotClips: {fileID: 0}
+  MetalClip: {fileID: 0}
+  ReloadClips: {fileID: 0}
 --- !u!1 &736401490
 GameObject:
   m_ObjectHideFlags: 0
@@ -36521,6 +36629,7 @@ MonoBehaviour:
   canClimb: 0
   endedClimb: {x: 0, y: 0, z: 0}
   fistDamage: 2
+  deadSound: {fileID: 8300000, guid: 3062d45e51669004db440f63d66ef220, type: 3}
   dodgeForce: 3
   dodgeResetTime: 2
   dodge: 0
@@ -36783,6 +36892,9 @@ MonoBehaviour:
   muzzleParticle: {fileID: 0}
   sparklePartcile: {fileID: 0}
   whereToShot: {fileID: 0}
+  ShotClips: {fileID: 0}
+  MetalClip: {fileID: 0}
+  ReloadClips: {fileID: 0}
 --- !u!4 &1251719909
 Transform:
   m_ObjectHideFlags: 0
@@ -36928,12 +37040,14 @@ MonoBehaviour:
   timeToVanish: 1
   weapons: {fileID: 709269306}
   items: {fileID: 0}
+  soundRemote: {fileID: 1552611811}
   actualItem: 2
   maxItem: 4
   itemPreSelected: 2
   actualGun: 0
   maxGun: 0
   anim: {fileID: 1277552871}
+  selectionSounds: {fileID: 1552611810}
 --- !u!95 &1277552871
 Animator:
   serializedVersion: 3
@@ -36968,7 +37082,7 @@ RectTransform:
   - {fileID: 1356711623}
   - {fileID: 1074126793}
   m_Father: {fileID: 474559606}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -42822,6 +42936,9 @@ MonoBehaviour:
   muzzleParticle: {fileID: 0}
   sparklePartcile: {fileID: 0}
   whereToShot: {fileID: 742023943}
+  ShotClips: {fileID: 0}
+  MetalClip: {fileID: 0}
+  ReloadClips: {fileID: 0}
 --- !u!4 &1450550960
 Transform:
   m_ObjectHideFlags: 0
@@ -43308,6 +43425,74 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &1552611808
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1552611809}
+  - component: {fileID: 1552611810}
+  - component: {fileID: 1552611811}
+  m_Layer: 5
+  m_Name: Selection audio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1552611809
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552611808}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.5}
+  m_Children: []
+  m_Father: {fileID: 474559606}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 257.21994, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1552611810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552611808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 567fd051e0c31a245af962a1b91b6706, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: fc118759546d5f04fa3581c40deda860, type: 3}
+  - {fileID: 8300000, guid: 24673336b97a4024897dcac8439f0513, type: 3}
+  - {fileID: 8300000, guid: 4f1c5b048e1e08248b26f3164f7d49d6, type: 3}
+  - {fileID: 8300000, guid: 2e3d2df66f5a0b04d936c92ebe11342c, type: 3}
+  - {fileID: 8300000, guid: da20df0e4ae6de54399ef392880378f7, type: 3}
+--- !u!114 &1552611811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552611808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d472308bd88ea254aafeb6d81afa1710, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectionClips: {fileID: 1552611810}
 --- !u!1 &1577139022
 GameObject:
   m_ObjectHideFlags: 0
@@ -65466,7 +65651,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 474559606}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -74502,7 +74687,7 @@ RectTransform:
   - {fileID: 1220652482}
   - {fileID: 1075604722}
   m_Father: {fileID: 474559606}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}

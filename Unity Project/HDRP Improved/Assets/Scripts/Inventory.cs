@@ -12,6 +12,7 @@ public class Inventory : MonoBehaviour
     public float timeToVanish;
     public WeaponManager weapons;
     public Items items;
+    public PlaySoundRemote soundRemote;
 
     public int actualItem = 2;
     public int maxItem = 4;
@@ -21,6 +22,7 @@ public class Inventory : MonoBehaviour
     public int maxGun;
 
     public Animator anim;
+    public AudioArray selectionSounds;
 
     public void Initialize()
     {
@@ -41,6 +43,7 @@ public class Inventory : MonoBehaviour
                 Inv.SetActive(false);
                 timeCounter = 0;
                 startCountdown = false;
+                soundRemote.PlayChangeItemSound(weapons.WeaponSelected);
                 actualItem = itemPreSelected;
             }
             else

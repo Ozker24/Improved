@@ -40,6 +40,10 @@ public class WeaponManager : MonoBehaviour
     public ParticleSystem muzzleParticle;
     public GameObject sparklePartcile;
 
+    public AudioClip MetalClip;
+    public AudioArray shotClips;
+    public AudioArray ReloadClips;
+
     public void Initialize()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();

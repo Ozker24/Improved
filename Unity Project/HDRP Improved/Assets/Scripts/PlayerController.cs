@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Combat")]
     public int fistDamage;
+    public AudioClip deadSound;
 
     [Header("Dodge")]
     public float dodgeForce;
@@ -333,6 +334,7 @@ public class PlayerController : MonoBehaviour
     public void Die()
     {
         GM.dead = true;
+        PlaySound();
         GM.winLose.doFadeOut = true;
     }
 
@@ -340,5 +342,17 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(dodgeResetTime);
         canDodge = true;
+    }
+
+    public void PlaySound()
+    {
+        AudioSource source = gameObject.AddComponent<AudioSource>();
+
+        // Configurar audiosource
+        source.playOnAwake = false;
+        source.clip = deadSound;
+        source.PlayDelayed(0.3f);
+
+        Destroy(source, source.clip.length);
     }
 }

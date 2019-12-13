@@ -99,6 +99,7 @@
     <Compile Include="Assets\Scripts\PauseManager.cs" />
     <Compile Include="Assets\Scripts\PlayerAnimations.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\PlaySoundRemote.cs" />
     <Compile Include="Assets\Scripts\SettingsSaver.cs" />
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
     <Compile Include="Assets\Scripts\SoundManager.cs" />
