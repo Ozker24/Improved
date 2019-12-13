@@ -104,12 +104,13 @@ public class Weapon : MonoBehaviour
         {
             for (int i = 0; i < shotGunSpreads; i++)
             {
-                Ray ray = Camera.main.ViewportPointToRay(new Vector3(Random.Range(-0.2f,0.2f), Random.Range(-0.2f, 0.2f), 0));
+                Ray ray = Camera.main.ViewportPointToRay(new Vector3(Random.Range(0.3f,0.7f), Random.Range(0.3f, 0.7f), 0));
                 RaycastHit hit = new RaycastHit();// que hemos golpeado primero
+                Debug.DrawRay(ray.origin, ray.direction * fireDist, Color.red, 0.5f);
 
                 if (Physics.Raycast(ray, out hit, fireDist))
                 {
-                    //Instantiate(bloodParticle, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
+                    Instantiate(bloodParticle, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
                 }
 
                 Debug.Log(hit.point);
