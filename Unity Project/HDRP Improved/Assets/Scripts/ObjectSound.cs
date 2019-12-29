@@ -6,27 +6,63 @@ public class ObjectSound : MonoBehaviour
 {
     public SoundManager sound;
 
-    public AudioPlayer audPlay;
+    //public AudioPlayer audPlay;
 
     public MeshRenderer mesh;
     public Collider coll;
     public Rigidbody rb;
+
+    public float timeToExplode;
+    public float timeCounter;
+    public bool exploded;
+
+    public float radius;
+    public LayerMask layer;
+
+    public Vector3 finalPos;
 
     public void Start()
     {
         sound = GameObject.FindGameObjectWithTag("Managers").GetComponent<SoundManager>();
     }
 
-    public void OnCollisionEnter(Collision collision)
+    public void Update()
     {
-        sound.soundPosition = transform.position;
+        if (timeCounter >= timeToExplode)
+        {
+            Explode();
+            timeCounter = 0;
+            exploded = true;
+        }
 
-        audPlay.Play(Random.Range(0 , 2), 1, 1);
+        if (!exploded)
+        {
+            timeCounter += Time.deltaTime;
+        }
+    }
 
+    public void Explode()
+    {
+        finalPos = transform.position;
+
+        //Get Objects
+        Collider[] colliders = Physics.OverlapSphere(transform.position, radius, layer);
+
+        foreach (Collider nearbyObject in colliders)
+        {
+            if (nearbyObject.tag == "Enemy")
+            {
+                EnemyTest enemy = nearbyObject.GetComponent<EnemyTest>();
+
+                enemy.positionWhereSound = finalPos;
+            }
+        }
+
+        //Remove Granade
         coll.enabled = false;
         rb.detectCollisions = false;
         mesh.enabled = false;
 
-        Destroy(gameObject, 5);
+        //Destroy(gameObject, 5);
     }
 }

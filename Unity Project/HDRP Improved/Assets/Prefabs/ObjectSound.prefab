@@ -109,10 +109,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sound: {fileID: 0}
-  audPlay: {fileID: 6356199529693929296}
   mesh: {fileID: 8167539909358270208}
   coll: {fileID: 4269983638884767960}
   rb: {fileID: 3277594881170019324}
+  timeToExplode: 2
+  timeCounter: 0
+  exploded: 0
+  radius: 50
+  layer:
+    serializedVersion: 2
+    m_Bits: 512
+  finalPos: {x: 0, y: 0, z: 0}
 --- !u!54 &3277594881170019324
 Rigidbody:
   m_ObjectHideFlags: 0

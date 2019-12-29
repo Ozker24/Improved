@@ -173,13 +173,13 @@ public class OptionsMenu : MonoBehaviour
 
     public void AsignResolution()
     {
-        Debug.Log(dropdown.value);
+        //Debug.Log(dropdown.value);
 
         Screen.SetResolution(resolutions[dropdown.value].width, resolutions[dropdown.value].height, Screen.fullScreen);
 
         PlayerPrefs.SetInt("Resolution", dropdown.value);
 
-        Debug.Log(dropdown.value);
+        //Debug.Log(dropdown.value);
     }
 
     public void InitializeResolutions()

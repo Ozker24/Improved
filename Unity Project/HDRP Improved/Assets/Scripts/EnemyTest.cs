@@ -166,7 +166,7 @@ public class EnemyTest : MonoBehaviour
     {
         //Detected = gm.detected;
 
-        positionWhereSound = sound.soundPosition; //cuando ya pase un rato alomejor te interesa que cambien a la nueva posicion
+        //positionWhereSound = sound.soundPosition; //cuando ya pase un rato alomejor te interesa que cambien a la nueva posicion
 
         if (positionWhereSound != Vector3.zero)
         {
