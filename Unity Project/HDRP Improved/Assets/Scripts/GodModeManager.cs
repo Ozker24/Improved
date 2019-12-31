@@ -131,23 +131,23 @@ public class GodModeManager : MonoBehaviour
         {
             if (items.itemSelected == 4)
             {
-                items.molotovCount++;
+                items.itemsCount[4]++;
             }
             else if (items.itemSelected == 3)
             {
-                items.GranadeCount++;
+                items.itemsCount[3]++;
             }
             else if (items.itemSelected == 2)
             {
-                items.SoundCount++;
+                items.itemsCount[2]++;
             }
             else if (items.itemSelected == 1)
             {
-                items.FirstAidCount++;
+                items.itemsCount[1]++;
             }
             else if (items.itemSelected == 0)
             {
-                items.EmpCount++;
+                items.itemsCount[0]++;
             }
 
             Hud.UpdateInventory();

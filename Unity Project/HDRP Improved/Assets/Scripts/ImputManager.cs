@@ -39,6 +39,7 @@ public class ImputManager : MonoBehaviour
             ItemInputs();
             ChangeGun();
             ActiveItem();
+            CancelItem();
             Aim();
             Shot();
             ChangeItem();
@@ -156,6 +157,13 @@ public class ImputManager : MonoBehaviour
         }
     }
 
+    public void CancelItem()
+    {
+        if (Input.GetMouseButton(1))
+        {
+            Items.CancelItems();
+        }
+    }
     public void Shot()
     {
         if (Input.GetMouseButton(0))

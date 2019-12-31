@@ -16,7 +16,7 @@ public class HudManager : MonoBehaviour
     public Text granadeNum;
     public Text soundNum;
     public Text firstAidNum;
-    public Text InjectionNum;
+    public Text EMPNum;
 
     public Text pistolText;
     public Text shotgunText;
@@ -41,11 +41,11 @@ public class HudManager : MonoBehaviour
 
     public void UpdateInventory()
     {
-        UpdateMolotov(items.molotovCount);
-        UpdateGrande(items.GranadeCount);
-        UpdateSound(items.SoundCount);
-        UpdateFirstAid(items.FirstAidCount);
-        UpdateInjections(items.EmpCount);
+        UpdateMolotov(items.itemsCount[4]);
+        UpdateGrande(items.itemsCount[3]);
+        UpdateSound(items.itemsCount[2]);
+        UpdateFirstAid(items.itemsCount[1]);
+        UpdateEMP(items.itemsCount[0]);
         UpdatePistol(weapon.weapons[0].ammoReloaded + weapon.weapons[0].currentAmmo);
         UpdateShotgun(weapon.weapons[1].ammoReloaded + weapon.weapons[1].currentAmmo);
         UpdateRifle(weapon.weapons[2].ammoReloaded + weapon.weapons[2].currentAmmo);
@@ -72,9 +72,9 @@ public class HudManager : MonoBehaviour
         firstAidNum.text = firstAid.ToString();
     }
 
-    public void UpdateInjections(int injections)
+    public void UpdateEMP(int EMP)
     {
-        InjectionNum.text = injections.ToString();
+        EMPNum.text = EMP.ToString();
     }
 
     public void UpdatePistol(int pistol)

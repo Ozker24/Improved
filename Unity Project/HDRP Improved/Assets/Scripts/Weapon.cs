@@ -22,6 +22,8 @@ public class Weapon : MonoBehaviour
 
     public int currentAmmo; //municion en el cargador
 
+    public int maxAmmo;
+
     public bool isShoting;
     public bool isReloading;
 

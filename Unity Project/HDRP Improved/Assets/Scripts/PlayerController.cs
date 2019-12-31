@@ -285,26 +285,71 @@ public class PlayerController : MonoBehaviour
     {
         if (itemDetector.closestItem != null && itemDetector.canGrab)
         {
-            CheckItem();
-            itemDetector.closestItem.SetActive(false);
-            Destroy(itemDetector.closestItem, 10);
-            itemDetector.closestItem = null;
-            //HUD.actualLogo = null;
+            ItemBase itemCollected = itemDetector.closestItem.GetComponent<ItemBase>();
 
-            //PUY HERE SOUND
+            if (!itemCollected.ammo)
+            {
+                if (items.itemsCount[itemCollected.WhichItem] < items.maxItems)
+                {
+                    CheckItems();
+
+                    itemDetector.closestItem.SetActive(false);
+                    Destroy(itemDetector.closestItem, 10);
+                    itemDetector.closestItem = null;
+                    //HUD.actualLogo = null;
+
+                    //PUY HERE SOUND
+                }
+            }
+
+            else
+            {
+                if (WM.weapons[itemCollected.ForWhatGun].ammoReloaded + itemCollected.bullets < WM.weapons[itemCollected.ForWhatGun].maxAmmo)
+                {
+                    CheckAmmo();
+
+                    itemDetector.closestItem.SetActive(false);
+                    Destroy(itemDetector.closestItem, 10);
+                    itemDetector.closestItem = null;
+                    //HUD.actualLogo = null;
+
+                    //PUY HERE SOUND
+                }
+            }
         }
     }
 
-    public void CheckItem()
+    public void CheckItems()
     {
         ItemBase itemCollected = itemDetector.closestItem.GetComponent<ItemBase>();
 
-        if (itemCollected.WhichItem == 4) items.molotovCount++;
-        if (itemCollected.WhichItem == 3) items.GranadeCount++;
-        if (itemCollected.WhichItem == 2) items.SoundCount++;
-        if (itemCollected.WhichItem == 1) items.FirstAidCount++;
-        if (itemCollected.WhichItem == 0) items.EmpCount++;
-        if (itemCollected.ammo) WM.weapons[itemCollected.ForWhatGun].currentAmmo += itemCollected.bullets;
+        if (itemCollected.WhichItem == 4)
+        {
+            items.itemsCount[4]++;
+            items.visualItemsCount[4]++;
+        }
+        if (itemCollected.WhichItem == 3)
+        {
+            items.itemsCount[3]++;
+            items.visualItemsCount[3]++;
+        }
+        if (itemCollected.WhichItem == 2)
+        {
+            items.itemsCount[2]++;
+            items.visualItemsCount[2]++;
+
+            items.soundGranadeVisuals[items.visualItemsCount[2] - 1].SetActive(true);
+        }
+        if (itemCollected.WhichItem == 1)
+        {
+            items.itemsCount[1]++;
+            items.visualItemsCount[1]++;
+        }
+        if (itemCollected.WhichItem == 0)
+        {
+            items.itemsCount[0]++;
+            items.visualItemsCount[0]++;
+        }
 
         if (itemCollected.collectSound != null)
         {
@@ -314,6 +359,20 @@ public class PlayerController : MonoBehaviour
 
             CollectItemSource.PlayOneShot(itemCollected.collectSound);
             //Destroy(source, source.clip.length);
+        }
+    }
+
+    public void CheckAmmo()
+    {
+        ItemBase itemCollected = itemDetector.closestItem.GetComponent<ItemBase>();
+
+        //if (itemCollected.ammo) WM.weapons[itemCollected.ForWhatGun].ammoReloaded += itemCollected.bullets;
+
+        WM.weapons[itemCollected.ForWhatGun].ammoReloaded += itemCollected.bullets;
+
+        if (itemCollected.collectSound != null)
+        {
+            CollectItemSource.PlayOneShot(itemCollected.collectSound);
         }
     }
 
