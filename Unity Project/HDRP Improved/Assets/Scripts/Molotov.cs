@@ -7,7 +7,9 @@ public class Molotov : MonoBehaviour
     public float rotateForce;
     public float radius;
     public LayerMask layer;
-    public AudioPlayer audPlay;
+
+    public AudioSource source;
+    public AudioClip explosionClip;
 
     public MeshRenderer mesh;
     public Collider coll;
@@ -39,7 +41,7 @@ public class Molotov : MonoBehaviour
         // Show Effects
         //Instantiate(explosionEffect, transform.position, transform.rotation);
 
-        audPlay.Play(0, 1, 1);
+        source.PlayOneShot(explosionClip);
 
         //Get Objects
         Collider[] colliders = Physics.OverlapSphere(transform.position, radius, layer);

@@ -12,7 +12,8 @@ public class Emp : MonoBehaviour
     public float radius;
     public LayerMask layer;
 
-    //public AudioPlayer audPlay;
+    public AudioSource source;
+    public AudioClip explosionClip;
 
     [Header ("When Explode")]
     public MeshRenderer mesh;
@@ -47,7 +48,7 @@ public class Emp : MonoBehaviour
 
         Destroy(EMPExplosion, 10);
 
-        //audPlay.Play(0, 1, 1);
+        source.PlayOneShot(explosionClip);
 
         //Get Objects
         Collider[] colliders = Physics.OverlapSphere(transform.position, radius, layer);

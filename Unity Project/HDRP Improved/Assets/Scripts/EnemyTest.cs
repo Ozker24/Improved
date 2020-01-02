@@ -376,7 +376,7 @@ public class EnemyTest : MonoBehaviour
         }
     }
 
-    public void nDrawGizmos()
+    public void OnDrawGizmos()
     {
         Gizmos.DrawCube(attackAreaTrans.position, HalfStent * 2);
     }

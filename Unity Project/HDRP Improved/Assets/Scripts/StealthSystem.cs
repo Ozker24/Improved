@@ -6,6 +6,7 @@ public class StealthSystem : MonoBehaviour
 {
     [Header("Dependances")]
     [SerializeField] PlayerController player;
+    [SerializeField] AudioSource stealthAudioSource;
 
     [Header("Can Be Detected")]
     public bool canBeDetected = false;

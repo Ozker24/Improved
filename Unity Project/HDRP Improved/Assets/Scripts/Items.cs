@@ -41,7 +41,11 @@ public class Items : MonoBehaviour
     public int[] itemsCount;
     public int[] visualItemsCount;
 
+    public GameObject[] molotovVisuals;
+    public GameObject[] granadeVisuals;
     public GameObject[] soundGranadeVisuals;
+    public GameObject[] firstAidVisuals;
+    public GameObject[] EMPVisuals;
 
     public int maxItems = 3;
 
@@ -72,8 +76,6 @@ public class Items : MonoBehaviour
     public AudioArray ClipsSelected;
     public AudioArray ClipsLaunched;
 
-    public AudioClip healing;
-
     public void Initialize()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
@@ -86,6 +88,38 @@ public class Items : MonoBehaviour
 
         trajectoryPrefab.SetActive(false);
         trajectory = trajectoryPrefab.GetComponent<Trajectory>();
+
+        InitializeVisuals();
+    }
+
+    private void InitializeVisuals()
+    {
+        for (int i = 0; i < itemsCount[4]; i++)
+        {
+            molotovVisuals[i].SetActive(true);
+            visualItemsCount[4]++;
+        }
+
+        for (int i = 0; i < itemsCount[3]; i++)
+        {
+            granadeVisuals[i].SetActive(true);
+            visualItemsCount[3]++;
+        }
+
+        for (int i = 0; i < itemsCount[2]; i++)
+        {
+            soundGranadeVisuals[i].SetActive(true);
+            visualItemsCount[2]++;
+        }
+
+        firstAidVisuals[itemsCount[1] - 1].SetActive(true);
+        visualItemsCount[1] = itemsCount[1];
+
+        for (int i = 0; i < itemsCount[0]; i++)
+        {
+            EMPVisuals[i].SetActive(true);
+            visualItemsCount[0]++;
+        }
     }
 
     public void MyUpdate()
@@ -135,7 +169,7 @@ public class Items : MonoBehaviour
 
     public void CancelItems()
     {
-        if (pressed)
+        if (pressed && itemSelected != 1)
         {
             pressed = false;
             trajectoryPrefab.SetActive(false);
@@ -145,7 +179,30 @@ public class Items : MonoBehaviour
 
             visualItemsCount[itemSelected]++;
 
-            soundGranadeVisuals[visualItemsCount[itemSelected] - 1].SetActive(true);
+            if (itemSelected == 4)
+            {
+                molotovVisuals[visualItemsCount[itemSelected] - 1].SetActive(true);
+            }
+
+            if (itemSelected == 3)
+            {
+                granadeVisuals[visualItemsCount[itemSelected] - 1].SetActive(true);
+            }
+
+            if (itemSelected == 2)
+            {
+                soundGranadeVisuals[visualItemsCount[itemSelected] - 1].SetActive(true);
+            }
+
+            if (itemSelected == 1)
+            {
+                firstAidVisuals[visualItemsCount[itemSelected] - 1].SetActive(true);
+            }
+
+            if (itemSelected == 0)
+            {
+                EMPVisuals[visualItemsCount[itemSelected] - 1].SetActive(true);
+            }
         }
     }
 
@@ -186,6 +243,11 @@ public class Items : MonoBehaviour
                 }
 
                 //audio de apuntando
+
+                molotovVisuals[visualItemsCount[itemSelected] - 1].SetActive(false);
+
+                visualItemsCount[4]--;
+
                 firstTime = true;
             }
 
@@ -223,6 +285,12 @@ public class Items : MonoBehaviour
                 {
                     baseSource.PlayOneShot(ClipsSelected.clips[itemSelected]);
                 }
+
+
+                granadeVisuals[visualItemsCount[itemSelected] - 1].SetActive(false);
+
+                visualItemsCount[3]--;
+
                 firstTime = true;
             }
 
@@ -296,22 +364,32 @@ public class Items : MonoBehaviour
                 {
                     Debug.Log("F");
                     //audPlay.Play(3, 1, Random.Range(0.95f, 1.05f));
-                    if (ClipsSelected.clips[itemSelected] != null)
+                    if (ClipsSelected.clips[itemSelected] != null && baseSource != null)
                     {
                         baseSource.PlayOneShot(ClipsSelected.clips[itemSelected]);
                     }
 
-                    if (healing != null)
+                    if (itemsCount[1] > 1)
                     {
-                        AudioSource source = gameObject.AddComponent<AudioSource>();
+                        for (int i = 0; i < firstAidVisuals.Length; i++)
+                        {
+                            firstAidVisuals[i].SetActive(false);
+                        }
 
-                        // Configurar audiosource
-                        source.playOnAwake = false;
-                        source.clip = healing;
-                        source.PlayDelayed(0.3f);
+                        visualItemsCount[1]--;
 
-                        Destroy(source, source.clip.length);
+                        firstAidVisuals[visualItemsCount[1] - 1].SetActive(true);
                     }
+                    else
+                    {
+                        for (int i = 0; i < firstAidVisuals.Length; i++)
+                        {
+                            firstAidVisuals[i].SetActive(false);
+                        }
+
+                        visualItemsCount[1]--;
+                    }
+
                     firstTime = true;
                 }
 
@@ -323,11 +401,9 @@ public class Items : MonoBehaviour
 
                     peace.Health();
 
-                    AudioSource source = GetComponent<AudioSource>();
-
-                    if (source != null)
+                    if (baseSource != null)
                     {
-                        Destroy(source);
+                        baseSource.Stop();
                     }
 
                     //audPlay.Play(4, 1, Random.Range(0.95f, 1.05f));
@@ -357,8 +433,17 @@ public class Items : MonoBehaviour
 
                 if (source != null)
                 {
-                    Destroy(source);
+                    source.Stop();
                 }
+
+                for (int i = 0; i < firstAidVisuals.Length; i++)
+                {
+                    firstAidVisuals[i].SetActive(false);
+                }
+
+                visualItemsCount[1]++;
+
+                firstAidVisuals[visualItemsCount[1] - 1].SetActive(true);
 
                 healthAnim.SetBool("Health", false);
                 TimeCounter = 0;
@@ -379,6 +464,11 @@ public class Items : MonoBehaviour
                     baseSource.PlayOneShot(ClipsSelected.clips[itemSelected]);
                 }
                 //audio de apuntando
+
+                EMPVisuals[visualItemsCount[itemSelected] - 1].SetActive(false);
+
+                visualItemsCount[0]--;
+
                 firstTime = true;
             }
 

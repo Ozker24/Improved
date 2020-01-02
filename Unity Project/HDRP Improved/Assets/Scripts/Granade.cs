@@ -13,7 +13,8 @@ public class Granade : MonoBehaviour
     public float force;
     public LayerMask layer;
 
-    public AudioPlayer audPlay;
+    public AudioSource source;
+    public AudioClip explosionClip;
 
     public MeshRenderer mesh;
     public Collider coll;
@@ -45,7 +46,7 @@ public class Granade : MonoBehaviour
 
         Destroy(GranadeExplosion, 10);
 
-        audPlay.Play(0, 1, 1);
+        source.PlayOneShot(explosionClip);
 
         //Get Objects
         Collider[] colliders = Physics.OverlapSphere(transform.position, radius, layer);

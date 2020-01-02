@@ -16,6 +16,9 @@ public class ObjectSound : MonoBehaviour
     public float timeCounter;
     public bool exploded;
 
+    public AudioSource source;
+    public AudioClip explosionClip;
+
     public float radius;
     public LayerMask layer;
 
@@ -47,6 +50,8 @@ public class ObjectSound : MonoBehaviour
 
         //Get Objects
         Collider[] colliders = Physics.OverlapSphere(transform.position, radius, layer);
+
+        source.PlayOneShot(explosionClip);
 
         foreach (Collider nearbyObject in colliders)
         {

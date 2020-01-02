@@ -54,6 +54,9 @@ public class PlayerController : MonoBehaviour
     public int fistDamage;
     public AudioClip deadSound;
 
+    [Header("Stealth")]
+    public bool beeingDetected;
+
     [Header("Dodge")]
     public float dodgeForce;
     public float dodgeResetTime;
@@ -327,11 +330,15 @@ public class PlayerController : MonoBehaviour
         {
             items.itemsCount[4]++;
             items.visualItemsCount[4]++;
+
+            items.molotovVisuals[items.visualItemsCount[4] - 1].SetActive(true);
         }
         if (itemCollected.WhichItem == 3)
         {
             items.itemsCount[3]++;
             items.visualItemsCount[3]++;
+
+            items.granadeVisuals[items.visualItemsCount[3] - 1].SetActive(true);
         }
         if (itemCollected.WhichItem == 2)
         {
@@ -344,11 +351,15 @@ public class PlayerController : MonoBehaviour
         {
             items.itemsCount[1]++;
             items.visualItemsCount[1]++;
+
+            items.firstAidVisuals[items.visualItemsCount[1] - 1].SetActive(true);
         }
         if (itemCollected.WhichItem == 0)
         {
             items.itemsCount[0]++;
             items.visualItemsCount[0]++;
+
+            items.EMPVisuals[items.visualItemsCount[0] - 1].SetActive(true);
         }
 
         if (itemCollected.collectSound != null)
