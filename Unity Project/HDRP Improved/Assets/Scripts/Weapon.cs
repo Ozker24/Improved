@@ -26,6 +26,8 @@ public class Weapon : MonoBehaviour
 
     public bool isShoting;
     public bool isReloading;
+    public bool isAutomatic;
+    public bool canSHootAgain;
 
     public float fireRate;
     public float reloadTime;
@@ -39,8 +41,6 @@ public class Weapon : MonoBehaviour
     public GameObject bloodParticle;
     public ParticleSystem muzzleParticle;
     public GameObject sparklePartcile;
-
-    public Transform whereToShot;
 
     [Header("Sounds")]
     public AudioSource basicSource;
@@ -148,7 +148,10 @@ public class Weapon : MonoBehaviour
             }
         }
 
-        StartCoroutine(ResetShot());
+        if (isAutomatic)
+        {
+            StartCoroutine(ResetShot());
+        }
     }
 
     public void Reload()
@@ -167,6 +170,17 @@ public class Weapon : MonoBehaviour
             basicSource.PlayOneShot(ReloadClips.clips[weapon.WeaponSelected]);
 
             StartCoroutine(ResetReload());
+        }
+    }
+
+    public void ReleaseShot()
+    {
+        if (!isAutomatic)
+        {
+            if (isShoting)
+            {
+                isShoting = false;
+            }
         }
     }
 

@@ -93,6 +93,11 @@ public class WeaponManager : MonoBehaviour
         if (!player.climb && !player.stop && items.canDoGun && ableGun)  weapons[WeaponSelected].Reload();
     }
 
+    public void ReleaseShot()
+    {
+        if (!player.climb && !player.stop && items.canDoGun && ableGun) weapons[WeaponSelected].ReleaseShot();
+    }
+
     public void ChangeGunRight()
     {
         inv.RightInventory();

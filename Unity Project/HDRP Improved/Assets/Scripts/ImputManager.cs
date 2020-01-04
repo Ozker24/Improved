@@ -42,6 +42,7 @@ public class ImputManager : MonoBehaviour
             CancelItem();
             Aim();
             Shot();
+            ReleaseShot();
             ChangeItem();
             Hit();
             SetDodge();
@@ -173,6 +174,14 @@ public class ImputManager : MonoBehaviour
         if (Input.GetButtonDown("Reload"))
         {
             weapon.Reload();
+        }
+    }
+
+    public void ReleaseShot()
+    {
+        if (Input.GetMouseButtonUp(0))
+        {
+            weapon.ReleaseShot();
         }
     }
 
