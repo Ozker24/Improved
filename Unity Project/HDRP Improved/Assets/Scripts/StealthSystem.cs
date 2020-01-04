@@ -7,11 +7,24 @@ public class StealthSystem : MonoBehaviour
     [Header("Dependances")]
     [SerializeField] PlayerController player;
     [SerializeField] AudioSource stealthAudioSource;
+    [SerializeField] AudioSource detectedAudioSource;
 
     [Header("Can Be Detected")]
     public bool canBeDetected = false;
     public bool importantAudio;
     public float actualSoundDistance;
+    public bool beeingDetected;
+
+    [Header("Detecting Sound")]
+    public float volume;
+    public float maxVolume;
+    public float maxTimeInVolume;
+    public float maxTimeOutVolume;
+    public bool playingDetectingSound;
+    public bool detected;
+
+    [Header("Detecting Sound")]
+    public AudioClip detectedSound;
 
     public void Initialize()
     {
@@ -21,6 +34,7 @@ public class StealthSystem : MonoBehaviour
     public void MyUpdate()
     {
         DetectAction();
+        DetectingSound();
     }
 
     public void DetectAction()
@@ -46,6 +60,52 @@ public class StealthSystem : MonoBehaviour
         importantAudio = true;
         actualSoundDistance = distance;
         StartCoroutine(ImportantAudioFalse());
+    }
+
+    public void DetectingSound()
+    {
+        if (!playingDetectingSound && beeingDetected)
+        {
+            stealthAudioSource.Play();
+            Debug.Log("Play");
+            playingDetectingSound = true;
+        }
+
+        if (beeingDetected)
+        {
+            if (stealthAudioSource.volume < maxVolume)
+            {
+                stealthAudioSource.volume += Time.deltaTime / maxTimeInVolume; //volume / maxTime = tarde x segundos respecto lo que ha de recorrer
+            }
+            else
+            {
+                stealthAudioSource.volume = maxVolume;
+            }
+        }
+        else
+        {
+            if (stealthAudioSource.volume > 0)
+            {
+                stealthAudioSource.volume -= Time.deltaTime / maxTimeOutVolume;
+            }
+            else
+            {
+                stealthAudioSource.volume = 0;
+                stealthAudioSource.Stop();
+                playingDetectingSound = false;
+            }
+        }
+    }
+
+    public void DetectedSound()
+    {
+        if (!detected)
+        {
+            stealthAudioSource.Stop();
+            stealthAudioSource.volume = 0;
+            player.CollectItemSource.PlayOneShot(detectedSound);
+            detected = true;
+        }
     }
 
     IEnumerator ImportantAudioFalse()

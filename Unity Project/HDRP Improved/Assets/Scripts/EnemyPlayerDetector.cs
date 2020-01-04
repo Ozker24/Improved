@@ -8,6 +8,7 @@ public class EnemyPlayerDetector : MonoBehaviour
     [SerializeField] EnemyTest enemy;
     [SerializeField] PlayerController player;
     [SerializeField] SphereCollider playerDetector;
+    [SerializeField] StealthSystem stealth;
 
     [Header("Detector Variables")]
     public float timeCounter;
@@ -29,8 +30,14 @@ public class EnemyPlayerDetector : MonoBehaviour
         enemy = GetComponentInParent<EnemyTest>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         playerDetector = GetComponent<SphereCollider>();
+        stealth = player.GetComponent<StealthSystem>();
         timeToRest = initialRestValue;
         playerDetector.radius = radiusOfDetection;
+
+        if (stealth.maxTimeOutVolume != timeToDetect)
+        {
+            stealth.maxTimeOutVolume = timeToDetect;
+        }
     }
 
     public void MyUpdate()
@@ -53,11 +60,14 @@ public class EnemyPlayerDetector : MonoBehaviour
             if (timeCounter >= timeToDetect)
             {
                 enemy.Detected = true;
+                stealth.DetectedSound();
                 timeCounter = 0;
+                stealth.beeingDetected = false;
             }
             else
             {
                 timeCounter += Time.deltaTime;
+                stealth.beeingDetected = true;
             }
         }
     }
@@ -66,23 +76,17 @@ public class EnemyPlayerDetector : MonoBehaviour
     {
         if (timeCounter > 0)
         {
-            if (timeRestCounter >= timeToRest)
-            {
-                timeToRest = finalRestValue;
-                timeCounter -= restValue;
-                timeRestCounter = 0;
-            }
-            else
-            {
-                timeRestCounter += Time.deltaTime;
-            }
-
-            if (timeCounter < 0 )
-            {
-                canRest = false;
-                timeCounter = 0;
-            }
+            timeCounter -= Time.deltaTime / timeToDetect;
+            stealth.beeingDetected = false;
         }
+        else
+        {
+            timeRestCounter = 0;
+            stealth.beeingDetected = false;
+            canRest = false;
+            timeCounter = 0;
+        }
+
     }
 
     public void CalculateDistanceSound()
