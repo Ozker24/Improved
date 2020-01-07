@@ -6,9 +6,7 @@ public class EnemyPlayerDetector : MonoBehaviour
 {
     [Header("Dependences")]
     [SerializeField] EnemyTest enemy;
-    [SerializeField] PlayerController player;
     [SerializeField] SphereCollider playerDetector;
-    [SerializeField] StealthSystem stealth;
 
     [Header("Detector Variables")]
     public float timeCounter;
@@ -21,6 +19,7 @@ public class EnemyPlayerDetector : MonoBehaviour
     public bool canRest;
     public float radiusOfDetection;
     public bool onArea;
+    public bool hearingPlayer;
 
     [Header("Sound Detector Variables")]
     public float distanceToDetectSound;
@@ -28,21 +27,21 @@ public class EnemyPlayerDetector : MonoBehaviour
     public void Initialize()
     {
         enemy = GetComponentInParent<EnemyTest>();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         playerDetector = GetComponent<SphereCollider>();
-        stealth = player.GetComponent<StealthSystem>();
         timeToRest = initialRestValue;
         playerDetector.radius = radiusOfDetection;
+        timeToDetect = enemy.stealth.timeToDetect;
 
-        if (stealth.maxTimeOutVolume != timeToDetect)
+
+        /*if (stealth.maxTimeOutVolume != timeToDetect)
         {
             stealth.maxTimeOutVolume = timeToDetect;
-        }
+        }*/
     }
 
     public void MyUpdate()
     {
-        if (player.stealth.importantAudio)
+        if (enemy.stealth.importantAudio)
         {
             CalculateDistanceSound();
         }
@@ -51,6 +50,8 @@ public class EnemyPlayerDetector : MonoBehaviour
         {
             RestStealth();
         }
+
+        //SetSendDetectionInfo();
     }
 
     public void CountTimeToDetect()
@@ -60,14 +61,14 @@ public class EnemyPlayerDetector : MonoBehaviour
             if (timeCounter >= timeToDetect)
             {
                 enemy.Detected = true;
-                stealth.DetectedSound();
+                enemy.stealth.DetectedSound();
                 timeCounter = 0;
-                stealth.beeingDetected = false;
+                hearingPlayer = false;
             }
             else
             {
                 timeCounter += Time.deltaTime;
-                stealth.beeingDetected = true;
+                hearingPlayer = true;
             }
         }
     }
@@ -77,21 +78,32 @@ public class EnemyPlayerDetector : MonoBehaviour
         if (timeCounter > 0)
         {
             timeCounter -= Time.deltaTime / timeToDetect;
-            stealth.beeingDetected = false;
+            hearingPlayer = false;
         }
         else
         {
             timeRestCounter = 0;
-            stealth.beeingDetected = false;
+            hearingPlayer = false;
             canRest = false;
             timeCounter = 0;
         }
-
     }
+
+   /*public void SetSendDetectionInfo()
+    {
+        if (timeCounter > 0)
+        {
+            enemy.sendDetectionInfo = true;
+        }
+        else
+        {
+            enemy.sendDetectionInfo = false;
+        }
+    }*/
 
     public void CalculateDistanceSound()
     {
-        if (Vector3.Distance(transform.position, player.transform.position) <= player.stealth.actualSoundDistance)
+        if (Vector3.Distance(transform.position, enemy.player.transform.position) <= enemy.stealth.actualSoundDistance)
         {
             enemy.Detected = true;
         }
@@ -107,20 +119,23 @@ public class EnemyPlayerDetector : MonoBehaviour
 
     public void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Player")
+        if (!enemy.Detected)
         {
-            if (player.stealth.canBeDetected)
+            if (other.tag == "Player")
             {
-                CountTimeToDetect();
-                timeToRest = initialRestValue;
-                canRest = false;
-                timeRestCounter = 0;
-            }
-            else
-            {
-                if (timeCounter > 0)
+                if (enemy.stealth.canBeDetected)
                 {
-                    canRest = true;
+                    CountTimeToDetect();
+                    timeToRest = initialRestValue;
+                    canRest = false;
+                    timeRestCounter = 0;
+                }
+                else
+                {
+                    if (timeCounter > 0)
+                    {
+                        canRest = true;
+                    }
                 }
             }
         }
@@ -128,11 +143,14 @@ public class EnemyPlayerDetector : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player")
+        if (!enemy.Detected)
         {
-            onArea = false;
-            finalRestValue = initialRestValue;
-            canRest = true;
+            if (other.tag == "Player")
+            {
+                onArea = false;
+                finalRestValue = initialRestValue;
+                canRest = true;
+            }
         }
     }
 }

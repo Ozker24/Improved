@@ -25,6 +25,8 @@ public class CloseCombat : MonoBehaviour
     public AudioSource basicSource;
     public AudioClip hitClips;
 
+    public EnemyTest enemyToExecute;
+
     public void Initialize()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
@@ -104,6 +106,14 @@ public class CloseCombat : MonoBehaviour
             //canHit = true; // se ha de hacer al acabar la animacion.
 
             StartCoroutine(SetAbleToImput());
+        }
+
+        if (player.canExecute)
+        { 
+            if (enemyToExecute != null)
+            {
+                enemyToExecute.Damage(enemyToExecute.currentLife);
+            }
         }
     }
 

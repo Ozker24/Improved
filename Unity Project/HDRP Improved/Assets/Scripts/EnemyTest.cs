@@ -12,7 +12,10 @@ public class EnemyTest : MonoBehaviour
     public NavMeshAgent agent;
     public AudioPlayer audPlay;
     public GameManager gm;
+    public StealthSystem stealth;
     [SerializeField] EnemyPlayerDetector playerDetector;
+    [SerializeField] EnemySight sight;
+    [SerializeField] ExecutionArea execution;
     [SerializeField] CombatArea combatArea;
     [SerializeField] EnemyAttackArea attack;
 
@@ -33,6 +36,7 @@ public class EnemyTest : MonoBehaviour
     [Header("Detection")]
     public float timeToDetect;
     public float timeCounterDetection;
+    public bool sendDetectionInfo;
     public bool callEnemies;
 
     [Header("Attack")]
@@ -89,13 +93,23 @@ public class EnemyTest : MonoBehaviour
 
         audPlay = GetComponentInChildren<AudioPlayer>();
 
+        stealth = player.GetComponentInChildren<StealthSystem>();
+
         playerDetector = GetComponentInChildren<EnemyPlayerDetector>();
 
+        sight = GetComponentInChildren<EnemySight>();
+
         attack = GetComponentInChildren<EnemyAttackArea>();
+
+        execution = GetComponentInChildren<ExecutionArea>();
 
         //attackArea.enabled = false;
 
         playerDetector.Initialize();
+
+        sight.Initialize();
+
+        execution.Initialize();
 
         states = State.Patrol;
     }
@@ -104,6 +118,12 @@ public class EnemyTest : MonoBehaviour
     void Update()
     {
         playerDetector.MyUpdate();
+
+        sight.MyUpdate();
+
+        execution.MyUpdate();
+
+        ImDetectingPlayer();
 
         switch (states)
         {
@@ -188,6 +208,7 @@ public class EnemyTest : MonoBehaviour
 
             if (!combatArea.detected)
             {
+                execution.area.enabled = false;
                 combatArea.detected = true;
             }
 
@@ -289,6 +310,9 @@ public class EnemyTest : MonoBehaviour
     public void DetectSet()
     {
         agent.isStopped = true;
+        stealth.detected = true;
+        sight.watchingPlayer = false;
+        playerDetector.hearingPlayer = false;
         states = State.detect;
     }
 
@@ -373,6 +397,22 @@ public class EnemyTest : MonoBehaviour
                 basicSource.PlayOneShot(clips.clips[2]);
             }
             DieSet();
+        }
+    }
+
+    public void ImDetectingPlayer()
+    {
+        if (sendDetectionInfo)
+        {
+            if (sight.watchingPlayer || playerDetector.hearingPlayer)
+            {
+                stealth.beeingDetected = true;
+            }
+
+            if (!sight.watchingPlayer && !playerDetector.hearingPlayer)
+            {
+                stealth.beeingDetected = false;
+            }
         }
     }
 

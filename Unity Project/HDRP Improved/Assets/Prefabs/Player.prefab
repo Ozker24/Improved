@@ -66,6 +66,36 @@ Transform:
   m_Father: {fileID: 1998234354997971366}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3275664452033523794
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2941415088614433352}
+  m_Layer: 0
+  m_Name: Sight Final Ray Pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2941415088614433352
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3275664452033523794}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.136, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1998234354997971366}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &6827900420687250032
 Animator:
   serializedVersion: 3
@@ -452,14 +482,16 @@ MonoBehaviour:
   audPlay: {fileID: 6827900420771284859}
   totalAmmo: 18
   ammoReloaded: 0
-  magazineAmmo: 6
-  currentAmmo: 5
-  maxAmmo: 0
+  magazineAmmo: 2
+  currentAmmo: 6
+  maxAmmo: 200
   isShoting: 0
   isReloading: 0
+  isAutomatic: 0
+  canSHootAgain: 0
   fireRate: 1.5
   reloadTime: 2
-  fireDist: 15
+  fireDist: 10
   bulletDamage: 0.5
   stunedTime: 0.5
   shotGunSpreads: 8
@@ -467,7 +499,6 @@ MonoBehaviour:
   bloodParticle: {fileID: 0}
   muzzleParticle: {fileID: 0}
   sparklePartcile: {fileID: 0}
-  whereToShot: {fileID: 0}
   basicSource: {fileID: 6827900421063083849}
   ShotClips: {fileID: 0}
   MetalClip: {fileID: 0}
@@ -559,6 +590,7 @@ GameObject:
   - component: {fileID: 6827900420496641489}
   - component: {fileID: 6827900420496641495}
   - component: {fileID: 6827900420496641491}
+  - component: {fileID: 1607066078}
   m_Layer: 18
   m_Name: Player
   m_TagString: Player
@@ -648,6 +680,7 @@ MonoBehaviour:
   endedClimb: {x: 0, y: 0, z: 0}
   fistDamage: 2
   deadSound: {fileID: 8300000, guid: 9fbbdde363f42f74dab6b0dd80cca613, type: 3}
+  beeingDetected: 0
   dodgeForce: 3
   dodgeResetTime: 2
   dodge: 0
@@ -708,9 +741,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  stealthAudioSource: {fileID: 1607066078}
+  detectedAudioSource: {fileID: 0}
   canBeDetected: 1
   importantAudio: 0
   actualSoundDistance: 0
+  beeingDetected: 0
+  timeToDetect: 5
+  volume: 0
+  maxVolume: 0.5
+  maxTimeInVolume: 3
+  maxTimeOutVolume: 10
+  playingDetectingSound: 0
+  detected: 0
+  sightFinalRayPos: {fileID: 2941415088614433352}
+  detectedSound: {fileID: 8300000, guid: 8212b412fc8eac0469ac0b347a25b030, type: 3}
 --- !u!82 &6827900420496641491
 AudioSource:
   m_ObjectHideFlags: 0
@@ -727,6 +772,103 @@ AudioSource:
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 0.01
+  MaxDistance: 30
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!82 &1607066078
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6827900420496641492}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 6d9903779e846ff478a36ce51815bf15,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: ab21d8acebdb7064cbf707312997aa53, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0
+  m_Pitch: 1
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -865,7 +1007,7 @@ GameObject:
   - component: {fileID: 6827900420538083985}
   - component: {fileID: 6827900420538083984}
   m_Layer: 18
-  m_Name: Auto Rifle
+  m_Name: Automatic Rifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -902,12 +1044,14 @@ MonoBehaviour:
   audPlay: {fileID: 6827900420497739348}
   totalAmmo: 20
   ammoReloaded: 0
-  magazineAmmo: 30
+  magazineAmmo: 20
   currentAmmo: 5
-  maxAmmo: 0
+  maxAmmo: 200
   isShoting: 0
   isReloading: 0
-  fireRate: 0.2
+  isAutomatic: 0
+  canSHootAgain: 0
+  fireRate: 0.1
   reloadTime: 2
   fireDist: 30
   bulletDamage: 1
@@ -917,7 +1061,6 @@ MonoBehaviour:
   bloodParticle: {fileID: 0}
   muzzleParticle: {fileID: 0}
   sparklePartcile: {fileID: 0}
-  whereToShot: {fileID: 0}
   basicSource: {fileID: 6827900421063083849}
   ShotClips: {fileID: 0}
   MetalClip: {fileID: 0}
@@ -1159,7 +1302,7 @@ GameObject:
   - component: {fileID: 6827900421045614588}
   - component: {fileID: 6827900421045614589}
   m_Layer: 18
-  m_Name: Snipper
+  m_Name: Rifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1196,14 +1339,16 @@ MonoBehaviour:
   audPlay: {fileID: 6827900421452315103}
   totalAmmo: 10
   ammoReloaded: 40
-  magazineAmmo: 4
+  magazineAmmo: 30
   currentAmmo: 2
-  maxAmmo: 18
+  maxAmmo: 200
   isShoting: 0
   isReloading: 0
+  isAutomatic: 0
+  canSHootAgain: 0
   fireRate: 2
   reloadTime: 2
-  fireDist: 100
+  fireDist: 50
   bulletDamage: 2
   stunedTime: 0.5
   shotGunSpreads: 0
@@ -1211,7 +1356,6 @@ MonoBehaviour:
   bloodParticle: {fileID: 0}
   muzzleParticle: {fileID: 0}
   sparklePartcile: {fileID: 0}
-  whereToShot: {fileID: 0}
   basicSource: {fileID: 6827900421063083849}
   ShotClips: {fileID: 0}
   MetalClip: {fileID: 0}
@@ -1304,8 +1448,8 @@ MonoBehaviour:
   distanceToSound:
   - 10
   - 15
-  - 10
-  - 40
+  - 20
+  - 50
   bloodParticle: {fileID: 1750076676884494360, guid: 083a97e1b02f2b34f897b0bd73708ab4,
     type: 3}
   muzzleParticle: {fileID: 8189192887033191534}
@@ -1536,8 +1680,8 @@ MonoBehaviour:
     type: 3}
   throwTrans: {fileID: 6827900421486499155}
   throwForce: 20
-  itemsCount: 0300000003000000030000000300000003000000
-  visualItemsCount: 0300000003000000030000000300000003000000
+  itemsCount: 0100000002000000010000000100000001000000
+  visualItemsCount: 0000000000000000000000000000000000000000
   molotovVisuals:
   - {fileID: 6634866702338618964}
   - {fileID: 7423985466238244124}
@@ -1741,9 +1885,11 @@ MonoBehaviour:
   ammoReloaded: 20
   magazineAmmo: 8
   currentAmmo: 5
-  maxAmmo: 35
+  maxAmmo: 200
   isShoting: 0
   isReloading: 0
+  isAutomatic: 0
+  canSHootAgain: 0
   fireRate: 0.5
   reloadTime: 1.5
   fireDist: 20
@@ -1754,7 +1900,6 @@ MonoBehaviour:
   bloodParticle: {fileID: 0}
   muzzleParticle: {fileID: 0}
   sparklePartcile: {fileID: 0}
-  whereToShot: {fileID: 0}
   basicSource: {fileID: 6827900421063083849}
   ShotClips: {fileID: 0}
   MetalClip: {fileID: 0}
@@ -2103,6 +2248,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Molotov Visual 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6825378676948357063, guid: 52a5347ad6aedfe419844aeac0e2662f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6825378676948357056, guid: 52a5347ad6aedfe419844aeac0e2662f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2175,15 +2325,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52a5347ad6aedfe419844aeac0e2662f, type: 3}
---- !u!4 &6634866702338618963 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6825378676948357056, guid: 52a5347ad6aedfe419844aeac0e2662f,
-    type: 3}
-  m_PrefabInstance: {fileID: 192341564809132435}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6634866702338618964 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6825378676948357063, guid: 52a5347ad6aedfe419844aeac0e2662f,
+    type: 3}
+  m_PrefabInstance: {fileID: 192341564809132435}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6634866702338618963 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6825378676948357056, guid: 52a5347ad6aedfe419844aeac0e2662f,
     type: 3}
   m_PrefabInstance: {fileID: 192341564809132435}
   m_PrefabAsset: {fileID: 0}
@@ -2198,6 +2348,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EMP Visuals 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602494500473430122, guid: 99ee6e86a061bcf4597357acc94ce0c9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7773587272363470463, guid: 99ee6e86a061bcf4597357acc94ce0c9,
         type: 3}
@@ -2280,6 +2435,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: First Aid Almost
       objectReference: {fileID: 0}
+    - target: {fileID: 6835320848970313970, guid: 56bc1ab39814844469c86a1e5da3fe39,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3928796976065363986, guid: 56bc1ab39814844469c86a1e5da3fe39,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2360,6 +2520,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Molotov Visual 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6825378676948357063, guid: 52a5347ad6aedfe419844aeac0e2662f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6825378676948357056, guid: 52a5347ad6aedfe419844aeac0e2662f,
         type: 3}
@@ -2457,6 +2622,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Granade Visuals 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5327828321104500353, guid: 8d19aaa94abcaef41907f27c537c587a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5327828321104500363, guid: 8d19aaa94abcaef41907f27c537c587a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2529,15 +2699,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d19aaa94abcaef41907f27c537c587a, type: 3}
---- !u!1 &7899850496704190576 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5327828321104500353, guid: 8d19aaa94abcaef41907f27c537c587a,
-    type: 3}
-  m_PrefabInstance: {fileID: 2617109849087676145}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7899850496704190586 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5327828321104500363, guid: 8d19aaa94abcaef41907f27c537c587a,
+    type: 3}
+  m_PrefabInstance: {fileID: 2617109849087676145}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7899850496704190576 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5327828321104500353, guid: 8d19aaa94abcaef41907f27c537c587a,
     type: 3}
   m_PrefabInstance: {fileID: 2617109849087676145}
   m_PrefabAsset: {fileID: 0}
@@ -2552,6 +2722,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EMP Visuals 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602494500473430122, guid: 99ee6e86a061bcf4597357acc94ce0c9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7773587272363470463, guid: 99ee6e86a061bcf4597357acc94ce0c9,
         type: 3}
@@ -2633,6 +2808,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Molotov Visual 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6825378676948357063, guid: 52a5347ad6aedfe419844aeac0e2662f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6825378676948357056, guid: 52a5347ad6aedfe419844aeac0e2662f,
         type: 3}
@@ -2730,6 +2910,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Granade Visuals 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5327828321104500353, guid: 8d19aaa94abcaef41907f27c537c587a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5327828321104500363, guid: 8d19aaa94abcaef41907f27c537c587a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2826,6 +3011,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: First Aid Full
       objectReference: {fileID: 0}
+    - target: {fileID: 5260173394761502459, guid: 3df9dcc88061ec64491362631ff93009,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6175696616401903617, guid: 3df9dcc88061ec64491362631ff93009,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2906,6 +3096,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: First Aid semi
+      objectReference: {fileID: 0}
+    - target: {fileID: 8621217520249246820, guid: 483a91e5aa38c55479138be9b5c80d79,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6515352594264819950, guid: 483a91e5aa38c55479138be9b5c80d79,
         type: 3}
@@ -4118,6 +4313,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ObjectSound visual 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6723077373104454999, guid: dfcda642fb6082e4a9b9ace5048160f9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8138929351215673568, guid: dfcda642fb6082e4a9b9ace5048160f9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4214,6 +4414,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ObjectSound visual 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6723077373104454999, guid: dfcda642fb6082e4a9b9ace5048160f9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8138929351215673568, guid: dfcda642fb6082e4a9b9ace5048160f9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4286,15 +4491,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfcda642fb6082e4a9b9ace5048160f9, type: 3}
---- !u!4 &3328963174749788341 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8138929351215673568, guid: dfcda642fb6082e4a9b9ace5048160f9,
-    type: 3}
-  m_PrefabInstance: {fileID: 6827900420982351957}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &255781596764820738 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6723077373104454999, guid: dfcda642fb6082e4a9b9ace5048160f9,
+    type: 3}
+  m_PrefabInstance: {fileID: 6827900420982351957}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3328963174749788341 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8138929351215673568, guid: dfcda642fb6082e4a9b9ace5048160f9,
     type: 3}
   m_PrefabInstance: {fileID: 6827900420982351957}
   m_PrefabAsset: {fileID: 0}
@@ -4309,6 +4514,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ObjectSound visual 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6723077373104454999, guid: dfcda642fb6082e4a9b9ace5048160f9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8138929351215673568, guid: dfcda642fb6082e4a9b9ace5048160f9,
         type: 3}
@@ -4380,10 +4590,7 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.1
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7727270957822631813, guid: dfcda642fb6082e4a9b9ace5048160f9, type: 3}
-    - {fileID: 7727270957822631813, guid: dfcda642fb6082e4a9b9ace5048160f9, type: 3}
-    - {fileID: 7727270957822631813, guid: dfcda642fb6082e4a9b9ace5048160f9, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfcda642fb6082e4a9b9ace5048160f9, type: 3}
 --- !u!4 &3328963174574709476 stripped
 Transform:
@@ -4554,6 +4761,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Granade Visuals 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5327828321104500353, guid: 8d19aaa94abcaef41907f27c537c587a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5327828321104500363, guid: 8d19aaa94abcaef41907f27c537c587a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4626,15 +4838,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d19aaa94abcaef41907f27c537c587a, type: 3}
---- !u!4 &2997776829450900225 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5327828321104500363, guid: 8d19aaa94abcaef41907f27c537c587a,
-    type: 3}
-  m_PrefabInstance: {fileID: 6947367050157376906}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2997776829450900235 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5327828321104500353, guid: 8d19aaa94abcaef41907f27c537c587a,
+    type: 3}
+  m_PrefabInstance: {fileID: 6947367050157376906}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2997776829450900225 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5327828321104500363, guid: 8d19aaa94abcaef41907f27c537c587a,
     type: 3}
   m_PrefabInstance: {fileID: 6947367050157376906}
   m_PrefabAsset: {fileID: 0}
@@ -4649,6 +4861,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EMP Visuals 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602494500473430122, guid: 99ee6e86a061bcf4597357acc94ce0c9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7773587272363470463, guid: 99ee6e86a061bcf4597357acc94ce0c9,
         type: 3}
@@ -4707,15 +4924,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99ee6e86a061bcf4597357acc94ce0c9, type: 3}
---- !u!1 &2005344092315372596 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7602494500473430122, guid: 99ee6e86a061bcf4597357acc94ce0c9,
-    type: 3}
-  m_PrefabInstance: {fileID: 8238514888158653534}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1852177726464475681 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7773587272363470463, guid: 99ee6e86a061bcf4597357acc94ce0c9,
+    type: 3}
+  m_PrefabInstance: {fileID: 8238514888158653534}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2005344092315372596 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7602494500473430122, guid: 99ee6e86a061bcf4597357acc94ce0c9,
     type: 3}
   m_PrefabInstance: {fileID: 8238514888158653534}
   m_PrefabAsset: {fileID: 0}

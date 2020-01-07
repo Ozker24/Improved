@@ -54,6 +54,9 @@ public class PlayerController : MonoBehaviour
     public int fistDamage;
     public AudioClip deadSound;
 
+    [Header("Execution")]
+    public bool canExecute;
+
     [Header("Stealth")]
     public bool beeingDetected;
 

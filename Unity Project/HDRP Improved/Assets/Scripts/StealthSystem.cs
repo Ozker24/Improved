@@ -15,7 +15,8 @@ public class StealthSystem : MonoBehaviour
     public float actualSoundDistance;
     public bool beeingDetected;
 
-    [Header("Detecting Sound")]
+    [Header("Detecting By Sound")]
+    public float timeToDetect;
     public float volume;
     public float maxVolume;
     public float maxTimeInVolume;
@@ -23,18 +24,26 @@ public class StealthSystem : MonoBehaviour
     public bool playingDetectingSound;
     public bool detected;
 
+    [Header("Detecting By Sight")]
+    public Transform sightFinalRayPos;
+
     [Header("Detecting Sound")]
     public AudioClip detectedSound;
 
     public void Initialize()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        maxTimeInVolume = timeToDetect / 4;
+        maxTimeOutVolume = timeToDetect;
     }
 
     public void MyUpdate()
     {
         DetectAction();
-        DetectingSound();
+        if (!detected)
+        {
+            DetectingSound();
+        }
     }
 
     public void DetectAction()

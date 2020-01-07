@@ -47,6 +47,7 @@ public class CombatArea : MonoBehaviour
         {
             inCombat = false;
             detected = false;
+            player.stealth.detected = false;
             Destroy(gameObject, secondsToDestroy);
         }
     }
