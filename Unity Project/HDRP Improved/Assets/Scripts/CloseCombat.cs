@@ -60,7 +60,7 @@ public class CloseCombat : MonoBehaviour
 
     public void DoHit()
     {
-        if (canHit)
+        if (canHit && !player.canExecute)
         {
             player.crouching = false;
 

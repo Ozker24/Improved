@@ -29,7 +29,7 @@ public class EnemySight : MonoBehaviour
     {
         Watching();
         CheckObjects();
-        SetSendDetectionInfo();
+        //SetSendDetectionInfo();
     }
 
     public void Watching()
@@ -87,7 +87,7 @@ public class EnemySight : MonoBehaviour
         }
     }
 
-    public void SetSendDetectionInfo()
+    /*public void SetSendDetectionInfo()
     {
         if (timeCounter > 0)
         {
@@ -97,11 +97,11 @@ public class EnemySight : MonoBehaviour
         {
             enemy.sendDetectionInfo = false;
         }
-    }
+    }*/
 
     private void OnTriggerStay(Collider other)
     {
-        if (!enemy.Detected)
+        if (!enemy.Detected && !enemy.dead)
         {
             if (other.tag == "Player")
             {
@@ -112,7 +112,7 @@ public class EnemySight : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (!enemy.Detected)
+        if (!enemy.Detected && !enemy.dead)
         {
             if (other.tag == "Player")
             {

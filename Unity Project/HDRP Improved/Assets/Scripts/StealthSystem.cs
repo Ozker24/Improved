@@ -73,12 +73,18 @@ public class StealthSystem : MonoBehaviour
 
     public void DetectingSound()
     {
+        Debug.Log(playingDetectingSound);
+        Debug.Log(beeingDetected);
+
         if (!playingDetectingSound && beeingDetected)
         {
             stealthAudioSource.Play();
             Debug.Log("Play");
             playingDetectingSound = true;
         }
+
+        Debug.Log(playingDetectingSound);
+        Debug.Log(beeingDetected);
 
         if (beeingDetected)
         {

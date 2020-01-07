@@ -56,7 +56,7 @@ public class EnemyPlayerDetector : MonoBehaviour
 
     public void CountTimeToDetect()
     {
-        if (!enemy.Detected)
+        if (!enemy.Detected && !enemy.dead)
         {
             if (timeCounter >= timeToDetect)
             {
@@ -89,7 +89,7 @@ public class EnemyPlayerDetector : MonoBehaviour
         }
     }
 
-   /*public void SetSendDetectionInfo()
+   public void SetSendDetectionInfo()
     {
         if (timeCounter > 0)
         {
@@ -99,7 +99,7 @@ public class EnemyPlayerDetector : MonoBehaviour
         {
             enemy.sendDetectionInfo = false;
         }
-    }*/
+    }
 
     public void CalculateDistanceSound()
     {

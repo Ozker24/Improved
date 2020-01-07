@@ -66368,6 +66368,11 @@ PrefabInstance:
       propertyPath: combatArea
       value: 
       objectReference: {fileID: 1616545626}
+    - target: {fileID: 5348835213635703428, guid: 013a80693edd24f40a4bc40b267efdf7,
+        type: 3}
+      propertyPath: sendDetectionInfo
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 013a80693edd24f40a4bc40b267efdf7, type: 3}
 --- !u!1001 &6827900421704650868

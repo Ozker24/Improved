@@ -349,6 +349,9 @@ public class EnemyTest : MonoBehaviour
         playerInArea = false;
         canDetectPlayer = false;
 
+        sight.watchingPlayer = false;
+        playerDetector.hearingPlayer = false;
+
         combatArea.enemiesNumber--;
         dead = true;
         Destroy(gameObject, timeToDie);
