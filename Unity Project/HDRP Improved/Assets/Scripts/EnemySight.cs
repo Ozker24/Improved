@@ -34,26 +34,22 @@ public class EnemySight : MonoBehaviour
 
     public void Watching()
     {
-        if (playerIn)
+        if (playerIn && noObjectsOccluding)
         {
-            if (noObjectsOccluding)
+            if (timeCounter >= timeToDetect)
             {
-                if (timeCounter >= timeToDetect)
-                {
-                    enemy.Detected = true;
-                    enemy.stealth.DetectedSound();
-                    enemy.stealth.detected = true;
-                    watchingPlayer = false;
-                }
-                else
-                {
-                    timeCounter += Time.deltaTime;
-                    watchingPlayer = true;
-                }
+                enemy.Detected = true;
+                enemy.stealth.DetectedSound();
+                enemy.stealth.detected = true;
+                watchingPlayer = false;
+            }
+            else
+            {
+                timeCounter += Time.deltaTime;
+                watchingPlayer = true;
             }
         }
-
-        else if (!playerIn || !noObjectsOccluding)
+        else
         {
             if (timeCounter > 0)
             {
