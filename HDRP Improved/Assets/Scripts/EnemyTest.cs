@@ -32,7 +32,6 @@ public class EnemyTest : MonoBehaviour
     public PlayerController player;
     public Vector3 playerPos;
 
-
     [Header("Detection")]
     public float timeToDetect;
     public float timeCounterDetection;
@@ -314,6 +313,14 @@ public class EnemyTest : MonoBehaviour
         sight.watchingPlayer = false;
         playerDetector.hearingPlayer = false;
         states = State.detect;
+
+        if (stealth.playingDetectingSound && Detected)
+        {
+            stealth.playingDetectingSound = false;
+            stealth.stealthAudioSource.Stop();
+
+            player.CollectItemSource.PlayOneShot(stealth.detectedSound);
+        }
     }
 
     public void ChaseSet()

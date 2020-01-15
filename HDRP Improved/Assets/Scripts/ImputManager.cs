@@ -36,16 +36,21 @@ public class ImputManager : MonoBehaviour
         if (GM.ableToInput)
         {
             MovementImputs();
-            ItemInputs();
-            ChangeGun();
-            ActiveItem();
-            CancelItem();
-            Aim();
-            Shot();
-            ReleaseShot();
-            ChangeItem();
-            Hit();
-            SetDodge();
+
+            if (!GM.improved)
+            {
+                ItemInputs();
+                ChangeGun();
+                ActiveItem();
+                CancelItem();
+                Aim();
+                Shot();
+                ReleaseShot();
+                ChangeItem();
+                Hit();
+                SetDodge();
+            }
+
             GodMode();
         }
     }

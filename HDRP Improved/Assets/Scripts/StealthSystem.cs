@@ -6,8 +6,8 @@ public class StealthSystem : MonoBehaviour
 {
     [Header("Dependances")]
     [SerializeField] PlayerController player;
-    [SerializeField] AudioSource stealthAudioSource;
-    [SerializeField] AudioSource detectedAudioSource;
+    public AudioSource stealthAudioSource;
+    public AudioSource detectedAudioSource;
 
     [Header("Can Be Detected")]
     public bool canBeDetected = false;
@@ -73,18 +73,12 @@ public class StealthSystem : MonoBehaviour
 
     public void DetectingSound()
     {
-        Debug.Log(playingDetectingSound);
-        Debug.Log(beeingDetected);
-
         if (!playingDetectingSound && beeingDetected)
         {
             stealthAudioSource.Play();
             Debug.Log("Play");
             playingDetectingSound = true;
         }
-
-        Debug.Log(playingDetectingSound);
-        Debug.Log(beeingDetected);
 
         if (beeingDetected)
         {

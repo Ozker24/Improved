@@ -48,6 +48,9 @@ public class GameManager : MonoBehaviour
     public bool win;
     public bool options;
 
+    [Header("Modes")]
+
+    public bool improved;
     public bool godMode;
     //public bool detected = false;
 
