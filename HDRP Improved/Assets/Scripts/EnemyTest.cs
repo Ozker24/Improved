@@ -8,7 +8,8 @@ public class EnemyTest : MonoBehaviour
     public enum State { Chase, Sound, detect, Patrol, Attack, Stunned, die};
     public State states;
 
-    [Header ("Dependences")]
+    [Header("Dependences")]
+    public EnemyTest itsef;
     public NavMeshAgent agent;
     public AudioPlayer audPlay;
     public GameManager gm;
@@ -37,6 +38,7 @@ public class EnemyTest : MonoBehaviour
     public float timeCounterDetection;
     public bool sendDetectionInfo;
     public bool callEnemies;
+    public bool addedToList;
 
     [Header("Attack")]
     public float distToAttack;
@@ -77,9 +79,10 @@ public class EnemyTest : MonoBehaviour
     public AudioSource basicSource;
     public AudioArray clips;
 
-    // Start is called before the first frame update
     void Start()
     {
+        itsef = gameObject.GetComponent<EnemyTest>();
+
         currentLife = maxLife;
 
         agent = GetComponent<NavMeshAgent>();
@@ -102,7 +105,6 @@ public class EnemyTest : MonoBehaviour
 
         execution = GetComponentInChildren<ExecutionArea>();
 
-        //attackArea.enabled = false;
 
         playerDetector.Initialize();
 
@@ -113,7 +115,6 @@ public class EnemyTest : MonoBehaviour
         states = State.Patrol;
     }
 
-    // Update is called once per frame
     void Update()
     {
         playerDetector.MyUpdate();
@@ -363,6 +364,12 @@ public class EnemyTest : MonoBehaviour
         dead = true;
         Destroy(gameObject, timeToDie);
 
+        if (addedToList)
+        {
+            stealth.enemies.Remove(itsef);
+            addedToList = false;
+        }
+
         states = State.die;
     }
 
@@ -370,10 +377,6 @@ public class EnemyTest : MonoBehaviour
 
     public void DoAttack()
     {
-        //audPlay.Play(0, 1, 1);
-
-        //attackArea.enabled = true;
-        //canDetectPlayer = true;
         Debug.Log("Attacking");
 
         basicSource.PlayOneShot(clips.clips[0]);
@@ -390,8 +393,6 @@ public class EnemyTest : MonoBehaviour
             Debug.Log("Player Out");
             StunnedSet(stunedTimeWhenMiss);
         }
-
-        //StartCoroutine(DissableAttackArea());
     }
 
     public void Damage(float life)
@@ -412,16 +413,21 @@ public class EnemyTest : MonoBehaviour
 
     public void ImDetectingPlayer()
     {
-        if (sendDetectionInfo)
+        if (sight.watchingPlayer || playerDetector.hearingPlayer)
         {
-            if (sight.watchingPlayer || playerDetector.hearingPlayer)
+            if (!addedToList)
             {
-                stealth.beeingDetected = true;
+                stealth.enemies.Add(itsef);
+                addedToList = true;
             }
+        }
 
-            if (!sight.watchingPlayer && !playerDetector.hearingPlayer)
+        if (!sight.watchingPlayer && !playerDetector.hearingPlayer)
+        {
+            if (addedToList)
             {
-                stealth.beeingDetected = false;
+                stealth.enemies.Remove(itsef);
+                addedToList = false;
             }
         }
     }
@@ -431,20 +437,10 @@ public class EnemyTest : MonoBehaviour
         Gizmos.DrawCube(attackAreaTrans.position, HalfStent * 2);
     }
 
-    /*IEnumerator DissableAttackArea()
-    {
-        yield return new WaitForEndOfFrame();
-        yield return new WaitForEndOfFrame();
-        yield return new WaitForEndOfFrame();
-
-        //canDetectPlayer = false;
-    }*/
-
     public void PlaySound(int index, float delay)
     {
         AudioSource source = gameObject.AddComponent<AudioSource>();
 
-        // Configurar audiosource
         source.playOnAwake = false;
         source.clip = clips.clips[index];
         source.PlayDelayed(delay);

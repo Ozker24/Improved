@@ -22232,6 +22232,7 @@ MonoBehaviour:
   dead: 0
   win: 0
   options: 0
+  improved: 0
   godMode: 0
 --- !u!114 &1065408027
 MonoBehaviour:
@@ -29573,7 +29574,7 @@ PrefabInstance:
     - target: {fileID: 5348835213635703551, guid: 013a80693edd24f40a4bc40b267efdf7,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5348835213635703424, guid: 013a80693edd24f40a4bc40b267efdf7,
         type: 3}

@@ -13,7 +13,7 @@ public class StealthSystem : MonoBehaviour
     public bool canBeDetected = false;
     public bool importantAudio;
     public float actualSoundDistance;
-    public bool beeingDetected;
+    //public bool beeingDetected;
 
     [Header("Detecting By Sound")]
     public float timeToDetect;
@@ -29,6 +29,9 @@ public class StealthSystem : MonoBehaviour
 
     [Header("Detecting Sound")]
     public AudioClip detectedSound;
+
+    [Header("Enemy List")]
+    public List<EnemyTest> enemies = new List<EnemyTest>();
 
     public void Initialize()
     {
@@ -73,14 +76,14 @@ public class StealthSystem : MonoBehaviour
 
     public void DetectingSound()
     {
-        if (!playingDetectingSound && beeingDetected)
+        if (!playingDetectingSound && enemies.Count > 0)
         {
             stealthAudioSource.Play();
             Debug.Log("Play");
             playingDetectingSound = true;
         }
 
-        if (beeingDetected)
+        if (enemies.Count > 0)
         {
             if (stealthAudioSource.volume < maxVolume)
             {

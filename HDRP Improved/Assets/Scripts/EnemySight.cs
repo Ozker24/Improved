@@ -29,7 +29,6 @@ public class EnemySight : MonoBehaviour
     {
         Watching();
         CheckObjects();
-        //SetSendDetectionInfo();
     }
 
     public void Watching()
@@ -83,18 +82,6 @@ public class EnemySight : MonoBehaviour
             }
         }
     }
-
-    /*public void SetSendDetectionInfo()
-    {
-        if (timeCounter > 0)
-        {
-            enemy.sendDetectionInfo = true;
-        }
-        else
-        {
-            enemy.sendDetectionInfo = false;
-        }
-    }*/
 
     private void OnTriggerStay(Collider other)
     {

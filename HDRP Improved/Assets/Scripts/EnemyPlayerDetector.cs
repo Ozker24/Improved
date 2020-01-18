@@ -31,12 +31,6 @@ public class EnemyPlayerDetector : MonoBehaviour
         timeToRest = initialRestValue;
         playerDetector.radius = radiusOfDetection;
         timeToDetect = enemy.stealth.timeToDetect;
-
-
-        /*if (stealth.maxTimeOutVolume != timeToDetect)
-        {
-            stealth.maxTimeOutVolume = timeToDetect;
-        }*/
     }
 
     public void MyUpdate()
@@ -50,8 +44,6 @@ public class EnemyPlayerDetector : MonoBehaviour
         {
             RestStealth();
         }
-
-        //SetSendDetectionInfo();
     }
 
     public void CountTimeToDetect()
