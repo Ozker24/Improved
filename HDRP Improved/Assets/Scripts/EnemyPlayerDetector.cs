@@ -21,6 +21,14 @@ public class EnemyPlayerDetector : MonoBehaviour
     public bool onArea;
     public bool hearingPlayer;
 
+    [Header("Close Detection")]
+    public float closeDistance;
+
+    public float closeTimeCounter;
+    public float closeTimeToDetect;
+
+    public bool soClose;
+
     [Header("Sound Detector Variables")]
     public float distanceToDetectSound;
 
@@ -40,10 +48,13 @@ public class EnemyPlayerDetector : MonoBehaviour
             CalculateDistanceSound();
         }
 
-        if (canRest)
+        if (canRest && !enemy.Detected)
         {
             RestStealth();
         }
+
+        CloseDetection();
+        DetectWhenClose();
     }
 
     public void CountTimeToDetect()
@@ -81,15 +92,19 @@ public class EnemyPlayerDetector : MonoBehaviour
         }
     }
 
-   public void SetSendDetectionInfo()
+    public void DetectWhenClose()
     {
-        if (timeCounter > 0)
+        if (soClose)
         {
-            enemy.sendDetectionInfo = true;
-        }
-        else
-        {
-            enemy.sendDetectionInfo = false;
+            if (closeTimeCounter >= closeTimeToDetect)
+            {
+                enemy.Detected = true;
+                closeTimeCounter = 0;
+            }
+            else
+            {
+                closeTimeCounter += Time.deltaTime;
+            }
         }
     }
 
@@ -99,6 +114,12 @@ public class EnemyPlayerDetector : MonoBehaviour
         {
             enemy.Detected = true;
         }
+    }
+
+    void CloseDetection()
+    {
+        if (Vector3.Distance(transform.position, enemy.player.transform.position) <= closeDistance && enemy.player.crouching) soClose = true;
+        else soClose = false;
     }
 
     public void OnTriggerEnter(Collider other)

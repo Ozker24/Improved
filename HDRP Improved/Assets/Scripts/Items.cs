@@ -112,8 +112,11 @@ public class Items : MonoBehaviour
             visualItemsCount[2]++;
         }
 
-        firstAidVisuals[itemsCount[1] - 1].SetActive(true);
-        visualItemsCount[1] = itemsCount[1];
+        for (int i = 0; i < itemsCount[1]; i++)
+        {
+            firstAidVisuals[i].SetActive(true);
+            visualItemsCount[1]++;
+        }
 
         for (int i = 0; i < itemsCount[0]; i++)
         {
@@ -369,26 +372,9 @@ public class Items : MonoBehaviour
                         baseSource.PlayOneShot(ClipsSelected.clips[itemSelected]);
                     }
 
-                    if (itemsCount[1] > 1)
-                    {
-                        for (int i = 0; i < firstAidVisuals.Length; i++)
-                        {
-                            firstAidVisuals[i].SetActive(false);
-                        }
+                    firstAidVisuals[visualItemsCount[itemSelected] - 1].SetActive(false);
 
-                        visualItemsCount[1]--;
-
-                        firstAidVisuals[visualItemsCount[1] - 1].SetActive(true);
-                    }
-                    else
-                    {
-                        for (int i = 0; i < firstAidVisuals.Length; i++)
-                        {
-                            firstAidVisuals[i].SetActive(false);
-                        }
-
-                        visualItemsCount[1]--;
-                    }
+                    visualItemsCount[1]--;
 
                     firstTime = true;
                 }
@@ -434,11 +420,6 @@ public class Items : MonoBehaviour
                 if (source != null)
                 {
                     source.Stop();
-                }
-
-                for (int i = 0; i < firstAidVisuals.Length; i++)
-                {
-                    firstAidVisuals[i].SetActive(false);
                 }
 
                 visualItemsCount[1]++;

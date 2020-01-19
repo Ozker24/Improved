@@ -66374,6 +66374,16 @@ PrefabInstance:
       propertyPath: sendDetectionInfo
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5348835214722273837, guid: 013a80693edd24f40a4bc40b267efdf7,
+        type: 3}
+      propertyPath: closeDistance
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348835214722273837, guid: 013a80693edd24f40a4bc40b267efdf7,
+        type: 3}
+      propertyPath: closeTimeToDetect
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 013a80693edd24f40a4bc40b267efdf7, type: 3}
 --- !u!1001 &6827900421704650868
