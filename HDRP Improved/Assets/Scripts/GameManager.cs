@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
     private PauseManager pauseMn;
     [SerializeField]
     public TransitionWinLose winLose;
+    [SerializeField]
+    public ImprovedWeaponManager IWM;
 
     public bool ableToInput = true;
     public bool pause;
@@ -72,6 +74,7 @@ public class GameManager : MonoBehaviour
         throwImpact = player.GetComponentInChildren<ThrowImpact>();
         stealth = player.GetComponent<StealthSystem>();
         pauseMn = gameObject.GetComponent<PauseManager>();
+        IWM = player.GetComponentInChildren<ImprovedWeaponManager>();
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -93,6 +96,7 @@ public class GameManager : MonoBehaviour
         Hit.Initialize();
         itemDetector.Initialize();
         stealth.Initialize();
+        IWM.Initialize();
         pauseMn.Initialize();
         //throwImpact.Initialize();
     }
@@ -118,6 +122,11 @@ public class GameManager : MonoBehaviour
             itemDetector.MyUpdate();
             stealth.MyUpdate();
             winLose.MyUpdate();
+
+            if (improved)
+            {
+                IWM.MyUpdate();
+            }
             //throwImpact.MyUpdate();
         }
     }

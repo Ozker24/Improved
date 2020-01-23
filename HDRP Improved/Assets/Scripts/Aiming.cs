@@ -18,6 +18,8 @@ public class Aiming : MonoBehaviour
 
     [Header("Zooms")]
     public bool aim;
+    public bool aimed;
+    public float initLens;
     public float actualLens;
     public float originalLens;
     public float aimLens;
@@ -42,6 +44,22 @@ public class Aiming : MonoBehaviour
     }
 
     public void MyUpdate()
+    {
+        SetAimed();
+        DoAim();
+    }
+
+    public void Aim() //Returns true while the imput is pressed.
+    {
+        aim = true;
+    }
+
+    public void NotAim() //Returns false while the imput is pressed.
+    {
+        aim = false;
+    }
+
+    public void DoAim()
     {
         if (freeLook != null)
         {
@@ -90,22 +108,33 @@ public class Aiming : MonoBehaviour
         if (aim && !player.stop && !player.climb && WM.ableGun && !items.pressed)
         {
             point.SetActive(true);
-            ammo.SetActive(true);
+
+            if (!player.GM.improved)
+            {
+                ammo.SetActive(true);
+            }
         }
         else
         {
             point.SetActive(false);
             ammo.SetActive(false);
         }
+
+        if (player.GM.improved)
+        {
+            point.SetActive(true);
+        }
     }
 
-    public void Aim() //Returns true while the imput is pressed.
+    public void SetAimed()
     {
-        aim = true;
-    }
-
-    public void NotAim() //Returns false while the imput is pressed.
-    {
-        aim = false;
+        if (actualLens == aimLens)
+        {
+            aimed = true;
+        }
+        else
+        {
+            aimed = false;
+        }
     }
 }

@@ -90,6 +90,8 @@
     <Compile Include="Assets\Scripts\HealthPeace.cs" />
     <Compile Include="Assets\Scripts\HitArea.cs" />
     <Compile Include="Assets\Scripts\HudManager.cs" />
+    <Compile Include="Assets\Scripts\Improved Mode\ImprovedWeaponManager.cs" />
+    <Compile Include="Assets\Scripts\Improved Mode\LaserGun.cs" />
     <Compile Include="Assets\Scripts\ImputManager.cs" />
     <Compile Include="Assets\Scripts\Inventory.cs" />
     <Compile Include="Assets\Scripts\ItemBase.cs" />

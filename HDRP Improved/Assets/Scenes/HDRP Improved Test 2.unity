@@ -1105,6 +1105,7 @@ MonoBehaviour:
   WM: {fileID: 0}
   items: {fileID: 0}
   aim: 0
+  initLens: 0
   actualLens: 0
   originalLens: 0
   aimLens: 0
@@ -22226,13 +22227,14 @@ MonoBehaviour:
   stealth: {fileID: 0}
   pauseMn: {fileID: 0}
   winLose: {fileID: 289232208}
+  IWM: {fileID: 0}
   ableToInput: 1
   pause: 0
   showControls: 1
   dead: 0
   win: 0
   options: 0
-  improved: 0
+  improved: 1
   godMode: 0
 --- !u!114 &1065408027
 MonoBehaviour:
@@ -22256,6 +22258,7 @@ MonoBehaviour:
   CC: {fileID: 0}
   pause: {fileID: 0}
   god: {fileID: 0}
+  IWM: {fileID: 0}
   axis: {x: 0, y: 0}
 --- !u!4 &1065408028
 Transform:
@@ -26919,6 +26922,7 @@ MonoBehaviour:
   WM: {fileID: 0}
   items: {fileID: 0}
   aim: 0
+  initLens: 40
   actualLens: 0
   originalLens: 40
   aimLens: 20

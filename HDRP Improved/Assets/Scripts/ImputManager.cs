@@ -15,6 +15,7 @@ public class ImputManager : MonoBehaviour
     public CloseCombat CC;
     public PauseManager pause;
     public GodModeManager god;
+    public ImprovedWeaponManager IWM;
 
     public Vector2 axis;
 
@@ -24,11 +25,11 @@ public class ImputManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         HUD = GameObject.FindGameObjectWithTag("Managers").GetComponent<HudManager>();
         Items = player.GetComponentInChildren<Items>();
-        //aim = player.GetComponent<Aiming>();
         weapon = player.GetComponentInChildren<WeaponManager>();
         CC = player.GetComponent<CloseCombat>();
         pause = GameObject.FindGameObjectWithTag("Managers").GetComponent<PauseManager>();
         god = GM.GetComponent<GodModeManager>();
+        IWM = player.GetComponentInChildren<ImprovedWeaponManager>();
     }
 
     public void MyUpdate()
@@ -43,14 +44,18 @@ public class ImputManager : MonoBehaviour
                 ChangeGun();
                 ActiveItem();
                 CancelItem();
-                Aim();
                 Shot();
                 ReleaseShot();
                 ChangeItem();
                 Hit();
                 SetDodge();
             }
+            else
+            {
+                LaserGunInputs();
+            }
 
+            Aim();
             GodMode();
         }
     }
@@ -233,6 +238,37 @@ public class ImputManager : MonoBehaviour
         if (Input.GetButtonDown("GodMode"))
         {
             god.SetGodMode();
+        }
+    }
+
+    public void LaserGunInputs()
+    {
+        //ShotSemiAutoLaserGun();
+        ResetSemiAutoLaserGun();
+        ShotChargedLaserGun();
+    }
+
+    public void ShotSemiAutoLaserGun()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            IWM.laser.ShotLaserGun();
+        }
+    }
+
+    public void ResetSemiAutoLaserGun()
+    {
+        if (Input.GetMouseButtonUp(0))
+        {
+            IWM.laser.ResetLaserGun();
+        }
+    }
+
+    public void ShotChargedLaserGun()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            IWM.laser.ChargingLaserGun();
         }
     }
 }
