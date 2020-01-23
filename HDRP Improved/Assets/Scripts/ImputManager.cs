@@ -15,7 +15,6 @@ public class ImputManager : MonoBehaviour
     public CloseCombat CC;
     public PauseManager pause;
     public GodModeManager god;
-    public ImprovedWeaponManager IWP;
 
     public Vector2 axis;
 
@@ -30,7 +29,6 @@ public class ImputManager : MonoBehaviour
         CC = player.GetComponent<CloseCombat>();
         pause = GameObject.FindGameObjectWithTag("Managers").GetComponent<PauseManager>();
         god = GM.GetComponent<GodModeManager>();
-        IWP = player.GetComponentInChildren<ImprovedWeaponManager>();
     }
 
     public void MyUpdate()
@@ -51,11 +49,6 @@ public class ImputManager : MonoBehaviour
                 ChangeItem();
                 Hit();
                 SetDodge();
-            }
-            else
-            {
-                LaserShot();
-                ResetLaserShot();
             }
 
             GodMode();
@@ -242,24 +235,4 @@ public class ImputManager : MonoBehaviour
             god.SetGodMode();
         }
     }
-
-    #region Improved Imputs
-
-    public void LaserShot()
-    {
-        if (Input.GetMouseButton(0))
-        {
-            IWP.laser.Shot();
-        }
-    }
-
-    public void ResetLaserShot()
-    {
-        if (Input.GetMouseButtonUp(0))
-        {
-            IWP.laser.ResetShot();
-        }
-    }
-
-    #endregion
 }

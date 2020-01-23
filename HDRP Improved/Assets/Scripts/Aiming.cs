@@ -97,11 +97,6 @@ public class Aiming : MonoBehaviour
             point.SetActive(false);
             ammo.SetActive(false);
         }
-
-        if (player.GM.improved)
-        {
-            point.SetActive(true);
-        }
     }
 
     public void Aim() //Returns true while the imput is pressed.
