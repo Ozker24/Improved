@@ -55,7 +55,7 @@ public class Molotov : MonoBehaviour
                 EnemyTest enemy = nearbyObject.GetComponent<EnemyTest>();
                 enemy.Damage(enemy.currentLife);
                 enemy.dead = true;
-                Debug.Log("Killed By Molotov");
+                //Debug.Log("Killed By Molotov");
             }
             else if (nearbyObject.tag == "Object")
             {

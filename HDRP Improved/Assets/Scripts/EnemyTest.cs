@@ -14,6 +14,7 @@ public class EnemyTest : MonoBehaviour
     public AudioPlayer audPlay;
     public GameManager gm;
     public StealthSystem stealth;
+    public Rigidbody rigid;
     [SerializeField] EnemyPlayerDetector playerDetector;
     [SerializeField] EnemySight sight;
     [SerializeField] ExecutionArea execution;
@@ -105,6 +106,7 @@ public class EnemyTest : MonoBehaviour
 
         execution = GetComponentInChildren<ExecutionArea>();
 
+        rigid = GetComponent<Rigidbody>();
 
         playerDetector.Initialize();
 

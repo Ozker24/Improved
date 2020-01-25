@@ -7,6 +7,7 @@ public class LaserGun : MonoBehaviour
     [Header("Dependencies")]
     [SerializeField] Aiming aim;
     [SerializeField] ImprovedWeaponManager IWM;
+    [SerializeField] ChargedLaserArea chargedArea;
 
     [Header ("General Laser Variables")]
     [SerializeField] float fireRate;
@@ -38,15 +39,27 @@ public class LaserGun : MonoBehaviour
     [SerializeField] bool canCharge;
     [SerializeField] bool charged;
 
+    [Header("charged Area")]
+    [SerializeField] Transform areaPos;
+    [SerializeField] Vector3 halfAreaSize;
+    [SerializeField] LayerMask layer;
+
     public void Initialize()
     {
         IWM = GetComponentInParent<ImprovedWeaponManager>();
+        //chargedArea = gameObject.GetComponentInChildren<ChargedLaserArea>();
         aim = GameObject.FindGameObjectWithTag("TPCamera").GetComponent<Aiming>();
         chargedDamage = initChargedDamage;
+        //chargedArea.Initialize();
     }
 
     public void MyUpdate()
     {
+        if (IWM.GM.improved)
+        {
+            //chargedArea.MyUpdate();
+        }
+
         if (aim.aimed)
         {
             fireRate = sniperFireRate;
@@ -66,19 +79,44 @@ public class LaserGun : MonoBehaviour
 
     public void ShotLaserGun()
     {
-        Debug.Log("Shot" + damage);
+        if (!inFireRate)
+        {
+            inFireRate = true;
 
-        inFireRate = true;
+            IWM.stamina -= restStamina;
 
-        IWM.stamina -= restStamina;
+            Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+            RaycastHit hit = new RaycastHit();// que hemos golpeado primero
 
-        StartCoroutine(FinisedFireRate());
+            if (Physics.Raycast(ray, out hit, distance))
+            {
+                if (hit.transform.tag == "Enemy")
+                {
+                    Debug.Log("Hit");
+                    hit.transform.SendMessage("Damage", damage, SendMessageOptions.RequireReceiver);
+                }
+            }
+
+            StartCoroutine(FinisedFireRate());
+        }
     }
 
     public void ChargedLaserGun()
     {
+        Debug.Log("DO");
         damage = chargedDamage;
-        Debug.Log(damage);
+
+        Collider[] enemiesInArea = Physics.OverlapBox(areaPos.position, halfAreaSize, transform.rotation, layer);
+
+        foreach (Collider nearbyObject in enemiesInArea)
+        {
+            if (nearbyObject.tag == ("Enemy"))
+            {
+                Debug.Log("Enemy");
+                EnemyTest enemy = nearbyObject.GetComponent<EnemyTest>();
+                enemy.Damage(damage);
+            }
+        }
     }
 
     public void ResetLaserGun()
@@ -100,30 +138,33 @@ public class LaserGun : MonoBehaviour
 
     public void ChargingLaserGun()
     {
-        if (!canCharge)
+        if (!inFireRate)
         {
-            if (timeHolding >= timeToCharge)
+            if (!canCharge)
             {
-                timeHolding = timeToCharge;
-                canCharge = true;
-            }
-            else
-            {
-                timeHolding += Time.deltaTime;
-            }
-        }
-        else
-        {
-            if(!charged)
-            {
-                if (chargedDamage >= MaxchargedDamage)
+                if (timeHolding >= timeToCharge)
                 {
-                    charged = true;
-                    chargedDamage = MaxchargedDamage;
+                    timeHolding = timeToCharge;
+                    canCharge = true;
                 }
                 else
                 {
-                    chargedDamage += Time.deltaTime * chargedDamageMultiplier;
+                    timeHolding += Time.deltaTime;
+                }
+            }
+            else
+            {
+                if (!charged)
+                {
+                    if (chargedDamage >= MaxchargedDamage)
+                    {
+                        charged = true;
+                        chargedDamage = MaxchargedDamage;
+                    }
+                    else
+                    {
+                        chargedDamage += Time.deltaTime;
+                    }
                 }
             }
         }
