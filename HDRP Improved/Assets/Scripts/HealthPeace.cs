@@ -5,25 +5,48 @@ using UnityEngine;
 public class HealthPeace : MonoBehaviour
 {
     public float health = 100;
+    public float healthToTwinkle;
     public float addHealth;
-    public SpriteRenderer sprite;
+    public float percentage;
+    //public SpriteRenderer sprite;
+    public GameObject healthGO;
+    public Renderer healthRender;
+    public Animator anim;
+    //public Material mat;
+    public Color color;
+    public Color colorBeforeTwinkle;
 
-    public Color topHealth;
+    /*public Color topHealth;
     public Color midHighHealth;
     public Color midLowHealth; 
-    public Color lowHealth; 
+    public Color lowHealth;*/
 
     public void Initialize()
     {
-        sprite.color = topHealth;
+        //sprite.color = topHealth;
+        healthRender = healthGO.GetComponent<Renderer>();
+        color = healthRender.material.color;
+        colorBeforeTwinkle = color;
+        anim = GetComponent<Animator>();
     }
 
     public void MyUpdate()
     {
-        CheckLife();
+        //CheckLife();
+        percentage = Mathf.Clamp01(health / healthToTwinkle);
+        colorBeforeTwinkle.a = percentage;
+
+        if (health >= healthToTwinkle)
+        {
+            anim.SetBool("Twinkle", true);
+        }
+        else
+        {
+            anim.SetBool("Twinkle", false);
+        }
     }
 
-    public void CheckLife()
+    /*public void CheckLife()
     {
         if (health <= 30)
         {
@@ -44,7 +67,7 @@ public class HealthPeace : MonoBehaviour
         {
             sprite.color = topHealth;
         }
-    }
+    }*/
 
     public void Health()
     {

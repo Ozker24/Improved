@@ -150,7 +150,7 @@ public class ImputManager : MonoBehaviour
             Items.SetButtonPressed();
         }
 
-        if (Input.GetButtonUp("Item"))
+        if (Input.GetMouseButton(0))
         {
             Items.SetButtonRealised();
         }
@@ -170,7 +170,7 @@ public class ImputManager : MonoBehaviour
 
     public void CancelItem()
     {
-        if (Input.GetMouseButton(1))
+        if (Input.GetButtonUp("Item"))
         {
             Items.CancelItems();
         }

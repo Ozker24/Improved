@@ -14,6 +14,9 @@ public class LaserGun : MonoBehaviour
     [SerializeField] float damage;
     [SerializeField] float distance;
     [SerializeField] float restStamina;
+    [SerializeField] ParticleSystem laserShotPartcile;
+    [SerializeField] ParticleSystem chargedLaserShotParticle;
+    [SerializeField] GameObject laserHitPartcile;
 
     [Header("Semi Auto variables")]
     [SerializeField] float semiAutoLens;
@@ -32,10 +35,19 @@ public class LaserGun : MonoBehaviour
     [Header("charged variables")]
     [SerializeField] float timeHolding;
     [SerializeField] float timeToCharge;
+
     [SerializeField] float initChargedDamage;
     [SerializeField] float chargedDamage;
     [SerializeField] float chargedDamageMultiplier;
     [SerializeField] float MaxchargedDamage;
+    [SerializeField] float initRestStamina;
+    [SerializeField] float maxRestStamina;
+
+
+    [SerializeField] float timeCounter;
+    [SerializeField] float maxTimeCharged;
+    [SerializeField] float perceentage;
+
     [SerializeField] bool canCharge;
     [SerializeField] bool charged;
 
@@ -85,6 +97,8 @@ public class LaserGun : MonoBehaviour
 
             IWM.stamina -= restStamina;
 
+            laserShotPartcile.Play();
+
             Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
             RaycastHit hit = new RaycastHit();// que hemos golpeado primero
 
@@ -93,9 +107,14 @@ public class LaserGun : MonoBehaviour
                 if (hit.transform.tag == "Enemy")
                 {
                     Debug.Log("Hit");
+                    GameObject particle = Instantiate(laserHitPartcile, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
+
+                    Destroy(particle, 10);
                     hit.transform.SendMessage("Damage", damage, SendMessageOptions.RequireReceiver);
                 }
             }
+
+            Debug.Log(restStamina);
 
             StartCoroutine(FinisedFireRate());
         }
@@ -103,8 +122,14 @@ public class LaserGun : MonoBehaviour
 
     public void ChargedLaserGun()
     {
-        Debug.Log("DO");
-        damage = chargedDamage;
+        damage = MaxchargedDamage * perceentage;
+
+        IWM.stamina -= maxRestStamina * perceentage;
+
+        timeCounter = 0;
+        perceentage = 0;
+
+        chargedLaserShotParticle.Play();
 
         Collider[] enemiesInArea = Physics.OverlapBox(areaPos.position, halfAreaSize, transform.rotation, layer);
 
@@ -114,6 +139,7 @@ public class LaserGun : MonoBehaviour
             {
                 Debug.Log("Enemy");
                 EnemyTest enemy = nearbyObject.GetComponent<EnemyTest>();
+
                 enemy.Damage(damage);
             }
         }
@@ -121,49 +147,57 @@ public class LaserGun : MonoBehaviour
 
     public void ResetLaserGun()
     {
-        if (timeHolding < timeToCharge)
+        if (IWM.stamina > 0)
         {
-            ShotLaserGun();
-        }
-        else if (timeHolding >= timeToCharge)
-        {
-            ChargedLaserGun();
-        }
+            if (timeHolding < timeToCharge)
+            {
+                ShotLaserGun();
+            }
+            else if (timeHolding >= timeToCharge)
+            {
+                ChargedLaserGun();
+            }
 
-        timeHolding = 0;
-        chargedDamage = initChargedDamage;
-        charged = false;
-        canCharge = false;
+            timeHolding = 0;
+            //chargedDamage = initChargedDamage;
+            charged = false;
+            canCharge = false;
+        }
     }
 
     public void ChargingLaserGun()
     {
-        if (!inFireRate)
+        if (IWM.stamina > 0)
         {
-            if (!canCharge)
+            if (!inFireRate)
             {
-                if (timeHolding >= timeToCharge)
+                if (!canCharge)
                 {
-                    timeHolding = timeToCharge;
-                    canCharge = true;
-                }
-                else
-                {
-                    timeHolding += Time.deltaTime;
-                }
-            }
-            else
-            {
-                if (!charged)
-                {
-                    if (chargedDamage >= MaxchargedDamage)
+                    if (timeHolding >= timeToCharge)
                     {
-                        charged = true;
-                        chargedDamage = MaxchargedDamage;
+                        timeHolding = timeToCharge;
+                        canCharge = true;
                     }
                     else
                     {
-                        chargedDamage += Time.deltaTime;
+                        timeHolding += Time.deltaTime;
+                    }
+                }
+                else
+                {
+                    if (!charged)
+                    {
+                        if (timeCounter >= maxTimeCharged)
+                        {
+                            charged = true;
+                            //chargedDamage = MaxchargedDamage;
+                            timeCounter = maxTimeCharged;
+                        }
+                        else
+                        {
+                            timeCounter += Time.deltaTime;
+                            perceentage = Mathf.Clamp01(timeCounter / maxTimeCharged);
+                        }
                     }
                 }
             }

@@ -83,19 +83,19 @@ public class WeaponManager : MonoBehaviour
 
     public void Shot()
     {
-        if (!player.climb && !player.stop && items.canDoGun && ableGun) weapons[WeaponSelected].Shot();
+        if (!player.climb && !player.stop && items.canDoGun && ableGun && !items.pressed) weapons[WeaponSelected].Shot();
         stealth.MakeImportantAudio(distanceToSound[WeaponSelected]);
         //gm.detected = true;
     }
 
     public void Reload()
     {
-        if (!player.climb && !player.stop && items.canDoGun && ableGun)  weapons[WeaponSelected].Reload();
+        if (!player.climb && !player.stop && items.canDoGun && ableGun && !items.pressed)  weapons[WeaponSelected].Reload();
     }
 
     public void ReleaseShot()
     {
-        if (!player.climb && !player.stop && items.canDoGun && ableGun) weapons[WeaponSelected].ReleaseShot();
+        if (!player.climb && !player.stop && items.canDoGun && ableGun && !items.pressed) weapons[WeaponSelected].ReleaseShot();
     }
 
     public void ChangeGunRight()

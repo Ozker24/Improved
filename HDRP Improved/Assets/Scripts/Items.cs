@@ -172,57 +172,81 @@ public class Items : MonoBehaviour
 
     public void CancelItems()
     {
-        if (pressed && itemSelected != 1)
+        if (pressed)
         {
             pressed = false;
-            trajectoryPrefab.SetActive(false);
-            trajectory.drawing = false;
-            firstTime = false;
-            Canceled = true;
+            //realised = 1;
 
-            visualItemsCount[itemSelected]++;
-
-            if (itemSelected == 4)
+            if (itemSelected != 1)
             {
-                molotovVisuals[visualItemsCount[itemSelected] - 1].SetActive(true);
+                trajectoryPrefab.SetActive(false);
+                trajectory.drawing = false;
+                firstTime = false;
+                Canceled = true;
+
+                visualItemsCount[itemSelected]++;
+
+                if (itemSelected == 4)
+                {
+                    molotovVisuals[visualItemsCount[itemSelected] - 1].SetActive(true);
+                }
+
+                if (itemSelected == 3)
+                {
+                    granadeVisuals[visualItemsCount[itemSelected] - 1].SetActive(true);
+                }
+
+                if (itemSelected == 2)
+                {
+                    soundGranadeVisuals[visualItemsCount[itemSelected] - 1].SetActive(true);
+                }
+
+                if (itemSelected == 0)
+                {
+                    EMPVisuals[visualItemsCount[itemSelected] - 1].SetActive(true);
+                }
+
+                StartCoroutine(StopCancelling());
             }
-
-            if (itemSelected == 3)
+            else
             {
-                granadeVisuals[visualItemsCount[itemSelected] - 1].SetActive(true);
-            }
+                Debug.Log("Interrumpted");
 
-            if (itemSelected == 2)
-            {
-                soundGranadeVisuals[visualItemsCount[itemSelected] - 1].SetActive(true);
-            }
+                AudioSource source = GetComponent<AudioSource>();
 
-            if (itemSelected == 1)
-            {
-                firstAidVisuals[visualItemsCount[itemSelected] - 1].SetActive(true);
-            }
+                if (source != null)
+                {
+                    source.Stop();
+                }
 
-            if (itemSelected == 0)
-            {
-                EMPVisuals[visualItemsCount[itemSelected] - 1].SetActive(true);
+                visualItemsCount[1]++;
+
+                firstAidVisuals[visualItemsCount[1] - 1].SetActive(true);
+
+                healthAnim.SetBool("Health", false);
+                TimeCounter = 0;
+                firstTime = false;
             }
         }
     }
 
     public void SetButtonRealised()
     {
-        realised = 1;
-        StartCoroutine(RealisedFalse());
-        pressed = false;
-
-        if (canDoItem)
+        if (pressed)
         {
-            trajectoryPrefab.SetActive(false);
-            trajectory.drawing = false;
+            canDoGun = false;
+            realised = 1;
+            StartCoroutine(RealisedFalse());
+            pressed = false;
+
+            if (canDoItem)
+            {
+                trajectoryPrefab.SetActive(false);
+                trajectory.drawing = false;
+            }
+
+            //StartCoroutine(StopCancelling());
         }
-
-        StartCoroutine(StopCancelling());
-
     }
 
     IEnumerator RealisedFalse()
@@ -410,26 +434,6 @@ public class Items : MonoBehaviour
                     healthAnim.SetBool("Health", true);
                 }
             }
-
-            if (realised == 1)
-            {
-                Debug.Log("Interrumpted");
-
-                AudioSource source = GetComponent<AudioSource>();
-
-                if (source != null)
-                {
-                    source.Stop();
-                }
-
-                visualItemsCount[1]++;
-
-                firstAidVisuals[visualItemsCount[1] - 1].SetActive(true);
-
-                healthAnim.SetBool("Health", false);
-                TimeCounter = 0;
-                firstTime = false;
-            }
         }
     }
 
@@ -522,7 +526,10 @@ public class Items : MonoBehaviour
 
     IEnumerator StopCancelling()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
 
         Canceled = false;
     }

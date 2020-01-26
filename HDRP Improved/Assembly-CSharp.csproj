@@ -87,6 +87,7 @@
     <Compile Include="Assets\Scripts\GodModeManager.cs" />
     <Compile Include="Assets\Scripts\Granade.cs" />
     <Compile Include="Assets\Scripts\GunInventory.cs" />
+    <Compile Include="Assets\Scripts\HealthMaterial.cs" />
     <Compile Include="Assets\Scripts\HealthPeace.cs" />
     <Compile Include="Assets\Scripts\HitArea.cs" />
     <Compile Include="Assets\Scripts\HudManager.cs" />
