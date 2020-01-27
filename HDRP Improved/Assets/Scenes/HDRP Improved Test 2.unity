@@ -21153,7 +21153,7 @@ MonoBehaviour:
   dead: 0
   win: 0
   options: 0
-  improved: 1
+  improved: 0
   godMode: 0
 --- !u!114 &1065408027
 MonoBehaviour:
@@ -31874,12 +31874,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 1226723149311242300, guid: ee4327f5b0c46a64b967040b0cd045af, type: 3}
---- !u!4 &1552149200 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 88435953300894033, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
-    type: 3}
-  m_PrefabInstance: {fileID: 6827900421704650868}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1598853056
 GameObject:
   m_ObjectHideFlags: 0
@@ -63237,12 +63231,6 @@ LightProbeGroup:
   - {x: -2.0744057, y: 17.224033, z: 19.635853}
   - {x: -2.0744057, y: 17.944717, z: 19.635853}
   m_Dering: 1
---- !u!1 &2138523536 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2483375873987037109, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
-    type: 3}
-  m_PrefabInstance: {fileID: 6827900421704650868}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2507703839772669279
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -63513,11 +63501,6 @@ PrefabInstance:
       propertyPath: lookTarget
       value: 
       objectReference: {fileID: 42945540}
-    - target: {fileID: 6827900420496641493, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
-        type: 3}
-      propertyPath: modelTrans
-      value: 
-      objectReference: {fileID: 1552149200}
     - target: {fileID: 6827900420496641494, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -63585,46 +63568,17 @@ PrefabInstance:
       objectReference: {fileID: 742023944}
     - target: {fileID: 6827900420324706546, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
         type: 3}
-      propertyPath: healthMat
-      value: 
-      objectReference: {fileID: 2138523536}
-    - target: {fileID: 6827900420324706546, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
-        type: 3}
       propertyPath: health
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6827900420324706546, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
-        type: 3}
-      propertyPath: healthGO
-      value: 
-      objectReference: {fileID: 2138523536}
-    - target: {fileID: 6827900420324706546, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
-        type: 3}
-      propertyPath: color.a
-      value: 0
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 6827900420324706546, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
         type: 3}
       propertyPath: healthToTwinkle
-      value: 90
+      value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 6827900420324706545, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 4ffb92cc9ae7cc7429324410f7516d40, type: 2}
     - target: {fileID: 602252127, guid: 90b3c2faeab051a4a8bf446d36a4fc15, type: 3}
       propertyPath: image
       value: 
       objectReference: {fileID: 1103023271}
-    - target: {fileID: 602252127, guid: 90b3c2faeab051a4a8bf446d36a4fc15, type: 3}
-      propertyPath: stamina
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1947968013, guid: 90b3c2faeab051a4a8bf446d36a4fc15, type: 3}
-      propertyPath: timeToCharge
-      value: 0.2
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4918076792482062466, guid: 90b3c2faeab051a4a8bf446d36a4fc15, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90b3c2faeab051a4a8bf446d36a4fc15, type: 3}

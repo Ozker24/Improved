@@ -33,10 +33,12 @@ public class HealthPeace : MonoBehaviour
     public void MyUpdate()
     {
         //CheckLife();
-        percentage = Mathf.Clamp01(health / healthToTwinkle);
+        percentage = Mathf.Clamp01((health - healthToTwinkle) / (100 - healthToTwinkle));
+
+        percentage = (percentage - 1) * (-1); // invertir el valor del porcentaje
         colorBeforeTwinkle.a = percentage;
 
-        if (health >= healthToTwinkle)
+        if (health <= healthToTwinkle)
         {
             anim.SetBool("Twinkle", true);
         }
