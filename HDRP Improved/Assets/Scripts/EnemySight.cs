@@ -27,8 +27,11 @@ public class EnemySight : MonoBehaviour
 
     public void MyUpdate()
     {
-        Watching();
-        CheckObjects();
+        if(enemy.IHaveSight)
+        {
+            Watching();
+            CheckObjects();
+        }
     }
 
     public void Watching()
@@ -85,7 +88,7 @@ public class EnemySight : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (!enemy.Detected && !enemy.dead)
+        if (!enemy.Detected && !enemy.dead && enemy.IHaveSight)
         {
             if (other.tag == "Player")
             {
@@ -96,7 +99,7 @@ public class EnemySight : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (!enemy.Detected && !enemy.dead)
+        if (!enemy.Detected && !enemy.dead && enemy.IHaveSight)
         {
             if (other.tag == "Player")
             {

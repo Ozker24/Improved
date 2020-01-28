@@ -5,8 +5,10 @@ using UnityEngine.AI;
 
 public class EnemyTest : MonoBehaviour
 {
-    public enum State { Chase, Sound, detect, Patrol, Attack, Stunned, die};
+    public enum State { Chase, Sound, detect, Patrol, Attack, Stunned, die, Stationary};
     public State states;
+
+    public bool IHaveSight;
 
     [Header("Dependences")]
     public EnemyTest itsef;
@@ -21,18 +23,17 @@ public class EnemyTest : MonoBehaviour
     [SerializeField] CombatArea combatArea;
     [SerializeField] EnemyAttackArea attack;
 
-    [Header ("Sound")]
-    public SoundManager sound;
+    [Header("Chase")]
+    public bool Detected;
+
+    [SerializeField] float chaseSpeed;
+
+    public PlayerController player;
+    public Vector3 playerPos;
 
     public Vector3 positionWhereSound;
 
     public float distToSearch;
-
-    [Header("Chase")]
-    public bool Detected;
-
-    public PlayerController player;
-    public Vector3 playerPos;
 
     [Header("Detection")]
     public float timeToDetect;
@@ -64,6 +65,22 @@ public class EnemyTest : MonoBehaviour
     public Vector3 HalfStent;
     public LayerMask layer;
 
+    [Header("Patrol")]
+    [SerializeField] Transform[] pathPoints;
+    [SerializeField] int currentPoint;
+    [SerializeField] float patrolStopDist;
+    [SerializeField] float patrolSpeed;
+
+    [Header ("Stationary")]
+    [SerializeField] float generalWaitOnPointTime;
+    [SerializeField] float waitOnPointTime;
+    [SerializeField] float waitComeFromSound;
+    [SerializeField] float percentageOfWait;
+    [SerializeField] bool stopOnThePoints;
+    [SerializeField] bool stopOnPoint;
+    [SerializeField] bool goToNearPoint;
+    [SerializeField] bool comeFromSound;
+
     [Header("Life")]
     public float currentLife;
     public float maxLife;
@@ -90,8 +107,6 @@ public class EnemyTest : MonoBehaviour
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
-        sound = GameObject.FindGameObjectWithTag("Managers").GetComponent<SoundManager>();
-
         gm = GameObject.FindGameObjectWithTag("Managers").GetComponent<GameManager>();
 
         audPlay = GetComponentInChildren<AudioPlayer>();
@@ -114,14 +129,19 @@ public class EnemyTest : MonoBehaviour
 
         execution.Initialize();
 
-        states = State.Patrol;
+        states = State.Stationary;
+
+        StationarySet();
     }
 
     void Update()
     {
         playerDetector.MyUpdate();
 
-        sight.MyUpdate();
+        if (IHaveSight)
+        {
+            sight.MyUpdate();
+        }
 
         execution.MyUpdate();
 
@@ -135,6 +155,10 @@ public class EnemyTest : MonoBehaviour
 
             case State.Patrol:
                 PatrolUpdate();
+                break;
+
+            case State.Stationary:
+                StationaryUpdate();
                 break;
 
             case State.detect:
@@ -168,12 +192,14 @@ public class EnemyTest : MonoBehaviour
     {
         if(!Detected | !combatArea.detected)
         {
-            agent.SetDestination(positionWhereSound);
-
-            if (Vector3.Distance(transform.position, positionWhereSound) <= distToSearch)
+            if (agent.remainingDistance <= distToSearch)
             {
                 Debug.Log("Arrived");
-                PatrolSet();
+                goToNearPoint = true;
+                comeFromSound = true;
+
+
+                StationarySet();
             }
         }
 
@@ -193,6 +219,11 @@ public class EnemyTest : MonoBehaviour
         if (positionWhereSound != Vector3.zero)
         {
             SoundSet();
+        }
+
+        if (agent.remainingDistance <= agent.stoppingDistance + 0.01)
+        {
+            StationarySet();
         }
 
         if (Detected | combatArea.detected)
@@ -219,6 +250,19 @@ public class EnemyTest : MonoBehaviour
         else
         {
             timeCounterDetection += Time.deltaTime;
+        }
+    }
+
+    public void StationaryUpdate()
+    {
+        if (Detected | combatArea.detected)
+        {
+            DetectSet();
+        }
+
+        if (positionWhereSound != Vector3.zero)
+        {
+            SoundSet();
         }
     }
 
@@ -298,14 +342,31 @@ public class EnemyTest : MonoBehaviour
         agent.isStopped = false;
         attackTimeCounter = 0;
         agent.stoppingDistance = distToSearch;
+
+        agent.SetDestination(positionWhereSound);
+
         states = State.Sound;
     }
 
     public void PatrolSet()
     {
-        agent.isStopped = true;
-        sound.soundPosition = Vector3.zero;
+        agent.isStopped = false;
         attackTimeCounter = 0;
+        agent.stoppingDistance = patrolStopDist;
+        agent.speed = patrolSpeed;
+
+        if (goToNearPoint)
+        {
+            GoToNearestPoint();
+        }
+        else
+        {
+            GoToNextPathPoints();
+        }
+
+        stopOnPoint = false;
+        comeFromSound = false;
+
         states = State.Patrol;
     }
 
@@ -326,11 +387,44 @@ public class EnemyTest : MonoBehaviour
         }
     }
 
+    public void StationarySet()
+    {
+        agent.isStopped = true;
+
+        if (comeFromSound)
+        {
+            StartCoroutine(WaitOnPoint(waitComeFromSound));
+        }
+
+        if (!stopOnPoint && !comeFromSound)
+        {
+            stopOnPoint = true;
+
+            int random = Random.Range(0, 100);
+
+            Debug.Log(random);
+
+            if (random <= percentageOfWait)
+            {
+                StartCoroutine(WaitOnPoint(waitOnPointTime));
+            }
+            else if (random >= percentageOfWait)
+            {
+                StartCoroutine(WaitOnPoint(generalWaitOnPointTime));
+            }
+        }
+
+        positionWhereSound = Vector3.zero;
+
+        states = State.Stationary;
+    }
+
     public void ChaseSet()
     {
         agent.isStopped = false;
         agent.stoppingDistance = distToAttack;
         attackTimeCounter = 0;
+        agent.speed = chaseSpeed;
         states = State.Chase;
     }
 
@@ -413,6 +507,43 @@ public class EnemyTest : MonoBehaviour
         }
     }
 
+    void GoToNextPathPoints()
+    {
+        Debug.Log("PassPoint");
+
+        currentPoint++;
+
+        if (currentPoint >= pathPoints.Length)
+        {
+            currentPoint = 0;
+        }
+
+        agent.SetDestination(pathPoints[currentPoint].position);
+    }
+
+    void GoToNearestPoint()
+    {
+        if (pathPoints.Length > 0)
+        {
+            float minDist = Mathf.Infinity;
+            int minPos = 0;
+
+            for (int i = 0; i < pathPoints.Length; i++)
+            {
+                float distance = Vector3.Distance(transform.position, pathPoints[i].position);
+
+                if (distance < minDist)
+                {
+                    minDist = distance;
+                    minPos = i;
+                }
+            }
+
+            agent.SetDestination(pathPoints[minPos].position);
+            goToNearPoint = false;
+        }
+    }
+
     public void ImDetectingPlayer()
     {
         if (sight.watchingPlayer || playerDetector.hearingPlayer)
@@ -448,5 +579,13 @@ public class EnemyTest : MonoBehaviour
         source.PlayDelayed(delay);
 
         Destroy(source, source.clip.length);
+    }
+
+    IEnumerator WaitOnPoint(float time)
+    {
+        yield return new WaitForSeconds(time);
+        agent.isStopped = false;
+
+        PatrolSet();
     }
 }

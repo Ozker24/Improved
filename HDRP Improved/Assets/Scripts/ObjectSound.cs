@@ -31,16 +31,18 @@ public class ObjectSound : MonoBehaviour
 
     public void Update()
     {
-        if (timeCounter >= timeToExplode)
-        {
-            Explode();
-            timeCounter = 0;
-            exploded = true;
-        }
-
         if (!exploded)
         {
-            timeCounter += Time.deltaTime;
+            if (timeCounter >= timeToExplode)
+            {
+                Explode();
+                timeCounter = 0;
+                exploded = true;
+            }
+            else
+            {
+                timeCounter += Time.deltaTime;
+            }
         }
     }
 
@@ -60,6 +62,8 @@ public class ObjectSound : MonoBehaviour
                 EnemyTest enemy = nearbyObject.GetComponent<EnemyTest>();
 
                 enemy.positionWhereSound = finalPos;
+
+                Debug.Log("Vector Set");
             }
         }
 

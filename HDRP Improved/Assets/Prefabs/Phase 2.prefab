@@ -57,8 +57,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b177a8bc59c5e0246bad023cb19ceafa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerIn: 0
   enemy: {fileID: 0}
+  area: {fileID: 0}
 --- !u!1 &3201946354355216728
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,25 +316,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   states: 0
+  IHaveSight: 0
+  itsef: {fileID: 0}
   agent: {fileID: 0}
   audPlay: {fileID: 0}
   gm: {fileID: 0}
   stealth: {fileID: 0}
+  rigid: {fileID: 0}
   playerDetector: {fileID: 0}
   sight: {fileID: 0}
   execution: {fileID: 0}
   combatArea: {fileID: 0}
   attack: {fileID: 0}
-  sound: {fileID: 0}
-  positionWhereSound: {x: 0, y: 0, z: 0}
-  distToSearch: 4
   Detected: 0
   player: {fileID: 0}
   playerPos: {x: 0, y: 0, z: 0}
+  sound: {fileID: 0}
+  positionWhereSound: {x: 0, y: 0, z: 0}
+  distToSearch: 4
   timeToDetect: 1
   timeCounterDetection: 0
-  sendDetectionInfo: 0
+  sendDetectionInfo: 1
   callEnemies: 0
+  addedToList: 0
   distToAttack: 2
   distToScape: 4
   restTimeToAttack: 0.75
@@ -350,6 +354,11 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 262144
+  currentPoint: 0
+  patrolStopDist: 1
+  pathPoints:
+  - {fileID: 0}
+  - {fileID: 0}
   currentLife: 0
   maxLife: 3
   timeStunned: 0.5
@@ -654,6 +663,10 @@ MonoBehaviour:
   radiusOfDetection: 10
   onArea: 0
   hearingPlayer: 0
+  closeDistance: 4
+  closeTimeCounter: 0
+  closeTimeToDetect: 4
+  soClose: 0
   distanceToDetectSound: 20
 --- !u!135 &5348835214722273836
 SphereCollider:
@@ -775,7 +788,6 @@ MonoBehaviour:
   enemy: {fileID: 0}
   timeCounter: 0
   timeToDetect: 4
-  detect: 1
   playerIn: 0
   watchingPlayer: 0
   initRayPos: {fileID: 208705461011367893}

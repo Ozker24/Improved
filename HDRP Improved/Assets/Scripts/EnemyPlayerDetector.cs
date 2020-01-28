@@ -94,7 +94,7 @@ public class EnemyPlayerDetector : MonoBehaviour
 
     public void DetectWhenClose()
     {
-        if (soClose)
+        if (soClose && !enemy.Detected && !enemy.dead)
         {
             if (closeTimeCounter >= closeTimeToDetect)
             {
