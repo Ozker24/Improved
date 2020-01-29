@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyTest : MonoBehaviour
 {
-    public enum State { Chase, Sound, detect, Patrol, Attack, Stunned, die, Stationary};
+    public enum State { Chase, Sound, detect, Patrol, Attack, Stunned, die, Stationary, Look};
     public State states;
 
     public bool IHaveSight;
@@ -41,6 +41,12 @@ public class EnemyTest : MonoBehaviour
     public bool sendDetectionInfo;
     public bool callEnemies;
     public bool addedToList;
+    public bool wantToHear;
+    public bool firstSearch;
+
+    [Header("Look")]
+    [SerializeField] float timeLookingCounter;
+    [SerializeField] float maxTimeLooking;
 
     [Header("Attack")]
     public float distToAttack;
@@ -70,16 +76,19 @@ public class EnemyTest : MonoBehaviour
     [SerializeField] int currentPoint;
     [SerializeField] float patrolStopDist;
     [SerializeField] float patrolSpeed;
+    [SerializeField] bool stayThere;
 
-    [Header ("Stationary")]
+    [Header("Stationary")]
+    [SerializeField] float stationaryTimeCounter;
     [SerializeField] float generalWaitOnPointTime;
     [SerializeField] float waitOnPointTime;
     [SerializeField] float waitComeFromSound;
     [SerializeField] float percentageOfWait;
+    [SerializeField] int randomNum;
     [SerializeField] bool stopOnThePoints;
     [SerializeField] bool stopOnPoint;
     [SerializeField] bool goToNearPoint;
-    [SerializeField] bool comeFromSound;
+    public bool comeFromSound;
 
     [Header("Life")]
     public float currentLife;
@@ -88,6 +97,22 @@ public class EnemyTest : MonoBehaviour
     [Header("Stunned")]
     public float timeStunned;
     public float stunnedTimeCounter;
+
+    [Header("Hearing")]
+    public float whenSoundAddDist;
+    public float whenSoundRestTime;
+
+    [Header("Alert")]
+    public float alertSpeed;
+    public float alertDistance;
+    public float alertTime;
+    public float alertGeneralWaitOnPointTime;
+    public float alertWaitOnPointTime;
+    public float alertWaitComeFromSound;
+    public float alertWaitPercentage;
+
+    public bool inAlert;
+    public bool changeVariables;
 
     [Header("Die")]
     public float timeToDie;
@@ -153,6 +178,10 @@ public class EnemyTest : MonoBehaviour
                 SoundUpdate();
                 break;
 
+            case State.Look:
+                LookUpdate();
+                break;
+
             case State.Patrol:
                 PatrolUpdate();
                 break;
@@ -208,6 +237,24 @@ public class EnemyTest : MonoBehaviour
             //ChaseSet();
             DetectSet();
         }
+
+        if (positionWhereSound != Vector3.zero)
+        {
+            SetLook(positionWhereSound);
+        }
+    }
+
+    public void LookUpdate()
+    {
+        if (timeLookingCounter >= maxTimeLooking)
+        {
+            timeLookingCounter = 0;
+            SoundSet();
+        }
+        else
+        {
+            timeLookingCounter += Time.deltaTime;
+        }
     }
 
     public void PatrolUpdate()
@@ -218,7 +265,7 @@ public class EnemyTest : MonoBehaviour
 
         if (positionWhereSound != Vector3.zero)
         {
-            SoundSet();
+            SetLook(positionWhereSound);
         }
 
         if (agent.remainingDistance <= agent.stoppingDistance + 0.01)
@@ -255,6 +302,62 @@ public class EnemyTest : MonoBehaviour
 
     public void StationaryUpdate()
     {
+        if (!stayThere)
+        {
+            if (comeFromSound)
+            {
+                if (stationaryTimeCounter >= waitComeFromSound)
+                {
+                    if (!firstSearch)
+                    {
+                        firstSearch = true;
+                        //animacion exclusiva para la primera busqueda
+                        Debug.Log("A dormir");
+                    }
+
+                    EndOfStationary();
+                }
+                else
+                {
+                    stationaryTimeCounter += Time.deltaTime;
+                }
+            }
+
+            else
+            {
+                if (!stopOnPoint)
+                {
+                    stopOnPoint = true;
+                    randomNum = Random.Range(0, 100);
+
+                    Debug.Log(randomNum);
+                }
+
+                if (randomNum <= percentageOfWait)
+                {
+                    if (stationaryTimeCounter >= waitOnPointTime)
+                    {
+                        EndOfStationary();
+                    }
+                    else
+                    {
+                        stationaryTimeCounter += Time.deltaTime;
+                    }
+                }
+                else if (randomNum >= percentageOfWait)
+                {
+                    if (stationaryTimeCounter >= generalWaitOnPointTime)
+                    {
+                        EndOfStationary();
+                    }
+                    else
+                    {
+                        stationaryTimeCounter += Time.deltaTime;
+                    }
+                }
+            }
+        }
+
         if (Detected | combatArea.detected)
         {
             DetectSet();
@@ -262,7 +365,7 @@ public class EnemyTest : MonoBehaviour
 
         if (positionWhereSound != Vector3.zero)
         {
-            SoundSet();
+            SetLook(positionWhereSound);
         }
     }
 
@@ -345,7 +448,30 @@ public class EnemyTest : MonoBehaviour
 
         agent.SetDestination(positionWhereSound);
 
+        positionWhereSound = Vector3.zero;
+
+        wantToHear = true;
+
+        stationaryTimeCounter = 0;
+
+        Debug.Log("SoundSet");
+
         states = State.Sound;
+    }
+
+    public void SetLook(Vector3 pos)
+    {
+        //positionWhereSound = Vector3.zero;
+
+        stayThere = false;
+
+        inAlert = true;
+
+        agent.isStopped = true;
+
+        wantToHear = true;
+
+        states = State.Look;
     }
 
     public void PatrolSet()
@@ -364,14 +490,27 @@ public class EnemyTest : MonoBehaviour
             GoToNextPathPoints();
         }
 
+        if (inAlert)
+        {
+            changeVariables = true;
+            agent.speed = alertSpeed;
+            generalWaitOnPointTime = alertGeneralWaitOnPointTime;
+            waitOnPointTime = alertWaitOnPointTime;
+            waitComeFromSound = alertWaitComeFromSound;
+            percentageOfWait = alertWaitPercentage;
+        }
+
         stopOnPoint = false;
         comeFromSound = false;
+
+        wantToHear = true;
 
         states = State.Patrol;
     }
 
     public void DetectSet()
     {
+        wantToHear = false;
         agent.isStopped = true;
         stealth.detected = true;
         sight.watchingPlayer = false;
@@ -389,38 +528,20 @@ public class EnemyTest : MonoBehaviour
 
     public void StationarySet()
     {
+        wantToHear = true;
+
         agent.isStopped = true;
 
-        if (comeFromSound)
-        {
-            StartCoroutine(WaitOnPoint(waitComeFromSound));
-        }
-
-        if (!stopOnPoint && !comeFromSound)
-        {
-            stopOnPoint = true;
-
-            int random = Random.Range(0, 100);
-
-            Debug.Log(random);
-
-            if (random <= percentageOfWait)
-            {
-                StartCoroutine(WaitOnPoint(waitOnPointTime));
-            }
-            else if (random >= percentageOfWait)
-            {
-                StartCoroutine(WaitOnPoint(generalWaitOnPointTime));
-            }
-        }
-
         positionWhereSound = Vector3.zero;
+
+        stopOnPoint = false;
 
         states = State.Stationary;
     }
 
     public void ChaseSet()
     {
+        wantToHear = false;
         agent.isStopped = false;
         agent.stoppingDistance = distToAttack;
         attackTimeCounter = 0;
@@ -430,6 +551,8 @@ public class EnemyTest : MonoBehaviour
 
     public void AttackSet()
     {
+        wantToHear = false;
+
         agent.isStopped = true;
 
         attackTimeCounter = timeAttackFinished - restTimeToAttack;
@@ -439,6 +562,8 @@ public class EnemyTest : MonoBehaviour
 
     public void StunnedSet(float time)
     {
+        wantToHear = false;
+
         agent.isStopped = true;
         timeStunned = time;
         states = State.Stunned;
@@ -446,6 +571,8 @@ public class EnemyTest : MonoBehaviour
 
     public void DieSet()
     {
+        wantToHear = false;
+
         agent.isStopped = true;
         //attackArea.enabled = false;
 
@@ -581,9 +708,12 @@ public class EnemyTest : MonoBehaviour
         Destroy(source, source.clip.length);
     }
 
-    IEnumerator WaitOnPoint(float time)
+    void EndOfStationary()
     {
-        yield return new WaitForSeconds(time);
+        stationaryTimeCounter = 0;
+
+        stopOnPoint = false;
+
         agent.isStopped = false;
 
         PatrolSet();

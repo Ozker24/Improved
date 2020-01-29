@@ -63509,6 +63509,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5348835213635703428, guid: 013a80693edd24f40a4bc40b267efdf7,
         type: 3}
+      propertyPath: pathPoints.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348835213635703428, guid: 013a80693edd24f40a4bc40b267efdf7,
+        type: 3}
       propertyPath: combatArea
       value: 
       objectReference: {fileID: 1616545626}
@@ -63545,7 +63550,7 @@ PrefabInstance:
     - target: {fileID: 5348835213635703428, guid: 013a80693edd24f40a4bc40b267efdf7,
         type: 3}
       propertyPath: percentageOfWait
-      value: 100
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5348835213635703428, guid: 013a80693edd24f40a4bc40b267efdf7,
         type: 3}
@@ -63561,6 +63566,91 @@ PrefabInstance:
         type: 3}
       propertyPath: waitComeFromSound
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348835213635703428, guid: 013a80693edd24f40a4bc40b267efdf7,
+        type: 3}
+      propertyPath: maxTimeLooking
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348835213635703428, guid: 013a80693edd24f40a4bc40b267efdf7,
+        type: 3}
+      propertyPath: whenSoundAddDist
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348835213635703428, guid: 013a80693edd24f40a4bc40b267efdf7,
+        type: 3}
+      propertyPath: whenSoundRestTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348835213635703428, guid: 013a80693edd24f40a4bc40b267efdf7,
+        type: 3}
+      propertyPath: distToSearch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348835213635703428, guid: 013a80693edd24f40a4bc40b267efdf7,
+        type: 3}
+      propertyPath: stayThere
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348835213635703428, guid: 013a80693edd24f40a4bc40b267efdf7,
+        type: 3}
+      propertyPath: alertSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348835213635703428, guid: 013a80693edd24f40a4bc40b267efdf7,
+        type: 3}
+      propertyPath: alertDistance
+      value: 5.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348835213635703428, guid: 013a80693edd24f40a4bc40b267efdf7,
+        type: 3}
+      propertyPath: alertTime
+      value: 2.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348835213635703428, guid: 013a80693edd24f40a4bc40b267efdf7,
+        type: 3}
+      propertyPath: IHaveSight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348835213635703428, guid: 013a80693edd24f40a4bc40b267efdf7,
+        type: 3}
+      propertyPath: alertGeneralWaitOnPointTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348835213635703428, guid: 013a80693edd24f40a4bc40b267efdf7,
+        type: 3}
+      propertyPath: alertWaitOnPointTime
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348835213635703428, guid: 013a80693edd24f40a4bc40b267efdf7,
+        type: 3}
+      propertyPath: alertWaitComeFromSound
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348835213635703428, guid: 013a80693edd24f40a4bc40b267efdf7,
+        type: 3}
+      propertyPath: alertWaitPercentage
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348835214722273837, guid: 013a80693edd24f40a4bc40b267efdf7,
+        type: 3}
+      propertyPath: initCloseTimeToDetect
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348835214722273837, guid: 013a80693edd24f40a4bc40b267efdf7,
+        type: 3}
+      propertyPath: initCloseDistance
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348835214722273837, guid: 013a80693edd24f40a4bc40b267efdf7,
+        type: 3}
+      propertyPath: closeDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348835214722273837, guid: 013a80693edd24f40a4bc40b267efdf7,
+        type: 3}
+      propertyPath: closeTimeToDetect
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 013a80693edd24f40a4bc40b267efdf7, type: 3}
@@ -63661,6 +63751,11 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 742023944}
+    - target: {fileID: 6827900421331495836, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
+        type: 3}
+      propertyPath: itemsCount.Array.data[2]
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6827900420324706546, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
         type: 3}
       propertyPath: health

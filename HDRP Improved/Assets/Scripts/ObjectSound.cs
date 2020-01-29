@@ -63,6 +63,11 @@ public class ObjectSound : MonoBehaviour
 
                 enemy.positionWhereSound = finalPos;
 
+                /*if (enemy.wantToHear)
+                {
+                    enemy.SetLook(enemy.positionWhereSound);
+                }*/
+
                 Debug.Log("Vector Set");
             }
         }

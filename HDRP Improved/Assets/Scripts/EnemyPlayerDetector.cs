@@ -22,6 +22,8 @@ public class EnemyPlayerDetector : MonoBehaviour
     public bool hearingPlayer;
 
     [Header("Close Detection")]
+    public float initCloseDistance;
+    public float initCloseTimeToDetect;
     public float closeDistance;
 
     public float closeTimeCounter;
@@ -39,6 +41,9 @@ public class EnemyPlayerDetector : MonoBehaviour
         timeToRest = initialRestValue;
         playerDetector.radius = radiusOfDetection;
         timeToDetect = enemy.stealth.timeToDetect;
+
+        closeDistance = initCloseDistance;
+        closeTimeToDetect = initCloseTimeToDetect;
     }
 
     public void MyUpdate()
@@ -55,6 +60,23 @@ public class EnemyPlayerDetector : MonoBehaviour
 
         CloseDetection();
         DetectWhenClose();
+
+        if (enemy.states == EnemyTest.State.Stationary && enemy.comeFromSound)
+        {
+            closeDistance = enemy.whenSoundAddDist;
+            closeTimeToDetect = enemy.whenSoundRestTime;
+        }
+        else
+        {
+            closeDistance = initCloseDistance;
+            closeTimeToDetect = initCloseTimeToDetect;
+        }
+
+        if (enemy.inAlert && enemy.changeVariables && enemy.states != EnemyTest.State.Stationary && !enemy.comeFromSound)
+        {
+            closeDistance = enemy.alertDistance;
+            closeTimeToDetect = enemy.alertTime;
+        }
     }
 
     public void CountTimeToDetect()
@@ -118,7 +140,7 @@ public class EnemyPlayerDetector : MonoBehaviour
 
     void CloseDetection()
     {
-        if (Vector3.Distance(transform.position, enemy.player.transform.position) <= closeDistance && enemy.player.crouching) soClose = true;
+        if (Vector3.Distance(transform.position, enemy.player.transform.position) <= closeDistance) soClose = true;
         else soClose = false;
     }
 
