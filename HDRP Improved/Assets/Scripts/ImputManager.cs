@@ -53,6 +53,7 @@ public class ImputManager : MonoBehaviour
             else
             {
                 LaserGunInputs();
+                FlameThrowerImputs();
             }
 
             Aim();
@@ -248,14 +249,6 @@ public class ImputManager : MonoBehaviour
         ShotChargedLaserGun();
     }
 
-    public void ShotSemiAutoLaserGun()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            IWM.laser.ShotLaserGun();
-        }
-    }
-
     public void ResetSemiAutoLaserGun()
     {
         if (Input.GetMouseButtonUp(0))
@@ -270,5 +263,27 @@ public class ImputManager : MonoBehaviour
         {
             IWM.laser.ChargingLaserGun();
         }
+    }
+
+    public void FireFlameThrower()
+    {
+        if (Input.GetButton("Flame Thrower"))
+        {
+            IWM.flameThrower.Fire();
+        }
+    }
+
+    public void ReleaseFlameThrower()
+    {
+        if(Input.GetButtonUp("Flame Thrower"))
+        {
+            IWM.flameThrower.ReleaseFire();
+        }
+    }
+
+    public void FlameThrowerImputs()
+    {
+        FireFlameThrower();
+        ReleaseFlameThrower();
     }
 }

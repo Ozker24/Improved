@@ -147,7 +147,7 @@ public class LaserGun : MonoBehaviour
 
     public void ResetLaserGun()
     {
-        if (IWM.stamina > 0)
+        if (IWM.stamina > 0 && !IWM.usingFlameThrower)
         {
             if (timeHolding < timeToCharge)
             {
@@ -158,6 +158,8 @@ public class LaserGun : MonoBehaviour
                 ChargedLaserGun();
             }
 
+            IWM.usingLaserGun = false;
+
             timeHolding = 0;
             //chargedDamage = initChargedDamage;
             charged = false;
@@ -167,10 +169,12 @@ public class LaserGun : MonoBehaviour
 
     public void ChargingLaserGun()
     {
-        if (IWM.stamina > 0)
+        if (IWM.stamina > 0 && !IWM.usingFlameThrower)
         {
             if (!inFireRate)
             {
+                IWM.usingLaserGun = true;
+
                 if (!canCharge)
                 {
                     if (timeHolding >= timeToCharge)
