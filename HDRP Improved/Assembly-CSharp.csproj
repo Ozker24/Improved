@@ -82,6 +82,7 @@
     <Compile Include="Assets\Scripts\EnemySight.cs" />
     <Compile Include="Assets\Scripts\EnemyTest.cs" />
     <Compile Include="Assets\Scripts\ExecutionArea.cs" />
+    <Compile Include="Assets\Scripts\Fireable.cs" />
     <Compile Include="Assets\Scripts\FireZone.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\GodModeManager.cs" />
@@ -102,7 +103,6 @@
     <Compile Include="Assets\Scripts\Items.cs" />
     <Compile Include="Assets\Scripts\LogoBehaviour.cs" />
     <Compile Include="Assets\Scripts\Molotov.cs" />
-    <Compile Include="Assets\Scripts\Object.cs" />
     <Compile Include="Assets\Scripts\ObjectSound.cs" />
     <Compile Include="Assets\Scripts\OptionsMenu.cs" />
     <Compile Include="Assets\Scripts\PauseManager.cs" />

@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public CloseCombat CC;
     public ItemDetector itemDetector;
     public StealthSystem stealth;
+    public ImprovedWeaponManager IWM;
 
     [Header("States")]
     public bool moving;
@@ -85,6 +86,7 @@ public class PlayerController : MonoBehaviour
         life = GetComponentInChildren<HealthPeace>();
         itemDetector = items.GetComponent<ItemDetector>();
         stealth = GetComponentInChildren<StealthSystem>();
+        IWM = GetComponentInChildren<ImprovedWeaponManager>();
 
         speed = walkSpeed;
 
@@ -105,7 +107,7 @@ public class PlayerController : MonoBehaviour
 
         if (!stop && !climb)
         {
-            if (moving || (items.pressed && items.canDoItem && !items.inv.startCountdown) || aim.aim || CC.point)
+            if (moving || (items.pressed && items.canDoItem && !items.inv.startCountdown) || aim.aim || CC.point || IWM.usingFlameThrower || IWM.usingLaserGun)
             {
                 //if (!items.canDoItem) return;
                 //modelTrans.rotation = camTrans.transform.rotation;

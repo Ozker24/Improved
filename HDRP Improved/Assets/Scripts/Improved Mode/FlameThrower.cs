@@ -5,33 +5,25 @@ using UnityEngine;
 public class FlameThrower : MonoBehaviour
 {
     [SerializeField] ImprovedWeaponManager IWM;
-    [SerializeField] BoxCollider boxCol;
+    [SerializeField] Vector3 halfAreaSize;
+    [SerializeField] LayerMask layer;
 
     [SerializeField] float restStamina;
+    [SerializeField] float flameRate;
     public bool fireing;
 
     public void Initialize()
     {
         IWM = GetComponentInParent<ImprovedWeaponManager>();
-
-        boxCol = GetComponent<BoxCollider>();
-        boxCol.enabled = false;
     }
 
     public void MyUpdate()
     {
-        if (IWM.GM.improved)
-        {
-            boxCol.enabled = true;
-        }
-        else
-        {
-            boxCol.enabled = false;
-        }
-
         if (fireing)
         {
             IWM.stamina -= restStamina;
+
+            DetectOnFire();
         }
     }
 
@@ -48,5 +40,28 @@ public class FlameThrower : MonoBehaviour
     {
         fireing = false;
         IWM.usingFlameThrower = false;
+    }
+
+    void DetectOnFire()
+    {
+        Collider[] enemiesInArea = Physics.OverlapBox(transform.position, halfAreaSize, transform.rotation, layer);
+
+        foreach(Collider nearbyObjects in enemiesInArea)
+        {
+            if (nearbyObjects.tag == ("Enemy"))
+            {
+                Fireable toFire = nearbyObjects.GetComponent<Fireable>();
+
+                if (toFire != null)
+                {
+                    toFire.timeCounter += flameRate;
+                }
+            }
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawCube(transform.position, halfAreaSize * 2);
     }
 }

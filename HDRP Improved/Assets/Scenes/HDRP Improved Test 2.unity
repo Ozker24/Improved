@@ -12163,7 +12163,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &826392276
 Transform:
   m_ObjectHideFlags: 0
@@ -28125,7 +28125,7 @@ PrefabInstance:
     - target: {fileID: 5348835213635703551, guid: 013a80693edd24f40a4bc40b267efdf7,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5348835213635703424, guid: 013a80693edd24f40a4bc40b267efdf7,
         type: 3}
@@ -63652,6 +63652,11 @@ PrefabInstance:
       propertyPath: closeTimeToDetect
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5348835213635703544, guid: 013a80693edd24f40a4bc40b267efdf7,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 013a80693edd24f40a4bc40b267efdf7, type: 3}
 --- !u!1001 &6827900421704650868
@@ -63756,6 +63761,10 @@ PrefabInstance:
       propertyPath: itemsCount.Array.data[2]
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 602252127, guid: 90b3c2faeab051a4a8bf446d36a4fc15, type: 3}
+      propertyPath: image
+      value: 
+      objectReference: {fileID: 1103023271}
     - target: {fileID: 6827900420324706546, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
         type: 3}
       propertyPath: health
@@ -63766,9 +63775,5 @@ PrefabInstance:
       propertyPath: healthToTwinkle
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 602252127, guid: 90b3c2faeab051a4a8bf446d36a4fc15, type: 3}
-      propertyPath: image
-      value: 
-      objectReference: {fileID: 1103023271}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90b3c2faeab051a4a8bf446d36a4fc15, type: 3}

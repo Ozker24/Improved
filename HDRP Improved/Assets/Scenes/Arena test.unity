@@ -5138,6 +5138,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4932780641947114559, guid: 4d6914fe0d7ebb3468b4b660b4d7379c,
+        type: 3}
+      propertyPath: dropQuality
+      value: 
+      objectReference: {fileID: 619335434}
+    - target: {fileID: 4932780641947114559, guid: 4d6914fe0d7ebb3468b4b660b4d7379c,
+        type: 3}
+      propertyPath: sliderMasterAud
+      value: 
+      objectReference: {fileID: 248501210}
+    - target: {fileID: 4932780641947114559, guid: 4d6914fe0d7ebb3468b4b660b4d7379c,
+        type: 3}
+      propertyPath: AutoResToggle
+      value: 
+      objectReference: {fileID: 1714453132}
     - target: {fileID: 4932780641947114558, guid: 4d6914fe0d7ebb3468b4b660b4d7379c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5243,21 +5258,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 4932780641947114559, guid: 4d6914fe0d7ebb3468b4b660b4d7379c,
-        type: 3}
-      propertyPath: dropQuality
-      value: 
-      objectReference: {fileID: 619335434}
-    - target: {fileID: 4932780641947114559, guid: 4d6914fe0d7ebb3468b4b660b4d7379c,
-        type: 3}
-      propertyPath: sliderMasterAud
-      value: 
-      objectReference: {fileID: 248501210}
-    - target: {fileID: 4932780641947114559, guid: 4d6914fe0d7ebb3468b4b660b4d7379c,
-        type: 3}
-      propertyPath: AutoResToggle
-      value: 
-      objectReference: {fileID: 1714453132}
     - target: {fileID: 4932780641506498642, guid: 4d6914fe0d7ebb3468b4b660b4d7379c,
         type: 3}
       propertyPath: m_IsActive
@@ -5464,13 +5464,14 @@ GameObject:
   - component: {fileID: 1767841890}
   - component: {fileID: 1767841889}
   - component: {fileID: 1767841888}
+  - component: {fileID: 1767841892}
   m_Layer: 9
   m_Name: Cube
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &1767841888
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5538,12 +5539,26 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1767841887}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.2526324, y: 0.87442654, z: -17.68}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1.2526324, y: 0.87443, z: -17.68}
+  m_LocalScale: {x: 3.435, y: 4.5943, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1767841892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1767841887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbfce31055268f84184180c94b8ef865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeCounter: 0
+  timeToBurn: 5
 --- !u!1 &1771093507
 GameObject:
   m_ObjectHideFlags: 0
@@ -6568,5 +6583,26 @@ PrefabInstance:
       propertyPath: stamina
       value: 100
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 2119169749, guid: 90b3c2faeab051a4a8bf446d36a4fc15, type: 3}
+      propertyPath: layer.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 2119169749, guid: 90b3c2faeab051a4a8bf446d36a4fc15, type: 3}
+      propertyPath: halfAreaSize.z
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2119169749, guid: 90b3c2faeab051a4a8bf446d36a4fc15, type: 3}
+      propertyPath: halfAreaSize.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2119169749, guid: 90b3c2faeab051a4a8bf446d36a4fc15, type: 3}
+      propertyPath: halfAreaSize.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2119169749, guid: 90b3c2faeab051a4a8bf446d36a4fc15, type: 3}
+      propertyPath: flameRate
+      value: 0.2
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2119169748, guid: 90b3c2faeab051a4a8bf446d36a4fc15, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 90b3c2faeab051a4a8bf446d36a4fc15, type: 3}

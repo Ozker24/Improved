@@ -57,7 +57,7 @@ public class Molotov : MonoBehaviour
                 enemy.dead = true;
                 //Debug.Log("Killed By Molotov");
             }
-            else if (nearbyObject.tag == "Object")
+            else if (nearbyObject.tag == "Fireable")
             {
                 Destroy(nearbyObject.gameObject, 2f);
             }

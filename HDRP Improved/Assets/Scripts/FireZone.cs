@@ -7,7 +7,7 @@ public class FireZone : MonoBehaviour
     public float timeCounter;
     public float timeToVanish;
 
-    public Vector3 halfExtent;
+    public Vector3 halfSize;
 
     public LayerMask layer;
 
@@ -21,28 +21,25 @@ public class FireZone : MonoBehaviour
         {
             timeCounter += Time.deltaTime;
         }
+
+        Burning();
     }
 
-    /*public void OnTriggerStay(Collider other)
+    void Burning()
     {
-        Collider[] colliders = Physics.OverlapBox(transform.position, halfExtent, transform.rotation, layer);
-
-        foreach (Collider nearbyObject in colliders)
+        Collider[] objects = Physics.OverlapBox(transform.position, halfSize, transform.rotation, layer);
+        
+        foreach (Collider objectsBurning in objects)
         {
-            Debug.Log(nearbyObject.name);
-
-            Object obj = nearbyObject.GetComponent<Object>();
-
-            if (obj != null)
+            if (objectsBurning.tag == "Object")
             {
-                obj.timeCounter += Time.deltaTime;
+                Fireable fireable = objectsBurning.GetComponent<Fireable>();
+
+                if (fireable != null)
+                {
+                    fireable.timeCounter += fireable.fireableIndex;
+                }
             }
         }
-    }*/
-
-    /*public void OnDrawGizmos()
-    {
-        Gizmos.DrawCube(transform.position, halfExtent * 2);
-        Gizmos.color = Color.red;
-    }*/
+    }
 }

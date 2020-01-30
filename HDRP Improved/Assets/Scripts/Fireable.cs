@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Object : MonoBehaviour
+public class Fireable : MonoBehaviour
 {
     public float timeCounter;
     public float timeToBurn;
+    public float fireableIndex;
 
     public void Update()
     {
@@ -15,7 +16,7 @@ public class Object : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    /*private void OnTriggerStay(Collider other)
     {
         if (other.tag == "FireZone")
         {
@@ -31,7 +32,7 @@ public class Object : MonoBehaviour
 
             timeCounter += Time.deltaTime;
         }
-    }
+    }*/
 
     /*public void OnTriggerStay(Collider other)
     {
