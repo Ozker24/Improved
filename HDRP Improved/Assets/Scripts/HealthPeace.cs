@@ -11,7 +11,7 @@ public class HealthPeace : MonoBehaviour
     //public SpriteRenderer sprite;
     public GameObject healthGO;
     public Renderer healthRender;
-    public Animator anim;
+    public Animator animator;
     //public Material mat;
     public Color color;
     public Color colorBeforeTwinkle;
@@ -25,9 +25,9 @@ public class HealthPeace : MonoBehaviour
     {
         //sprite.color = topHealth;
         healthRender = healthGO.GetComponent<Renderer>();
-        color = healthRender.material.color;
+        color = Color.red;
         colorBeforeTwinkle = color;
-        anim = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     public void MyUpdate()
@@ -38,16 +38,17 @@ public class HealthPeace : MonoBehaviour
         percentage = (percentage - 1) * (-1); // invertir el valor del porcentaje
         colorBeforeTwinkle.a = percentage;
 
-        Color testColor = Random.ColorHSV();
-        healthRender.material.SetColor("_BaseColor", testColor);
+        //Color testColor = Random.ColorHSV();
 
         if (health <= healthToTwinkle)
         {
-            anim.SetBool("Twinkle", true);
+            animator.SetBool("Twinkle", true);
+            healthRender.material.SetColor("_BaseColor", colorBeforeTwinkle);
         }
         else
         {
-            anim.SetBool("Twinkle", false);
+            animator.SetBool("Twinkle", false);
+            healthRender.material.SetColor("_BaseColor", colorBeforeTwinkle);
         }
     }
 
