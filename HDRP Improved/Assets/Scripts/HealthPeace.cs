@@ -38,6 +38,9 @@ public class HealthPeace : MonoBehaviour
         percentage = (percentage - 1) * (-1); // invertir el valor del porcentaje
         colorBeforeTwinkle.a = percentage;
 
+        Color testColor = Random.ColorHSV();
+        healthRender.material.SetColor("_BaseColor", testColor);
+
         if (health <= healthToTwinkle)
         {
             anim.SetBool("Twinkle", true);
