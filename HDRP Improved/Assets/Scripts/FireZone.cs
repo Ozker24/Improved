@@ -31,13 +31,23 @@ public class FireZone : MonoBehaviour
         
         foreach (Collider objectsBurning in objects)
         {
-            if (objectsBurning.tag == "Object")
+            if (objectsBurning.tag == "Object" | objectsBurning.tag == "Enemy")
             {
                 Fireable fireable = objectsBurning.GetComponent<Fireable>();
 
+                if (objectsBurning.tag == "Enemy")
+                {
+                    EnemyTest enemy = objectsBurning.GetComponent<EnemyTest>();
+
+                    if (enemy.dead)
+                    {
+                        return;
+                    }
+                }
+
                 if (fireable != null)
                 {
-                    fireable.timeCounter += fireable.fireableIndex;
+                    fireable.timeCounter += Time.deltaTime;
                 }
             }
         }

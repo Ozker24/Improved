@@ -6,13 +6,15 @@ public class Fireable : MonoBehaviour
 {
     public float timeCounter;
     public float timeToBurn;
-    public float fireableIndex;
+    //public float fireableIndex;
 
     public void Update()
     {
         if (timeCounter >= timeToBurn)
         {
             Destroy(gameObject);
+
+            Debug.Log("Dead by Fireable");
         }
     }
 

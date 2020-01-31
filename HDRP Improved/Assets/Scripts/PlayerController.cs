@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header ("Dependencies")]
-    [SerializeField] CharacterController controler;
+    public CharacterController controler;
     public PlayerAnimations anims;
     public HudManager HUD;
     public WeaponManager WM;
@@ -190,7 +190,7 @@ public class PlayerController : MonoBehaviour
 
     void GravitySimulation()
     {
-        if (controler.isGrounded && !dodge)
+        if (controler.isGrounded && !dodge && !IWM.hJump.jump)
         {
             //Debug.Log(controler.isGrounded);
             verticalSpeed = forceToGround;
@@ -199,6 +199,9 @@ public class PlayerController : MonoBehaviour
         {
             verticalSpeed += forceToGround * gravityMagnitude * Time.deltaTime; // constantemente se le suma acceleracion de la grabedad
             dodge = false;
+            IWM.hJump.jump = false;
+            IWM.hJump.didHyperJump = false;
+            IWM.hJump.falling = false;
         }
     }
 
@@ -265,10 +268,17 @@ public class PlayerController : MonoBehaviour
     {
         //if (!GM.godMode)
         //{
+        if(!GM.improved)
+        {
             if (moving && !crouching && !running) speed = walkSpeed;
             else if (running) speed = runSpeed;
             else if (crouching) speed = crouchSpeed;
             else if (stop) speed = 0;
+        }
+        else
+        {
+            speed = IWM.improvedSpeed;
+        }
         //}
     }
 

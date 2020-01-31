@@ -7,8 +7,14 @@ public class ImprovedWeaponManager : MonoBehaviour
 {
     [Header ("Dependencies")]
     public GameManager GM;
+    public PlayerController player;
     public LaserGun laser;
     public FlameThrower flameThrower;
+    public HyperJump hJump;
+    public HyperDash hDash;
+
+    [Header("Stadistics")]
+    public float improvedSpeed;
 
     [Header("Stamina")]
     public float stamina = 100;
@@ -18,14 +24,20 @@ public class ImprovedWeaponManager : MonoBehaviour
     [Header ("Using Weapons")]
     public bool usingLaserGun;
     public bool usingFlameThrower;
+    public bool usingHyperJump;
+    public bool usingHyperDash;
 
     public void Initialize()
     {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        GM = GameObject.FindGameObjectWithTag("Managers").GetComponent<GameManager>();
         laser = GetComponentInChildren<LaserGun>();
         flameThrower = GetComponentInChildren<FlameThrower>();
-        GM = GameObject.FindGameObjectWithTag("Managers").GetComponent<GameManager>();
+        hJump = GetComponentInChildren<HyperJump>();
+        hDash = GetComponentInChildren<HyperDash>();
         laser.Initialize();
         flameThrower.Initialize();
+        hJump.Initialize();
     }
 
     public void MyUpdate()

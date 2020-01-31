@@ -329,9 +329,9 @@ MonoBehaviour:
   combatArea: {fileID: 0}
   attack: {fileID: 0}
   Detected: 0
+  chaseSpeed: 0
   player: {fileID: 0}
   playerPos: {x: 0, y: 0, z: 0}
-  sound: {fileID: 0}
   positionWhereSound: {x: 0, y: 0, z: 0}
   distToSearch: 4
   timeToDetect: 1
@@ -339,6 +339,10 @@ MonoBehaviour:
   sendDetectionInfo: 1
   callEnemies: 0
   addedToList: 0
+  wantToHear: 0
+  firstSearch: 0
+  timeLookingCounter: 0
+  maxTimeLooking: 0
   distToAttack: 2
   distToScape: 4
   restTimeToAttack: 0.75
@@ -354,15 +358,38 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 262144
-  currentPoint: 0
-  patrolStopDist: 1
   pathPoints:
   - {fileID: 0}
   - {fileID: 0}
+  currentPoint: 0
+  patrolStopDist: 1
+  patrolSpeed: 0
+  stayThere: 0
+  stationaryTimeCounter: 0
+  generalWaitOnPointTime: 0
+  waitOnPointTime: 0
+  waitComeFromSound: 0
+  percentageOfWait: 0
+  randomNum: 0
+  stopOnThePoints: 0
+  stopOnPoint: 0
+  goToNearPoint: 0
+  comeFromSound: 0
   currentLife: 0
   maxLife: 3
   timeStunned: 0.5
   stunnedTimeCounter: 0
+  whenSoundAddDist: 0
+  whenSoundRestTime: 0
+  alertSpeed: 0
+  alertDistance: 0
+  alertTime: 0
+  alertGeneralWaitOnPointTime: 0
+  alertWaitOnPointTime: 0
+  alertWaitComeFromSound: 0
+  alertWaitPercentage: 0
+  inAlert: 0
+  changeVariables: 0
   timeToDie: 5
   dead: 0
   basicSource: {fileID: 5348835213635703430}
@@ -381,6 +408,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeCounter: 0
   timeToBurn: 2
+  fireableIndex: 0.2
 --- !u!54 &5348835213635703546
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -663,6 +691,8 @@ MonoBehaviour:
   radiusOfDetection: 10
   onArea: 0
   hearingPlayer: 0
+  initCloseDistance: 0
+  initCloseTimeToDetect: 0
   closeDistance: 4
   closeTimeCounter: 0
   closeTimeToDetect: 4

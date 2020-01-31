@@ -4871,8 +4871,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeCounter: 0
   timeToVanish: 50
-  halfExtent: {x: 1.5, y: 0.5, z: 1.5}
+  halfSize: {x: 1.5, y: 1, z: 1.5}
   layer:
     serializedVersion: 2
     m_Bits: 8704
-  halfAreaSize: {x: 1.5, y: 0.5, z: 1.5}

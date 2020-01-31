@@ -29,7 +29,7 @@ public class FlameThrower : MonoBehaviour
 
     public void Fire()
     {
-        if (IWM.stamina > 0 && !IWM.usingLaserGun)
+        if (IWM.stamina > 0 && !IWM.usingLaserGun && !IWM.usingHyperJump)
         {
             fireing = true;
             IWM.usingFlameThrower = true;

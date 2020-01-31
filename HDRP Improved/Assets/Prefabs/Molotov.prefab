@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateForce: 5
-  radius: 5
+  radius: 3
   layer:
     serializedVersion: 2
     m_Bits: 8704

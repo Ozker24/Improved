@@ -54,6 +54,8 @@ public class ImputManager : MonoBehaviour
             {
                 LaserGunInputs();
                 FlameThrowerImputs();
+                HyperJumpImputs();
+                Fall();
             }
 
             Aim();
@@ -285,5 +287,35 @@ public class ImputManager : MonoBehaviour
     {
         FireFlameThrower();
         ReleaseFlameThrower();
+    }
+
+    public void ChargeHyperJump()
+    {
+        if(Input.GetButton("HyperJump"))
+        {
+            IWM.hJump.ChargeHyperJump();
+        }
+    }
+
+    public void ReleaseHyperJump()
+    {
+        if (Input.GetButtonUp("HyperJump"))
+        {
+            IWM.hJump.ReleaseHyperJump();
+        }
+    }
+
+    public void HyperJumpImputs()
+    {
+        ChargeHyperJump();
+        ReleaseHyperJump();
+    }
+
+    public void Fall()
+    {
+        if (Input.GetButton("HyperJump"))
+        {
+            IWM.hJump.DoFall();
+        }
     }
 }
