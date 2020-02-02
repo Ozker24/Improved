@@ -147,7 +147,7 @@ public class LaserGun : MonoBehaviour
 
     public void ResetLaserGun()
     {
-        if (IWM.stamina > 0 && !IWM.usingFlameThrower && !IWM.usingHyperJump)
+        if (IWM.stamina > 0 && !IWM.usingFlameThrower && !IWM.usingHyperJump && !IWM.usingHyperDash && !IWM.usingMisileLaucher)
         {
             if (timeHolding < timeToCharge)
             {
@@ -169,7 +169,7 @@ public class LaserGun : MonoBehaviour
 
     public void ChargingLaserGun()
     {
-        if (IWM.stamina > 0 && !IWM.usingFlameThrower && !IWM.usingHyperJump)
+        if (IWM.stamina > 0 && !IWM.usingFlameThrower && !IWM.usingHyperJump && !IWM.usingHyperDash && !IWM.usingMisileLaucher)
         {
             if (!inFireRate)
             {

@@ -98,6 +98,9 @@
     <Compile Include="Assets\Scripts\Improved Mode\HyperJump.cs" />
     <Compile Include="Assets\Scripts\Improved Mode\ImprovedWeaponManager.cs" />
     <Compile Include="Assets\Scripts\Improved Mode\LaserGun.cs" />
+    <Compile Include="Assets\Scripts\Improved Mode\Misil.cs" />
+    <Compile Include="Assets\Scripts\Improved Mode\MisileInpact.cs" />
+    <Compile Include="Assets\Scripts\Improved Mode\MisileLauncher.cs" />
     <Compile Include="Assets\Scripts\ImputManager.cs" />
     <Compile Include="Assets\Scripts\Inventory.cs" />
     <Compile Include="Assets\Scripts\ItemBase.cs" />

@@ -4,15 +4,28 @@ using UnityEngine;
 
 public class HyperDash : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] ImprovedWeaponManager IWM;
+    [SerializeField] float timeUsingDash;
+    [SerializeField] float restStamina;
+
+    public void Initialize()
     {
-        
+        IWM = GetComponentInParent<ImprovedWeaponManager>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void DoDash()
     {
-        
+        if(IWM.stamina > 0 && !IWM.usingFlameThrower && !IWM.usingHyperJump && !IWM.usingHyperDash && !IWM.usingLaserGun && !IWM.usingMisileLaucher)
+        {
+            IWM.usingHyperDash = true;
+            IWM.stamina -= restStamina;
+            StartCoroutine(SetUsingHyperDash());
+        }
+    }
+
+    IEnumerator SetUsingHyperDash()
+    {
+        yield return new WaitForSeconds(timeUsingDash);
+        IWM.usingHyperDash = false;
     }
 }

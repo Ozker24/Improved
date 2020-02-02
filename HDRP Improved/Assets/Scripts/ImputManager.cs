@@ -56,6 +56,8 @@ public class ImputManager : MonoBehaviour
                 FlameThrowerImputs();
                 HyperJumpImputs();
                 Fall();
+                HyperDash();
+                LaunchMisile();
             }
 
             Aim();
@@ -316,6 +318,22 @@ public class ImputManager : MonoBehaviour
         if (Input.GetButton("HyperJump"))
         {
             IWM.hJump.DoFall();
+        }
+    }
+
+    public void HyperDash()
+    {
+        if (Input.GetButtonDown("HyperDash"))
+        {
+            IWM.hDash.DoDash();
+        }
+    }
+
+    public void LaunchMisile()
+    {
+        if (Input.GetButtonDown("Misile"))
+        {
+            IWM.mLauncher.LauchMisile();
         }
     }
 }

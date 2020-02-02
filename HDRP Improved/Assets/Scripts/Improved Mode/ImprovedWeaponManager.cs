@@ -12,6 +12,7 @@ public class ImprovedWeaponManager : MonoBehaviour
     public FlameThrower flameThrower;
     public HyperJump hJump;
     public HyperDash hDash;
+    public MisileLauncher mLauncher;
 
     [Header("Stadistics")]
     public float improvedSpeed;
@@ -26,6 +27,7 @@ public class ImprovedWeaponManager : MonoBehaviour
     public bool usingFlameThrower;
     public bool usingHyperJump;
     public bool usingHyperDash;
+    public bool usingMisileLaucher;
 
     public void Initialize()
     {
@@ -35,9 +37,12 @@ public class ImprovedWeaponManager : MonoBehaviour
         flameThrower = GetComponentInChildren<FlameThrower>();
         hJump = GetComponentInChildren<HyperJump>();
         hDash = GetComponentInChildren<HyperDash>();
+        mLauncher = GetComponentInChildren<MisileLauncher>();
         laser.Initialize();
         flameThrower.Initialize();
         hJump.Initialize();
+        hDash.Initialize();
+        mLauncher.Initialize();
     }
 
     public void MyUpdate()

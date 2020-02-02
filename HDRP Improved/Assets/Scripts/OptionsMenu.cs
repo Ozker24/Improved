@@ -220,7 +220,7 @@ public class OptionsMenu : MonoBehaviour
 
         dropdown.RefreshShownValue();
 
-        Debug.Log(dropdown.value);
+        //Debug.Log(dropdown.value);
     }
 
     #endregion

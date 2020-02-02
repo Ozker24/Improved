@@ -15,6 +15,7 @@ TagManager:
   - FireZone
   - Combat Area
   - Metal
+  - Improved
   layers:
   - Default
   - TransparentFX
@@ -36,7 +37,7 @@ TagManager:
   - Detection Area
   - Player
   - Stamina
-  - 
+  - Misil
   - 
   - 
   - 

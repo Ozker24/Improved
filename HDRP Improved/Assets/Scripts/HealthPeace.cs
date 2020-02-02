@@ -8,72 +8,112 @@ public class HealthPeace : MonoBehaviour
     public float healthToTwinkle;
     public float addHealth;
     public float percentage;
-    //public SpriteRenderer sprite;
     public GameObject healthGO;
     public Renderer healthRender;
-    public Animator animator;
-    //public Material mat;
-    public Color color;
+    [Header("Colors")]
+    public Color colorAfterTwinkle;
     public Color colorBeforeTwinkle;
 
-    /*public Color topHealth;
-    public Color midHighHealth;
-    public Color midLowHealth; 
-    public Color lowHealth;*/
+    [Header ("TwinkleLife")]
+    [SerializeField] float brightTimeCounter;
+    [SerializeField] float brightMaxTime;
+    [SerializeField] float brightPercentage;
+    [SerializeField] float littleBrightTime;
+    [SerializeField] bool bright;
+    [SerializeField] bool wait;
+    [SerializeField] bool doOnce;
+
 
     public void Initialize()
     {
-        //sprite.color = topHealth;
         healthRender = healthGO.GetComponent<Renderer>();
-        color = Color.red;
-        colorBeforeTwinkle = color;
-        animator = GetComponent<Animator>();
+        colorAfterTwinkle = Color.red;
+        colorBeforeTwinkle = colorAfterTwinkle;
     }
 
     public void MyUpdate()
     {
-        //CheckLife();
+        if (health <= healthToTwinkle)
+        {
+            AnimateHealth();
+        }
+        else
+        {
+            ShowLife();
+            brightPercentage = 1;
+            doOnce = false;
+            wait = false;
+            bright = false;
+            brightTimeCounter = 0;
+        }
+    }
+
+    void ShowLife()
+    {
         percentage = Mathf.Clamp01((health - healthToTwinkle) / (100 - healthToTwinkle));
 
         percentage = (percentage - 1) * (-1); // invertir el valor del porcentaje
         colorBeforeTwinkle.a = percentage;
 
-        //Color testColor = Random.ColorHSV();
+        healthRender.material.SetColor("_BaseColor", colorBeforeTwinkle);
+    }
 
-        if (health <= healthToTwinkle)
+    void AnimateHealth()
+    {
+        if (bright)
         {
-            animator.SetBool("Twinkle", true);
-            healthRender.material.SetColor("_BaseColor", colorBeforeTwinkle);
+            if (brightTimeCounter >= brightMaxTime)
+            {
+                bright = false;
+                brightTimeCounter = 0;
+            }
+            else
+            {
+                brightTimeCounter += Time.deltaTime;
+                brightPercentage = Mathf.Clamp01(brightTimeCounter / brightMaxTime);
+            }
         }
         else
         {
-            animator.SetBool("Twinkle", false);
-            healthRender.material.SetColor("_BaseColor", colorBeforeTwinkle);
+            if (!wait)
+            {
+                if (brightTimeCounter >= brightMaxTime)
+                {
+                    wait = true;
+                    brightTimeCounter = 0;
+                }
+                else
+                {
+                    brightTimeCounter += Time.deltaTime;
+                    brightPercentage = Mathf.Clamp01(brightTimeCounter / brightMaxTime);
+                }
+
+                if (!wait)
+                {
+                    brightPercentage = (brightPercentage - 1) * (-1);
+                }
+                else
+                {
+                    brightPercentage = 0;
+                }
+            }
         }
+
+        if (wait)
+        {
+            brightPercentage = 1;
+
+            if (!doOnce)
+            {
+                StartCoroutine(LittleBright());
+                doOnce = true;
+            }
+        }
+
+        colorAfterTwinkle.a = brightPercentage;
+
+        healthRender.material.SetColor("_BaseColor", colorAfterTwinkle);
     }
-
-    /*public void CheckLife()
-    {
-        if (health <= 30)
-        {
-            sprite.color = lowHealth;
-        }
-
-        if (health <= 50 && health > 30)
-        {
-            sprite.color = midLowHealth;
-        }
-
-        if (health <= 80 && health > 50)
-        {
-            sprite.color = midHighHealth;
-        }
-
-        if (health >= 80)
-        {
-            sprite.color = topHealth;
-        }
-    }*/
 
     public void Health()
     {
@@ -83,5 +123,13 @@ public class HealthPeace : MonoBehaviour
         {
             health = 100;
         }
+    }
+
+    IEnumerator LittleBright()
+    {
+        yield return new WaitForSeconds(littleBrightTime);
+        wait = false;
+        bright = true;
+        doOnce = false;
     }
 }
