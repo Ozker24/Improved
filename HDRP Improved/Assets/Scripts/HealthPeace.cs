@@ -5,14 +5,18 @@ using UnityEngine;
 public class HealthPeace : MonoBehaviour
 {
     public float health = 100;
-    public float healthToTwinkle;
+    public float healthToLow;
+    public float healthToHigh;
     public float addHealth;
-    public float percentage;
+    public float mediumLifePercentage;
+    public float highLifePercentage;
     public GameObject healthGO;
     public Renderer healthRender;
+
     [Header("Colors")]
-    public Color colorAfterTwinkle;
-    public Color colorBeforeTwinkle;
+    public Color redLowLife;
+    public Color redMediumLife;
+    public Color greenHighLife;
 
     [Header ("TwinkleLife")]
     [SerializeField] float brightTimeCounter;
@@ -27,35 +31,55 @@ public class HealthPeace : MonoBehaviour
     public void Initialize()
     {
         healthRender = healthGO.GetComponent<Renderer>();
-        colorAfterTwinkle = Color.red;
-        colorBeforeTwinkle = colorAfterTwinkle;
+        redLowLife = Color.red;
+        redMediumLife = redLowLife;
+        greenHighLife = Color.green;
     }
 
     public void MyUpdate()
     {
-        if (health <= healthToTwinkle)
+        if (health <= healthToLow)
         {
             AnimateHealth();
         }
-        else
+        else if (health > healthToLow && health < healthToHigh)
         {
-            ShowLife();
+            MediumLife();
             brightPercentage = 1;
             doOnce = false;
             wait = false;
             bright = false;
             brightTimeCounter = 0;
+
+            highLifePercentage = 0;
+            greenHighLife.a = highLifePercentage;
+        }
+        else if (health >= healthToHigh)
+        {
+            mediumLifePercentage = 0;
+            redMediumLife.a = mediumLifePercentage;
+
+            HighLife();
         }
     }
 
-    void ShowLife()
+    void MediumLife()
     {
-        percentage = Mathf.Clamp01((health - healthToTwinkle) / (100 - healthToTwinkle));
+        mediumLifePercentage = Mathf.Clamp01((health - healthToLow) / (healthToHigh - healthToLow));
 
-        percentage = (percentage - 1) * (-1); // invertir el valor del porcentaje
-        colorBeforeTwinkle.a = percentage;
+        mediumLifePercentage = (mediumLifePercentage - 1) * (-1); // invertir el valor del porcentaje
+        redMediumLife.a = mediumLifePercentage;
 
-        healthRender.material.SetColor("_BaseColor", colorBeforeTwinkle);
+        healthRender.material.SetColor("_BaseColor", redMediumLife);
+    }
+
+    void HighLife()
+    {
+        highLifePercentage = Mathf.Clamp01((health - healthToHigh) / (100 - healthToHigh));
+
+        greenHighLife.a = highLifePercentage;
+
+        healthRender.material.SetColor("_BaseColor", greenHighLife);
     }
 
     void AnimateHealth()
@@ -110,9 +134,9 @@ public class HealthPeace : MonoBehaviour
             }
         }
 
-        colorAfterTwinkle.a = brightPercentage;
+        redLowLife.a = brightPercentage;
 
-        healthRender.material.SetColor("_BaseColor", colorAfterTwinkle);
+        healthRender.material.SetColor("_BaseColor", redLowLife);
     }
 
     public void Health()

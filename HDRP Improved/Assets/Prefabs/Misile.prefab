@@ -156,3 +156,8 @@ MonoBehaviour:
   explosionArea: {fileID: 0}
   explosionAreaPrefab: {fileID: 3271390662466768568, guid: 2613877667a2cdd4598211219f21d9f1,
     type: 3}
+  misileDamage: 3
+  explosionRadius: 2.5
+  explosionLayer:
+    serializedVersion: 2
+    m_Bits: 512

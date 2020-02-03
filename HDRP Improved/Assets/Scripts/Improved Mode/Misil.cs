@@ -28,6 +28,11 @@ public class Misil : MonoBehaviour
     [SerializeField] GameObject explosionArea;
     [SerializeField] GameObject explosionAreaPrefab;
 
+    [Header ("ExplosionParameters")]
+    [SerializeField] float misileDamage;
+    [SerializeField] float explosionRadius;
+    [SerializeField] LayerMask explosionLayer;
+
     private void Start()
     {
         constForce = GetComponent<ConstantForce>();
@@ -39,6 +44,8 @@ public class Misil : MonoBehaviour
         explosionArea = Instantiate(explosionAreaPrefab, placeToFly, Quaternion.identity);
         inpact = explosionArea.GetComponent<MisileInpact>();
         inpact.misil = GetComponent<Misil>();
+
+        inpact.maxScale = explosionRadius * 2;
     }
 
     private void Update()
@@ -95,5 +102,16 @@ public class Misil : MonoBehaviour
         Renderer renderer = GetComponent<Renderer>();
         renderer.enabled = false;
         explosionArea.GetComponent<Renderer>().enabled = false;
+
+        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, explosionLayer);
+
+        foreach (Collider objectsToExplode in colliders)
+        {
+            if (objectsToExplode.tag == "Enemy")
+            {
+                EnemyTest enemy = objectsToExplode.GetComponent<EnemyTest>();
+                enemy.Damage(misileDamage);
+            }
+        }
     }
 }

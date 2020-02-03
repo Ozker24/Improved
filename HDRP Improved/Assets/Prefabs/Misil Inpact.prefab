@@ -94,7 +94,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   misil: {fileID: 0}
   percentageScale: 0
-  maxScale: 5
+  maxScale: 0
   initScale: 0.5
 --- !u!135 &5030974744375003207
 SphereCollider:

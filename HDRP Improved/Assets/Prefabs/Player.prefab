@@ -1193,13 +1193,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  healthToTwinkle: 10
+  healthToLow: 10
+  healthToHigh: 50
   addHealth: 15
-  percentage: 0
+  mediumLifePercentage: 0
+  highLifePercentage: 0
   healthGO: {fileID: 2483375873987037109}
   healthRender: {fileID: 0}
-  colorAfterTwinkle: {r: 0, g: 0, b: 0, a: 0}
-  colorBeforeTwinkle: {r: 0, g: 0, b: 0, a: 0}
+  redLowLife: {r: 0, g: 0, b: 0, a: 0}
+  redMediumLife: {r: 0, g: 0, b: 0, a: 0}
+  greenHighLife: {r: 0, g: 0, b: 0, a: 0}
   brightTimeCounter: 0
   brightMaxTime: 1
   brightPercentage: 0
@@ -2211,8 +2214,7 @@ MonoBehaviour:
   player: {fileID: 0}
   WM: {fileID: 0}
   inv: {fileID: 0}
-  healthAnim: {fileID: 6827900420324706545, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
-    type: 3}
+  healthAnim: {fileID: 0}
   peace: {fileID: 6827900420324706546}
   cam: {fileID: 0}
   audPlay: {fileID: 6827900420712442131}
@@ -3167,16 +3169,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8396655267521843119}
     m_Modifications:
-    - target: {fileID: 5327828321104500353, guid: 8d19aaa94abcaef41907f27c537c587a,
-        type: 3}
-      propertyPath: m_Name
-      value: Granade Visuals 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5327828321104500353, guid: 8d19aaa94abcaef41907f27c537c587a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5327828321104500363, guid: 8d19aaa94abcaef41907f27c537c587a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3246,6 +3238,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5327828321104500353, guid: 8d19aaa94abcaef41907f27c537c587a,
+        type: 3}
+      propertyPath: m_Name
+      value: Granade Visuals 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5327828321104500353, guid: 8d19aaa94abcaef41907f27c537c587a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d19aaa94abcaef41907f27c537c587a, type: 3}
@@ -3455,16 +3457,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8396655267521843119}
     m_Modifications:
-    - target: {fileID: 5327828321104500353, guid: 8d19aaa94abcaef41907f27c537c587a,
-        type: 3}
-      propertyPath: m_Name
-      value: Granade Visuals 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5327828321104500353, guid: 8d19aaa94abcaef41907f27c537c587a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5327828321104500363, guid: 8d19aaa94abcaef41907f27c537c587a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3534,6 +3526,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5327828321104500353, guid: 8d19aaa94abcaef41907f27c537c587a,
+        type: 3}
+      propertyPath: m_Name
+      value: Granade Visuals 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5327828321104500353, guid: 8d19aaa94abcaef41907f27c537c587a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d19aaa94abcaef41907f27c537c587a, type: 3}
@@ -4079,16 +4081,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8396655267521843119}
     m_Modifications:
-    - target: {fileID: 5327828321104500353, guid: 8d19aaa94abcaef41907f27c537c587a,
-        type: 3}
-      propertyPath: m_Name
-      value: Granade Visuals 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5327828321104500353, guid: 8d19aaa94abcaef41907f27c537c587a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5327828321104500363, guid: 8d19aaa94abcaef41907f27c537c587a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4158,6 +4150,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5327828321104500353, guid: 8d19aaa94abcaef41907f27c537c587a,
+        type: 3}
+      propertyPath: m_Name
+      value: Granade Visuals 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5327828321104500353, guid: 8d19aaa94abcaef41907f27c537c587a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d19aaa94abcaef41907f27c537c587a, type: 3}
@@ -4266,11 +4268,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6827900420496641494}
     m_Modifications:
-    - target: {fileID: 5268642487953626816, guid: 667d41abc471bfe4da3f44eb599a8ed0,
-        type: 3}
-      propertyPath: m_Name
-      value: Ernest_ReadyFor
-      objectReference: {fileID: 0}
     - target: {fileID: 9171197690188883155, guid: 667d41abc471bfe4da3f44eb599a8ed0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4325,6 +4322,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5268642487953626816, guid: 667d41abc471bfe4da3f44eb599a8ed0,
+        type: 3}
+      propertyPath: m_Name
+      value: Ernest_ReadyFor
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 667d41abc471bfe4da3f44eb599a8ed0, type: 3}
