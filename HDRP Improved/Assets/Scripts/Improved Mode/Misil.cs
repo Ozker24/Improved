@@ -21,6 +21,7 @@ public class Misil : MonoBehaviour
     public float percentageToGround;
     [SerializeField] bool goToPos;
     public bool setPos;
+    [SerializeField] float fallSpeed;
 
     [Header("Explosion Effects")]
     [SerializeField] GameObject explosionParticle;
@@ -63,8 +64,10 @@ public class Misil : MonoBehaviour
         }
         else
         {
-            Vector3.MoveTowards(transform.position, placeToFly, Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, placeToFly, fallSpeed);
             Vector3 tallestVect = new Vector3(transform.position.x, tallestPos, transform.position.z);
+
+            Debug.Log("Going");
 
             if(setPos)
             {

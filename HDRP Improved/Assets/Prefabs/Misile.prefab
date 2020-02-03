@@ -136,23 +136,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0f126a17d8618d429dc94cfd93fe93a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  launcher: {fileID: 0}
+  inpact: {fileID: 0}
   constForce: {fileID: 0}
   rigBod: {fileID: 0}
-  flySpeed: {x: 0, y: 100, z: 0}
   placeToFly: {x: 0, y: 0, z: 0}
-  distanceToGround: 0
+  flySpeed: {x: 0, y: 100, z: 0}
   flyTimeCounter: 0
   maxTimeToFly: 0.5
-  goToPos: 0
-  launcher: {fileID: 0}
   tallestPos: 0
   actualTall: 0
   latestTall: 0
   percentageToGround: 1
+  goToPos: 0
   setPos: 0
+  fallSpeed: 0.4
   explosionParticle: {fileID: 200763918255886338, guid: 9b717fa123bcbc7498a5a7055a981310,
     type: 3}
   explosionArea: {fileID: 0}
   explosionAreaPrefab: {fileID: 3271390662466768568, guid: 2613877667a2cdd4598211219f21d9f1,
     type: 3}
-  inpact: {fileID: 0}
