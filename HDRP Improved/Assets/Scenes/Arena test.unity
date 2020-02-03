@@ -1201,56 +1201,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d0b652f32a2cc243917e4028fa0f046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &635587804
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 635587805}
-  - component: {fileID: 635587806}
-  m_Layer: 0
-  m_Name: Misile Launcher
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &635587805
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 635587804}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.52, z: -0.333}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1525296071}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &635587806
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 635587804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdd0bbb5d75adff4b956bc11e9ec2073, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IWM: {fileID: 0}
-  restStamina: 20
-  launchFireRange: 4
-  canLaunch: 1
-  misile: {fileID: 7784078349905123400, guid: 3ad9173babdbd96469d67702ad40f3c9, type: 3}
-  misileDist: 100
-  nextMisilePos: {x: 0, y: 0, z: 0}
 --- !u!1 &671906022
 GameObject:
   m_ObjectHideFlags: 0
@@ -4463,12 +4413,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1501594399}
   m_CullTransparentMesh: 0
---- !u!4 &1525296071 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 602252126, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
-    type: 3}
-  m_PrefabInstance: {fileID: 6827900421704650868}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1534273962
 GameObject:
   m_ObjectHideFlags: 0
@@ -6634,48 +6578,5 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 742023944}
-    - target: {fileID: 6827900420324706546, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
-        type: 3}
-      propertyPath: health
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 6827900420324706546, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
-        type: 3}
-      propertyPath: healthToTwinkle
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6827900420324706546, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
-        type: 3}
-      propertyPath: bright
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6827900420324706546, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
-        type: 3}
-      propertyPath: brightSpeed
-      value: 0.001
-      objectReference: {fileID: 0}
-    - target: {fileID: 6827900420324706546, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
-        type: 3}
-      propertyPath: brightMaxTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6827900420324706546, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
-        type: 3}
-      propertyPath: littleBrightTime
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 18455840, guid: 90b3c2faeab051a4a8bf446d36a4fc15, type: 3}
-      propertyPath: m_TagString
-      value: Improved
-      objectReference: {fileID: 0}
-    - target: {fileID: 439567643, guid: 90b3c2faeab051a4a8bf446d36a4fc15, type: 3}
-      propertyPath: restStamina
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 439567643, guid: 90b3c2faeab051a4a8bf446d36a4fc15, type: 3}
-      propertyPath: timeUsingDash
-      value: 2
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6827900420324706545, guid: 90b3c2faeab051a4a8bf446d36a4fc15, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90b3c2faeab051a4a8bf446d36a4fc15, type: 3}
