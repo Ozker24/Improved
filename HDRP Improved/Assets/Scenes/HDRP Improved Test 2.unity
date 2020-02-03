@@ -23284,7 +23284,7 @@ MonoBehaviour:
   dead: 0
   win: 0
   options: 0
-  improved: 1
+  improved: 0
   godMode: 0
 --- !u!114 &1065408027
 MonoBehaviour:

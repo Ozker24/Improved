@@ -35,6 +35,7 @@ public class HitArea : MonoBehaviour
             EnemyTest enemy = other.GetComponent<EnemyTest>();
             enemy.StunnedSet(StunedTime);
             enemy.Damage(player.fistDamage);
+            enemy.Detected = true;
             basicSource.PlayOneShot(HitSound);
         }
     }

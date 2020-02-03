@@ -54,7 +54,7 @@ public class ImputManager : MonoBehaviour
             {
                 LaserGunInputs();
                 FlameThrowerImputs();
-                HyperJumpImputs();
+                //HyperJumpImputs();
                 Fall();
                 HyperDash();
                 LaunchMisile();
