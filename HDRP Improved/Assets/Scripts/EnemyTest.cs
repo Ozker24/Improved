@@ -585,7 +585,11 @@ public class EnemyTest : MonoBehaviour
 
         combatArea.enemiesNumber--;
         dead = true;
-        Destroy(gameObject, timeToDie);
+
+        if (!gm.improved)
+        {
+            Destroy(gameObject, timeToDie);
+        }
 
         if (addedToList)
         {

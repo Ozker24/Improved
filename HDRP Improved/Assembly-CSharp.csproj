@@ -92,6 +92,7 @@
     <Compile Include="Assets\Scripts\HealthPeace.cs" />
     <Compile Include="Assets\Scripts\HitArea.cs" />
     <Compile Include="Assets\Scripts\HudManager.cs" />
+    <Compile Include="Assets\Scripts\Improved Mode\Absorb.cs" />
     <Compile Include="Assets\Scripts\Improved Mode\ChargedLaserArea.cs" />
     <Compile Include="Assets\Scripts\Improved Mode\FlameThrower.cs" />
     <Compile Include="Assets\Scripts\Improved Mode\HyperDash.cs" />

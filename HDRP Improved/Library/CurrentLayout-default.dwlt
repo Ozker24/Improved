@@ -114,7 +114,7 @@ MonoBehaviour:
   m_MinSize: {x: 887, y: 494}
   m_MaxSize: {x: 18008, y: 14044}
   vertical: 0
-  controlID: 88
+  controlID: 159
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_MinSize: {x: 610, y: 494}
   m_MaxSize: {x: 14006, y: 14044}
   vertical: 1
-  controlID: 89
+  controlID: 160
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -270,7 +270,7 @@ MonoBehaviour:
   m_MinSize: {x: 336, y: 272}
   m_MaxSize: {x: 14006, y: 10022}
   vertical: 0
-  controlID: 163
+  controlID: 161
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -463,9 +463,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 1866ffff
-      m_LastClickedID: -39400
-      m_ExpandedIDs: 1866ffff8066ffffae66ffffb466ffffb669ffff2eeaffff34eaffff5ef0ffffccf7ffff34f8ffff62f8ffff68f8ffff6afbffffbe5d0000
+      m_SelectedIDs: 76f1ffff
+      m_LastClickedID: -3722
+      m_ExpandedIDs: ccf7fffff4f7ffff34f8ffff62f8ffff68f8ffff6afbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -558,9 +558,9 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: -0.34283775, y: 0.30280253, z: -0.11775663, w: -0.88182515}
     speed: 2
-    m_Value: {x: -0.34271625, y: 0.3026952, z: -0.1177149, w: -0.88151264}
+    m_Value: {x: -0.34283775, y: 0.30280253, z: -0.11775663, w: -0.88182515}
   m_Size:
-    m_Target: 36.283737
+    m_Target: 26.053211
     speed: 2
     m_Value: 36.283737
   m_Ortho:
@@ -790,7 +790,7 @@ MonoBehaviour:
     height: 258
   m_ViewDataDictionary: {fileID: 0}
   m_SearchFilter:
-    m_NameFilter: 
+    m_NameFilter: abs
     m_ClassNames: []
     m_AssetLabels: []
     m_AssetBundleNames: []
@@ -802,20 +802,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts
+  - Assets
   m_LastFoldersGridSize: -1
   m_LastProjectPath: E:\GitHub\Improved\HDRP Improved
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 110}
-    m_SelectedIDs: fe480000
-    m_LastClickedID: 18686
-    m_ExpandedIDs: 00000000643d00002e430000144500003a45000062450000dc460000a2480000fe480000864a00007a4c0000
+    scrollPos: {x: 0, y: 31}
+    m_SelectedIDs: 
+    m_LastClickedID: 0
+    m_ExpandedIDs: 00000000663d000030430000164500003c45000064450000de460000a448000000490000884a00007c4c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -843,7 +843,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000643d00002e430000144500003a45000062450000dc460000a2480000fe480000864a00007a4c0000
+    m_ExpandedIDs: 00000000663d000030430000164500003c45000064450000de460000a448000000490000884a00007c4c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
