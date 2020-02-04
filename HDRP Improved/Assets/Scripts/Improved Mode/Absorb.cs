@@ -8,12 +8,22 @@ public class Absorb : MonoBehaviour
     [SerializeField] LayerMask layer;
 
     [SerializeField] float nearestDistance = 9999999999;
+    [SerializeField] float constantDistToEnemy;
+    [SerializeField] float distToReset;
     [SerializeField] EnemyTest nearestEnemy;
     [SerializeField] float mergeOfReset;
 
     private void Update()
     {
+        if (nearestEnemy != null)
+        {
+            constantDistToEnemy = Vector3.Distance(gameObject.transform.position, nearestEnemy.transform.position);
+        }
+
         DetectNearestAbsorb();
+        ResetNearestEnemy();
+
+        CheckReset();
     }
 
     void DetectNearestAbsorb()
@@ -44,10 +54,20 @@ public class Absorb : MonoBehaviour
     {
         if (nearestEnemy != null)
         {
-            if (Vector3.Distance (gameObject.transform.position, nearestEnemy.transform.position) >= nearestDistance + mergeOfReset)
+            if (Vector3.Distance (transform.position, nearestEnemy.transform.position) >= nearestDistance + mergeOfReset)
             {
                 nearestDistance = Mathf.Infinity;
             }
+        }
+    }
+
+    void CheckReset()
+    {
+        if (constantDistToEnemy >= distToReset)
+        {
+            nearestDistance = Mathf.Infinity;
+            nearestEnemy = null;
+            constantDistToEnemy = 0;
         }
     }
 }
