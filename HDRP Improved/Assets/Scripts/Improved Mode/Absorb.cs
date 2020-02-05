@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Absorb : MonoBehaviour
 {
+    [Header("Dependencies")]
+    [SerializeField] ImprovedWeaponManager IWM;
+
     [SerializeField] float radius;
     [SerializeField] LayerMask layer;
 
@@ -12,8 +15,15 @@ public class Absorb : MonoBehaviour
     [SerializeField] float distToReset;
     [SerializeField] EnemyTest nearestEnemy;
     [SerializeField] float mergeOfReset;
+    [SerializeField] float absorbDistance;
+    [SerializeField] bool canAbsorb;
 
-    private void Update()
+    public void Initialize()
+    {
+        IWM = GetComponentInParent<ImprovedWeaponManager>();
+    }
+
+    public void MyUpdate()
     {
         if (nearestEnemy != null)
         {
@@ -24,6 +34,13 @@ public class Absorb : MonoBehaviour
         ResetNearestEnemy();
 
         CheckReset();
+
+        SetCanAbsorb();
+
+        if (IWM.absorbing)// para cuando te goolpeen otro booleano y asi no suma
+        {
+            GainStamina();
+        }
     }
 
     void DetectNearestAbsorb()
@@ -36,7 +53,7 @@ public class Absorb : MonoBehaviour
             {
                 EnemyTest enemy = nearByObject.GetComponent<EnemyTest>();
 
-                if (enemy.dead)
+                if (enemy.dead && enemy.addStamina > 0)
                 {
                     float distance = Vector3.Distance(transform.position, enemy.transform.position);
 
@@ -69,5 +86,75 @@ public class Absorb : MonoBehaviour
             nearestEnemy = null;
             constantDistToEnemy = 0;
         }
+    }
+
+    void SetCanAbsorb()
+    {
+        if (constantDistToEnemy <= absorbDistance)
+        {
+            canAbsorb = true;
+        }
+        else if (constantDistToEnemy > absorbDistance)
+        {
+            canAbsorb = false;
+        }
+
+        if (nearestEnemy == null)
+        {
+            canAbsorb = false;
+        }
+    }
+
+    public void DoAbsorb()
+    {
+        if (nearestEnemy != null)
+        {
+            if (!IWM.usingFlameThrower && !IWM.usingHyperJump && !IWM.usingHyperDash && !IWM.usingMisileLaucher && !IWM.absorbing && nearestEnemy.addStamina > 0)
+            {
+                if (canAbsorb)
+                {
+                    IWM.player.stop = true;
+                    IWM.absorbing = true;
+                    //StartCoroutine(ResetAbsorb());
+                }
+            }
+        }
+    }
+
+    public void ReleaseAbsorb()
+    {
+        if (IWM.absorbing)
+        {
+            IWM.player.stop = false;
+            IWM.absorbing = false;
+        }
+    }
+
+    void GainStamina()
+    {
+        if (nearestEnemy != null && nearestEnemy.addStamina > 0)
+        {
+            if (nearestEnemy.staminaTimeCounter >= nearestEnemy.maxTimeToStamina)
+            {
+                nearestEnemy.addStamina = 0;
+                nearestEnemy.staminaTimeCounter = 0;
+                nearestEnemy.addStamina = 0;
+                nearestEnemy.absorbPercentage = 1;
+                Destroy(nearestEnemy.gameObject, 5);
+                nearestEnemy = null;
+            }
+            else
+            {
+                nearestEnemy.staminaTimeCounter += Time.deltaTime;
+                nearestEnemy.absorbPercentage = Mathf.Clamp01(nearestEnemy.staminaTimeCounter / nearestEnemy.maxTimeToStamina);
+            }
+            //IWM.stamina += nearestEnemy.addStamina * nearestEnemy.absorbPercentage;
+        }
+    }
+
+    IEnumerator ResetAbsorb()
+    {
+        yield return new WaitForSeconds(nearestEnemy.timeToAddStamina);
+        IWM.absorbing = false;
     }
 }

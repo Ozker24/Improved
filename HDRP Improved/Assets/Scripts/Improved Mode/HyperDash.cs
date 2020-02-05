@@ -15,7 +15,7 @@ public class HyperDash : MonoBehaviour
 
     public void DoDash()
     {
-        if(IWM.stamina > 0 && !IWM.usingFlameThrower && !IWM.usingHyperJump && !IWM.usingHyperDash && !IWM.usingLaserGun && !IWM.usingMisileLaucher)
+        if(IWM.stamina > 0 && !IWM.usingFlameThrower && !IWM.usingHyperJump && !IWM.usingHyperDash && !IWM.usingLaserGun && !IWM.usingMisileLaucher && !IWM.absorbing)
         {
             IWM.usingHyperDash = true;
             IWM.stamina -= restStamina;

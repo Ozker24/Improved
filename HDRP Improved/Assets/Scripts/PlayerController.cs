@@ -331,7 +331,7 @@ public class PlayerController : MonoBehaviour
                     itemDetector.closestItem = null;
                     //HUD.actualLogo = null;
 
-                    //PUY HERE SOUND
+                    //PUT HERE SOUND
                 }
             }
         }

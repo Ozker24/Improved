@@ -21,7 +21,7 @@ public class MisileLauncher : MonoBehaviour
 
     public void LauchMisile()
     {
-        if (IWM.stamina > 0 && !IWM.usingFlameThrower && !IWM.usingHyperJump && !IWM.usingHyperDash && !IWM.usingLaserGun && !IWM.usingMisileLaucher && canLaunch)
+        if (IWM.stamina > 0 && !IWM.usingFlameThrower && !IWM.usingHyperJump && !IWM.usingHyperDash && !IWM.usingLaserGun && !IWM.usingMisileLaucher && canLaunch && !IWM.absorbing)
         {
             Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
             RaycastHit hit = new RaycastHit();// que hemos golpeado primero

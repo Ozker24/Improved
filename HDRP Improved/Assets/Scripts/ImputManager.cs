@@ -58,6 +58,7 @@ public class ImputManager : MonoBehaviour
                 Fall();
                 HyperDash();
                 LaunchMisile();
+                AbsorbImputs();
             }
 
             Aim();
@@ -335,5 +336,27 @@ public class ImputManager : MonoBehaviour
         {
             IWM.mLauncher.LauchMisile();
         }
+    }
+
+    public void Absorb()
+    {
+        if (Input.GetButton("Absorb"))
+        {
+            IWM.absorb.DoAbsorb();
+        }
+    }
+
+    public void ReleaseAbsorb()
+    {
+        if (Input.GetButtonUp("Absorb"))
+        {
+            IWM.absorb.ReleaseAbsorb();
+        }
+    }
+
+    public void AbsorbImputs()
+    {
+        Absorb();
+        ReleaseAbsorb();
     }
 }

@@ -118,6 +118,13 @@ public class EnemyTest : MonoBehaviour
     public float timeToDie;
     public bool dead;
 
+    [Header("Absorb")]
+    public float addStamina;
+    public float timeToAddStamina;
+    public float staminaTimeCounter;
+    public float maxTimeToStamina;
+    public float absorbPercentage;
+
     [Header("Sounds")]
     public AudioSource basicSource;
     public AudioArray clips;

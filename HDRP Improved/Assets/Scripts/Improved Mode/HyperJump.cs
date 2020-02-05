@@ -27,7 +27,7 @@ public class HyperJump : MonoBehaviour
 
     public void ChargeHyperJump()
     {
-        if (IWM.stamina > 0 && !didHyperJump && !IWM.usingFlameThrower && !IWM.usingLaserGun && !jump && !IWM.usingHyperDash && !IWM.usingMisileLaucher)
+        if (IWM.stamina > 0 && !didHyperJump && !IWM.usingFlameThrower && !IWM.usingLaserGun && !jump && !IWM.usingHyperDash && !IWM.usingMisileLaucher && !IWM.absorbing)
         {
             if (timeCounter >= timeToStopCounting)
             {

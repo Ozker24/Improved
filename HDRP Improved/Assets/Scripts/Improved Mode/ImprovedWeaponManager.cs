@@ -13,6 +13,7 @@ public class ImprovedWeaponManager : MonoBehaviour
     public HyperJump hJump;
     public HyperDash hDash;
     public MisileLauncher mLauncher;
+    public Absorb absorb;
 
     [Header("Stadistics")]
     public float improvedSpeed;
@@ -28,6 +29,7 @@ public class ImprovedWeaponManager : MonoBehaviour
     public bool usingHyperJump;
     public bool usingHyperDash;
     public bool usingMisileLaucher;
+    public bool absorbing;
 
     public void Initialize()
     {
@@ -38,11 +40,13 @@ public class ImprovedWeaponManager : MonoBehaviour
         hJump = GetComponentInChildren<HyperJump>();
         hDash = GetComponentInChildren<HyperDash>();
         mLauncher = GetComponentInChildren<MisileLauncher>();
+        absorb = GetComponentInChildren<Absorb>();
         laser.Initialize();
         flameThrower.Initialize();
         hJump.Initialize();
         hDash.Initialize();
         mLauncher.Initialize();
+        absorb.Initialize();
     }
 
     public void MyUpdate()
@@ -61,6 +65,7 @@ public class ImprovedWeaponManager : MonoBehaviour
 
         laser.MyUpdate();
         flameThrower.MyUpdate();
+        absorb.MyUpdate();
 
         percentage = Mathf.Clamp01(stamina / 100);
 
