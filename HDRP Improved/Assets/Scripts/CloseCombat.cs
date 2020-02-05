@@ -5,7 +5,8 @@ using UnityEngine;
 public class CloseCombat : MonoBehaviour
 {
     public PlayerController player;
-    public HitArea hit;
+    public HitArea normalModeHit;
+    public HitArea improvedModeHit;
 
     public bool canHit = true;
     public bool Hited = false;
@@ -30,7 +31,7 @@ public class CloseCombat : MonoBehaviour
     public void Initialize()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        hit = player.GetComponentInChildren<HitArea>();
+        //normalModeHit = player.GetComponentInChildren<HitArea>();
     }
 
     public void MyUpdate()
@@ -79,7 +80,14 @@ public class CloseCombat : MonoBehaviour
             //ejecutar animcion
             player.anims.HitAnimations();
 
-            hit.AppearHit();
+            if (!player.GM.improved)
+            {
+                normalModeHit.AppearHit();
+            }
+            else
+            {
+                improvedModeHit.AppearHit();
+            }
 
             //basicSource.PlayOneShot(hitClips);
             ActualHit++;

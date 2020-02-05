@@ -52,7 +52,8 @@ public class PlayerController : MonoBehaviour
     public Vector3 endedClimb;
 
     [Header("Combat")]
-    public int fistDamage;
+    public int normalModeFistDamage;
+    public int improvedModeFistDamage;
     public AudioClip deadSound;
 
     [Header("Execution")]

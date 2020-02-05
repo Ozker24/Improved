@@ -2896,7 +2896,8 @@ MonoBehaviour:
   weapon: {fileID: 0}
   peace: {fileID: 0}
   CC: {fileID: 0}
-  Hit: {fileID: 276592071}
+  normalModeHit: {fileID: 276592071}
+  improvedModeHit: {fileID: 1600339736}
   itemDetector: {fileID: 0}
   throwImpact: {fileID: 0}
   stealth: {fileID: 0}
@@ -4818,6 +4819,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1600339736 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3056967958486052962, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
+    type: 3}
+  m_PrefabInstance: {fileID: 6827900421704650868}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c24d3a528e2fd1549b04c2c44bbf33ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1616545625
 GameObject:
   m_ObjectHideFlags: 0
@@ -6712,21 +6725,5 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 742023944}
-    - target: {fileID: 182786501, guid: 90b3c2faeab051a4a8bf446d36a4fc15, type: 3}
-      propertyPath: distToReset
-      value: 3.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 182786501, guid: 90b3c2faeab051a4a8bf446d36a4fc15, type: 3}
-      propertyPath: absorbDistance
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 182786501, guid: 90b3c2faeab051a4a8bf446d36a4fc15, type: 3}
-      propertyPath: resetAbsorbTime
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 602252127, guid: 90b3c2faeab051a4a8bf446d36a4fc15, type: 3}
-      propertyPath: stamina
-      value: 60
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90b3c2faeab051a4a8bf446d36a4fc15, type: 3}

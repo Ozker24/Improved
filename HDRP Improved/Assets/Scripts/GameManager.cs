@@ -29,7 +29,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private CloseCombat CC;
     [SerializeField]
-    private HitArea Hit;
+    private HitArea normalModeHit;
+    [SerializeField]
+    private HitArea improvedModeHit;
     [SerializeField]
     private ItemDetector itemDetector;
     [SerializeField]
@@ -69,7 +71,7 @@ public class GameManager : MonoBehaviour
         sound = GetComponent<SoundManager>();
         peace = player.GetComponentInChildren<HealthPeace>();
         CC = player.GetComponent<CloseCombat>();
-        Hit = playerAnims.GetComponentInChildren<HitArea>();
+        //Hit = playerAnims.GetComponentInChildren<HitArea>();
         itemDetector = Items.GetComponent<ItemDetector>();
         throwImpact = player.GetComponentInChildren<ThrowImpact>();
         stealth = player.GetComponent<StealthSystem>();
@@ -93,7 +95,8 @@ public class GameManager : MonoBehaviour
         Aim.Initialize();
         peace.Initialize();
         CC.Initialize();
-        Hit.Initialize();
+        normalModeHit.Initialize();
+        improvedModeHit.Initialize();
         itemDetector.Initialize();
         stealth.Initialize();
         IWM.Initialize();

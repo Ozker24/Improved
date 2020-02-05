@@ -47,7 +47,6 @@ public class ImputManager : MonoBehaviour
                 Shot();
                 ReleaseShot();
                 ChangeItem();
-                Hit();
                 SetDodge();
             }
             else
@@ -61,6 +60,7 @@ public class ImputManager : MonoBehaviour
                 AbsorbImputs();
             }
 
+            Hit();
             Aim();
             GodMode();
         }
