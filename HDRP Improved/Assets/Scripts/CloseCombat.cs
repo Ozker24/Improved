@@ -57,6 +57,15 @@ public class CloseCombat : MonoBehaviour
                 }
             }
         }
+
+        if (player.GM.improved)
+        {
+            maximumHits = player.improvedModeMaxFists;
+        }
+        else
+        {
+            maximumHits = player.normalModeMaxFists;
+        }
     }
 
     public void DoHit()

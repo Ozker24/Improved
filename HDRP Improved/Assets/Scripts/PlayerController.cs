@@ -54,6 +54,9 @@ public class PlayerController : MonoBehaviour
     [Header("Combat")]
     public int normalModeFistDamage;
     public int improvedModeFistDamage;
+
+    public int normalModeMaxFists;
+    public int improvedModeMaxFists;
     public AudioClip deadSound;
 
     [Header("Execution")]

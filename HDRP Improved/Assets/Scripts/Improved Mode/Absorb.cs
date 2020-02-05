@@ -16,7 +16,9 @@ public class Absorb : MonoBehaviour
     [SerializeField] EnemyTest nearestEnemy;
     [SerializeField] float mergeOfReset;
     [SerializeField] float absorbDistance;
+    [SerializeField] float howMuchToAdd;
     [SerializeField] bool canAbsorb;
+    public bool interrumpt;
 
     public void Initialize()
     {
@@ -37,10 +39,16 @@ public class Absorb : MonoBehaviour
 
         SetCanAbsorb();
 
-        if (IWM.absorbing)// para cuando te goolpeen otro booleano y asi no suma
+        if (IWM.absorbing) //&& !interrumpt)// para cuando te goolpeen otro booleano y asi no suma
         {
             GainStamina();
         }
+
+        /*if (interrumpt)
+        {
+            StopAbsorbing();
+            Debug.Log("Interrump");
+        }*/
     }
 
     void DetectNearestAbsorb()
@@ -115,6 +123,7 @@ public class Absorb : MonoBehaviour
                 {
                     IWM.player.stop = true;
                     IWM.absorbing = true;
+                    IWM.stamina = IWM.stamina - nearestEnemy.addStamina * nearestEnemy.absorbPercentage;
                     //StartCoroutine(ResetAbsorb());
                 }
             }
@@ -123,10 +132,25 @@ public class Absorb : MonoBehaviour
 
     public void ReleaseAbsorb()
     {
-        if (IWM.absorbing)
+        StopAbsorbing();
+        interrumpt = false;
+    }
+
+    void StopAbsorbing()
+    {
+        if (IWM.absorbing && !interrumpt)
         {
+            if (nearestEnemy != null && howMuchToAdd == 0)
+            {
+                howMuchToAdd += nearestEnemy.addStamina * nearestEnemy.absorbPercentage;
+
+                Debug.Log(howMuchToAdd + "FromRelease");
+            }
+
             IWM.player.stop = false;
             IWM.absorbing = false;
+            IWM.stamina += howMuchToAdd;
+            howMuchToAdd = 0;
         }
     }
 
@@ -136,10 +160,18 @@ public class Absorb : MonoBehaviour
         {
             if (nearestEnemy.staminaTimeCounter >= nearestEnemy.maxTimeToStamina)
             {
+                nearestEnemy.absorbPercentage = 1;
+
+                if (howMuchToAdd == 0)
+                {
+                    howMuchToAdd += nearestEnemy.addStamina * nearestEnemy.absorbPercentage;
+
+                    Debug.Log(howMuchToAdd + "FromGain");
+                }
+
                 nearestEnemy.addStamina = 0;
                 nearestEnemy.staminaTimeCounter = 0;
                 nearestEnemy.addStamina = 0;
-                nearestEnemy.absorbPercentage = 1;
                 Destroy(nearestEnemy.gameObject, 5);
                 nearestEnemy = null;
             }
@@ -148,7 +180,6 @@ public class Absorb : MonoBehaviour
                 nearestEnemy.staminaTimeCounter += Time.deltaTime;
                 nearestEnemy.absorbPercentage = Mathf.Clamp01(nearestEnemy.staminaTimeCounter / nearestEnemy.maxTimeToStamina);
             }
-            //IWM.stamina += nearestEnemy.addStamina * nearestEnemy.absorbPercentage;
         }
     }
 

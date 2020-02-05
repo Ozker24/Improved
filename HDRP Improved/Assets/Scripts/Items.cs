@@ -210,22 +210,25 @@ public class Items : MonoBehaviour
             }
             else
             {
-                Debug.Log("Interrumpted");
-
-                AudioSource source = GetComponent<AudioSource>();
-
-                if (source != null)
+                if (player.life.health < 100)
                 {
-                    source.Stop();
+                    Debug.Log("Interrumpted");
+
+                    AudioSource source = GetComponent<AudioSource>();
+
+                    if (source != null)
+                    {
+                        source.Stop();
+                    }
+
+                    visualItemsCount[1]++;
+
+                    firstAidVisuals[visualItemsCount[1] - 1].SetActive(true);
+
+                    //healthAnim.SetBool("Health", false);
+                    TimeCounter = 0;
+                    firstTime = false;
                 }
-
-                visualItemsCount[1]++;
-
-                firstAidVisuals[visualItemsCount[1] - 1].SetActive(true);
-
-                healthAnim.SetBool("Health", false);
-                TimeCounter = 0;
-                firstTime = false;
             }
         }
     }
@@ -406,7 +409,7 @@ public class Items : MonoBehaviour
                 if (TimeCounter >= timeFirstAid)
                 {
                     Debug.Log("Healed");
-                    healthAnim.SetBool("Health", false);
+                    //healthAnim.SetBool("Health", false);
                     TimeCounter = 0;
 
                     peace.Health();
@@ -431,7 +434,7 @@ public class Items : MonoBehaviour
                 else
                 {
                     TimeCounter += Time.deltaTime;
-                    healthAnim.SetBool("Health", true);
+                    //healthAnim.SetBool("Health", true);
                 }
             }
         }

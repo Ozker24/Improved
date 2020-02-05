@@ -119,7 +119,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 6023a00ff304877439b8b28f94c6047e, type: 2}
+  m_NavMeshData: {fileID: 0}
 --- !u!1 &42945539
 GameObject:
   m_ObjectHideFlags: 0
@@ -3629,11 +3629,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Phase 2
       objectReference: {fileID: 0}
-    - target: {fileID: 5348835213635703551, guid: 013a80693edd24f40a4bc40b267efdf7,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5348835213635703424, guid: 013a80693edd24f40a4bc40b267efdf7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3691,39 +3686,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5348835213635703428, guid: 013a80693edd24f40a4bc40b267efdf7,
         type: 3}
-      propertyPath: Detected
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5348835213635703428, guid: 013a80693edd24f40a4bc40b267efdf7,
-        type: 3}
       propertyPath: combatArea
       value: 
       objectReference: {fileID: 2015656557}
-    - target: {fileID: 5348835213635703428, guid: 013a80693edd24f40a4bc40b267efdf7,
-        type: 3}
-      propertyPath: stayThere
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5348835213635703428, guid: 013a80693edd24f40a4bc40b267efdf7,
-        type: 3}
-      propertyPath: dead
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5348835213635703428, guid: 013a80693edd24f40a4bc40b267efdf7,
-        type: 3}
-      propertyPath: maxLife
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5348835213635703428, guid: 013a80693edd24f40a4bc40b267efdf7,
-        type: 3}
-      propertyPath: addStamina
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 5348835213635703428, guid: 013a80693edd24f40a4bc40b267efdf7,
-        type: 3}
-      propertyPath: maxTimeToStamina
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 013a80693edd24f40a4bc40b267efdf7, type: 3}
 --- !u!1 &1277552869
@@ -5905,7 +5870,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1855858652
 BoxCollider:

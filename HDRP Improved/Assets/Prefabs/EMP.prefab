@@ -131,7 +131,7 @@ MonoBehaviour:
   radius: 3
   layer:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 2097664
   source: {fileID: 1867746610418847103}
   explosionClip: {fileID: 8300000, guid: 5ec66ef857eb38740be3c5bc644d72bb, type: 3}
   mesh: {fileID: 7843920161008560685}

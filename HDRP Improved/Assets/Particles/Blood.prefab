@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1750076676884494365}
   - component: {fileID: 1750076676884494366}
   m_Layer: 0
-  m_Name: Blood_01
+  m_Name: Blood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,7 +43,7 @@ ParticleSystem:
   serializedVersion: 6
   lengthInSec: 0.5
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 2
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 529714117}
   - component: {fileID: 529714119}
   - component: {fileID: 529714118}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Executation Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -315,8 +315,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be2281a6d7c9d394085f02237f8e2925, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  states: 0
-  IHaveSight: 0
+  states: 3
+  IHaveSight: 1
   itsef: {fileID: 0}
   agent: {fileID: 0}
   audPlay: {fileID: 0}
@@ -329,11 +329,11 @@ MonoBehaviour:
   combatArea: {fileID: 0}
   attack: {fileID: 0}
   Detected: 0
-  chaseSpeed: 0
+  chaseSpeed: 5
   player: {fileID: 0}
   playerPos: {x: 0, y: 0, z: 0}
   positionWhereSound: {x: 0, y: 0, z: 0}
-  distToSearch: 4
+  distToSearch: 1
   timeToDetect: 1
   timeCounterDetection: 0
   sendDetectionInfo: 1
@@ -342,7 +342,7 @@ MonoBehaviour:
   wantToHear: 0
   firstSearch: 0
   timeLookingCounter: 0
-  maxTimeLooking: 0
+  maxTimeLooking: 2
   distToAttack: 2
   distToScape: 4
   restTimeToAttack: 0.75
@@ -362,36 +362,41 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   currentPoint: 0
-  patrolStopDist: 1
-  patrolSpeed: 0
-  stayThere: 0
+  patrolStopDist: 2
+  patrolSpeed: 2
+  stayThere: 1
   stationaryTimeCounter: 0
-  generalWaitOnPointTime: 0
-  waitOnPointTime: 0
-  waitComeFromSound: 0
-  percentageOfWait: 0
+  generalWaitOnPointTime: 1
+  waitOnPointTime: 5
+  waitComeFromSound: 10
+  percentageOfWait: 20
   randomNum: 0
   stopOnThePoints: 0
   stopOnPoint: 0
   goToNearPoint: 0
   comeFromSound: 0
   currentLife: 0
-  maxLife: 3
+  maxLife: 1
   timeStunned: 0.5
   stunnedTimeCounter: 0
-  whenSoundAddDist: 0
-  whenSoundRestTime: 0
-  alertSpeed: 0
-  alertDistance: 0
-  alertTime: 0
-  alertGeneralWaitOnPointTime: 0
-  alertWaitOnPointTime: 0
-  alertWaitComeFromSound: 0
-  alertWaitPercentage: 0
+  whenSoundAddDist: 6
+  whenSoundRestTime: 3
+  alertSpeed: 4
+  alertDistance: 5.9
+  alertTime: 2.9
+  alertGeneralWaitOnPointTime: 3
+  alertWaitOnPointTime: 8
+  alertWaitComeFromSound: 15
+  alertWaitPercentage: 70
   inAlert: 0
   changeVariables: 0
   timeToDie: 5
   dead: 0
+  addStamina: 20
+  timeToAddStamina: 0
+  staminaTimeCounter: 0
+  maxTimeToStamina: 5
+  absorbPercentage: 0
   basicSource: {fileID: 5348835213635703430}
   clips: {fileID: 5348835214695199568}
 --- !u!114 &5348835213635703547
@@ -408,7 +413,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeCounter: 0
   timeToBurn: 2
-  fireableIndex: 0.2
 --- !u!54 &5348835213635703546
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -566,7 +570,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5348835214536151464}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Attack Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -597,7 +601,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5348835214695199575}
   - component: {fileID: 5348835214695199568}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Audio Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -691,11 +695,11 @@ MonoBehaviour:
   radiusOfDetection: 10
   onArea: 0
   hearingPlayer: 0
-  initCloseDistance: 0
-  initCloseTimeToDetect: 0
-  closeDistance: 4
+  initCloseDistance: 4
+  initCloseTimeToDetect: 4
+  closeDistance: 0
   closeTimeCounter: 0
-  closeTimeToDetect: 4
+  closeTimeToDetect: 0
   soClose: 0
   distanceToDetectSound: 20
 --- !u!135 &5348835214722273836
@@ -837,6 +841,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cone Sight
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: c89b638dd8e00d34c8c3a7598288642e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: c89b638dd8e00d34c8c3a7598288642e,
         type: 3}

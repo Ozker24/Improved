@@ -60,6 +60,16 @@ public class Emp : MonoBehaviour
                 nearbyObject.transform.SendMessage("StunnedSet", empTime, SendMessageOptions.RequireReceiver);
                 Debug.Log("Enemy");
             }
+            
+            else if (nearbyObject.tag == "Interruptor")
+            {
+                Interruptor interruptor = nearbyObject.GetComponentInParent<Interruptor>();
+
+                if (interruptor != null)
+                {
+                    interruptor.DoInteraction();
+                }
+            }
         }
         //Damage enemies
 

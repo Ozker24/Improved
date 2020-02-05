@@ -16,6 +16,7 @@ TagManager:
   - Combat Area
   - Metal
   - Improved
+  - Interruptor
   layers:
   - Default
   - TransparentFX
@@ -38,7 +39,7 @@ TagManager:
   - Player
   - Stamina
   - Misil
-  - 
+  - Interruptor
   - 
   - 
   - 

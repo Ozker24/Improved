@@ -620,6 +620,11 @@ public class EnemyTest : MonoBehaviour
             Debug.Log("Player hit");
             basicSource.PlayOneShot(clips.clips[1]);
             player.Damage(hitDamage);
+
+            if (player.IWM.absorbing && player.GM.improved)
+            {
+                player.IWM.absorb.interrumpt = true;
+            }
         }
 
         else if (!attack.playerInArea)
