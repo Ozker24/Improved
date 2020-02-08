@@ -19,6 +19,7 @@ public class ImprovedWeaponManager : MonoBehaviour
     public float improvedSpeed;
 
     [Header("Stamina")]
+    [SerializeField] Material staminaMat;
     public float stamina = 100;
     public float percentage;
     public Image image;
@@ -78,5 +79,7 @@ public class ImprovedWeaponManager : MonoBehaviour
         {
             stamina = 0;
         }
+
+        staminaMat.SetFloat("Vector1_8DF954C3", percentage);
     }
 }

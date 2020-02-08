@@ -225,6 +225,17 @@ public class PlayerController : MonoBehaviour
     public void Crouch()
     {
         crouching = !crouching;
+
+        if (crouching)
+        {
+            controler.height = 1;
+            controler.center = new Vector3(controler.center.x, controler.center.y - 0.405f, controler.center.z);
+        }
+        else
+        {
+            controler.height = 1.81f;
+            controler.center = new Vector3(controler.center.x, controler.center.y + 0.405f, controler.center.z);
+        }
     }
 
     public void Run(bool state)

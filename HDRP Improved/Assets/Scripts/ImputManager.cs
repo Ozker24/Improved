@@ -340,7 +340,7 @@ public class ImputManager : MonoBehaviour
 
     public void Absorb()
     {
-        if (Input.GetButton("Absorb"))
+        if (Input.GetButtonDown("Absorb"))
         {
             IWM.absorb.DoAbsorb();
         }

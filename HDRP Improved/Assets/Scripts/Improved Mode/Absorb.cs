@@ -39,16 +39,15 @@ public class Absorb : MonoBehaviour
 
         SetCanAbsorb();
 
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            StopAbsorbing();
+        }
+
         if (IWM.absorbing) //&& !interrumpt)// para cuando te goolpeen otro booleano y asi no suma
         {
             GainStamina();
         }
-
-        /*if (interrumpt)
-        {
-            StopAbsorbing();
-            Debug.Log("Interrump");
-        }*/
     }
 
     void DetectNearestAbsorb()
@@ -136,7 +135,7 @@ public class Absorb : MonoBehaviour
         interrumpt = false;
     }
 
-    void StopAbsorbing()
+    public void StopAbsorbing()
     {
         if (IWM.absorbing && !interrumpt)
         {
@@ -171,7 +170,12 @@ public class Absorb : MonoBehaviour
 
                 nearestEnemy.addStamina = 0;
                 nearestEnemy.staminaTimeCounter = 0;
-                nearestEnemy.addStamina = 0;
+
+                IWM.player.stop = false;
+                IWM.absorbing = false;
+                IWM.stamina += howMuchToAdd;
+                howMuchToAdd = 0;
+
                 Destroy(nearestEnemy.gameObject, 5);
                 nearestEnemy = null;
             }

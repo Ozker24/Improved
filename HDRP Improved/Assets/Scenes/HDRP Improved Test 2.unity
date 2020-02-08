@@ -9192,7 +9192,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 544915715}
-  m_LocalRotation: {x: 0.062318042, y: 0.014317381, z: -0.0008940233, w: 0.99795324}
+  m_LocalRotation: {x: 0.062318042, y: 0.014317381, z: -0.00089402334, w: 0.99795324}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -13407,8 +13407,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 742023942}
-  m_LocalRotation: {x: 0.062318057, y: 0.014317386, z: -0.00089402375, w: 0.99795324}
-  m_LocalPosition: {x: 12.796471, y: 5.900034, z: -30.401825}
+  m_LocalRotation: {x: 0.062318057, y: 0.014317386, z: -0.0008940238, w: 0.99795324}
+  m_LocalPosition: {x: 12.796471, y: 5.900034, z: -29.635824}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 42945540}
@@ -14077,7 +14077,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 876096895}
-  m_LocalRotation: {x: 0.062318042, y: 0.0143173905, z: -0.0008940385, w: 0.99795324}
+  m_LocalRotation: {x: 0.062318042, y: 0.0143173905, z: -0.00089403853, w: 0.99795324}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -28792,7 +28792,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1178095232}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.796471, y: 5.900034, z: -30.401825}
+  m_LocalPosition: {x: 12.796471, y: 5.900034, z: -29.635824}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 876096897}
@@ -32678,7 +32678,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1379034324}
-  m_LocalRotation: {x: 0.062318042, y: 0.014317386, z: -0.0008940262, w: 0.99795324}
+  m_LocalRotation: {x: 0.062318042, y: 0.014317386, z: -0.00089402625, w: 0.99795324}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -35464,7 +35464,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1576076849
 Transform:
   m_ObjectHideFlags: 0
@@ -68100,26 +68100,6 @@ PrefabInstance:
       propertyPath: lookTarget
       value: 
       objectReference: {fileID: 42945540}
-    - target: {fileID: 6827900420496641493, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
-        type: 3}
-      propertyPath: normalModeFistDamage
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6827900420496641493, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
-        type: 3}
-      propertyPath: improvedModeFistDamage
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6827900420496641493, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
-        type: 3}
-      propertyPath: normalModeMaxFists
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6827900420496641493, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
-        type: 3}
-      propertyPath: improvedModeMaxFists
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 6827900420496641494, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -68133,7 +68113,7 @@ PrefabInstance:
     - target: {fileID: 6827900420496641494, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -20.93
+      value: -20.164
       objectReference: {fileID: 0}
     - target: {fileID: 6827900420496641494, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
         type: 3}
@@ -68185,21 +68165,6 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 742023944}
-    - target: {fileID: 6827900421331495836, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
-        type: 3}
-      propertyPath: itemsCount.Array.data[2]
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6827900420324706546, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
-        type: 3}
-      propertyPath: health
-      value: 56
-      objectReference: {fileID: 0}
-    - target: {fileID: 6827900420324706546, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
-        type: 3}
-      propertyPath: healthToTwinkle
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 602252127, guid: 90b3c2faeab051a4a8bf446d36a4fc15, type: 3}
       propertyPath: image
       value: 

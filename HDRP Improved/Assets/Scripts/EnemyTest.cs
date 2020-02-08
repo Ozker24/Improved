@@ -623,7 +623,7 @@ public class EnemyTest : MonoBehaviour
 
             if (player.IWM.absorbing && player.GM.improved)
             {
-                player.IWM.absorb.interrumpt = true;
+                //player.IWM.absorb.StopAbsorbing();
             }
         }
 
