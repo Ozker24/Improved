@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
     public float gravityMagnitude = 1.0f;
 
     [Header("Sound")]
-    public AudioSource CollectItemSource;
+    public AudioSource baseSource;
 
     public void Initialize()
     {
@@ -434,7 +434,7 @@ public class PlayerController : MonoBehaviour
             //CollectItemSource.clip = itemCollected.collectSound;
             //source.playOnAwake = false;
 
-            CollectItemSource.PlayOneShot(itemCollected.collectSound);
+            baseSource.PlayOneShot(itemCollected.collectSound);
             //Destroy(source, source.clip.length);
         }
     }
@@ -449,7 +449,7 @@ public class PlayerController : MonoBehaviour
 
         if (itemCollected.collectSound != null)
         {
-            CollectItemSource.PlayOneShot(itemCollected.collectSound);
+            baseSource.PlayOneShot(itemCollected.collectSound);
         }
     }
 

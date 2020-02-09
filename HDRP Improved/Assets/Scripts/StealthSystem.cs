@@ -44,10 +44,8 @@ public class StealthSystem : MonoBehaviour
     public void MyUpdate()
     {
         DetectAction();
-        if (!detected)
-        {
-            DetectingSound();
-        }
+
+        DetectingSound();
     }
 
     public void DetectAction()
@@ -117,7 +115,7 @@ public class StealthSystem : MonoBehaviour
         {
             stealthAudioSource.Stop();
             stealthAudioSource.volume = 0;
-            player.CollectItemSource.PlayOneShot(detectedSound);
+            player.baseSource.PlayOneShot(detectedSound);
             detected = true;
         }
     }

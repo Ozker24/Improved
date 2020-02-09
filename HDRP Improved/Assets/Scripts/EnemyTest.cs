@@ -524,12 +524,14 @@ public class EnemyTest : MonoBehaviour
         playerDetector.hearingPlayer = false;
         states = State.detect;
 
+        stealth.enemies.Remove(itsef);
+
         if (stealth.playingDetectingSound && Detected)
         {
             stealth.playingDetectingSound = false;
             stealth.stealthAudioSource.Stop();
 
-            player.CollectItemSource.PlayOneShot(stealth.detectedSound);
+            player.baseSource.PlayOneShot(stealth.detectedSound);
         }
     }
 
