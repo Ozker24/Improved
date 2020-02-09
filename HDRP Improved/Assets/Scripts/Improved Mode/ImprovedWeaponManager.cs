@@ -66,6 +66,7 @@ public class ImprovedWeaponManager : MonoBehaviour
 
         laser.MyUpdate();
         flameThrower.MyUpdate();
+        hDash.MyUpdate();
         absorb.MyUpdate();
 
         percentage = Mathf.Clamp01(stamina / 100);

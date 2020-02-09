@@ -376,7 +376,7 @@ MonoBehaviour:
   goToNearPoint: 0
   comeFromSound: 0
   currentLife: 0
-  maxLife: 1
+  maxLife: 4
   timeStunned: 0.5
   stunnedTimeCounter: 0
   whenSoundAddDist: 6
@@ -826,6 +826,8 @@ MonoBehaviour:
   watchingPlayer: 0
   initRayPos: {fileID: 208705461011367893}
   FinalRayPos: {fileID: 0}
+  crouchFinalPos: {fileID: 0}
+  uncrouchFinalPos: {fileID: 0}
   rayLayer:
     serializedVersion: 2
     m_Bits: 290816

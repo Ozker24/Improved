@@ -14,6 +14,8 @@ public class EnemySight : MonoBehaviour
     [Header("Check Objects")]
     public Transform initRayPos;
     public Transform FinalRayPos;
+    public Transform crouchFinalPos;
+    public Transform uncrouchFinalPos;
     public LayerMask rayLayer;
     public bool noObjectsOccluding;
 
@@ -22,11 +24,20 @@ public class EnemySight : MonoBehaviour
         enemy = GetComponentInParent<EnemyTest>();
         enemy.stealth = GameObject.FindGameObjectWithTag("Player").GetComponent<StealthSystem>();
         timeToDetect = enemy.stealth.timeToDetect;
-        FinalRayPos = enemy.stealth.sightFinalRayPos;
+        //FinalRayPos = enemy.stealth.sightFinalRayPos;
     }
 
     public void MyUpdate()
     {
+        if (enemy.player.crouching)
+        {
+            FinalRayPos = crouchFinalPos;
+        }
+        else
+        {
+            FinalRayPos = uncrouchFinalPos;
+        }
+
         if(enemy.IHaveSight)
         {
             Watching();
@@ -73,15 +84,16 @@ public class EnemySight : MonoBehaviour
             RaycastHit hit = new RaycastHit();
             Physics.Linecast(initRayPos.position, FinalRayPos.position, out hit, rayLayer);
 
-            Debug.Log(hit.transform.name);
-
-            if (hit.transform.tag == "Player")
+            if (hit.transform != null)
             {
-                noObjectsOccluding = true;
-            }
-            else
-            {
-                noObjectsOccluding = false;
+                if (hit.transform.tag == "Player")
+                {
+                    noObjectsOccluding = true;
+                }
+                else
+                {
+                    noObjectsOccluding = false;
+                }
             }
         }
     }

@@ -93,6 +93,12 @@ public class Weapon : MonoBehaviour
                     Destroy(particle, 10);
                     hit.transform.SendMessage("StunnedSet", stunedTime, SendMessageOptions.RequireReceiver);
                     hit.transform.SendMessage("Damage", bulletDamage, SendMessageOptions.RequireReceiver);
+
+                    EnemyTest enemy = hit.transform.GetComponent<EnemyTest>();
+                    if (enemy != null)
+                    {
+                        enemy.Detected = true;
+                    }
                 }
 
                 else if (hit.transform.tag == "Metal")
@@ -122,6 +128,12 @@ public class Weapon : MonoBehaviour
 
                         hit.transform.SendMessage("StunnedSet", stunedTime, SendMessageOptions.RequireReceiver);
                         hit.transform.SendMessage("Damage", bulletDamage, SendMessageOptions.RequireReceiver);
+
+                        EnemyTest enemy = hit.transform.GetComponent<EnemyTest>();
+                        if (enemy != null)
+                        {
+                            enemy.Detected = true;
+                        }
                     }
 
                     else if (hit.transform.tag == "Metal")

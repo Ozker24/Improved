@@ -5,7 +5,9 @@ using UnityEngine;
 public class HyperDash : MonoBehaviour
 {
     [SerializeField] ImprovedWeaponManager IWM;
-    [SerializeField] float timeUsingDash;
+    [SerializeField] float timeOfDodgeImprovedMode;
+    [SerializeField] float timeForCanDodgeImprovedMode;
+    [SerializeField] float dodgeImprovedModeSpeed;
     [SerializeField] float restStamina;
 
     public void Initialize()
@@ -13,19 +15,24 @@ public class HyperDash : MonoBehaviour
         IWM = GetComponentInParent<ImprovedWeaponManager>();
     }
 
+    public void MyUpdate()
+    {
+        if (IWM.GM.improved)
+        {
+            IWM.player.dodgeSpeed = dodgeImprovedModeSpeed;
+            IWM.player.timeOfDodge = timeOfDodgeImprovedMode;
+            IWM.player.timeForCanDodge = timeForCanDodgeImprovedMode;
+        }
+    }
+
+
     public void DoDash()
     {
         if(IWM.stamina > 0 && !IWM.usingFlameThrower && !IWM.usingHyperJump && !IWM.usingHyperDash && !IWM.usingLaserGun && !IWM.usingMisileLaucher && !IWM.absorbing)
         {
             IWM.usingHyperDash = true;
             IWM.stamina -= restStamina;
-            StartCoroutine(SetUsingHyperDash());
+            IWM.player.Dodge();
         }
-    }
-
-    IEnumerator SetUsingHyperDash()
-    {
-        yield return new WaitForSeconds(timeUsingDash);
-        IWM.usingHyperDash = false;
     }
 }

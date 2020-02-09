@@ -134,7 +134,8 @@ public class EnemyPlayerDetector : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, enemy.player.transform.position) <= enemy.stealth.actualSoundDistance)
         {
-            enemy.Detected = true;
+            //enemy.Detected = true;
+            enemy.positionWhereSound = enemy.stealth.lastImportantSoundPosition;
         }
     }
 

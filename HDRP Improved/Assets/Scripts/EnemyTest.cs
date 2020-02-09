@@ -296,7 +296,7 @@ public class EnemyTest : MonoBehaviour
             if (!combatArea.detected)
             {
                 execution.area.enabled = false;
-                combatArea.detected = true;
+                //combatArea.detected = true;
             }
 
             ChaseSet();
@@ -623,7 +623,7 @@ public class EnemyTest : MonoBehaviour
 
             if (player.IWM.absorbing && player.GM.improved)
             {
-                //player.IWM.absorb.StopAbsorbing();
+                player.IWM.absorb.StopAbsorbing();
             }
         }
 

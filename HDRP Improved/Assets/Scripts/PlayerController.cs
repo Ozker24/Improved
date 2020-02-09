@@ -42,14 +42,21 @@ public class PlayerController : MonoBehaviour
 
     [Header("Rotation")]
     public Camera cam;
-    public float angleRot;
     public Transform lookTarget;
     public Transform camTrans;
     public Transform modelTrans;
+    public float angleRot;
 
     [Header("Climb")]
-    public bool canClimb;
+    public Transform climbRayTrans;
     public Vector3 endedClimb;
+    [SerializeField] float climbTime;
+    public bool canClimb;
+
+    [Header("Crouch")]
+    [SerializeField] float crouchHeight;
+    [SerializeField] float normalHeight;
+    [SerializeField] float charControllercenterOffset;
 
     [Header("Combat")]
     public int normalModeFistDamage;
@@ -66,10 +73,17 @@ public class PlayerController : MonoBehaviour
     public bool beeingDetected;
 
     [Header("Dodge")]
+    [SerializeField] Vector2 axisOnDodge;
     public float dodgeForce;
-    public float dodgeResetTime;
-    public bool dodge;
+    public float dodgeSpeed;
+    public float dodgeNormalModeSpeed;
+    public float timeOfDodge;
+    public float timeOfDodgeNormalMode;
+    public float timeForCanDodge;
+    public float timeForCanDodgeNormalMode;
+    public bool dodgeForGravity;
     public bool canDodge = true;
+    public bool dodging = true;
 
     [Header("Gravity Values")]
     private float forceToGround = Physics.gravity.y;
@@ -96,19 +110,25 @@ public class PlayerController : MonoBehaviour
 
         cam = Camera.main;
         camTrans = cam.transform;
+
+        dodgeSpeed = dodgeNormalModeSpeed;
+        timeOfDodge = timeOfDodgeNormalMode;
+        timeForCanDodge = timeForCanDodgeNormalMode;
+
+        normalHeight = controler.height;
+        charControllercenterOffset = (normalHeight - crouchHeight) / 2;
     }
 
     public void MyUpdate()
     {
-        //GravitySimulation();
-
         aiming = aim.aim;
-
-        /*if (WM.searchingBullet) stop = true;
-        else stop = false;*/
-
         MovePlayer();
+        RotateModel();
+        SetAnims();
+    }
 
+    public void RotateModel()
+    {
         if (!stop && !climb)
         {
             if (moving || (items.pressed && items.canDoItem && !items.inv.startCountdown) || aim.aim || CC.point || IWM.usingFlameThrower || IWM.usingLaserGun)
@@ -120,8 +140,6 @@ public class PlayerController : MonoBehaviour
                 modelTrans.rotation = newPlayerQuaternion;
             }
         }
-
-        SetAnims();
     }
 
     public void OnTriggerEnter(Collider other)
@@ -151,6 +169,11 @@ public class PlayerController : MonoBehaviour
         {
             axis.x = x;
             axis.y = y;
+        }
+
+        if (dodging)
+        {
+            axis = axisOnDodge;
         }
     }
 
@@ -194,15 +217,14 @@ public class PlayerController : MonoBehaviour
 
     void GravitySimulation()
     {
-        if (controler.isGrounded && !dodge && !IWM.hJump.jump)
+        if (controler.isGrounded && !dodgeForGravity && !IWM.hJump.jump)
         {
-            //Debug.Log(controler.isGrounded);
             verticalSpeed = forceToGround;
         }
         else
         {
             verticalSpeed += forceToGround * gravityMagnitude * Time.deltaTime; // constantemente se le suma acceleracion de la grabedad
-            dodge = false;
+            dodgeForGravity = false;
             IWM.hJump.jump = false;
             IWM.hJump.didHyperJump = false;
             IWM.hJump.falling = false;
@@ -211,12 +233,22 @@ public class PlayerController : MonoBehaviour
 
     public void Dodge()
     {
-        if (!dodge && controler.isGrounded && canDodge)
+        if (!dodgeForGravity && controler.isGrounded && canDodge && !dodging && !canClimb && !climb)
         {
-            dodge = true;
-            verticalSpeed = dodgeForce;
-            StartCoroutine(ResetDodge());
+            dodgeForGravity = true;
+            axisOnDodge = axis;
+
+            crouching = false;
+
+            if (axisOnDodge == Vector2.zero)
+            {
+                axisOnDodge = Vector2.down;
+            }
+
             canDodge = false;
+            dodging = true;
+            StartCoroutine(StopDodging());
+            StartCoroutine(ResetDodge());
         }
     }
 
@@ -228,13 +260,13 @@ public class PlayerController : MonoBehaviour
 
         if (crouching)
         {
-            controler.height = 1;
-            controler.center = new Vector3(controler.center.x, controler.center.y - 0.405f, controler.center.z);
+            controler.height = crouchHeight;
+            controler.center = new Vector3(controler.center.x, controler.center.y - charControllercenterOffset, controler.center.z);
         }
         else
         {
-            controler.height = 1.81f;
-            controler.center = new Vector3(controler.center.x, controler.center.y + 0.405f, controler.center.z);
+            controler.height = normalHeight;
+            controler.center = new Vector3(controler.center.x, controler.center.y + charControllercenterOffset, controler.center.z);
         }
     }
 
@@ -281,8 +313,6 @@ public class PlayerController : MonoBehaviour
 
     public void CalculateSpeeds()
     {
-        //if (!GM.godMode)
-        //{
         if(!GM.improved)
         {
             if (moving && !crouching && !running) speed = walkSpeed;
@@ -294,25 +324,31 @@ public class PlayerController : MonoBehaviour
         {
             speed = IWM.improvedSpeed;
         }
-        //}
+
+        if (dodging)
+        {
+            speed = dodgeSpeed;
+        }
     }
 
     #endregion
 
     public void Climb()
     {
-        if (canClimb && !climb)
+        if (canClimb && !climb && !dodging)
         {
-            //anims.ClimbAnimation();
+            climb = true;
+            GM.ableToInput = false;
+            axis = new Vector2(0, 0);
+            controler.detectCollisions = false;
+
+            RaycastHit hit = new RaycastHit();// que hemos golpeado primero
+            Physics.Raycast(climbRayTrans.position, Vector3.down, out hit);
+            endedClimb = hit.point;
+
+            StartCoroutine(ResetClimb());
         }
     }
-
-    /*public void Dodge()
-    {
-        Debug.Log("Dodge");
-        dodgeDir = new Vector3 (moveDir.x, DodgeForce, moveDir.z);
-        rb.AddForce(dodgeDir);
-    }*/
 
     public void Collect()
     {
@@ -443,8 +479,25 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator ResetDodge()
     {
-        yield return new WaitForSeconds(dodgeResetTime);
+        yield return new WaitForSeconds(timeForCanDodge);
         canDodge = true;
+    }
+
+    IEnumerator StopDodging()
+    {
+        yield return new WaitForSeconds(timeOfDodge);
+        dodging = false;
+        axisOnDodge = Vector2.zero;
+        IWM.usingHyperDash = false;
+    }
+
+    IEnumerator ResetClimb()
+    {
+        yield return new WaitForSeconds(climbTime);
+        climb = false;
+        controler.detectCollisions = true;
+        GM.ableToInput = true;
+        transform.position = endedClimb;
     }
 
     public void PlaySound()
@@ -457,5 +510,11 @@ public class PlayerController : MonoBehaviour
         source.PlayDelayed(0.3f);
 
         Destroy(source, source.clip.length);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawRay(climbRayTrans.position, Vector3.down);
+        Gizmos.color = Color.red;
     }
 }

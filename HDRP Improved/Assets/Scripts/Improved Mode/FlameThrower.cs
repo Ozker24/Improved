@@ -59,9 +59,4 @@ public class FlameThrower : MonoBehaviour
             }
         }
     }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawCube(transform.position, halfAreaSize * 2);
-    }
 }

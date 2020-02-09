@@ -2548,7 +2548,7 @@ PrefabInstance:
     - target: {fileID: 5348835213635703551, guid: 013a80693edd24f40a4bc40b267efdf7,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5348835213635703424, guid: 013a80693edd24f40a4bc40b267efdf7,
         type: 3}
@@ -2910,7 +2910,7 @@ MonoBehaviour:
   dead: 0
   win: 0
   options: 0
-  improved: 1
+  improved: 0
   godMode: 0
 --- !u!114 &1065408027
 MonoBehaviour:
@@ -3632,7 +3632,7 @@ PrefabInstance:
     - target: {fileID: 5348835213635703551, guid: 013a80693edd24f40a4bc40b267efdf7,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5348835213635703424, guid: 013a80693edd24f40a4bc40b267efdf7,
         type: 3}
@@ -3694,6 +3694,11 @@ PrefabInstance:
       propertyPath: combatArea
       value: 
       objectReference: {fileID: 2015656557}
+    - target: {fileID: 5348835213635703428, guid: 013a80693edd24f40a4bc40b267efdf7,
+        type: 3}
+      propertyPath: dead
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 013a80693edd24f40a4bc40b267efdf7, type: 3}
 --- !u!1 &1277552869
@@ -5162,6 +5167,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4932780641947114559, guid: 4d6914fe0d7ebb3468b4b660b4d7379c,
+        type: 3}
+      propertyPath: dropQuality
+      value: 
+      objectReference: {fileID: 619335434}
+    - target: {fileID: 4932780641947114559, guid: 4d6914fe0d7ebb3468b4b660b4d7379c,
+        type: 3}
+      propertyPath: sliderMasterAud
+      value: 
+      objectReference: {fileID: 248501210}
+    - target: {fileID: 4932780641947114559, guid: 4d6914fe0d7ebb3468b4b660b4d7379c,
+        type: 3}
+      propertyPath: AutoResToggle
+      value: 
+      objectReference: {fileID: 1714453132}
     - target: {fileID: 4932780641947114558, guid: 4d6914fe0d7ebb3468b4b660b4d7379c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5267,21 +5287,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 4932780641947114559, guid: 4d6914fe0d7ebb3468b4b660b4d7379c,
-        type: 3}
-      propertyPath: dropQuality
-      value: 
-      objectReference: {fileID: 619335434}
-    - target: {fileID: 4932780641947114559, guid: 4d6914fe0d7ebb3468b4b660b4d7379c,
-        type: 3}
-      propertyPath: sliderMasterAud
-      value: 
-      objectReference: {fileID: 248501210}
-    - target: {fileID: 4932780641947114559, guid: 4d6914fe0d7ebb3468b4b660b4d7379c,
-        type: 3}
-      propertyPath: AutoResToggle
-      value: 
-      objectReference: {fileID: 1714453132}
     - target: {fileID: 4932780641506498642, guid: 4d6914fe0d7ebb3468b4b660b4d7379c,
         type: 3}
       propertyPath: m_IsActive

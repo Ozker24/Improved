@@ -13,6 +13,7 @@ public class StealthSystem : MonoBehaviour
     public bool canBeDetected = false;
     public bool importantAudio;
     public float actualSoundDistance;
+    public Vector3 lastImportantSoundPosition;
     //public bool beeingDetected;
 
     [Header("Detecting By Sound")]
@@ -72,6 +73,7 @@ public class StealthSystem : MonoBehaviour
         importantAudio = true;
         actualSoundDistance = distance;
         StartCoroutine(ImportantAudioFalse());
+        lastImportantSoundPosition = player.transform.position;
     }
 
     public void DetectingSound()
