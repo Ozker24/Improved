@@ -22,7 +22,19 @@ public class ImprovedWeaponManager : MonoBehaviour
     [SerializeField] Material staminaMat;
     public float stamina = 100;
     public float percentage;
+    public float staminaMultiply;
+    public float staminaFastMultiply;
+    public float staminaSlowMultiply;
     public Image image;
+    public bool addConstantStamina;
+    public bool speedStamina;
+
+    [Header("Life")]
+    public float lifeMultiply;
+    public float lifeFastMultiply;
+    public float lifeSlowMultiply;
+    public bool addConstantLife;
+    public bool speedLife;
 
     [Header ("Using Weapons")]
     public bool usingLaserGun;
@@ -81,6 +93,57 @@ public class ImprovedWeaponManager : MonoBehaviour
             stamina = 0;
         }
 
+        ConstantGainStamina();
+        ConstantGainLife();
+
         staminaMat.SetFloat("Vector1_8DF954C3", percentage);
+    }
+
+    void ConstantGainLife()
+    {
+        if (speedLife)
+        {
+            lifeMultiply = lifeFastMultiply;
+        }
+        else
+        {
+            lifeMultiply = lifeSlowMultiply;
+        }
+
+        if (addConstantLife && GM.improved)
+        {
+            if (player.life.health < 100)
+            {
+                player.life.health += Time.deltaTime * lifeMultiply;
+            }
+            else if(player.life.health >= 100)
+            {
+                stamina = 100;
+            }
+        }
+    }
+
+    void ConstantGainStamina()
+    {
+        if (speedStamina)
+        {
+            staminaMultiply = staminaFastMultiply;
+        }
+        else
+        {
+            staminaMultiply = staminaSlowMultiply;
+        }
+
+        if (addConstantStamina && GM.improved)
+        {
+            if (stamina < 100)
+            {
+                stamina += Time.deltaTime * staminaMultiply;
+            }
+            else if (stamina >= 100)
+            {
+                stamina = 100;
+            }
+        }
     }
 }

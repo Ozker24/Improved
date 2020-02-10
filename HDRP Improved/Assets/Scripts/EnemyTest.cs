@@ -342,6 +342,7 @@ public class EnemyTest : MonoBehaviour
                 else
                 {
                     stationaryTimeCounter += Time.deltaTime;
+                    Debug.Log(waitComeFromSound);
                 }
             }
 
