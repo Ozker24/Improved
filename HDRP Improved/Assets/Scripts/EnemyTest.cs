@@ -710,10 +710,10 @@ public class EnemyTest : MonoBehaviour
         }
     }
 
-    public void OnDrawGizmos()
+    /*public void OnDrawGizmos()
     {
         Gizmos.DrawCube(attackAreaTrans.position, HalfStent * 2);
-    }
+    }*/
 
     public void PlaySound(int index, float delay)
     {
