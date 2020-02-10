@@ -83,8 +83,11 @@ public class WeaponManager : MonoBehaviour
 
     public void Shot()
     {
-        if (!player.climb && !player.stop && items.canDoGun && ableGun && !items.pressed) weapons[WeaponSelected].Shot();
-        stealth.MakeImportantAudio(distanceToSound[WeaponSelected]);
+        if (!player.climb && !player.stop && items.canDoGun && ableGun && !items.pressed)
+        {
+            weapons[WeaponSelected].Shot();
+            stealth.MakeImportantAudio(distanceToSound[WeaponSelected]);
+        }
         //gm.detected = true;
     }
 

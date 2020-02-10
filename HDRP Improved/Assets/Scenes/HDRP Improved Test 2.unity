@@ -67798,6 +67798,51 @@ PrefabInstance:
       propertyPath: pathPoints.Array.data[1]
       value: 
       objectReference: {fileID: 543220525}
+    - target: {fileID: 8579224468682078585, guid: fa4d484e846d7e7469aea1a84062554a,
+        type: 3}
+      propertyPath: maxAlertTime
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8579224468682078585, guid: fa4d484e846d7e7469aea1a84062554a,
+        type: 3}
+      propertyPath: initGeneralWaitOnPointTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8579224468682078585, guid: fa4d484e846d7e7469aea1a84062554a,
+        type: 3}
+      propertyPath: generalWaitOnPointTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8579224468682078585, guid: fa4d484e846d7e7469aea1a84062554a,
+        type: 3}
+      propertyPath: initWaitOnPointTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8579224468682078585, guid: fa4d484e846d7e7469aea1a84062554a,
+        type: 3}
+      propertyPath: waitOnPointTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8579224468682078585, guid: fa4d484e846d7e7469aea1a84062554a,
+        type: 3}
+      propertyPath: initWaitComeFromSound
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8579224468682078585, guid: fa4d484e846d7e7469aea1a84062554a,
+        type: 3}
+      propertyPath: waitComeFromSound
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8579224468682078585, guid: fa4d484e846d7e7469aea1a84062554a,
+        type: 3}
+      propertyPath: initPercentageOfWait
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8579224468682078585, guid: fa4d484e846d7e7469aea1a84062554a,
+        type: 3}
+      propertyPath: percentageOfWait
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7012054449073961749, guid: fa4d484e846d7e7469aea1a84062554a,
         type: 3}
       propertyPath: m_IsActive
@@ -67826,6 +67871,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Phase 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348835213635703551, guid: 013a80693edd24f40a4bc40b267efdf7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5348835213635703424, guid: 013a80693edd24f40a4bc40b267efdf7,
         type: 3}

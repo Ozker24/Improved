@@ -72,10 +72,15 @@ public class EnemyPlayerDetector : MonoBehaviour
             closeTimeToDetect = initCloseTimeToDetect;
         }
 
-        if (enemy.inAlert && enemy.changeVariables && enemy.states != EnemyTest.State.Stationary && !enemy.comeFromSound)
+        if (enemy.inAlert && enemy.changeToAlert && enemy.states != EnemyTest.State.Stationary && !enemy.comeFromSound)
         {
             closeDistance = enemy.alertDistance;
-            closeTimeToDetect = enemy.alertTime;
+            closeTimeToDetect = enemy.closeAlertTimeToDetect;
+        }
+        else if (!enemy.inAlert && !enemy.changeToAlert && enemy.states != EnemyTest.State.Stationary && !enemy.comeFromSound)
+        {
+            closeDistance = initCloseDistance;
+            closeTimeToDetect = initCloseTimeToDetect;
         }
     }
 

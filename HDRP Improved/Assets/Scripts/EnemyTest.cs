@@ -81,9 +81,13 @@ public class EnemyTest : MonoBehaviour
     [Header("Stationary")]
     [SerializeField] float stationaryTimeCounter;
     [SerializeField] float generalWaitOnPointTime;
+    [SerializeField] float initGeneralWaitOnPointTime;
     [SerializeField] float waitOnPointTime;
+    [SerializeField] float initWaitOnPointTime;
+    [SerializeField] float initWaitComeFromSound;
     [SerializeField] float waitComeFromSound;
     [SerializeField] float percentageOfWait;
+    [SerializeField] float initPercentageOfWait;
     [SerializeField] int randomNum;
     [SerializeField] bool stopOnThePoints;
     [SerializeField] bool stopOnPoint;
@@ -105,14 +109,18 @@ public class EnemyTest : MonoBehaviour
     [Header("Alert")]
     public float alertSpeed;
     public float alertDistance;
-    public float alertTime;
+    public float closeAlertTimeToDetect;
     public float alertGeneralWaitOnPointTime;
     public float alertWaitOnPointTime;
     public float alertWaitComeFromSound;
     public float alertWaitPercentage;
 
+    public float alertTimeCounter;
+    public float maxAlertTime;
+
     public bool inAlert;
-    public bool changeVariables;
+    public bool endingAlert;
+    public bool changeToAlert;
 
     [Header("Die")]
     public float timeToDie;
@@ -164,6 +172,11 @@ public class EnemyTest : MonoBehaviour
         states = State.Stationary;
 
         StationarySet();
+
+        generalWaitOnPointTime = initGeneralWaitOnPointTime;
+        waitOnPointTime = initWaitOnPointTime;
+        waitComeFromSound = initWaitComeFromSound;
+        percentageOfWait = initPercentageOfWait;
     }
 
     void Update()
@@ -178,6 +191,8 @@ public class EnemyTest : MonoBehaviour
         execution.MyUpdate();
 
         ImDetectingPlayer();
+
+        CountAlertTime();
 
         switch (states)
         {
@@ -469,6 +484,7 @@ public class EnemyTest : MonoBehaviour
     public void SetLook(Vector3 pos)
     {
         //positionWhereSound = Vector3.zero;
+        Debug.Log(pos);
 
         stayThere = false;
 
@@ -499,12 +515,22 @@ public class EnemyTest : MonoBehaviour
 
         if (inAlert)
         {
-            changeVariables = true;
+            endingAlert = false;
+            changeToAlert = true;
             agent.speed = alertSpeed;
             generalWaitOnPointTime = alertGeneralWaitOnPointTime;
             waitOnPointTime = alertWaitOnPointTime;
             waitComeFromSound = alertWaitComeFromSound;
             percentageOfWait = alertWaitPercentage;
+        }
+        else
+        {
+            firstSearch = false;
+            agent.speed = patrolSpeed;
+            generalWaitOnPointTime = initGeneralWaitOnPointTime;
+            waitOnPointTime = initWaitOnPointTime;
+            waitComeFromSound = initWaitComeFromSound;
+            percentageOfWait = initPercentageOfWait;
         }
 
         stopOnPoint = false;
@@ -610,6 +636,23 @@ public class EnemyTest : MonoBehaviour
     }
 
     #endregion
+
+    void CountAlertTime()
+    {
+        if (inAlert && changeToAlert && !endingAlert)
+        {
+            if (alertTimeCounter >= maxAlertTime)
+            {
+                changeToAlert = false;
+                inAlert = false;
+                alertTimeCounter = 0;
+            }
+            else
+            {
+                alertTimeCounter += Time.deltaTime;
+            }
+        }
+    }
 
     public void DoAttack()
     {
