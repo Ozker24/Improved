@@ -128,9 +128,10 @@ public class EnemyTest : MonoBehaviour
 
     [Header("Absorb")]
     public float addStamina;
-    public float timeToAddStamina;
-    public float staminaTimeCounter;
-    public float maxTimeToStamina;
+    public float addLife;
+    //public float timeToAddStamina;
+    public float absorbTimeCounter;
+    public float maxTimeToAbsorb;
     public float absorbPercentage;
 
     [Header("Sounds")]
@@ -334,7 +335,7 @@ public class EnemyTest : MonoBehaviour
                     {
                         firstSearch = true;
                         //animacion exclusiva para la primera busqueda
-                        Debug.Log("A dormir");
+                        //Debug.Log("A dormir");
                     }
 
                     EndOfStationary();

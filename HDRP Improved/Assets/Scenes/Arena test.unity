@@ -2623,12 +2623,12 @@ PrefabInstance:
     - target: {fileID: 5348835213635703428, guid: 013a80693edd24f40a4bc40b267efdf7,
         type: 3}
       propertyPath: dead
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5348835213635703428, guid: 013a80693edd24f40a4bc40b267efdf7,
         type: 3}
       propertyPath: maxLife
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5348835213635703428, guid: 013a80693edd24f40a4bc40b267efdf7,
         type: 3}
@@ -2638,6 +2638,16 @@ PrefabInstance:
     - target: {fileID: 5348835213635703428, guid: 013a80693edd24f40a4bc40b267efdf7,
         type: 3}
       propertyPath: maxTimeToStamina
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348835213635703428, guid: 013a80693edd24f40a4bc40b267efdf7,
+        type: 3}
+      propertyPath: addLife
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348835213635703428, guid: 013a80693edd24f40a4bc40b267efdf7,
+        type: 3}
+      propertyPath: maxTimeToAbsorb
       value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3632,7 +3642,7 @@ PrefabInstance:
     - target: {fileID: 5348835213635703551, guid: 013a80693edd24f40a4bc40b267efdf7,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5348835213635703424, guid: 013a80693edd24f40a4bc40b267efdf7,
         type: 3}
@@ -3698,6 +3708,21 @@ PrefabInstance:
         type: 3}
       propertyPath: dead
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348835213635703428, guid: 013a80693edd24f40a4bc40b267efdf7,
+        type: 3}
+      propertyPath: maxLife
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348835213635703428, guid: 013a80693edd24f40a4bc40b267efdf7,
+        type: 3}
+      propertyPath: addLife
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348835213635703428, guid: 013a80693edd24f40a4bc40b267efdf7,
+        type: 3}
+      propertyPath: maxTimeToAbsorb
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 013a80693edd24f40a4bc40b267efdf7, type: 3}
@@ -6718,7 +6743,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 602252127, guid: 90b3c2faeab051a4a8bf446d36a4fc15, type: 3}
       propertyPath: stamina
-      value: 0
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 602252127, guid: 90b3c2faeab051a4a8bf446d36a4fc15, type: 3}
       propertyPath: addConstantLife
@@ -6743,7 +6768,7 @@ PrefabInstance:
     - target: {fileID: 6827900420324706546, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
         type: 3}
       propertyPath: health
-      value: 1
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90b3c2faeab051a4a8bf446d36a4fc15, type: 3}

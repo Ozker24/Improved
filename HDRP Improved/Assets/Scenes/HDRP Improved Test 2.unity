@@ -23342,7 +23342,7 @@ MonoBehaviour:
   HUD: {fileID: 0}
   Items: {fileID: 0}
   aim: {fileID: 1178095233}
-  weapon: {fileID: 0}
+  WM: {fileID: 0}
   inv: {fileID: 1277552870}
   GM: {fileID: 0}
   CC: {fileID: 0}
@@ -67693,21 +67693,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1065408029}
-    - target: {fileID: 5099559781438270888, guid: 19fe9dd861e6ec54fbe88df5ecaf0efb,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 506
-      objectReference: {fileID: 0}
-    - target: {fileID: 9064665012559229809, guid: 19fe9dd861e6ec54fbe88df5ecaf0efb,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6911318205216277885, guid: 19fe9dd861e6ec54fbe88df5ecaf0efb,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19fe9dd861e6ec54fbe88df5ecaf0efb, type: 3}
 --- !u!4 &2702503231092133244 stripped
@@ -67727,6 +67712,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Phase 1 Short Shirt
+      objectReference: {fileID: 0}
+    - target: {fileID: 8579224468682078466, guid: fa4d484e846d7e7469aea1a84062554a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8579224468682078589, guid: fa4d484e846d7e7469aea1a84062554a,
         type: 3}
@@ -67993,6 +67983,16 @@ PrefabInstance:
         type: 3}
       propertyPath: distanceToSound.Array.data[0]
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6827900421063083854, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
+        type: 3}
+      propertyPath: timeAbleGun.Array.data[0]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6827900421063083854, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
+        type: 3}
+      propertyPath: timeAbleGun.Array.data[1]
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6827900420496641493, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
         type: 3}

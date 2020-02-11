@@ -16,7 +16,9 @@ public class Absorb : MonoBehaviour
     [SerializeField] EnemyTest nearestEnemy;
     [SerializeField] float mergeOfReset;
     [SerializeField] float absorbDistance;
-    [SerializeField] float howMuchToAdd;
+    [SerializeField] float beforeAbsorbe;
+    [SerializeField] float howMuchToAddStamina;
+    [SerializeField] float howMuchToAddLife;
     [SerializeField] bool canAbsorb;
     public bool interrumpt;
 
@@ -116,13 +118,16 @@ public class Absorb : MonoBehaviour
     {
         if (nearestEnemy != null)
         {
-            if (!IWM.usingFlameThrower && !IWM.usingHyperJump && !IWM.usingHyperDash && !IWM.usingMisileLaucher && !IWM.absorbing && nearestEnemy.addStamina > 0)
+            if (!IWM.usingFlameThrower && !IWM.usingHyperJump && !IWM.usingHyperDash && !IWM.usingMisileLaucher && !IWM.absorbing && nearestEnemy.addStamina > 0) //&& nearestEnemy.addLife > 0)
             {
                 if (canAbsorb)
                 {
                     IWM.player.stop = true;
                     IWM.absorbing = true;
                     IWM.stamina = IWM.stamina - nearestEnemy.addStamina * nearestEnemy.absorbPercentage;
+                    IWM.player.life.health = IWM.player.life.health - nearestEnemy.addLife * nearestEnemy.absorbPercentage;
+                    IWM.addConstantLife = false;
+                    IWM.addConstantStamina = false;
                     //StartCoroutine(ResetAbsorb());
                 }
             }
@@ -139,57 +144,71 @@ public class Absorb : MonoBehaviour
     {
         if (IWM.absorbing && !interrumpt)
         {
-            if (nearestEnemy != null && howMuchToAdd == 0)
+            if (nearestEnemy != null && howMuchToAddStamina == 0 && howMuchToAddLife == 0)
             {
-                howMuchToAdd += nearestEnemy.addStamina * nearestEnemy.absorbPercentage;
+                howMuchToAddStamina += nearestEnemy.addStamina * nearestEnemy.absorbPercentage;
+                howMuchToAddLife += nearestEnemy.addLife * nearestEnemy.absorbPercentage;
 
-                Debug.Log(howMuchToAdd + "FromRelease");
+                Debug.Log(howMuchToAddStamina + "FromRelease");
             }
 
             IWM.player.stop = false;
             IWM.absorbing = false;
-            IWM.stamina += howMuchToAdd;
-            howMuchToAdd = 0;
+            IWM.stamina += howMuchToAddStamina;
+            IWM.player.life.health += howMuchToAddLife;
+            howMuchToAddStamina = 0;
+            howMuchToAddLife = 0;
+
+            IWM.addConstantLife = true;
+            IWM.addConstantStamina = true;
         }
     }
 
     void GainStamina()
     {
-        if (nearestEnemy != null && nearestEnemy.addStamina > 0)
+        if (nearestEnemy != null && nearestEnemy.addStamina > 0 && nearestEnemy.addLife > 0)
         {
-            if (nearestEnemy.staminaTimeCounter >= nearestEnemy.maxTimeToStamina)
+            if (nearestEnemy.absorbTimeCounter >= nearestEnemy.maxTimeToAbsorb)
             {
                 nearestEnemy.absorbPercentage = 1;
 
-                if (howMuchToAdd == 0)
+                if (howMuchToAddStamina == 0 && howMuchToAddLife == 0)
                 {
-                    howMuchToAdd += nearestEnemy.addStamina * nearestEnemy.absorbPercentage;
+                    howMuchToAddStamina += nearestEnemy.addStamina * nearestEnemy.absorbPercentage;
+                    howMuchToAddLife += nearestEnemy.addLife * nearestEnemy.absorbPercentage;
 
-                    Debug.Log(howMuchToAdd + "FromGain");
+                    Debug.Log(howMuchToAddStamina + "FromGain");
                 }
 
                 nearestEnemy.addStamina = 0;
-                nearestEnemy.staminaTimeCounter = 0;
+                nearestEnemy.addLife = 0;
+
+                nearestEnemy.absorbTimeCounter = 0;
 
                 IWM.player.stop = false;
                 IWM.absorbing = false;
-                IWM.stamina += howMuchToAdd;
-                howMuchToAdd = 0;
+                IWM.stamina += howMuchToAddStamina;
+                IWM.player.life.health += howMuchToAddLife;
+                howMuchToAddStamina = 0;
+                howMuchToAddLife = 0;
+
+                IWM.addConstantLife = true;
+                IWM.addConstantStamina = true;
 
                 Destroy(nearestEnemy.gameObject, 5);
                 nearestEnemy = null;
             }
             else
             {
-                nearestEnemy.staminaTimeCounter += Time.deltaTime;
-                nearestEnemy.absorbPercentage = Mathf.Clamp01(nearestEnemy.staminaTimeCounter / nearestEnemy.maxTimeToStamina);
+                nearestEnemy.absorbTimeCounter += Time.deltaTime;
+                nearestEnemy.absorbPercentage = Mathf.Clamp01(nearestEnemy.absorbTimeCounter / nearestEnemy.maxTimeToAbsorb);
             }
         }
     }
 
-    IEnumerator ResetAbsorb()
+    /*IEnumerator ResetAbsorb()
     {
         yield return new WaitForSeconds(nearestEnemy.timeToAddStamina);
         IWM.absorbing = false;
-    }
+    }*/
 }

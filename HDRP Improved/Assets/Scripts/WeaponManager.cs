@@ -25,7 +25,7 @@ public class WeaponManager : MonoBehaviour
     public int WeaponSelected = 0;
     public float timeCounter;
     public float timeToSelect;
-    public bool selecting;
+    public bool selectingGun;
 
     public int maxWeapons;
 
@@ -63,16 +63,21 @@ public class WeaponManager : MonoBehaviour
     {
         HUD.UpdateCurrentAmmo(weapons[WeaponSelected].currentAmmo);
 
-        if (selecting)
+        if (selectingGun)
         {
             if(timeCounter > timeToSelect)
             {
-                WeaponSelected = weaponPreSelected;
+                if (weaponPreSelected != WeaponSelected && selectingGun)
+                {
+                    WeaponSelected = weaponPreSelected;
+                    ableGun = false;
+                    baseSource.PlayOneShot(changeGunClips.clips[WeaponSelected]);
+                    StartCoroutine(AbleGun(timeAbleGun[WeaponSelected]));
+                }
+
                 timeCounter = 0;
-                selecting = false;
-                ableGun = false;
-                baseSource.PlayOneShot(changeGunClips.clips[WeaponSelected]);
-                StartCoroutine(AbleGun(timeAbleGun[WeaponSelected]));
+                selectingGun = false;
+                //si hay audio que suena al salir la ui aqui.
             }
             else
             {
@@ -103,28 +108,42 @@ public class WeaponManager : MonoBehaviour
 
     public void ChangeGunRight()
     {
-        inv.RightInventory();
-
-        selecting = true;
-        timeCounter = 0;
-
-        if (weaponPreSelected > 0)
+        if (!items.pressed && player.GM.ableToInput)
         {
-            weaponPreSelected--;
+            inv.RightInventory();
+
+            selectingGun = true;
+            timeCounter = 0;
+
+            if (weaponPreSelected > 0)
+            {
+                weaponPreSelected--;
+            }
         }
     }
 
     public void ChangeGunLeft()
     {
-        inv.LefttInventory();
-
-        selecting = true;
-        timeCounter = 0;
-
-        if (weaponPreSelected < maxWeapons - 1)
+        if (!items.pressed && player.GM.ableToInput)
         {
-            weaponPreSelected++;
+            inv.LefttInventory();
+
+            selectingGun = true;
+            timeCounter = 0;
+
+            if (weaponPreSelected < maxWeapons - 1)
+            {
+                weaponPreSelected++;
+            }
         }
+    }
+
+    public void GunShortcuts()
+    {
+        WeaponSelected = weaponPreSelected;
+        ableGun = false;
+        baseSource.PlayOneShot(changeGunClips.clips[WeaponSelected]);
+        StartCoroutine(AbleGun(timeAbleGun[WeaponSelected]));
     }
 
     #region Corrutines

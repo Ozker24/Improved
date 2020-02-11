@@ -7,12 +7,14 @@ public class Inventory : MonoBehaviour
     public GameObject Inv;
     public RectTransform selector;
     public RectTransform selectorGun;
-    public bool startCountdown;
     public float timeCounter = 0;
     public float timeToVanish;
     public WeaponManager weapons;
     public Items items;
     public PlaySoundRemote soundRemote;
+
+    public AudioSource baseSource;
+    public AudioClip[] selectionSound;
 
     public int actualItem = 2;
     public int maxItem = 4;
@@ -23,6 +25,9 @@ public class Inventory : MonoBehaviour
 
     public Animator anim;
     public AudioArray selectionSounds;
+
+    public bool startCountdown;
+    [SerializeField] bool selectingItem;
 
     public void Initialize()
     {
@@ -40,11 +45,21 @@ public class Inventory : MonoBehaviour
         {
             if (timeCounter >= timeToVanish)
             {
+                Debug.Log(selectingItem);
+
+                if (items.itemSelected != itemPreSelected)
+                {
+                    actualItem = itemPreSelected;
+                    baseSource.PlayOneShot(selectionSound[actualItem]);
+                }
+
                 Inv.SetActive(false);
                 timeCounter = 0;
                 startCountdown = false;
-                soundRemote.PlayChangeItemSound(weapons.WeaponSelected);
-                actualItem = itemPreSelected;
+                selectingItem = false;
+
+                Debug.Log(items.itemSelected);
+                Debug.Log( itemPreSelected);
             }
             else
             {
@@ -60,6 +75,8 @@ public class Inventory : MonoBehaviour
             Inv.SetActive(true);
             startCountdown = true;
             timeCounter = 0;
+            selectingItem = true;
+
             if (itemPreSelected < maxItem)
             {
                 itemPreSelected++;
@@ -75,6 +92,8 @@ public class Inventory : MonoBehaviour
             Inv.SetActive(true);
             startCountdown = true;
             timeCounter = 0;
+            selectingItem = true;
+
             if (itemPreSelected > 0)
             {
                 itemPreSelected--;
@@ -105,6 +124,7 @@ public class Inventory : MonoBehaviour
         Inv.SetActive(true);
         startCountdown = true;
         timeCounter = 0;
+
         if (actualGun == 1)
         {
             anim.SetTrigger("JumpRight"); // estan cambiados de direccion #dislexia

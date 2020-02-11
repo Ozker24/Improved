@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ImprovedWeaponManager : MonoBehaviour
 {
@@ -25,7 +24,6 @@ public class ImprovedWeaponManager : MonoBehaviour
     public float staminaMultiply;
     public float staminaFastMultiply;
     public float staminaSlowMultiply;
-    public Image image;
     public bool addConstantStamina;
     public bool speedStamina;
 
@@ -64,29 +62,12 @@ public class ImprovedWeaponManager : MonoBehaviour
 
     public void MyUpdate()
     {
-        if (image != null)
-        {
-            if (GM.improved)
-            {
-                image.enabled = true;
-            }
-            else
-            {
-                image.enabled = false;
-            }
-        }
-
         laser.MyUpdate();
         flameThrower.MyUpdate();
         hDash.MyUpdate();
         absorb.MyUpdate();
 
         percentage = Mathf.Clamp01(stamina / 100);
-
-        if (image != null)
-        {
-            image.fillAmount = percentage;
-        }
 
         if (stamina < 0)
         {

@@ -245,8 +245,11 @@ public class PlayerController : MonoBehaviour
                 axisOnDodge = Vector2.down;
             }
 
+            Debug.Log(axisOnDodge);
+
             canDodge = false;
             dodging = true;
+
             StartCoroutine(StopDodging());
             StartCoroutine(ResetDodge());
         }

@@ -134,12 +134,12 @@ public class Items : MonoBehaviour
 
         if (canDoItem) ActiveItem();
 
-        if (pressed && canDoItem && itemSelected != 1)
+        if (pressed && canDoItem && itemSelected != 1 && player.WM.ableGun && player.GM.ableToInput && !player.dodging)
         {
             trajectoryPrefab.SetActive(true);
         }
 
-        if (inv.startCountdown)
+        if (inv.startCountdown | !player.GM.ableToInput | player.dodging) //| !player.WM.ableGun)
         {
             trajectoryPrefab.SetActive(false);
         }
@@ -159,11 +159,11 @@ public class Items : MonoBehaviour
 
     public void SetButtonPressed()
     {
-        if (itemsCount[itemSelected] > 0)
+        if (itemsCount[itemSelected] > 0) //&& player.WM.ableGun)
         {
             pressed = true;
 
-            if (canDoItem && itemSelected != 1)
+            if (canDoItem && itemSelected != 1 && player.WM.ableGun && player.GM.ableToInput && !player.dodging)
             {
                 trajectoryPrefab.SetActive(true);
             }

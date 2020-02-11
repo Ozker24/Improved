@@ -9,7 +9,7 @@ public class ImputManager : MonoBehaviour
     public HudManager HUD;
     public Items Items;
     public Aiming aim;
-    public WeaponManager weapon;
+    public WeaponManager WM;
     public Inventory inv;
     public GameManager GM;
     public CloseCombat CC;
@@ -25,7 +25,7 @@ public class ImputManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         HUD = GameObject.FindGameObjectWithTag("Managers").GetComponent<HudManager>();
         Items = player.GetComponentInChildren<Items>();
-        weapon = player.GetComponentInChildren<WeaponManager>();
+        WM = player.GetComponentInChildren<WeaponManager>();
         CC = player.GetComponent<CloseCombat>();
         pause = GameObject.FindGameObjectWithTag("Managers").GetComponent<PauseManager>();
         god = GM.GetComponent<GodModeManager>();
@@ -48,6 +48,7 @@ public class ImputManager : MonoBehaviour
                 ReleaseShot();
                 ChangeItem();
                 SetDodge();
+                //ShortcutGuns();
             }
             else
             {
@@ -140,12 +141,12 @@ public class ImputManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Gun Right"))
         {
-            weapon.ChangeGunRight();
+            WM.ChangeGunRight();
         }
 
         if (Input.GetButtonDown("Gun Left"))
         {
-            weapon.ChangeGunLeft();
+            WM.ChangeGunLeft();
         }
     }
 
@@ -185,11 +186,11 @@ public class ImputManager : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            weapon.Shot();
+            WM.Shot();
         }
         if (Input.GetButtonDown("Reload"))
         {
-            weapon.Reload();
+            WM.Reload();
         }
     }
 
@@ -197,7 +198,7 @@ public class ImputManager : MonoBehaviour
     {
         if (Input.GetMouseButtonUp(0))
         {
-            weapon.ReleaseShot();
+            WM.ReleaseShot();
         }
     }
 
@@ -358,5 +359,32 @@ public class ImputManager : MonoBehaviour
     {
         Absorb();
         ReleaseAbsorb();
+    }
+
+    public void ShortcutGuns()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            WM.weaponPreSelected = 0;
+            WM.GunShortcuts();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            WM.weaponPreSelected = 1;
+            WM.GunShortcuts();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            WM.weaponPreSelected = 2;
+            WM.GunShortcuts();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            WM.weaponPreSelected = 3;
+            WM.GunShortcuts();
+        }
     }
 }
