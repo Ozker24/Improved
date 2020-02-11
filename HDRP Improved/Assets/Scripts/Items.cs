@@ -76,6 +76,8 @@ public class Items : MonoBehaviour
     public AudioArray ClipsSelected;
     public AudioArray ClipsLaunched;
 
+    public bool doTrayectoryInDodge;
+
     public void Initialize()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
@@ -134,12 +136,12 @@ public class Items : MonoBehaviour
 
         if (canDoItem) ActiveItem();
 
-        if (pressed && canDoItem && itemSelected != 1 && player.WM.ableGun && player.GM.ableToInput && !player.dodging)
+        if (pressed && canDoItem && itemSelected != 1 && player.WM.ableGun && player.GM.ableToInput && !player.dodging && !doTrayectoryInDodge)
         {
             trajectoryPrefab.SetActive(true);
         }
 
-        if (inv.startCountdown | !player.GM.ableToInput | player.dodging) //| !player.WM.ableGun)
+        if (inv.startCountdown | !player.GM.ableToInput | player.dodging | doTrayectoryInDodge) //| !player.WM.ableGun)
         {
             trajectoryPrefab.SetActive(false);
         }
@@ -163,7 +165,7 @@ public class Items : MonoBehaviour
         {
             pressed = true;
 
-            if (canDoItem && itemSelected != 1 && player.WM.ableGun && player.GM.ableToInput && !player.dodging)
+            if (canDoItem && itemSelected != 1 && player.WM.ableGun && player.GM.ableToInput && !player.dodging && !doTrayectoryInDodge)
             {
                 trajectoryPrefab.SetActive(true);
             }
@@ -230,12 +232,15 @@ public class Items : MonoBehaviour
                     firstTime = false;
                 }
             }
+
+            doTrayectoryInDodge = false;
+
         }
     }
 
-    public void SetButtonRealised()
+    public void SetButtonRealised()// el propio release no puede impedir que se lanze objetos
     {
-        if (pressed)
+        if (pressed && !doTrayectoryInDodge)
         {
             canDoGun = false;
             realised = 1;

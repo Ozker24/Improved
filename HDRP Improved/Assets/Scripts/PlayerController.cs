@@ -129,7 +129,7 @@ public class PlayerController : MonoBehaviour
 
     public void RotateModel()
     {
-        if (!stop && !climb)
+        if (!stop && !climb && !items.doTrayectoryInDodge)
         {
             if (moving || (items.pressed && items.canDoItem && !items.inv.startCountdown) || aim.aim || CC.point || IWM.usingFlameThrower || IWM.usingLaserGun)
             {
@@ -249,6 +249,8 @@ public class PlayerController : MonoBehaviour
 
             canDodge = false;
             dodging = true;
+
+            items.doTrayectoryInDodge = true;
 
             StartCoroutine(StopDodging());
             StartCoroutine(ResetDodge());
