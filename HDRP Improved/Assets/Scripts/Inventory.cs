@@ -51,6 +51,7 @@ public class Inventory : MonoBehaviour
                 {
                     actualItem = itemPreSelected;
                     baseSource.PlayOneShot(selectionSound[actualItem]);
+                    Debug.Log("************************Playing Sound");
                 }
 
                 Inv.SetActive(false);

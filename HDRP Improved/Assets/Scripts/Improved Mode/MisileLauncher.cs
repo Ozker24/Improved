@@ -13,31 +13,59 @@ public class MisileLauncher : MonoBehaviour
     [SerializeField] GameObject misile;
     [SerializeField] float misileDist;
     public Vector3 nextMisilePos;
+    public Transform detectCelling;
+    [SerializeField] LayerMask roofLayer;
+    [SerializeField] float rayRoofDist;
+    [SerializeField] bool underRoof;
 
     public void Initialize()
     {
         IWM = GetComponentInParent<ImprovedWeaponManager>();
     }
 
+    public void MyUpdate()
+    {
+        CanILaunchMisile();
+    }
+
     public void LauchMisile()
     {
-        if (IWM.stamina > 0 && !IWM.usingFlameThrower && !IWM.usingHyperJump && !IWM.usingHyperDash && !IWM.usingLaserGun && !IWM.usingMisileLaucher && canLaunch && !IWM.absorbing)
+        if (!underRoof)
         {
-            Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-            RaycastHit hit = new RaycastHit();// que hemos golpeado primero
-
-            if (Physics.Raycast(ray, out hit, misileDist))
+            if (IWM.stamina > 0 && !IWM.usingFlameThrower && !IWM.usingHyperJump && !IWM.usingHyperDash && !IWM.usingLaserGun && !IWM.usingMisileLaucher && canLaunch && !IWM.absorbing)
             {
-                IWM.usingMisileLaucher = true;
-                IWM.stamina -= restStamina;
-                canLaunch = false;
-                IWM.usingMisileLaucher = false;
-                StartCoroutine(ResetCanLaunch());
+                Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+                RaycastHit hit = new RaycastHit();// que hemos golpeado primero
 
-                nextMisilePos = hit.point;
+                if (Physics.Raycast(ray, out hit, misileDist))
+                {
+                    IWM.usingMisileLaucher = true;
+                    IWM.stamina -= restStamina;
+                    canLaunch = false;
+                    IWM.usingMisileLaucher = false;
+                    StartCoroutine(ResetCanLaunch());
 
-                Instantiate(misile, transform.position, Quaternion.identity);
+                    nextMisilePos = hit.point;
+
+                    Instantiate(misile, transform.position, Quaternion.identity);
+                }
             }
+        }
+    }
+
+    void CanILaunchMisile()
+    {
+        RaycastHit hit = new RaycastHit();// que hemos golpeado primero
+        if (Physics.Raycast(detectCelling.position, Vector3.up, out hit, rayRoofDist, roofLayer))
+        {
+            if (hit.transform.tag == "Roof")
+            {
+                underRoof = true;
+            }
+        }
+        else
+        {
+            underRoof = false;
         }
     }
 

@@ -17,6 +17,7 @@ TagManager:
   - Metal
   - Improved
   - Interruptor
+  - Roof
   layers:
   - Default
   - TransparentFX
@@ -40,7 +41,7 @@ TagManager:
   - Stamina
   - Misil
   - Interruptor
-  - 
+  - Roof
   - 
   - 
   - 

@@ -64,6 +64,7 @@ public class ImprovedWeaponManager : MonoBehaviour
     {
         laser.MyUpdate();
         flameThrower.MyUpdate();
+        mLauncher.MyUpdate();
         hDash.MyUpdate();
         absorb.MyUpdate();
 
