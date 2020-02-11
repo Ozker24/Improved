@@ -71,7 +71,7 @@ public class Inventory : MonoBehaviour
 
     public void UpInventory()
     {
-        if (!items.pressed)
+        if (!items.pressed && !items.player.dodging)
         {
             Inv.SetActive(true);
             startCountdown = true;
@@ -88,7 +88,7 @@ public class Inventory : MonoBehaviour
 
     public void DownInventory()
     {
-        if (!items.pressed)
+        if (!items.pressed && !items.player.dodging)
         {
             Inv.SetActive(true);
             startCountdown = true;

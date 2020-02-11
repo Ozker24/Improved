@@ -25,6 +25,7 @@ public class Items : MonoBehaviour
     public float TimeCounter;
     public bool Canceled;
     public bool firstTime;
+    public bool healing;
 
     [Header("Prefabs")]
     public GameObject GranadePrefab;
@@ -77,6 +78,7 @@ public class Items : MonoBehaviour
     public AudioArray ClipsLaunched;
 
     public bool doTrayectoryInDodge;
+    public bool restockHealing;
 
     public void Initialize()
     {
@@ -214,6 +216,8 @@ public class Items : MonoBehaviour
             {
                 if (player.life.health < 100)
                 {
+                    healing = false;
+
                     Debug.Log("Interrumpted");
 
                     AudioSource source = GetComponent<AudioSource>();
@@ -223,9 +227,14 @@ public class Items : MonoBehaviour
                         source.Stop();
                     }
 
-                    visualItemsCount[1]++;
+                    if (!restockHealing)
+                    {
+                        visualItemsCount[1]++;
 
-                    firstAidVisuals[visualItemsCount[1] - 1].SetActive(true);
+                        firstAidVisuals[visualItemsCount[1] - 1].SetActive(true);
+                    }
+
+                    restockHealing = false;
 
                     //healthAnim.SetBool("Health", false);
                     TimeCounter = 0;
@@ -397,6 +406,8 @@ public class Items : MonoBehaviour
             {
                 if (!firstTime)
                 {
+                    healing = true;
+
                     Debug.Log("F");
                     //audPlay.Play(3, 1, Random.Range(0.95f, 1.05f));
                     if (ClipsSelected.clips[itemSelected] != null && baseSource != null)
@@ -411,35 +422,38 @@ public class Items : MonoBehaviour
                     firstTime = true;
                 }
 
-                if (TimeCounter >= timeFirstAid)
+                if (healing)
                 {
-                    Debug.Log("Healed");
-                    //healthAnim.SetBool("Health", false);
-                    TimeCounter = 0;
-
-                    peace.Health();
-
-                    if (baseSource != null)
+                    if (TimeCounter >= timeFirstAid)
                     {
-                        baseSource.Stop();
-                    }
+                        Debug.Log("Healed");
+                        //healthAnim.SetBool("Health", false);
+                        TimeCounter = 0;
 
-                    //audPlay.Play(4, 1, Random.Range(0.95f, 1.05f));
-                    if (ClipsLaunched.clips[itemSelected] != null)
+                        peace.Health();
+
+                        if (baseSource != null)
+                        {
+                            baseSource.Stop();
+                        }
+
+                        //audPlay.Play(4, 1, Random.Range(0.95f, 1.05f));
+                        if (ClipsLaunched.clips[itemSelected] != null)
+                        {
+                            baseSource.PlayOneShot(ClipsLaunched.clips[itemSelected]);
+                        }
+
+                        pressed = false;
+
+                        itemsCount[1]--;
+
+                        CantGunCantItem(false, false, false);
+                    }
+                    else
                     {
-                        baseSource.PlayOneShot(ClipsLaunched.clips[itemSelected]);
+                        TimeCounter += Time.deltaTime;
+                        //healthAnim.SetBool("Health", true);
                     }
-
-                    pressed = false;
-
-                    itemsCount[1]--;
-
-                    CantGunCantItem(false, false, false);
-                }
-                else
-                {
-                    TimeCounter += Time.deltaTime;
-                    //healthAnim.SetBool("Health", true);
                 }
             }
         }
@@ -485,6 +499,24 @@ public class Items : MonoBehaviour
     }
 
     #endregion
+
+    public void CancelHealing()
+    {
+        healing = false;
+
+        AudioSource source = GetComponent<AudioSource>();
+
+        if (source != null)
+        {
+            source.Stop();
+        }
+
+        visualItemsCount[1]++;
+
+        firstAidVisuals[visualItemsCount[1] - 1].SetActive(true);
+
+        restockHealing = true;
+    }
 
     public void InstantiateThings(GameObject prefab)
     {

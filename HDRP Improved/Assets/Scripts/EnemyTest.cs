@@ -672,6 +672,11 @@ public class EnemyTest : MonoBehaviour
             {
                 player.IWM.absorb.StopAbsorbing();
             }
+
+            if (player.items.healing && !player.GM.improved)
+            {
+                player.items.CancelHealing();
+            }
         }
 
         else if (!attack.playerInArea)

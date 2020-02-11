@@ -88,7 +88,7 @@ public class WeaponManager : MonoBehaviour
 
     public void Shot()
     {
-        if (!player.climb && !player.stop && items.canDoGun && ableGun && !items.pressed)
+        if (!player.climb && !player.stop && items.canDoGun && ableGun && !items.pressed && !player.dodging)
         {
             weapons[WeaponSelected].Shot();
             stealth.MakeImportantAudio(distanceToSound[WeaponSelected]);
@@ -98,17 +98,17 @@ public class WeaponManager : MonoBehaviour
 
     public void Reload()
     {
-        if (!player.climb && !player.stop && items.canDoGun && ableGun && !items.pressed)  weapons[WeaponSelected].Reload();
+        if (!player.climb && !player.stop && items.canDoGun && ableGun && !items.pressed && !player.dodging)  weapons[WeaponSelected].Reload();
     }
 
     public void ReleaseShot()
     {
-        if (!player.climb && !player.stop && items.canDoGun && ableGun && !items.pressed) weapons[WeaponSelected].ReleaseShot();
+        if (!player.climb && !player.stop && items.canDoGun && ableGun && !items.pressed && !player.dodging) weapons[WeaponSelected].ReleaseShot();
     }
 
     public void ChangeGunRight()
     {
-        if (!items.pressed && player.GM.ableToInput)
+        if (!items.pressed && player.GM.ableToInput && !player.dodging)
         {
             inv.RightInventory();
 
@@ -124,7 +124,7 @@ public class WeaponManager : MonoBehaviour
 
     public void ChangeGunLeft()
     {
-        if (!items.pressed && player.GM.ableToInput)
+        if (!items.pressed && player.GM.ableToInput && !player.dodging)
         {
             inv.LefttInventory();
 
