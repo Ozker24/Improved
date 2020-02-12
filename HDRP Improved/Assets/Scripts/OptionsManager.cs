@@ -2,21 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OptionsManager : MonoBehaviour
+[System.Serializable]
+
+public class OptionsManager
 {
     public float audioValue;
     public int selectedResolution;
     public int selectedQuality;
 
-    // Start is called before the first frame update
-    void Start()
+    public OptionsManager (OptionsMenu oMenu)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        audioValue = oMenu.audioValue;
+        selectedResolution = oMenu.selectedResolution;
+        selectedQuality = oMenu.selectedQuality;
     }
 }
