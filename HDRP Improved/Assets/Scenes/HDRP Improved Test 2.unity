@@ -23360,6 +23360,7 @@ GameObject:
   - component: {fileID: 1065408023}
   - component: {fileID: 1065408029}
   - component: {fileID: 1065408030}
+  - component: {fileID: 1065408031}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Managers
@@ -23558,6 +23559,21 @@ MonoBehaviour:
   addBulletsCount: 10
   godGunsDistance: 1000
   imposibleToDetect: 0
+--- !u!114 &1065408031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065408022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70e1dee8de8996e4c9f3853ae5fb7aa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioValue: 0
+  selectedResolution: 0
+  selectedQuality: 0
 --- !u!1 &1066772318
 GameObject:
   m_ObjectHideFlags: 0
@@ -67837,6 +67853,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1065408029}
+    - target: {fileID: 7402200902734861291, guid: 19fe9dd861e6ec54fbe88df5ecaf0efb,
+        type: 3}
+      propertyPath: OM
+      value: 
+      objectReference: {fileID: 1065408031}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19fe9dd861e6ec54fbe88df5ecaf0efb, type: 3}
 --- !u!4 &2702503231092133244 stripped

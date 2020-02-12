@@ -9,6 +9,9 @@ public class OptionsMenu : MonoBehaviour
     public enum Options { Resolution, Graphics, Audio, Controls };
     public Options Settings;
 
+    [Header("OptionsManager")]
+    public OptionsManager OM;
+
     [Header("To Hide")]
     public GameObject[] selectors;
     public GameObject[] settings;
@@ -160,6 +163,8 @@ public class OptionsMenu : MonoBehaviour
         QualitySettings.SetQualityLevel(quality);
 
         PlayerPrefs.SetInt("Quality", quality);
+
+        OM.selectedQuality = quality;
     }
 
     public void SetVolume(float volume)
@@ -169,6 +174,8 @@ public class OptionsMenu : MonoBehaviour
         master.SetFloat("MasterVolume", volume);
 
         PlayerPrefs.SetFloat("VolumeMaster", volume);
+
+        OM.audioValue = volume;
     }
 
     public void AsignResolution()
@@ -178,6 +185,8 @@ public class OptionsMenu : MonoBehaviour
         Screen.SetResolution(resolutions[dropdown.value].width, resolutions[dropdown.value].height, Screen.fullScreen);
 
         PlayerPrefs.SetInt("Resolution", dropdown.value);
+
+        OM.selectedResolution = dropdown.value;
 
         //Debug.Log(dropdown.value);
     }
@@ -219,8 +228,6 @@ public class OptionsMenu : MonoBehaviour
         dropdown.RefreshShownValue();
 
         dropdown.RefreshShownValue();
-
-        //Debug.Log(dropdown.value);
     }
 
     #endregion
