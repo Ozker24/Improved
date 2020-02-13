@@ -19,6 +19,17 @@ public class ImputManager : MonoBehaviour
 
     public Vector2 axis;
 
+    [Header("D Pad")]
+    public Vector2 dPadAxis;
+    public bool dPadUp;
+    public bool dPadDown;
+    public bool dPadRight;
+    public bool dPadLeft;
+
+    [Header("Controllers")]
+    [SerializeField] bool PS4Controller;
+    [SerializeField] bool XBoxOneController;
+
     public void Initialize()
     {
         GM = GameObject.FindGameObjectWithTag("Managers").GetComponent<GameManager>();
@@ -37,6 +48,9 @@ public class ImputManager : MonoBehaviour
         if (GM.ableToInput)
         {
             MovementImputs();
+            DetectDevice();
+            SetDPadAxis();
+            DoDPadActions();
 
             if (!GM.improved)
             {
@@ -67,6 +81,33 @@ public class ImputManager : MonoBehaviour
         }
     }
 
+    void DetectDevice()
+    {
+        string[] names = Input.GetJoystickNames();
+
+        for (int x = 0; x < names.Length; x++)
+        {
+            Debug.Log(names[x]);
+
+            if (names[x].Length == 19)
+            {
+                PS4Controller = true;
+                XBoxOneController = false;
+            }
+            else if (names[x].Length == 33)
+            {
+                XBoxOneController = true;
+                PS4Controller = false;
+            }
+
+            else if (names[x].Length == 0)
+            {
+                XBoxOneController = false;
+                PS4Controller = false;
+            }
+        }
+    }
+
     public void CheckSetPause()// an exclusive Update so when the game is paused the GM still reads the imput
     {
         SetPause();
@@ -91,6 +132,41 @@ public class ImputManager : MonoBehaviour
         axis.y = Input.GetAxis("Vertical");
 
         player.GetAxis(this.axis.x, this.axis.y);
+    }
+
+    public void SetDPadAxis()
+    {
+        float x = Input.GetAxis("DPad X");
+        float y = Input.GetAxis("DPad Y");
+
+        dPadUp = false;
+        dPadDown = false;
+        dPadRight = false;
+        dPadLeft = false;
+
+        if (dPadAxis.y != y)
+        {
+            if (y == 1) dPadUp = true;
+            else if (y == -1) dPadDown = true;
+        }
+
+        if (dPadAxis.x != x)
+        {
+            if (x == 1) dPadRight = true;
+            else if (x == -1) dPadLeft = true;
+        }
+
+        dPadAxis.x = x;
+        dPadAxis.y = y;
+    }
+
+    public void DoDPadActions()
+    {
+        if (dPadLeft) WM.ChangeGunLeft();
+        else if (dPadRight) WM.ChangeGunRight();
+
+        if (dPadUp) inv.UpInventory();
+        else if (dPadDown) inv.DownInventory();
     }
 
     public void SetCroach()
@@ -157,7 +233,7 @@ public class ImputManager : MonoBehaviour
             Items.SetButtonPressed();
         }
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetButton("Shot Item"))
         {
             Items.SetButtonRealised();
         }
@@ -165,11 +241,11 @@ public class ImputManager : MonoBehaviour
 
     public void Aim()
     {
-        if (Input.GetMouseButton(1))
+        if (Input.GetButton("Aim"))
         {
             aim.Aim();
         }
-        if (Input.GetMouseButtonUp(1))
+        if (Input.GetButtonUp("Aim"))
         {
             aim.NotAim();
         }
@@ -184,7 +260,7 @@ public class ImputManager : MonoBehaviour
     }
     public void Shot()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetButton("Shot"))
         {
             WM.Shot();
         }
@@ -196,7 +272,7 @@ public class ImputManager : MonoBehaviour
 
     public void ReleaseShot()
     {
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetButtonUp("Shot"))
         {
             WM.ReleaseShot();
         }

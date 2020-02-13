@@ -28,7 +28,7 @@ public class OptionsMenu : MonoBehaviour
     [Header("Resolution")]
     public Resolution[] resolutions;
     public int currentResolution;
-    public Dropdown dropdown;
+    public Dropdown resolutionDropdown;
     public bool useActualResolution;
     //public Toggle AutoResToggle;
 
@@ -40,25 +40,11 @@ public class OptionsMenu : MonoBehaviour
     {
         qualities = QualitySettings.names;
 
-        /*if (PlayerPrefs.HasKey("Quality"))
-        {
-            QualityLoad();
-        }
-
-        if (PlayerPrefs.HasKey("VolumeMaster"))
-        {
-            AudioLoad();
-        }*/
-
         Settings = Options.Graphics;
 
         InitializeResolutions();
 
         LoadOptions();
-
-        SetGraphics();
-        SetQuality(selectedQuality);
-        SetResolution();
     }
 
     public void Update()
@@ -167,46 +153,34 @@ public class OptionsMenu : MonoBehaviour
 
     #endregion
 
-    #region settings
+    #region SetOptions
 
     public void SetQuality(int quality)
     {
         QualitySettings.SetQualityLevel(quality);
-
-        //PlayerPrefs.SetInt("Quality", quality);
 
         selectedQuality = quality;
     }
 
     public void SetVolume(float volume)
     {
-        //Debug.Log(volume);
-
         master.SetFloat("MasterVolume", volume);
-
-        //PlayerPrefs.SetFloat("VolumeMaster", volume);
 
         audioValue = volume;
     }
 
     public void AsignResolution()
     {
-        //Debug.Log(dropdown.value);
+        Screen.SetResolution(resolutions[resolutionDropdown.value].width, resolutions[resolutionDropdown.value].height, Screen.fullScreen);
 
-        Screen.SetResolution(resolutions[dropdown.value].width, resolutions[dropdown.value].height, Screen.fullScreen);
-
-        //PlayerPrefs.SetInt("Resolution", dropdown.value);
-
-        selectedResolution = dropdown.value;
-
-        //Debug.Log(dropdown.value);
+        selectedResolution = resolutionDropdown.value;
     }
 
     public void InitializeResolutions()
     {
         resolutions = Screen.resolutions;
 
-        dropdown.ClearOptions();
+        resolutionDropdown.ClearOptions();
 
         currentResolution = 0;
 
@@ -223,49 +197,15 @@ public class OptionsMenu : MonoBehaviour
             } //esto calcula cual es tu resolucion actual
         }
 
-        dropdown.AddOptions(resolutionsList);
+        resolutionDropdown.AddOptions(resolutionsList);
 
-        /*if (PlayerPrefs.HasKey("Resolution"))
-        {
-            dropdown.value = PlayerPrefs.GetInt("Resolution");
-        }
+        resolutionDropdown.value = selectedResolution;
 
-        else
-        {
-            currentResolution = PlayerPrefs.GetInt("Resolution");
-            dropdown.value = currentResolution;
-        }*/
+        resolutionDropdown.RefreshShownValue();
 
-        dropdown.value = selectedResolution;
-
-        dropdown.RefreshShownValue();
-
-        dropdown.RefreshShownValue();
+        resolutionDropdown.RefreshShownValue();
     }
 
-    #endregion
-
-    #region Load
-
-    public void QualityLoad()
-    {
-        //int initQuality = PlayerPrefs.GetInt("Quality");
-
-        QualitySettings.SetQualityLevel(selectedQuality);
-
-        dropQuality.value = selectedQuality;
-
-        dropQuality.RefreshShownValue();
-    }
-
-    public void AudioLoad()
-    {
-        //float initialVolume = PlayerPrefs.GetFloat("VolumeMaster");
-
-        master.SetFloat("MasterVolume", audioValue);
-
-        sliderMasterAud.value = audioValue;
-    }
     #endregion
 
     public void SaveOptions()
@@ -277,8 +217,8 @@ public class OptionsMenu : MonoBehaviour
     {
         OptionsManager data = OptionSaveSystem.LoadOptions();
 
-        audioValue = data.audioValue;
-        selectedResolution = data.selectedResolution;
-        selectedQuality = data.selectedQuality;
+        sliderMasterAud.value = data.audioValue;
+        resolutionDropdown.value = data.selectedResolution;
+        dropQuality.value = data.selectedQuality;
     }
 }

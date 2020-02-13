@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
     public Vector2 axis = Vector2.zero;
     public Vector3 moveDir = Vector3.zero;
     public float verticalSpeed;
+    [SerializeField] float movingForwardXOffset;
 
     [Header("Rotation")]
     public Camera cam;
@@ -202,7 +203,7 @@ public class PlayerController : MonoBehaviour
         if (axis.y != 0 || axis.x != 0) moving = true;
         else moving = false;
 
-        if (axis.y > 0.1f && axis.x == 0) movingForward = true;
+        if (axis.y > 0.1f && axis.x <= movingForwardXOffset && axis.x >= -movingForwardXOffset) movingForward = true;
         else movingForward = false;
     }
 

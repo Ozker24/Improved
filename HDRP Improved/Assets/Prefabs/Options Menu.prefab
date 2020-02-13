@@ -84,7 +84,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4932780641947114559}
         m_MethodName: SwitchToggleAutoResolution
         m_Mode: 1
         m_Arguments:
@@ -306,6 +306,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4932780641947114559}
         m_MethodName: AsignResolution
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4932780641947114559}
+        m_MethodName: SaveOptions
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -601,7 +612,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 4932780641914131824}
   m_HandleRect: {fileID: 4932780642141957019}
   m_Direction: 0
-  m_MinValue: -80
+  m_MinValue: -35
   m_MaxValue: 0
   m_WholeNumbers: 0
   m_Value: 0
@@ -611,6 +622,17 @@ MonoBehaviour:
       - m_Target: {fileID: 4932780641947114559}
         m_MethodName: SetVolume
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4932780641947114559}
+        m_MethodName: SaveOptions
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1646,7 +1668,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4932780641421351779
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2151,7 +2173,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4932780641506498643
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3114,7 +3136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4932780641947114558
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3148,6 +3170,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Settings: 1
+  audioValue: 0
+  selectedResolution: 0
+  selectedQuality: 0
+  OM:
+    audioValue: 0
+    selectedResolution: 0
+    selectedQuality: 0
   selectors:
   - {fileID: 4932780642181936416}
   - {fileID: 4932780641447589215}
@@ -3158,12 +3187,13 @@ MonoBehaviour:
   - {fileID: 4932780641421351778}
   - {fileID: 4932780640931772016}
   - {fileID: 4932780640972756751}
-  dropQuality: {fileID: 0}
+  dropQuality: {fileID: 4932780642205638488}
   qualities: []
-  dropdown: {fileID: 4932780640375066430}
-  calculateActualResolution: 0
+  currentResolution: 0
+  resolutionDropdown: {fileID: 4932780640375066430}
   useActualResolution: 0
   master: {fileID: 24100000, guid: 6d9903779e846ff478a36ce51815bf15, type: 2}
+  sliderMasterAud: {fileID: 4932780640457853971}
 --- !u!1 &4932780641953796137
 GameObject:
   m_ObjectHideFlags: 0
@@ -4038,6 +4068,17 @@ MonoBehaviour:
       - m_Target: {fileID: 4932780641947114559}
         m_MethodName: SetQuality
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4932780641947114559}
+        m_MethodName: SaveOptions
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4934,7 +4975,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3842112967137804016
 RectTransform:
   m_ObjectHideFlags: 0

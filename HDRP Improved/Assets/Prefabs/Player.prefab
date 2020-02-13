@@ -85,7 +85,9 @@ MonoBehaviour:
   nearestEnemy: {fileID: 0}
   mergeOfReset: 0
   absorbDistance: 2.5
-  howMuchToAdd: 0
+  beforeAbsorbe: 0
+  howMuchToAddStamina: 0
+  howMuchToAddLife: 0
   canAbsorb: 0
   interrumpt: 0
 --- !u!1 &358351484
@@ -112,7 +114,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 358351484}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.687, z: 0}
+  m_LocalPosition: {x: 0, y: 1.57, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 800574697}
@@ -402,7 +404,16 @@ MonoBehaviour:
   staminaMat: {fileID: 2100000, guid: 9ec1fc865f4c65f4cab5b77d86568c99, type: 2}
   stamina: 60
   percentage: 0
-  image: {fileID: 0}
+  staminaMultiply: 0
+  staminaFastMultiply: 0
+  staminaSlowMultiply: 0
+  addConstantStamina: 0
+  speedStamina: 0
+  lifeMultiply: 0
+  lifeFastMultiply: 0
+  lifeSlowMultiply: 0
+  addConstantLife: 0
+  speedLife: 0
   usingLaserGun: 0
   usingFlameThrower: 0
   usingHyperJump: 0
@@ -459,6 +470,12 @@ MonoBehaviour:
   misile: {fileID: 7784078349905123400, guid: 3ad9173babdbd96469d67702ad40f3c9, type: 3}
   misileDist: 100
   nextMisilePos: {x: 0, y: 0, z: 0}
+  detectCelling: {fileID: 0}
+  roofLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  rayRoofDist: 0
+  underRoof: 0
 --- !u!1 &800574696
 GameObject:
   m_ObjectHideFlags: 0
@@ -1442,6 +1459,7 @@ MonoBehaviour:
   axis: {x: 0, y: 0}
   moveDir: {x: 1, y: 0, z: 0}
   verticalSpeed: 0
+  movingForwardXOffset: 0.15
   cam: {fileID: 0}
   lookTarget: {fileID: 0}
   camTrans: {fileID: 0}
@@ -1451,6 +1469,9 @@ MonoBehaviour:
   endedClimb: {x: 0, y: 0, z: 0}
   climbTime: 1
   canClimb: 0
+  crouchHeight: 1
+  normalHeight: 0
+  charControllercenterOffset: 0
   normalModeFistDamage: 1
   improvedModeFistDamage: 4
   normalModeMaxFists: 3
@@ -1470,7 +1491,7 @@ MonoBehaviour:
   canDodge: 1
   dodging: 0
   gravityMagnitude: 1
-  CollectItemSource: {fileID: 6827900420496641491}
+  baseSource: {fileID: 6827900420496641491}
 --- !u!114 &6827900420496641490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1532,6 +1553,7 @@ MonoBehaviour:
   canBeDetected: 1
   importantAudio: 0
   actualSoundDistance: 0
+  lastImportantSoundPosition: {x: 0, y: 0, z: 0}
   timeToDetect: 5
   volume: 0
   maxVolume: 0.5
@@ -2133,11 +2155,11 @@ MonoBehaviour:
   WeaponSelected: 0
   timeCounter: 0
   timeToSelect: 4
-  selecting: 0
+  selectingGun: 0
   maxWeapons: 0
   timeAbleGun:
-  - 0.5
-  - 1
+  - 5
+  - 5
   - 1.5
   - 2
   ableGun: 1
@@ -2152,7 +2174,7 @@ MonoBehaviour:
   - 3
   - 4
   distanceToSound:
-  - 10
+  - 20
   - 15
   - 20
   - 50
@@ -2372,10 +2394,11 @@ MonoBehaviour:
   itemSelected: 0
   pressed: 0
   realised: 0
-  timeFirstAid: 4
+  timeFirstAid: 20
   TimeCounter: 0
   Canceled: 0
   firstTime: 0
+  healing: 0
   GranadePrefab: {fileID: 8014949743119193757, guid: 285de76908b33d54297e39c110ec7e7e,
     type: 3}
   MolotovPrefab: {fileID: 6442462936046615425, guid: 39fe29c8acb7e6d4cb61d74ab0c1dc44,
@@ -2421,6 +2444,8 @@ MonoBehaviour:
   baseSource: {fileID: 6827900421331495838}
   ClipsSelected: {fileID: 6827900421167040047}
   ClipsLaunched: {fileID: 6827900420884428928}
+  doTrayectoryInDodge: 0
+  restockHealing: 0
 --- !u!114 &6827900421331495837
 MonoBehaviour:
   m_ObjectHideFlags: 0
