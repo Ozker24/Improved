@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class AnimationsControlMainMenu : MonoBehaviour
 {
@@ -20,6 +21,9 @@ public class AnimationsControlMainMenu : MonoBehaviour
     public bool doFadeIn;
     public bool doFadeInButtons;
     public bool canPressAnyKey;
+
+    [SerializeField] EventSystem ESystem;
+    [SerializeField] GameObject firstButtonOnMainMenu;
 
     public void Start()
     {
@@ -56,6 +60,7 @@ public class AnimationsControlMainMenu : MonoBehaviour
                 pressAnyKey.SetActive(false);
                 canPressAnyKey = false;
                 doFadeInButtons = true;
+                ESystem.SetSelectedGameObject(firstButtonOnMainMenu);
             }
         }
     }

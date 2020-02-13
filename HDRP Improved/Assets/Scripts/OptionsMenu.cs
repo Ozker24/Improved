@@ -9,13 +9,14 @@ public class OptionsMenu : MonoBehaviour
     public enum Options { Resolution, Graphics, Audio, Controls };
     public Options Settings;
 
+    [Header("Dependencie")]
+    public OptionsManager OM;
+    public ShowControllers showControllers;
+
     [Header("StorageVariables")]
     public float audioValue;
     public int selectedResolution;
     public int selectedQuality;
-
-    [Header("OptionsManager")]
-    public OptionsManager OM;
 
     [Header("To Hide")]
     public GameObject[] selectors;
@@ -109,6 +110,8 @@ public class OptionsMenu : MonoBehaviour
         settings[2].SetActive(false);
         settings[3].SetActive(false);
 
+        showControllers.showThem = false;
+
         Settings = Options.Graphics;
     }
 
@@ -121,6 +124,8 @@ public class OptionsMenu : MonoBehaviour
         settings[0].SetActive(false);
         settings[2].SetActive(false);
         settings[3].SetActive(false);
+
+        showControllers.showThem = false;
 
         Settings = Options.Resolution;
     }
@@ -135,6 +140,8 @@ public class OptionsMenu : MonoBehaviour
         settings[1].SetActive(false);
         settings[3].SetActive(false);
 
+        showControllers.showThem = false;
+
         Settings = Options.Audio;
     }
 
@@ -147,6 +154,8 @@ public class OptionsMenu : MonoBehaviour
         settings[0].SetActive(false);
         settings[1].SetActive(false);
         settings[2].SetActive(false);
+
+        showControllers.showThem = true;
 
         Settings = Options.Controls;
     }

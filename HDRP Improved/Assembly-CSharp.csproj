@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\Character Expo\SelectCharacter.cs" />
     <Compile Include="Assets\Scripts\CloseCombat.cs" />
     <Compile Include="Assets\Scripts\CombatArea.cs" />
+    <Compile Include="Assets\Scripts\DevicesDetector.cs" />
     <Compile Include="Assets\Scripts\Emp.cs" />
     <Compile Include="Assets\Scripts\EndFadeIn.cs" />
     <Compile Include="Assets\Scripts\EnemyAttackArea.cs" />
@@ -122,6 +123,7 @@
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\PlaySoundRemote.cs" />
     <Compile Include="Assets\Scripts\SettingsSaver.cs" />
+    <Compile Include="Assets\Scripts\ShowControllers.cs" />
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
     <Compile Include="Assets\Scripts\SoundManager.cs" />
     <Compile Include="Assets\Scripts\StealthSystem.cs" />

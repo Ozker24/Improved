@@ -26,10 +26,6 @@ public class ImputManager : MonoBehaviour
     public bool dPadRight;
     public bool dPadLeft;
 
-    [Header("Controllers")]
-    [SerializeField] bool PS4Controller;
-    [SerializeField] bool XBoxOneController;
-
     public void Initialize()
     {
         GM = GameObject.FindGameObjectWithTag("Managers").GetComponent<GameManager>();
@@ -48,7 +44,6 @@ public class ImputManager : MonoBehaviour
         if (GM.ableToInput)
         {
             MovementImputs();
-            DetectDevice();
             SetDPadAxis();
             DoDPadActions();
 
@@ -78,33 +73,6 @@ public class ImputManager : MonoBehaviour
             Hit();
             Aim();
             GodMode();
-        }
-    }
-
-    void DetectDevice()
-    {
-        string[] names = Input.GetJoystickNames();
-
-        for (int x = 0; x < names.Length; x++)
-        {
-            Debug.Log(names[x]);
-
-            if (names[x].Length == 19)
-            {
-                PS4Controller = true;
-                XBoxOneController = false;
-            }
-            else if (names[x].Length == 33)
-            {
-                XBoxOneController = true;
-                PS4Controller = false;
-            }
-
-            else if (names[x].Length == 0)
-            {
-                XBoxOneController = false;
-                PS4Controller = false;
-            }
         }
     }
 
