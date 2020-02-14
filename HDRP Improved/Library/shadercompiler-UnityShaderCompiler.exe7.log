@@ -1,20 +1,69 @@
-Base path: 'C:/Program Files/Unity/Hub/Editor/2019.2.12f1/Editor/Data', plugins path 'C:/Program Files/Unity/Hub/Editor/2019.2.12f1/Editor/Data/PlaybackEngines'
+Base path: 'C:/Program Files/Unity/Hub/Editor/2019.3.0f1/Editor/Data', plugins path 'C:/Program Files/Unity/Hub/Editor/2019.3.0f1/Editor/Data/PlaybackEngines'
+Cmd: initializeCompiler
+Cmd: compileComputeKernel
+  api=4 insize=10288 outsize=3182 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=8273 outsize=8161 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=17994 outsize=7462 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=4026 outsize=2751 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=1372 outsize=678 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=2702 outsize=2461 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=10247 outsize=725126 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=10834 outsize=4491 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=3111 outsize=2047 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=37474 outsize=38815 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=37474 outsize=39697 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=1056 outsize=3163 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=22295 outsize=15194 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=11494 outsize=257 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=9134 outsize=12677 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=7732 outsize=7213 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=20067 outsize=5325 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=5168 outsize=4889 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=26542 outsize=15415 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=15784 outsize=94743 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=15784 outsize=43163 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=15784 outsize=22237 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=15784 outsize=31582 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=15784 outsize=40861 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=15784 outsize=77145 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=26618 outsize=3476 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=1977 outsize=1220 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=1957 outsize=1383 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=3158 outsize=2137 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=7589 outsize=1033 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=13940 outsize=2094 ok=1
 Cmd: initializeCompiler
 Cmd: compileSnippet
-  error: 1 plat 4 at (84): 'TransformObjectToWorld': implicit truncation of vector type\nCompiling Fragment program
-Platform defines: UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR
-  api=4 type=1 insize=3099 outsize=1030 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=1
+  api=4 type=0 insize=5826 outsize=846 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=1
 Cmd: compileSnippet
-  error: 1 plat 4 at (83): 'TransformObjectToWorld': implicit truncation of vector type\nCompiling Fragment program
-Platform defines: UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR
-  error: 1 plat 4 at (95): value cannot be infinity, isfinite() may not be necessary.  /Gis may force isfinite() to be performed\nCompiling Fragment program
-Platform defines: UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR
-  api=4 type=1 insize=3030 outsize=218 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=1
-Cmd: compileSnippet
-  error: 1 plat 4 at (107): 'TransformObjectToWorld': implicit truncation of vector type\nCompiling Vertex program
-Platform defines: UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR
-  api=4 type=0 insize=4041 outsize=642 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=1
-Cmd: compileSnippet
-  error: 1 plat 4 at (103): 'TransformObjectToWorld': implicit truncation of vector type\nCompiling Vertex program
-Platform defines: UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR
-  api=4 type=0 insize=4049 outsize=642 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=1
+  api=4 type=1 insize=6743 outsize=562 kw=UNITY_PASS_MOTIONVECTORS _NORMALMAP_TANGENT_SPACE _NORMALMAP _MASKMAP pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=1
