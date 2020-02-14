@@ -18,12 +18,15 @@ EditorBuildSettings:
     path: Assets/Scenes/HDRP Improved Test 2.unity
     guid: c17a3b1900262c649836a995fcd86686
   - enabled: 1
+    path: Assets/Scenes/Arena test.unity
+    guid: f6a358cab130a6c46afdf3f8ec048279
+  - enabled: 1
     path: Assets/Scenes/WinScene.unity
     guid: c16687fc189426c42821daa3b716057f
   - enabled: 1
     path: Assets/Scenes/LoseScene.unity
     guid: 84cb03d8c6113534784a4ee331aeb28b
   - enabled: 0
-    path: Assets/__DELETED_GUID_Trash/1fd280bf602ead9479c46e8a949963f7
+    path: 
     guid: 1fd280bf602ead9479c46e8a949963f7
   m_configObjects: {}

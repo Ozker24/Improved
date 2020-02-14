@@ -494,6 +494,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(timeOfDodge);
         dodging = false;
         axisOnDodge = Vector2.zero;
+        items.doTrayectoryInDodge = false;
         IWM.usingHyperDash = false;
     }
 

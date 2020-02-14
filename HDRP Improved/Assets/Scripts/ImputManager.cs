@@ -301,7 +301,7 @@ public class ImputManager : MonoBehaviour
 
     public void ResetSemiAutoLaserGun()
     {
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetButtonUp("Shot"))
         {
             IWM.laser.ResetLaserGun();
         }
@@ -309,7 +309,7 @@ public class ImputManager : MonoBehaviour
 
     public void ShotChargedLaserGun()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetButton("Shot"))
         {
             IWM.laser.ChargingLaserGun();
         }

@@ -20,6 +20,6 @@ public class FirstButtonGUI : MonoBehaviour
     }
     public void ChangeFBOnPause()
     {
-        ESystem.SetSelectedGameObject(firstButtonOnOptions);
+        ESystem.SetSelectedGameObject(firstButtonOnPause);
     }
 }
