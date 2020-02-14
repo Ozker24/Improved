@@ -18,6 +18,7 @@ TagManager:
   - Improved
   - Interruptor
   - Roof
+  - Flesh
   layers:
   - Default
   - TransparentFX
@@ -50,7 +51,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - BodyParts
   m_SortingLayers:
   - name: Default
     uniqueID: 0

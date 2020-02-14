@@ -68127,7 +68127,7 @@ PrefabInstance:
     - target: {fileID: 5348835213635703428, guid: 013a80693edd24f40a4bc40b267efdf7,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5348835213635703428, guid: 013a80693edd24f40a4bc40b267efdf7,
         type: 3}
@@ -68164,6 +68164,11 @@ PrefabInstance:
       propertyPath: waitOnPointTime
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5348835213635703428, guid: 013a80693edd24f40a4bc40b267efdf7,
+        type: 3}
+      propertyPath: IHaveSight
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 247506710, guid: 013a80693edd24f40a4bc40b267efdf7, type: 3}
       propertyPath: crouchFinalPos
       value: 
@@ -68172,6 +68177,16 @@ PrefabInstance:
       propertyPath: uncrouchFinalPos
       value: 
       objectReference: {fileID: 358351485}
+    - target: {fileID: 5035921394582535169, guid: 013a80693edd24f40a4bc40b267efdf7,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: eef6604c6ce5f0a429696e9f57d68d60, type: 2}
+    - target: {fileID: 5035921394582535169, guid: 013a80693edd24f40a4bc40b267efdf7,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 013a80693edd24f40a4bc40b267efdf7, type: 3}
 --- !u!4 &6586434062536032064 stripped
@@ -68277,6 +68292,26 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 742023944}
+    - target: {fileID: 6827900420321949403, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
+        type: 3}
+      propertyPath: weaponLayer.m_Bits
+      value: 2155871539
+      objectReference: {fileID: 0}
+    - target: {fileID: 6827900420538083984, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
+        type: 3}
+      propertyPath: weaponLayer.m_Bits
+      value: 2155871539
+      objectReference: {fileID: 0}
+    - target: {fileID: 6827900421045614589, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
+        type: 3}
+      propertyPath: weaponLayer.m_Bits
+      value: 2155871539
+      objectReference: {fileID: 0}
+    - target: {fileID: 6827900421414542786, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
+        type: 3}
+      propertyPath: weaponLayer.m_Bits
+      value: 2155871539
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90b3c2faeab051a4a8bf446d36a4fc15, type: 3}
 --- !u!1001 &9069433008434627608

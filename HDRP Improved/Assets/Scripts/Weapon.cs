@@ -48,6 +48,8 @@ public class Weapon : MonoBehaviour
     public AudioClip MetalClip;
     public AudioArray ReloadClips;
 
+    public LayerMask weaponLayer;
+
     public void Start()
     {
         bloodParticle = weapon.bloodParticle;
@@ -82,11 +84,12 @@ public class Weapon : MonoBehaviour
             Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
             RaycastHit hit = new RaycastHit();// que hemos golpeado primero
 
-            if (Physics.Raycast(ray, out hit, fireDist))
+            if (Physics.Raycast(ray, out hit, fireDist, weaponLayer))
             {
                 Debug.Log(hit.transform.tag);
+                Debug.Log(hit.collider.name);
 
-                if (hit.transform.tag == "Enemy")
+                if (hit.transform.tag == "Flesh")
                 {
                     GameObject particle = (GameObject)Instantiate(bloodParticle, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
 
@@ -120,7 +123,9 @@ public class Weapon : MonoBehaviour
 
                 if (Physics.Raycast(ray, out hit, fireDist))
                 {
-                    if (hit.transform.tag == "Enemy")
+                    Debug.Log(hit.collider.name);
+
+                    if (hit.transform.tag == "Flesh")
                     {
                         GameObject particle = (GameObject)Instantiate(bloodParticle, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
 
