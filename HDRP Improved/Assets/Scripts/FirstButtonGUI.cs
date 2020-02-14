@@ -9,6 +9,9 @@ public class FirstButtonGUI : MonoBehaviour
     [SerializeField] GameObject firstButtonOnOptions;
     [SerializeField] GameObject firstButtonOnMainMenu;
     [SerializeField] GameObject firstButtonOnPause;
+    [SerializeField] GameObject firstButtonOnResolution;
+    [SerializeField] GameObject firstButtonOnAudio;
+    //[SerializeField] GameObject firstButtonOnControll;
 
     public void ChangeFBOnOptions()
     {
@@ -21,5 +24,13 @@ public class FirstButtonGUI : MonoBehaviour
     public void ChangeFBOnPause()
     {
         ESystem.SetSelectedGameObject(firstButtonOnPause);
+    }
+    public void ChangeFBOnResolution()
+    {
+        ESystem.SetSelectedGameObject(firstButtonOnResolution);
+    }
+    public void ChangeFBOnAudio()
+    {
+        ESystem.SetSelectedGameObject(firstButtonOnAudio);
     }
 }
