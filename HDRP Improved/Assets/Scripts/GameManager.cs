@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager GM;
+
     [SerializeField]
     private PlayerController player;
     [SerializeField]
@@ -60,6 +62,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        GM = GetComponent<GameManager>();
+
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         inputs = GameObject.FindGameObjectWithTag("Managers").GetComponent<ImputManager>();
         camera = GameObject.FindGameObjectWithTag("TPCamera").GetComponent<CamaraAdjustment>();

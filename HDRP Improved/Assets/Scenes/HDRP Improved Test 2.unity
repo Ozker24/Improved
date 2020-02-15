@@ -69164,7 +69164,7 @@ PrefabInstance:
       objectReference: {fileID: 1065408029}
     - target: {fileID: 2507703840781737401, guid: 19fe9dd861e6ec54fbe88df5ecaf0efb,
         type: 3}
-      propertyPath: weapons
+      propertyPath: WM
       value: 
       objectReference: {fileID: 709269306}
     - target: {fileID: 2507703840781737401, guid: 19fe9dd861e6ec54fbe88df5ecaf0efb,
@@ -69172,11 +69172,6 @@ PrefabInstance:
       propertyPath: baseSource
       value: 
       objectReference: {fileID: 502578087}
-    - target: {fileID: 2507703840781737401, guid: 19fe9dd861e6ec54fbe88df5ecaf0efb,
-        type: 3}
-      propertyPath: WM
-      value: 
-      objectReference: {fileID: 709269306}
     - target: {fileID: 2507703841164274450, guid: 19fe9dd861e6ec54fbe88df5ecaf0efb,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

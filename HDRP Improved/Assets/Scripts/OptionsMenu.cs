@@ -12,6 +12,7 @@ public class OptionsMenu : MonoBehaviour
     [Header("Dependencie")]
     public OptionsManager OM;
     public ShowControllers showControllers;
+    public FirstButtonGUI FBGui;
 
     [Header("StorageVariables")]
     public float audioValue;
@@ -36,6 +37,10 @@ public class OptionsMenu : MonoBehaviour
     [Header("Audio")]
     public AudioMixer master;
     public Slider sliderMasterAud;
+
+    [Header("GUI")]
+    public int currentOption;
+    public int maxOptions;
 
     public void Start()
     {
@@ -68,6 +73,8 @@ public class OptionsMenu : MonoBehaviour
                 ControlsUpdate();
                 break;
         }
+
+        SetCurrentOption();
     }
 
     #region Updates
@@ -213,6 +220,65 @@ public class OptionsMenu : MonoBehaviour
         resolutionDropdown.RefreshShownValue();
 
         resolutionDropdown.RefreshShownValue();
+    }
+
+    #endregion
+
+    #region GUI
+
+    public void SetCurrentOption()
+    {
+        if (GameManager.GM.options)
+        {
+            if (Input.GetButtonDown("Pos Horizontal GUI"))
+            {
+                if (currentOption < maxOptions)
+                {
+                    currentOption++;
+                    ChangeOption();
+                }
+            }
+
+            if (Input.GetButtonDown("Neg Horizontal GUI"))
+            {
+                if (currentOption > 0)
+                {
+                    currentOption--;
+                    ChangeOption();
+                }
+            }
+        }
+    }
+
+    public void ChangeOption()
+    {
+        if (currentOption == 0)
+        {
+            SetGraphics();
+            FBGui.ChangeFBOnOptions();
+        }
+
+        if (currentOption == 1)
+        {
+            SetResolution();
+            FBGui.ChangeFBOnResolution();
+        }
+
+        if (currentOption == 2)
+        {
+            SetAudio();
+            FBGui.ChangeFBOnAudio();
+        }
+
+        if (currentOption == 3)
+        {
+            SetControllers();
+        }
+    }
+
+    public void ResetCurrentOption()
+    {
+        currentOption = 0;
     }
 
     #endregion

@@ -2055,7 +2055,7 @@ MonoBehaviour:
   selectorGun: {fileID: 2507703840726357366}
   timeCounter: 0
   timeToVanish: 1
-  weapons: {fileID: 0}
+  WM: {fileID: 0}
   items: {fileID: 0}
   soundRemote: {fileID: 2507703840502090940}
   baseSource: {fileID: 0}
