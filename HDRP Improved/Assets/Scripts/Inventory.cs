@@ -9,7 +9,7 @@ public class Inventory : MonoBehaviour
     public RectTransform selectorGun;
     public float timeCounter = 0;
     public float timeToVanish;
-    public WeaponManager weapons;
+    public WeaponManager WM;
     public Items items;
     public PlaySoundRemote soundRemote;
 
@@ -32,14 +32,14 @@ public class Inventory : MonoBehaviour
     public void Initialize()
     {
         Inv.SetActive(false);
-        maxGun = weapons.maxWeapons;
+        maxGun = WM.maxWeapons;
         items = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Items>();
         //anim = GetComponentInChildren<Animator>();
     }
 
     public void MyUpdate()
     {
-        actualGun = weapons.weaponPreSelected;
+        actualGun = WM.weaponPreSelected;
 
         if (startCountdown)
         {

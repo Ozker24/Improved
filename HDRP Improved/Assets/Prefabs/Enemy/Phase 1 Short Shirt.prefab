@@ -145,12 +145,12 @@ GameObject:
   - component: {fileID: 8579224468682078469}
   - component: {fileID: 8579224468682078587}
   m_Layer: 9
-  m_Name: Phase 1
+  m_Name: Phase 1 Short Shirt
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8579224468682078589
 Transform:
   m_ObjectHideFlags: 0
@@ -249,10 +249,14 @@ MonoBehaviour:
   patrolSpeed: 2
   stayThere: 1
   stationaryTimeCounter: 0
-  generalWaitOnPointTime: 1
-  waitOnPointTime: 5
-  waitComeFromSound: 10
-  percentageOfWait: 20
+  generalWaitOnPointTime: 0
+  initGeneralWaitOnPointTime: 1
+  waitOnPointTime: 0
+  initWaitOnPointTime: 5
+  initWaitComeFromSound: 10
+  waitComeFromSound: 0
+  percentageOfWait: 0
+  initPercentageOfWait: 20
   randomNum: 0
   stopOnThePoints: 0
   stopOnPoint: 0
@@ -266,19 +270,22 @@ MonoBehaviour:
   whenSoundRestTime: 3
   alertSpeed: 4
   alertDistance: 5.9
-  alertTime: 2.9
+  closeAlertTimeToDetect: 0
   alertGeneralWaitOnPointTime: 3
   alertWaitOnPointTime: 8
   alertWaitComeFromSound: 15
   alertWaitPercentage: 70
+  alertTimeCounter: 0
+  maxAlertTime: 10
   inAlert: 0
-  changeVariables: 0
+  endingAlert: 0
+  changeToAlert: 0
   timeToDie: 5
   dead: 0
   addStamina: 20
-  timeToAddStamina: 0
-  staminaTimeCounter: 0
-  maxTimeToStamina: 5
+  addLife: 0
+  absorbTimeCounter: 0
+  maxTimeToAbsorb: 0
   absorbPercentage: 0
   basicSource: {fileID: 8579224468682078587}
   clips: {fileID: 8579224469769869485}
@@ -681,21 +688,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8579224468682078589}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: c89b638dd8e00d34c8c3a7598288642e,
-        type: 3}
-      propertyPath: m_Name
-      value: Cone Sight
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: c89b638dd8e00d34c8c3a7598288642e,
-        type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: c89b638dd8e00d34c8c3a7598288642e,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: c89b638dd8e00d34c8c3a7598288642e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -756,6 +748,21 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: c89b638dd8e00d34c8c3a7598288642e,
+        type: 3}
+      propertyPath: m_Name
+      value: Cone Sight
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: c89b638dd8e00d34c8c3a7598288642e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: c89b638dd8e00d34c8c3a7598288642e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c89b638dd8e00d34c8c3a7598288642e, type: 3}
 --- !u!1 &7012054449073961749 stripped
@@ -777,11 +784,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8579224468682078589}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: c730377678d3b194abe9e9e1d45431b0,
-        type: 3}
-      propertyPath: m_Name
-      value: Fase_1_Beta
-      objectReference: {fileID: 0}
     - target: {fileID: -6552244778890993607, guid: c730377678d3b194abe9e9e1d45431b0,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -847,6 +849,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 806ee74918554894f93c2bd74fb598c8, type: 2}
+    - target: {fileID: -927199367670048503, guid: c730377678d3b194abe9e9e1d45431b0,
+        type: 3}
+      propertyPath: m_Name
+      value: Fase_1_Beta
+      objectReference: {fileID: 0}
     - target: {fileID: -751259389303300223, guid: c730377678d3b194abe9e9e1d45431b0,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -856,6 +863,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1343001670709650164, guid: c730377678d3b194abe9e9e1d45431b0,
+        type: 3}
+      propertyPath: m_TagString
+      value: Metal
       objectReference: {fileID: 0}
     - target: {fileID: 3302135826575280808, guid: c730377678d3b194abe9e9e1d45431b0,
         type: 3}

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1202490604309567067
+--- !u!1 &2283323157708555712
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,61 +8,42 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1202490604309567062}
-  - component: {fileID: 1202490604309567065}
-  - component: {fileID: 1202490604309567064}
-  - component: {fileID: 1202490604309567063}
-  - component: {fileID: 1202490604309567060}
-  - component: {fileID: 1202490604309567061}
+  - component: {fileID: 2283323157708555722}
+  - component: {fileID: 2283323157708555724}
+  - component: {fileID: 2283323157708555725}
+  - component: {fileID: 2283323157708555727}
+  - component: {fileID: 2283323157708555726}
+  - component: {fileID: 2283323157708555713}
+  - component: {fileID: 2283323157708555723}
+  - component: {fileID: 2283323157708555720}
   m_Layer: 0
-  m_Name: Managers
+  m_Name: Managers 1
   m_TagString: Managers
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1202490604309567062
+--- !u!4 &2283323157708555722
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1202490604309567067}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.73686, y: -2.1641068, z: 18.907242}
+  m_GameObject: {fileID: 2283323157708555712}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.25664, y: 0.12689567, z: 0.87609076}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1202490604309567065
+--- !u!114 &2283323157708555724
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1202490604309567067}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6eae302b425bbb44a7c8075526c5903, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  HUD: {fileID: 0}
-  Items: {fileID: 0}
-  aim: {fileID: 0}
-  weapon: {fileID: 0}
-  inv: {fileID: 0}
-  GM: {fileID: 0}
-  CC: {fileID: 0}
-  axis: {x: 0, y: 0}
---- !u!114 &1202490604309567064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1202490604309567067}
+  m_GameObject: {fileID: 2283323157708555712}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 93308aa55931ab447b4bb4dc8a05b392, type: 3}
@@ -79,18 +60,59 @@ MonoBehaviour:
   Aim: {fileID: 0}
   weapon: {fileID: 0}
   peace: {fileID: 0}
-  time: {fileID: 0}
   CC: {fileID: 0}
-  Hit: {fileID: 0}
+  normalModeHit: {fileID: 0}
+  improvedModeHit: {fileID: 0}
+  itemDetector: {fileID: 0}
+  throwImpact: {fileID: 0}
+  stealth: {fileID: 0}
+  pauseMn: {fileID: 0}
+  winLose: {fileID: 0}
+  IWM: {fileID: 0}
   ableToInput: 1
-  detected: 0
---- !u!114 &1202490604309567063
+  pause: 0
+  showControls: 1
+  dead: 0
+  win: 0
+  options: 0
+  improved: 0
+  godMode: 0
+--- !u!114 &2283323157708555725
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1202490604309567067}
+  m_GameObject: {fileID: 2283323157708555712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6eae302b425bbb44a7c8075526c5903, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  HUD: {fileID: 0}
+  Items: {fileID: 0}
+  aim: {fileID: 0}
+  WM: {fileID: 0}
+  inv: {fileID: 0}
+  GM: {fileID: 0}
+  CC: {fileID: 0}
+  pause: {fileID: 0}
+  god: {fileID: 0}
+  IWM: {fileID: 0}
+  axis: {x: 0, y: 0}
+  dPadAxis: {x: 0, y: 0}
+  dPadUp: 0
+  dPadDown: 0
+  dPadRight: 0
+  dPadLeft: 0
+--- !u!114 &2283323157708555727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2283323157708555712}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf651495389ffb14b9305301aaf0a53d, type: 3}
@@ -106,40 +128,94 @@ MonoBehaviour:
   granadeNum: {fileID: 0}
   soundNum: {fileID: 0}
   firstAidNum: {fileID: 0}
-  InjectionNum: {fileID: 0}
+  EMPNum: {fileID: 0}
   pistolText: {fileID: 0}
   shotgunText: {fileID: 0}
   rifleText: {fileID: 0}
   snipperText: {fileID: 0}
-  showTotalAmmo: {fileID: 0}
   currentAmmo: {fileID: 0}
   whatItem: 0
---- !u!114 &1202490604309567060
+--- !u!114 &2283323157708555726
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1202490604309567067}
+  m_GameObject: {fileID: 2283323157708555712}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a3e16be98bd9f14eade253a9c027cf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   soundPosition: {x: 0, y: 0, z: 0}
---- !u!114 &1202490604309567061
+--- !u!114 &2283323157708555713
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1202490604309567067}
+  m_GameObject: {fileID: 2283323157708555712}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa371893869efcc43801469a405bf622, type: 3}
+  m_Script: {fileID: 11500000, guid: bcb9a14108db14949968e937cd34bfe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeMagnitude: 0.3
-  returnTime: 1
-  injectedTime: 5
-  resetTime: 0
+  GM: {fileID: 0}
+  pauseMenu: {fileID: 0}
+  previousControls: {fileID: 0}
+  ableToPause: 0
+--- !u!114 &2283323157708555723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2283323157708555712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eb23ee493e709242be152d8885fbb68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OptionMenu: {fileID: 0}
+  desactiveAtOptions:
+  - {fileID: 0}
+  GM: {fileID: 2283323157708555724}
+  inOptions: 0
+  optionsButton: {fileID: 0}
+--- !u!114 &2283323157708555720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2283323157708555712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 936cf12cb6e560043af0da81bb538985, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  GM: {fileID: 0}
+  WM: {fileID: 0}
+  Hud: {fileID: 0}
+  items: {fileID: 0}
+  health: {fileID: 0}
+  oldSpeed: 0
+  oldDodgeForce: 0
+  oldChangeGunTime:
+  - 0
+  - 0
+  - 0
+  - 0
+  oldGunsDistance:
+  - 0
+  - 0
+  - 0
+  - 0
+  oldHitDamage: 0
+  oldDodgeResetTime: 0
+  godSpeed: 15
+  godDodgeForce: 5
+  addBulletsCount: 10
+  godGunsDistance: 1000
+  imposibleToDetect: 0

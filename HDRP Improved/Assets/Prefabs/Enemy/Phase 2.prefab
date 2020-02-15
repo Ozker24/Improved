@@ -464,14 +464,14 @@ MonoBehaviour:
   patrolSpeed: 2
   stayThere: 1
   stationaryTimeCounter: 0
-  generalWaitOnPointTime: 1
-  initGeneralWaitOnPointTime: 0
-  waitOnPointTime: 5
-  initWaitOnPointTime: 0
-  initWaitComeFromSound: 0
-  waitComeFromSound: 10
+  generalWaitOnPointTime: 0
+  initGeneralWaitOnPointTime: 1
+  waitOnPointTime: 0
+  initWaitOnPointTime: 5
+  initWaitComeFromSound: 10
+  waitComeFromSound: 0
   percentageOfWait: 20
-  initPercentageOfWait: 0
+  initPercentageOfWait: 20
   randomNum: 0
   stopOnThePoints: 0
   stopOnPoint: 0
@@ -491,7 +491,7 @@ MonoBehaviour:
   alertWaitComeFromSound: 15
   alertWaitPercentage: 70
   alertTimeCounter: 0
-  maxAlertTime: 0
+  maxAlertTime: 10
   inAlert: 0
   endingAlert: 0
   changeToAlert: 0
@@ -954,16 +954,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5348835213635703424}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: c89b638dd8e00d34c8c3a7598288642e,
-        type: 3}
-      propertyPath: m_Name
-      value: Cone Sight
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: c89b638dd8e00d34c8c3a7598288642e,
-        type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: c89b638dd8e00d34c8c3a7598288642e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1024,6 +1014,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: c89b638dd8e00d34c8c3a7598288642e,
+        type: 3}
+      propertyPath: m_Name
+      value: Cone Sight
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: c89b638dd8e00d34c8c3a7598288642e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c89b638dd8e00d34c8c3a7598288642e, type: 3}
 --- !u!4 &7647655312457982715 stripped
@@ -1045,11 +1045,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5348835213635703424}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: ec6b18adc892f8347aa3cdb1696c7555,
+    - target: {fileID: -6057140222963153312, guid: ec6b18adc892f8347aa3cdb1696c7555,
         type: 3}
-      propertyPath: m_Name
-      value: Fase 2
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: ec6b18adc892f8347aa3cdb1696c7555,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: eef6604c6ce5f0a429696e9f57d68d60, type: 2}
     - target: {fileID: -4216859302048453862, guid: ec6b18adc892f8347aa3cdb1696c7555,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1104,6 +1109,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: ec6b18adc892f8347aa3cdb1696c7555,
+        type: 3}
+      propertyPath: m_Name
+      value: Fase 2
       objectReference: {fileID: 0}
     - target: {fileID: 2517215404134732349, guid: ec6b18adc892f8347aa3cdb1696c7555,
         type: 3}

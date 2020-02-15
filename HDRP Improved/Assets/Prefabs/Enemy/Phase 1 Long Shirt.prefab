@@ -59,6 +59,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
   area: {fileID: 0}
+--- !u!1 &4470202430357584572
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1189997936171965489}
+  m_Layer: 0
+  m_Name: Sight Init Ray
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1189997936171965489
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4470202430357584572}
+  m_LocalRotation: {x: -1, y: -0, z: -0, w: 0}
+  m_LocalPosition: {x: -0.005, y: 0.024857521, z: -0.019}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8666946239303121183}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &5700739643117159797
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -98,36 +128,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 290816
   noObjectsOccluding: 0
---- !u!1 &4470202430357584572
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1189997936171965489}
-  m_Layer: 0
-  m_Name: Sight Init Ray
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1189997936171965489
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4470202430357584572}
-  m_LocalRotation: {x: -1, y: -0, z: -0, w: 0}
-  m_LocalPosition: {x: -0.005, y: 0.024857521, z: -0.019}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 8666946239303121183}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6367000369425631515
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,7 +150,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6367000369425631588
 Transform:
   m_ObjectHideFlags: 0
@@ -158,7 +158,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6367000369425631515}
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: -6.90784, y: 4.069727, z: -4.295268}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -250,9 +250,13 @@ MonoBehaviour:
   stayThere: 1
   stationaryTimeCounter: 0
   generalWaitOnPointTime: 1
+  initGeneralWaitOnPointTime: 0
   waitOnPointTime: 5
+  initWaitOnPointTime: 0
+  initWaitComeFromSound: 0
   waitComeFromSound: 10
   percentageOfWait: 20
+  initPercentageOfWait: 0
   randomNum: 0
   stopOnThePoints: 0
   stopOnPoint: 0
@@ -266,19 +270,22 @@ MonoBehaviour:
   whenSoundRestTime: 3
   alertSpeed: 4
   alertDistance: 5.9
-  alertTime: 2.9
+  closeAlertTimeToDetect: 0
   alertGeneralWaitOnPointTime: 3
   alertWaitOnPointTime: 8
   alertWaitComeFromSound: 15
   alertWaitPercentage: 70
+  alertTimeCounter: 0
+  maxAlertTime: 10
   inAlert: 0
-  changeVariables: 0
+  endingAlert: 0
+  changeToAlert: 0
   timeToDie: 5
   dead: 0
   addStamina: 20
-  timeToAddStamina: 0
-  staminaTimeCounter: 0
-  maxTimeToStamina: 5
+  addLife: 0
+  absorbTimeCounter: 0
+  maxTimeToAbsorb: 0
   absorbPercentage: 0
   basicSource: {fileID: 6367000369425631586}
   clips: {fileID: 6367000370505312436}
@@ -681,21 +688,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6367000369425631588}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: c89b638dd8e00d34c8c3a7598288642e,
-        type: 3}
-      propertyPath: m_Name
-      value: Cone Sight
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: c89b638dd8e00d34c8c3a7598288642e,
-        type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: c89b638dd8e00d34c8c3a7598288642e,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: c89b638dd8e00d34c8c3a7598288642e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -756,6 +748,21 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: c89b638dd8e00d34c8c3a7598288642e,
+        type: 3}
+      propertyPath: m_Name
+      value: Cone Sight
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: c89b638dd8e00d34c8c3a7598288642e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: c89b638dd8e00d34c8c3a7598288642e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c89b638dd8e00d34c8c3a7598288642e, type: 3}
 --- !u!1 &5628501691013204748 stripped
@@ -777,11 +784,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6367000369425631588}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: c730377678d3b194abe9e9e1d45431b0,
-        type: 3}
-      propertyPath: m_Name
-      value: Fase_1_Beta
-      objectReference: {fileID: 0}
     - target: {fileID: -6552244778890993607, guid: c730377678d3b194abe9e9e1d45431b0,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -851,6 +853,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: c730377678d3b194abe9e9e1d45431b0,
+        type: 3}
+      propertyPath: m_Name
+      value: Fase_1_Beta
       objectReference: {fileID: 0}
     - target: {fileID: -751259389303300223, guid: c730377678d3b194abe9e9e1d45431b0,
         type: 3}
