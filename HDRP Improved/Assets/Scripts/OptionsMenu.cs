@@ -6,18 +6,28 @@ using UnityEngine.UI;
 
 public class OptionsMenu : MonoBehaviour
 {
-    public enum Options { Resolution, Graphics, Audio, Controls };
+    public enum Options { Resolution, Graphics, Audio, Controls, InputSettings };
     public Options Settings;
 
     [Header("Dependencie")]
     public OptionsManager OM;
     public ShowControllers showControllers;
     public FirstButtonGUI FBGui;
+    public GameManager GM;
+    public DevicesDetector devices;
 
     [Header("StorageVariables")]
     public float audioValue;
     public int selectedResolution;
     public int selectedQuality;
+    public string cameraYSensitibityPC;
+    public string cameraXSensitibityPC;
+    public float cameraYSensitibityController;
+    public float cameraXSensitibityController;
+    public bool invertCameraYPC;
+    public bool invertCameraXPC;
+    public bool invertCameraYControllers;
+    public bool invertCameraXControllers;
 
     [Header("To Hide")]
     public GameObject[] selectors;
@@ -27,9 +37,9 @@ public class OptionsMenu : MonoBehaviour
     public Dropdown dropQuality;
     public string[] qualities;
 
-    [Header("Resolution")]
-    public Resolution[] resolutions;
+    [Header("Resolutions")]
     public int currentResolution;
+    public Resolution[] resolutions;
     public Dropdown resolutionDropdown;
     public bool useActualResolution;
     //public Toggle AutoResToggle;
@@ -38,12 +48,36 @@ public class OptionsMenu : MonoBehaviour
     public AudioMixer master;
     public Slider sliderMasterAud;
 
+    [Header("Input Settings")]
+    public GameObject pCInputSettings;
+    public GameObject controllerInputSettings;
+
+    public InputField ySensitibityIF;
+    public InputField xSensitibityIF;
+
+    public Slider ySensitibitySlider;
+    public Slider xSensitibitySlider;
+
+    public Text ySliderValue;
+    public Text xSliderValue;
+
+    public Toggle invertXPC;
+    public Toggle invertYPC;
+    public Toggle invertXController;
+    public Toggle invertYController;
+
     [Header("GUI")]
     public int currentOption;
     public int maxOptions;
 
+    [Header("States")]
+    public bool inOptions;
+    public bool inInputSettings;
+
     public void Start()
     {
+        devices = GetComponent<DevicesDetector>();
+
         qualities = QualitySettings.names;
 
         Settings = Options.Graphics;
@@ -51,6 +85,11 @@ public class OptionsMenu : MonoBehaviour
         InitializeResolutions();
 
         LoadOptions();
+
+        SetYSensitibityPC();
+        SetXSensitibityPC();
+
+        ChangeSlideTextValue();
     }
 
     public void Update()
@@ -72,9 +111,27 @@ public class OptionsMenu : MonoBehaviour
             case Options.Controls:
                 ControlsUpdate();
                 break;
+
+            case Options.InputSettings:
+                InputsUpdate();
+                break;
+        }
+
+        if (GM != null)
+        {
+            inOptions = GM.options;
         }
 
         SetCurrentOption();
+
+        ChangeInputSettings();
+
+        CheckEmptyInputField();
+
+        if (!GM.options)
+        {
+            inInputSettings = false;
+        }
     }
 
     #region Updates
@@ -103,6 +160,12 @@ public class OptionsMenu : MonoBehaviour
         settings[3].SetActive(true);
     }
 
+    public void InputsUpdate()
+    {
+        selectors[4].SetActive(true);
+        settings[4].SetActive(true);
+    }
+
     #endregion
 
     #region Buttons
@@ -112,13 +175,17 @@ public class OptionsMenu : MonoBehaviour
         selectors[1].SetActive(false);
         selectors[2].SetActive(false);
         selectors[3].SetActive(false);
+        selectors[4].SetActive(false);
 
         settings[1].SetActive(false);
         settings[2].SetActive(false);
         settings[3].SetActive(false);
+        settings[4].SetActive(false);
 
         showControllers.showThem = false;
 
+        inInputSettings = false;
+        
         Settings = Options.Graphics;
     }
 
@@ -127,12 +194,16 @@ public class OptionsMenu : MonoBehaviour
         selectors[0].SetActive(false);
         selectors[2].SetActive(false);
         selectors[3].SetActive(false);
+        selectors[4].SetActive(false);
 
         settings[0].SetActive(false);
         settings[2].SetActive(false);
         settings[3].SetActive(false);
+        settings[4].SetActive(false);
 
         showControllers.showThem = false;
+
+        inInputSettings = false;
 
         Settings = Options.Resolution;
     }
@@ -142,12 +213,16 @@ public class OptionsMenu : MonoBehaviour
         selectors[0].SetActive(false);
         selectors[1].SetActive(false);
         selectors[3].SetActive(false);
+        selectors[4].SetActive(false);
 
         settings[0].SetActive(false);
         settings[1].SetActive(false);
         settings[3].SetActive(false);
+        settings[4].SetActive(false);
 
         showControllers.showThem = false;
+
+        inInputSettings = false;
 
         Settings = Options.Audio;
     }
@@ -157,14 +232,37 @@ public class OptionsMenu : MonoBehaviour
         selectors[0].SetActive(false);
         selectors[1].SetActive(false);
         selectors[2].SetActive(false);
+        selectors[4].SetActive(false);
 
         settings[0].SetActive(false);
         settings[1].SetActive(false);
         settings[2].SetActive(false);
+        settings[4].SetActive(false);
 
         showControllers.showThem = true;
 
+        inInputSettings = false;
+
         Settings = Options.Controls;
+    }
+
+    public void SetInputs()
+    {
+        selectors[0].SetActive(false);
+        selectors[1].SetActive(false);
+        selectors[2].SetActive(false);
+        selectors[3].SetActive(false);
+
+        settings[0].SetActive(false);
+        settings[1].SetActive(false);
+        settings[2].SetActive(false);
+        settings[3].SetActive(false);
+
+        showControllers.showThem = false;
+
+        inInputSettings = true;
+
+        Settings = Options.InputSettings;
     }
 
     #endregion
@@ -183,6 +281,85 @@ public class OptionsMenu : MonoBehaviour
         master.SetFloat("MasterVolume", volume);
 
         audioValue = volume;
+    }
+
+    public void ChangeInputSettings()
+    {
+        if (inInputSettings)
+        {
+            if (devices.PS4Controller | devices.XBoxOneController)
+            {
+                ChangeSlideTextValue();
+                controllerInputSettings.SetActive(true);
+                pCInputSettings.SetActive(false);
+            }
+            
+            else if (!devices.PS4Controller && !devices.XBoxOneController)
+            {
+                controllerInputSettings.SetActive(false);
+                pCInputSettings.SetActive(true);
+            }
+        }
+    }
+
+    public void SetYSensitibityPC()
+    {
+        cameraYSensitibityPC = ySensitibityIF.text;
+    }
+
+    public void SetXSensitibityPC()
+    {
+        cameraXSensitibityPC = xSensitibityIF.text;
+    }
+
+    public void CheckEmptyInputField()
+    {
+        if (string.IsNullOrEmpty(ySensitibityIF.text))
+        {
+            ySensitibityIF.text = "1";
+        }
+
+        if (string.IsNullOrEmpty(xSensitibityIF.text))
+        {
+            xSensitibityIF.text = "1";
+        }
+    }
+
+    public void SetYSensitibityController()
+    {
+        cameraYSensitibityController = ySensitibitySlider.value;
+    }
+
+    public void SetXSensitibityController()
+    {
+        cameraXSensitibityController = xSensitibitySlider.value;
+    }
+
+    public void ChangeSlideTextValue()
+    {
+        ySliderValue.text = ySensitibitySlider.value.ToString();
+
+        xSliderValue.text = xSensitibitySlider.value.ToString();
+    }
+
+    public void SetToggleInvertYPC()
+    {
+        invertCameraYPC = invertYPC.isOn;
+    }
+
+    public void SetToggleInvertXPC()
+    {
+        invertCameraXPC = invertXPC.isOn;
+    }
+
+    public void SetToggleInvertYController()
+    {
+        invertCameraYControllers = invertYController.isOn;
+    }
+
+    public void SetToggleInvertXController()
+    {
+        invertCameraXControllers = invertXController.isOn;
     }
 
     public void AsignResolution()
@@ -228,7 +405,7 @@ public class OptionsMenu : MonoBehaviour
 
     public void SetCurrentOption()
     {
-        if (GameManager.GM.options)
+        if (inOptions)
         {
             if (Input.GetButtonDown("Pos Horizontal GUI"))
             {
@@ -274,6 +451,16 @@ public class OptionsMenu : MonoBehaviour
         {
             SetControllers();
         }
+
+        if (currentOption == 4)
+        {
+            SetInputs();
+        }
+    }
+
+    public void SetInOptions()
+    {
+        inOptions =! inOptions;
     }
 
     public void ResetCurrentOption()
@@ -295,5 +482,13 @@ public class OptionsMenu : MonoBehaviour
         sliderMasterAud.value = data.audioValue;
         resolutionDropdown.value = data.selectedResolution;
         dropQuality.value = data.selectedQuality;
+        ySensitibityIF.text = data.cameraYSensitibityPC;
+        xSensitibityIF.text = data.cameraXSensitibityPC;
+        ySensitibitySlider.value = data.cameraYSensitibityController;
+        xSensitibitySlider.value = data.cameraXSensitibityController;
+        invertYPC.isOn = data.invertCameraYPC;
+        invertXPC.isOn = data.invertCameraXPC;
+        invertYController.isOn = data.invertCameraYControllers;
+        invertXController.isOn = data.invertCameraXControllers;
     }
 }

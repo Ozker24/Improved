@@ -19,6 +19,7 @@ TagManager:
   - Interruptor
   - Roof
   - Flesh
+  - Options Menu
   layers:
   - Default
   - TransparentFX
