@@ -71,16 +71,16 @@ public class CameraSensitibity : MonoBehaviour
 
     public void SetYSensitivityPc()
     {
-        YSensitibityPC = float.Parse(OM.cameraYSensitibityPC);
+        /*YSensitibityPC = float.Parse(OM.cameraYSensitibityPC);
         finalYSpeedPC = initYSpeedPC * YSensitibityPC;
-        playerCam.m_YAxis.m_MaxSpeed = finalYSpeedPC;
+        playerCam.m_YAxis.m_MaxSpeed = finalYSpeedPC;*/
     }
 
     public void SetXSensitivityPC()
     {
-        XSensitibityPC = float.Parse(OM.cameraXSensitibityPC);
+        /*XSensitibityPC = float.Parse(OM.cameraXSensitibityPC);
         finalXSpeedPC = initXSpeedPC * XSensitibityPC;
-        playerCam.m_XAxis.m_MaxSpeed = finalXSpeedPC;
+        playerCam.m_XAxis.m_MaxSpeed = finalXSpeedPC;*/
     }
 
     public void SetYSensitivityControllers()

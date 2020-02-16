@@ -5,12 +5,17 @@ using UnityEngine.EventSystems;
 
 public class FirstButtonGUI : MonoBehaviour
 {
+    [Header("Dependencies")]
+    [SerializeField] DevicesDetector devices;
+
     [SerializeField] EventSystem ESystem;
     [SerializeField] GameObject firstButtonOnOptions;
     [SerializeField] GameObject firstButtonOnMainMenu;
     [SerializeField] GameObject firstButtonOnPause;
     [SerializeField] GameObject firstButtonOnResolution;
     [SerializeField] GameObject firstButtonOnAudio;
+    [SerializeField] GameObject firstButtonOnControllerInput;
+    [SerializeField] GameObject firstButtonOnPCInput;
     //[SerializeField] GameObject firstButtonOnControll;
 
     public void ChangeFBOnOptions()
@@ -32,5 +37,17 @@ public class FirstButtonGUI : MonoBehaviour
     public void ChangeFBOnAudio()
     {
         ESystem.SetSelectedGameObject(firstButtonOnAudio);
+    }
+
+    public void ChangeFBOnInputs()
+    {
+        if (devices.PS4Controller | devices.XBoxOneController)
+        {
+            ESystem.SetSelectedGameObject(firstButtonOnControllerInput);
+        }
+        else
+        {
+            ESystem.SetSelectedGameObject(firstButtonOnPCInput);
+        }
     }
 }

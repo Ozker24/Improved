@@ -120,6 +120,11 @@ public class OptionsMenu : MonoBehaviour
         if (GM != null)
         {
             inOptions = GM.options;
+
+            if (!GM.options)
+            {
+                inInputSettings = false;
+            }
         }
 
         SetCurrentOption();
@@ -127,11 +132,6 @@ public class OptionsMenu : MonoBehaviour
         ChangeInputSettings();
 
         CheckEmptyInputField();
-
-        if (!GM.options)
-        {
-            inInputSettings = false;
-        }
     }
 
     #region Updates
@@ -455,12 +455,18 @@ public class OptionsMenu : MonoBehaviour
         if (currentOption == 4)
         {
             SetInputs();
+            FBGui.ChangeFBOnInputs();
         }
     }
 
     public void SetInOptions()
     {
         inOptions =! inOptions;
+    }
+
+    public void SetFalseInInputs()
+    {
+        inInputSettings = false;
     }
 
     public void ResetCurrentOption()
