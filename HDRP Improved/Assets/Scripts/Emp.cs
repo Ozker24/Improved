@@ -46,9 +46,12 @@ public class Emp : MonoBehaviour
 
         GameObject EMPExplosion = Instantiate(explosionEffect, transform.position, transform.rotation);
 
-        Destroy(EMPExplosion, 10);
+        Debug.Log(source + "AAAAAAAAAAAAAAAAAAAAA");
 
+        //Common.common.ChangePitchAndVolume(source);
         source.PlayOneShot(explosionClip);
+
+        Destroy(EMPExplosion, 10);
 
         //Get Objects
         Collider[] colliders = Physics.OverlapSphere(transform.position, radius, layer);

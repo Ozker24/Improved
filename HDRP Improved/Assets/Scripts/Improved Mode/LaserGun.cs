@@ -56,6 +56,15 @@ public class LaserGun : MonoBehaviour
     [SerializeField] Vector3 halfAreaSize;
     [SerializeField] LayerMask layer;
 
+    [Header("Sounds")]
+    [SerializeField] AudioSource baseSource;
+    [SerializeField] AudioClip shotSingleShot;
+    [SerializeField] AudioClip shotSniperShot;
+    [SerializeField] AudioClip shotChargedShot;
+    [SerializeField] AudioClip chargingChargedShot;
+    [SerializeField] AudioClip finalyCharged;
+    [SerializeField] bool playChargingSound;
+
     public void Initialize()
     {
         IWM = GetComponentInParent<ImprovedWeaponManager>();
@@ -85,7 +94,7 @@ public class LaserGun : MonoBehaviour
             damage = semiAutoDamage;
             distance = semiAutoDistance;
             restStamina = semiAutoRestStamina;
-            inFireRate = false; // OJO CON TOCAR COSAS QUE TOCA LA CORUTINA
+            //inFireRate = false; // OJO CON TOCAR COSAS QUE TOCA LA CORUTINA
         }
     }
 
@@ -98,6 +107,15 @@ public class LaserGun : MonoBehaviour
             IWM.stamina -= restStamina;
 
             laserShotPartcile.Play();
+
+            if(damage == semiAutoDamage)
+            {
+                baseSource.PlayOneShot(shotSingleShot);
+            }
+            else if (damage == sniperDamage)
+            {
+                baseSource.PlayOneShot(shotSniperShot);
+            }
 
             Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
             RaycastHit hit = new RaycastHit();// que hemos golpeado primero
@@ -131,6 +149,13 @@ public class LaserGun : MonoBehaviour
 
         chargedLaserShotParticle.Play();
 
+        if (baseSource.isPlaying)
+        {
+            baseSource.Stop();
+        }
+
+        baseSource.PlayOneShot(shotChargedShot);
+
         Collider[] enemiesInArea = Physics.OverlapBox(areaPos.position, halfAreaSize, transform.rotation, layer);
 
         foreach (Collider nearbyObject in enemiesInArea)
@@ -149,6 +174,8 @@ public class LaserGun : MonoBehaviour
     {
         if (IWM.stamina > 0 && !IWM.usingFlameThrower && !IWM.usingHyperJump && !IWM.usingHyperDash && !IWM.usingMisileLaucher && !IWM.absorbing)
         {
+            baseSource.loop = false;
+
             if (timeHolding < timeToCharge)
             {
                 ShotLaserGun();
@@ -164,6 +191,8 @@ public class LaserGun : MonoBehaviour
             //chargedDamage = initChargedDamage;
             charged = false;
             canCharge = false;
+
+            IWM.player.CC.canHit = true;
         }
     }
 
@@ -171,11 +200,13 @@ public class LaserGun : MonoBehaviour
     {
         if (IWM.stamina > 0 && !IWM.usingFlameThrower && !IWM.usingHyperJump && !IWM.usingHyperDash && !IWM.usingMisileLaucher && !IWM.absorbing)
         {
+            IWM.player.CC.canHit = false;
+
             if (!inFireRate)
             {
                 IWM.usingLaserGun = true;
 
-                if (!canCharge)
+                if (!canCharge) //antes de empezar realmente a cargar
                 {
                     if (timeHolding >= timeToCharge)
                     {
@@ -196,11 +227,26 @@ public class LaserGun : MonoBehaviour
                             charged = true;
                             //chargedDamage = MaxchargedDamage;
                             timeCounter = maxTimeCharged;
+                            if (baseSource.isPlaying)
+                            {
+                                baseSource.Stop();
+                            }
+
+                            playChargingSound = false;
+
+                            baseSource.PlayOneShot(finalyCharged);
                         }
                         else
                         {
                             timeCounter += Time.deltaTime;
                             perceentage = Mathf.Clamp01(timeCounter / maxTimeCharged);
+
+                            if (!playChargingSound)
+                            {
+                                baseSource.loop = true;
+                                baseSource.PlayOneShot(chargingChargedShot);
+                                playChargingSound = true;
+                            }
                         }
                     }
                 }

@@ -479,7 +479,8 @@ public class PlayerController : MonoBehaviour
     public void Die()
     {
         GM.dead = true;
-        PlaySound();
+        baseSource.PlayOneShot(deadSound);
+        //PlaySound();
         GM.winLose.doFadeOut = true;
     }
 

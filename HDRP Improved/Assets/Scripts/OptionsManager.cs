@@ -7,6 +7,8 @@ using UnityEngine;
 public class OptionsManager
 {
     public float audioValue;
+    public float effectsValue;
+    public float musicValue;
     public int selectedResolution;
     public int selectedQuality;
     public string cameraYSensitibityPC;
@@ -17,10 +19,13 @@ public class OptionsManager
     public bool invertCameraXPC;
     public bool invertCameraYControllers;
     public bool invertCameraXControllers;
+    public float gammaValue;
 
     public OptionsManager (OptionsMenu oMenu)
     {
         audioValue = oMenu.audioValue;
+        effectsValue = oMenu.effectsValue;
+        musicValue = oMenu.musicValue;
         selectedResolution = oMenu.selectedResolution;
         selectedQuality = oMenu.selectedQuality;
         cameraYSensitibityPC = oMenu.cameraYSensitibityPC;
@@ -31,5 +36,6 @@ public class OptionsManager
         invertCameraXPC = oMenu.invertCameraXPC;
         invertCameraYControllers = oMenu.invertCameraYControllers;
         invertCameraXControllers = oMenu.invertCameraXControllers;
+        gammaValue = oMenu.gammaValue;
     }
 }

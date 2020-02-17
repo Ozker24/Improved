@@ -71,6 +71,9 @@ public class EnemyTest : MonoBehaviour
     public Vector3 HalfStent;
     public LayerMask layer;
 
+    [Header("Execution Area")]
+    public Collider executionCollider;
+
     [Header("Patrol")]
     [SerializeField] Transform[] pathPoints;
     [SerializeField] int currentPoint;
@@ -609,6 +612,8 @@ public class EnemyTest : MonoBehaviour
     public void DieSet()
     {
         wantToHear = false;
+
+        executionCollider.enabled = false;
 
         agent.isStopped = true;
         //attackArea.enabled = false;

@@ -104,6 +104,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -192,7 +193,7 @@ AudioSource:
   m_GameObject: {fileID: 6442462936046615425}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: 6d9903779e846ff478a36ce51815bf15,
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 1f5880c92c526ec4baa963fc2ca32566,
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0

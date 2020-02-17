@@ -18,6 +18,9 @@ public class MisileLauncher : MonoBehaviour
     [SerializeField] float rayRoofDist;
     [SerializeField] bool underRoof;
 
+    [Header("Audio")]
+    [SerializeField] AudioSource source;
+
     public void Initialize()
     {
         IWM = GetComponentInParent<ImprovedWeaponManager>();
@@ -44,6 +47,8 @@ public class MisileLauncher : MonoBehaviour
                     canLaunch = false;
                     IWM.usingMisileLaucher = false;
                     StartCoroutine(ResetCanLaunch());
+
+                    source.Play();
 
                     nextMisilePos = hit.point;
 

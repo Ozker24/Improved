@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using UnityEngine.Rendering;
 
 public class OptionsMenu : MonoBehaviour
 {
@@ -15,9 +16,13 @@ public class OptionsMenu : MonoBehaviour
     public FirstButtonGUI FBGui;
     public GameManager GM;
     public DevicesDetector devices;
+    //public Volume volume;
+    //public VolumeComponent gammaComponent;
 
     [Header("StorageVariables")]
     public float audioValue;
+    public float effectsValue;
+    public float musicValue;
     public int selectedResolution;
     public int selectedQuality;
     public string cameraYSensitibityPC;
@@ -28,6 +33,7 @@ public class OptionsMenu : MonoBehaviour
     public bool invertCameraXPC;
     public bool invertCameraYControllers;
     public bool invertCameraXControllers;
+    public float gammaValue;
 
     [Header("To Hide")]
     public GameObject[] selectors;
@@ -42,11 +48,17 @@ public class OptionsMenu : MonoBehaviour
     public Resolution[] resolutions;
     public Dropdown resolutionDropdown;
     public bool useActualResolution;
+
+    public Slider gammaSlider;
     //public Toggle AutoResToggle;
 
     [Header("Audio")]
     public AudioMixer master;
+    public AudioMixer effects;
+    public AudioMixer music;
     public Slider sliderMasterAud;
+    public Slider effectsSlider;
+    public Slider musicSlider;
 
     [Header("Input Settings")]
     public GameObject pCInputSettings;
@@ -86,8 +98,12 @@ public class OptionsMenu : MonoBehaviour
 
         LoadOptions();
 
+        SetGamma();
+
         SetYSensitibityPC();
-        SetXSensitibityPC();
+        SetXSensitibityPC(); //comprobar para la primera vez si los sets van bien tras el load
+        SetMusicVolume(musicSlider.value);
+        SetEffectsVolume(effectsSlider.value);
 
         ChangeSlideTextValue();
     }
@@ -283,6 +299,20 @@ public class OptionsMenu : MonoBehaviour
         audioValue = volume;
     }
 
+    public void SetEffectsVolume(float volume)
+    {
+        effects.SetFloat("EffectsVolume", volume);
+
+        effectsValue = volume;
+    }
+
+    public void SetMusicVolume(float volume)
+    {
+        music.SetFloat("MusicVolume", volume);
+
+        musicValue = volume;
+    }
+
     public void ChangeInputSettings()
     {
         if (inInputSettings)
@@ -367,6 +397,11 @@ public class OptionsMenu : MonoBehaviour
         Screen.SetResolution(resolutions[resolutionDropdown.value].width, resolutions[resolutionDropdown.value].height, Screen.fullScreen);
 
         selectedResolution = resolutionDropdown.value;
+    }
+
+    public void SetGamma()
+    {
+        gammaValue = gammaSlider.value;
     }
 
     public void InitializeResolutions()
@@ -486,6 +521,8 @@ public class OptionsMenu : MonoBehaviour
         OptionsManager data = OptionSaveSystem.LoadOptions();
 
         sliderMasterAud.value = data.audioValue;
+        effectsSlider.value = data.effectsValue;
+        musicSlider.value = data.musicValue;
         resolutionDropdown.value = data.selectedResolution;
         dropQuality.value = data.selectedQuality;
         ySensitibityIF.text = data.cameraYSensitibityPC;
@@ -496,5 +533,6 @@ public class OptionsMenu : MonoBehaviour
         invertXPC.isOn = data.invertCameraXPC;
         invertYController.isOn = data.invertCameraYControllers;
         invertXController.isOn = data.invertCameraXControllers;
+        gammaSlider.value = data.gammaValue;
     }
 }

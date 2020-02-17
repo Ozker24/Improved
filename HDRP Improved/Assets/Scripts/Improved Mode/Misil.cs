@@ -33,6 +33,9 @@ public class Misil : MonoBehaviour
     [SerializeField] float explosionRadius;
     [SerializeField] LayerMask explosionLayer;
 
+    [SerializeField] AudioSource source;
+    [SerializeField] bool playOneTime;
+
     private void Start()
     {
         constForce = GetComponent<ConstantForce>();
@@ -98,7 +101,13 @@ public class Misil : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Instantiate(explosionParticle, transform.position, Quaternion.identity);
+        if (!playOneTime)
+        {
+            source.Play();
+            Instantiate(explosionParticle, transform.position, Quaternion.identity);
+            playOneTime = true;
+        }
+
         Renderer renderer = GetComponent<Renderer>();
         renderer.enabled = false;
         explosionArea.GetComponent<Renderer>().enabled = false;
@@ -113,5 +122,7 @@ public class Misil : MonoBehaviour
                 enemy.Damage(misileDamage);
             }
         }
+
+        Destroy(gameObject, 5);
     }
 }

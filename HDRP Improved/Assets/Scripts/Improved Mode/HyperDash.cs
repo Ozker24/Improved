@@ -9,6 +9,7 @@ public class HyperDash : MonoBehaviour
     [SerializeField] float timeForCanDodgeImprovedMode;
     [SerializeField] float dodgeImprovedModeSpeed;
     [SerializeField] float restStamina;
+    [SerializeField] AudioSource source;
 
     public void Initialize()
     {
@@ -30,6 +31,7 @@ public class HyperDash : MonoBehaviour
     {
         if(IWM.stamina > 0 && !IWM.usingFlameThrower && !IWM.usingHyperJump && !IWM.usingHyperDash && !IWM.usingLaserGun && !IWM.usingMisileLaucher && !IWM.absorbing)
         {
+            source.Play();
             IWM.usingHyperDash = true;
             IWM.stamina -= restStamina;
             IWM.player.Dodge();

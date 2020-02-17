@@ -13,6 +13,7 @@ public class MisileInpact : MonoBehaviour
     public void Start()
     {
         transform.localScale = new Vector3(initScale, initScale, initScale);
+        Destroy(gameObject, 20);
     }
 
     public void Update()

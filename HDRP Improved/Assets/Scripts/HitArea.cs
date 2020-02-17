@@ -45,7 +45,10 @@ public class HitArea : MonoBehaviour
             }
 
             enemy.Detected = true;
-            basicSource.PlayOneShot(HitSound);
+            if (!enemy.dead)
+            {
+                basicSource.PlayOneShot(HitSound);
+            }
         }
     }
 

@@ -12,6 +12,10 @@ public class FlameThrower : MonoBehaviour
     [SerializeField] float flameRate;
     public bool fireing;
 
+    [Header("Audio")]
+    public AudioSource source;
+    public bool playSound;
+
     public void Initialize()
     {
         IWM = GetComponentInParent<ImprovedWeaponManager>();
@@ -31,6 +35,12 @@ public class FlameThrower : MonoBehaviour
     {
         if (IWM.stamina > 0 && !IWM.usingLaserGun && !IWM.usingHyperJump && !IWM.usingHyperDash && !IWM.usingMisileLaucher && !IWM.absorbing)
         {
+            if (!playSound)
+            {
+                playSound = true;
+                source.Play();
+            }
+            IWM.player.CC.canHit = false;
             fireing = true;
             IWM.usingFlameThrower = true;
         }
@@ -38,8 +48,11 @@ public class FlameThrower : MonoBehaviour
 
     public void ReleaseFire()
     {
+        IWM.player.CC.canHit = true;
         fireing = false;
         IWM.usingFlameThrower = false;
+        source.Stop();
+        playSound = false;
     }
 
     void DetectOnFire()

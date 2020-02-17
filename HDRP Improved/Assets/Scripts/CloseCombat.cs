@@ -25,6 +25,7 @@ public class CloseCombat : MonoBehaviour
     [Header("Sounds")]
     public AudioSource basicSource;
     public AudioClip hitClips;
+    public AudioClip executionClip;
 
     public EnemyTest enemyToExecute;
 
@@ -98,7 +99,7 @@ public class CloseCombat : MonoBehaviour
                 improvedModeHit.AppearHit();
             }
 
-            //basicSource.PlayOneShot(hitClips);
+            basicSource.PlayOneShot(hitClips);
             ActualHit++;
 
             if (ActualHit < maximumHits)
@@ -130,6 +131,10 @@ public class CloseCombat : MonoBehaviour
             if (enemyToExecute != null)
             {
                 enemyToExecute.Damage(enemyToExecute.currentLife);
+                basicSource.PlayOneShot(executionClip);
+                enemyToExecute.executionCollider.enabled = false;
+                enemyToExecute = null;
+                player.canExecute = false;
             }
         }
     }

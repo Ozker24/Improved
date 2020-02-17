@@ -22,6 +22,12 @@ public class Absorb : MonoBehaviour
     [SerializeField] bool canAbsorb;
     public bool interrumpt;
 
+    [Header("Audio")]
+    [SerializeField] AudioSource source;
+    [SerializeField] AudioClip absorbing;
+    [SerializeField] AudioClip absorbed;
+    [SerializeField] bool playSound;
+
     public void Initialize()
     {
         IWM = GetComponentInParent<ImprovedWeaponManager>();
@@ -122,6 +128,15 @@ public class Absorb : MonoBehaviour
             {
                 if (canAbsorb)
                 {
+                    IWM.player.CC.canHit = false;
+
+                    if (!playSound)
+                    {
+                        source.loop = true;
+                        source.PlayOneShot(absorbing);
+                        playSound = true;
+                    }
+
                     IWM.player.stop = true;
                     IWM.absorbing = true;
                     IWM.stamina = IWM.stamina - nearestEnemy.addStamina * nearestEnemy.absorbPercentage;
@@ -161,6 +176,15 @@ public class Absorb : MonoBehaviour
 
             IWM.addConstantLife = true;
             IWM.addConstantStamina = true;
+
+            IWM.player.CC.canHit = true;
+
+            if (source.isPlaying)
+            {
+                source.loop = false;
+                source.Stop();
+                playSound = false;
+            }
         }
     }
 
@@ -197,6 +221,17 @@ public class Absorb : MonoBehaviour
 
                 Destroy(nearestEnemy.gameObject, 5);
                 nearestEnemy = null;
+
+                IWM.player.CC.canHit = true;
+
+                if (source.isPlaying)
+                {
+                    source.loop = false;
+                    source.Stop();
+                    playSound = false;
+                }
+
+                source.PlayOneShot(absorbed);
             }
             else
             {
