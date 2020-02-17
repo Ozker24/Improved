@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public ItemDetector itemDetector;
     public StealthSystem stealth;
     public ImprovedWeaponManager IWM;
+    public PlayerSave playerSave;
 
     [Header("States")]
     public bool moving;
@@ -93,8 +94,13 @@ public class PlayerController : MonoBehaviour
     [Header("Sound")]
     public AudioSource baseSource;
 
+    [Header("Respawn")]
+    public Vector3 spawnPos;
+
     public void Initialize()
     {
+        //transform.position = spawnPos;
+
         controler = GetComponent<CharacterController>();
         GM = GameObject.FindGameObjectWithTag("Managers").GetComponent<GameManager>();
         anims = GetComponentInChildren<PlayerAnimations>();
@@ -118,6 +124,10 @@ public class PlayerController : MonoBehaviour
 
         normalHeight = controler.height;
         charControllercenterOffset = (normalHeight - crouchHeight) / 2;
+
+        LoadPlayer();
+
+        Debug.Log(items.EmpCount);
     }
 
     public void MyUpdate()
@@ -524,5 +534,22 @@ public class PlayerController : MonoBehaviour
     {
         Gizmos.DrawRay(climbRayTrans.position, Vector3.down);
         Gizmos.color = Color.red;
+    }
+
+    public void LoadPlayer()
+    {
+        PlayerSave data = PlayerSaveSystem.LoadPlayer();
+
+        spawnPos.x = data.spawnPos[0];
+        spawnPos.y = data.spawnPos[1];
+        spawnPos.z = data.spawnPos[2];
+        transform.position = spawnPos;
+
+        life.health = data.health;
+        items.itemsCount[4] = data.molotovs;
+        items.itemsCount[3] = data.grenades;
+        items.itemsCount[2] = data.sounds;
+        items.itemsCount[1] = data.kits;
+        items.itemsCount[0] = data.EMPs;
     }
 }

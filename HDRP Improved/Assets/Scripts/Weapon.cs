@@ -86,10 +86,10 @@ public class Weapon : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, fireDist, weaponLayer))
             {
-                Debug.Log(hit.transform.tag);
+                Debug.Log(hit.collider.tag);
                 Debug.Log(hit.collider.name);
 
-                if (hit.transform.tag == "Flesh")
+                if (hit.collider.tag == "Flesh")
                 {
                     GameObject particle = (GameObject)Instantiate(bloodParticle, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
 
@@ -104,7 +104,7 @@ public class Weapon : MonoBehaviour
                     }
                 }
 
-                else if (hit.transform.tag == "Metal")
+                else if (hit.collider.tag == "Metal")
                 {
                     GameObject particle = (GameObject)Instantiate(sparklePartcile, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
                     basicSource.PlayOneShot(MetalClip);
@@ -125,7 +125,7 @@ public class Weapon : MonoBehaviour
                 {
                     Debug.Log(hit.collider.name);
 
-                    if (hit.transform.tag == "Flesh")
+                    if (hit.collider.tag == "Flesh")
                     {
                         GameObject particle = (GameObject)Instantiate(bloodParticle, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
 
@@ -141,7 +141,7 @@ public class Weapon : MonoBehaviour
                         }
                     }
 
-                    else if (hit.transform.tag == "Metal")
+                    else if (hit.collider.tag == "Metal")
                     {
                         GameObject particle = (GameObject)Instantiate(sparklePartcile, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
                         basicSource.PlayOneShot(MetalClip);

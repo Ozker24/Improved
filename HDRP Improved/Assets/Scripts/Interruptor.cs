@@ -10,6 +10,7 @@ public class Interruptor : MonoBehaviour
     public UnityEvent activeEvent;
     public UnityEvent desactiveEvent;
 
+    public bool interactuable;
     public bool activate;
     public bool playerIn;
     public bool isASwitch;
@@ -22,11 +23,14 @@ public class Interruptor : MonoBehaviour
 
     void Interact()
     {
-        if (playerIn)
+        if (interactuable)
         {
-            if (Input.GetButtonDown("Interact"))
+            if (playerIn)
             {
-                DoInteraction();
+                if (Input.GetButtonDown("Interact"))
+                {
+                    DoInteraction();
+                }
             }
         }
     }
