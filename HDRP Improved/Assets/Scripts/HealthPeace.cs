@@ -71,6 +71,9 @@ public class HealthPeace : MonoBehaviour
         redMediumLife.a = mediumLifePercentage;
 
         healthRender.material.SetColor("_BaseColor", redMediumLife);
+        //healthRender.material.EnableKeyword("_EMISSION");
+        //DynamicGI.UpdateEnvironment();
+        //healthRender.material.SetColor("_EmissionColor", redMediumLife);
     }
 
     void HighLife()
@@ -80,6 +83,10 @@ public class HealthPeace : MonoBehaviour
         greenHighLife.a = highLifePercentage;
 
         healthRender.material.SetColor("_BaseColor", greenHighLife);
+        //healthRender.material.EnableKeyword("_EMISSION");
+        //DynamicGI.UpdateEnvironment();
+        //healthRender.material.SetColor("_EmissionColor", greenHighLife);
+
     }
 
     void AnimateHealth()
@@ -137,6 +144,9 @@ public class HealthPeace : MonoBehaviour
         redLowLife.a = brightPercentage;
 
         healthRender.material.SetColor("_BaseColor", redLowLife);
+        //healthRender.material.EnableKeyword("_EMISSION");
+        //DynamicGI.UpdateEnvironment();
+        //healthRender.material.SetColor("_EmissionColor", redLowLife);
     }
 
     public void Health()
