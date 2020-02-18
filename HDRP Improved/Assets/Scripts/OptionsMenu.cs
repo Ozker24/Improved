@@ -77,6 +77,10 @@ public class OptionsMenu : MonoBehaviour
     public Text ySliderValue;
     public Text xSliderValue;
 
+    public Text ySliderValuePC;
+    public Text xSliderValuePC;
+
+
     public Toggle invertXPC;
     public Toggle invertYPC;
     public Toggle invertXController;
@@ -377,6 +381,13 @@ public class OptionsMenu : MonoBehaviour
         ySliderValue.text = ySensitibitySlider.value.ToString();
 
         xSliderValue.text = xSensitibitySlider.value.ToString();
+    }
+
+    public void ChangeSlideTextValuePC()
+    {
+        ySliderValuePC.text = ySensitibitySliderPC.value.ToString();
+
+        xSliderValuePC.text = xSensitibitySliderPC.value.ToString();
     }
 
     public void SetToggleInvertYPC()

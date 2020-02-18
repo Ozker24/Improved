@@ -9,6 +9,7 @@ public class CameraSensitibity : MonoBehaviour
     [SerializeField] OptionsMenu OM;
     [SerializeField] DevicesDetector devices;
 
+    [Header("PC")]
     public float initYSpeedPC;
     public float YSensitibityPC;
     public float finalYSpeedPC;
@@ -16,6 +17,7 @@ public class CameraSensitibity : MonoBehaviour
     public float XSensitibityPC;
     public float finalXSpeedPC;
 
+    [Header("Controllers")]
     public float initYSpeedControllers;
     public float YSensitibityControllers;
     public float finalYSpeedControllers;
@@ -71,16 +73,16 @@ public class CameraSensitibity : MonoBehaviour
 
     public void SetYSensitivityPc()
     {
-        /*YSensitibityPC = float.Parse(OM.cameraYSensitibityPC);
+        YSensitibityPC = OM.cameraYSensitibityPC;
         finalYSpeedPC = initYSpeedPC * YSensitibityPC;
-        playerCam.m_YAxis.m_MaxSpeed = finalYSpeedPC;*/
+        playerCam.m_YAxis.m_MaxSpeed = finalYSpeedPC;
     }
 
     public void SetXSensitivityPC()
     {
-        /*XSensitibityPC = float.Parse(OM.cameraXSensitibityPC);
+        XSensitibityPC = OM.cameraXSensitibityPC;
         finalXSpeedPC = initXSpeedPC * XSensitibityPC;
-        playerCam.m_XAxis.m_MaxSpeed = finalXSpeedPC;*/
+        playerCam.m_XAxis.m_MaxSpeed = finalXSpeedPC;
     }
 
     public void SetYSensitivityControllers()
@@ -99,7 +101,7 @@ public class CameraSensitibity : MonoBehaviour
 
     #endregion
 
-    #region
+    #region invert
 
     public void InvertYPC()
     {
