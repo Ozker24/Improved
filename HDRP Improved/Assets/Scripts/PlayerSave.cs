@@ -14,6 +14,14 @@ public class PlayerSave
     public int sounds;
     public int kits;
     public int EMPs;
+    public int pistolInMagazine;
+    public int pistolReloaded;
+    public int shotgunInMagazine;
+    public int shotgunReloaded;
+    public int subInMagazine;
+    public int subReloaded;
+    public int rifleInMagazine;
+    public int rifleReloaded;
 
 
     public PlayerSave(PlayerController player)
@@ -33,6 +41,13 @@ public class PlayerSave
         kits = player.items.itemsCount[1];
         EMPs = player.items.itemsCount[0];
 
-        Debug.Log(EMPs);
+        pistolInMagazine = player.WM.weapons[0].currentAmmo;
+        pistolReloaded = player.WM.weapons[0].ammoReloaded;
+        shotgunInMagazine = player.WM.weapons[1].currentAmmo;
+        shotgunReloaded = player.WM.weapons[1].ammoReloaded;
+        subInMagazine = player.WM.weapons[2].currentAmmo;
+        subReloaded = player.WM.weapons[2].ammoReloaded;
+        rifleInMagazine = player.WM.weapons[3].currentAmmo;
+        rifleReloaded = player.WM.weapons[3].ammoReloaded;
     }
 }

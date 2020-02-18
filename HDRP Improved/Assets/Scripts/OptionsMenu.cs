@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using UnityEngine.Rendering.HighDefinition;
 using UnityEngine.Rendering;
 using System.IO;
 
@@ -17,8 +18,8 @@ public class OptionsMenu : MonoBehaviour
     public FirstButtonGUI FBGui;
     public GameManager GM;
     public DevicesDetector devices;
-    //public Volume volume;
-    //public VolumeComponent gammaComponent;
+    public LiftGammaGain LGG;
+    public Volume volume;
 
     [Header("StorageVariables")]
     public float audioValue;
@@ -65,9 +66,6 @@ public class OptionsMenu : MonoBehaviour
     public GameObject pCInputSettings;
     public GameObject controllerInputSettings;
 
-    public InputField ySensitibityIF;
-    public InputField xSensitibityIF;
-
     public Slider ySensitibitySliderPC;
     public Slider xSensitibitySliderPC;
 
@@ -79,7 +77,6 @@ public class OptionsMenu : MonoBehaviour
 
     public Text ySliderValuePC;
     public Text xSliderValuePC;
-
 
     public Toggle invertXPC;
     public Toggle invertYPC;
@@ -104,8 +101,14 @@ public class OptionsMenu : MonoBehaviour
 
         InitializeResolutions();
 
-        /*string path = Application.persistentDataPath + "/Player.IMPR";
-        File.Delete(path);*/
+        if (volume != null)
+        {
+            LiftGammaGain tmp;
+            if (volume.profile.TryGet<LiftGammaGain>(out tmp))
+            {
+                LGG = tmp;
+            }
+        }
 
         LoadOptions();
 
@@ -113,8 +116,17 @@ public class OptionsMenu : MonoBehaviour
 
         SetYSensitibityPC();
         SetXSensitibityPC(); //comprobar para la primera vez si los sets van bien tras el load
+
+        SetXSensitibityController();
+        SetYSensitibityController();
+
         SetMusicVolume(musicSlider.value);
         SetEffectsVolume(effectsSlider.value);
+
+        //SetToggleInvertYPC();
+        //SetToggleInvertXPC();
+        //SetToggleInvertYController();
+        //SetToggleInvertXController();
 
         ChangeSlideTextValue();
     }
@@ -154,11 +166,11 @@ public class OptionsMenu : MonoBehaviour
             }
         }
 
+        DebugGamma();
+
         SetCurrentOption();
 
         ChangeInputSettings();
-
-        CheckEmptyInputField();
     }
 
     #region Updates
@@ -353,19 +365,6 @@ public class OptionsMenu : MonoBehaviour
         cameraXSensitibityPC = xSensitibitySliderPC.value;
     }
 
-    public void CheckEmptyInputField()
-    {
-        if (string.IsNullOrEmpty(ySensitibityIF.text))
-        {
-            ySensitibityIF.text = "1";
-        }
-
-        if (string.IsNullOrEmpty(xSensitibityIF.text))
-        {
-            xSensitibityIF.text = "1";
-        }
-    }
-
     public void SetYSensitibityController()
     {
         cameraYSensitibityController = ySensitibitySlider.value;
@@ -420,6 +419,16 @@ public class OptionsMenu : MonoBehaviour
     public void SetGamma()
     {
         gammaValue = gammaSlider.value;
+
+        if (LGG != null)
+        {
+            LGG.gamma.value = new Vector4(1, 1, 1, gammaValue - 1);
+        }
+    }
+
+    public void DebugGamma()
+    {
+        //Debug.Log(LGG.gamma.value.w);
     }
 
     public void InitializeResolutions()
@@ -509,6 +518,8 @@ public class OptionsMenu : MonoBehaviour
         {
             SetInputs();
             FBGui.ChangeFBOnInputs();
+            ChangeSlideTextValuePC();
+            ChangeSlideTextValue();
         }
     }
 
@@ -538,19 +549,23 @@ public class OptionsMenu : MonoBehaviour
     {
         OptionsManager data = OptionSaveSystem.LoadOptions();
 
-        sliderMasterAud.value = data.audioValue;
-        effectsSlider.value = data.effectsValue;
-        musicSlider.value = data.musicValue;
-        resolutionDropdown.value = data.selectedResolution;
-        dropQuality.value = data.selectedQuality;
-        ySensitibitySliderPC.value = data.cameraYSensitibityPC;
-        xSensitibitySliderPC.value = data.cameraXSensitibityPC;
-        ySensitibitySlider.value = data.cameraYSensitibityController;
-        xSensitibitySlider.value = data.cameraXSensitibityController;
-        invertYPC.isOn = data.invertCameraYPC;
-        invertXPC.isOn = data.invertCameraXPC;
-        invertYController.isOn = data.invertCameraYControllers;
-        invertXController.isOn = data.invertCameraXControllers;
-        gammaSlider.value = data.gammaValue;
+        if (data != null)
+        {
+            sliderMasterAud.value = data.audioValue;
+            effectsSlider.value = data.effectsValue;
+            musicSlider.value = data.musicValue;
+            resolutionDropdown.value = data.selectedResolution;
+            dropQuality.value = data.selectedQuality;
+            ySensitibitySliderPC.value = data.cameraYSensitibityPC;
+            xSensitibitySliderPC.value = data.cameraXSensitibityPC;
+            ySensitibitySlider.value = data.cameraYSensitibityController;
+            xSensitibitySlider.value = data.cameraXSensitibityController;
+            invertYPC.isOn = data.invertCameraYPC;
+            invertXPC.isOn = data.invertCameraXPC;
+            invertYController.isOn = data.invertCameraYControllers;
+            invertXController.isOn = data.invertCameraXControllers;
+            gammaSlider.value = data.gammaValue;
+            //LGG.gamma.value = new Vector4(1,1,1, data.gammaValue);
+        }
     }
 }

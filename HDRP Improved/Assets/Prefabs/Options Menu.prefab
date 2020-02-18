@@ -5004,7 +5004,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_IsOn: 0
+  m_IsOn: 1
 --- !u!1 &2012016473
 GameObject:
   m_ObjectHideFlags: 0
@@ -5946,7 +5946,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6170,7 +6170,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6592,6 +6592,17 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 4932780641947114559}
         m_MethodName: SetInOptions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3072081841166629667}
+        m_MethodName: ChangeFBOnPause
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8355,7 +8366,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4932780641506498643
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9415,20 +9426,22 @@ MonoBehaviour:
   FBGui: {fileID: 3072081841166629667}
   GM: {fileID: 0}
   devices: {fileID: 0}
+  LGG: {fileID: 0}
+  volume: {fileID: 0}
   audioValue: 0
   effectsValue: 0
   musicValue: 0
   selectedResolution: 0
   selectedQuality: 0
-  cameraYSensitibityPC: 0
-  cameraXSensitibityPC: 0
+  cameraYSensitibityPC: 1
+  cameraXSensitibityPC: 1
   cameraYSensitibityController: 1
   cameraXSensitibityController: 1
-  invertCameraYPC: 0
+  invertCameraYPC: 1
   invertCameraXPC: 0
   invertCameraYControllers: 0
   invertCameraXControllers: 0
-  gammaValue: 0
+  gammaValue: 1
   selectors:
   - {fileID: 4932780642181936416}
   - {fileID: 4932780641447589215}
@@ -9455,8 +9468,6 @@ MonoBehaviour:
   musicSlider: {fileID: 1162784428}
   pCInputSettings: {fileID: 901408134}
   controllerInputSettings: {fileID: 1312136874}
-  ySensitibityIF: {fileID: 1644694336}
-  xSensitibityIF: {fileID: 333376586}
   ySensitibitySliderPC: {fileID: 7418679685015153794}
   xSensitibitySliderPC: {fileID: 8015735785032105393}
   ySensitibitySlider: {fileID: 1491820879}
@@ -9526,7 +9537,7 @@ MonoBehaviour:
   firstButtonOnResolution: {fileID: 4932780640375066428}
   firstButtonOnAudio: {fileID: 4932780640457853969}
   firstButtonOnControllerInput: {fileID: 1491820877}
-  firstButtonOnPCInput: {fileID: 1644694334}
+  firstButtonOnPCInput: {fileID: 8036010840558821490}
 --- !u!1 &4932780641953796137
 GameObject:
   m_ObjectHideFlags: 0
@@ -11601,6 +11612,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4932780641947114559}
+        m_MethodName: ChangeSlideTextValue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6308380433276540070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11642,6 +11664,17 @@ MonoBehaviour:
           m_CallState: 2
         - m_Target: {fileID: 4932780641947114559}
           m_MethodName: ChangeSlideTextValuePC
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 4932780641947114559}
+          m_MethodName: ChangeSlideTextValue
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -11926,7 +11959,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5563163282774314182
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11981,7 +12014,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -12265,7 +12298,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

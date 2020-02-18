@@ -46,7 +46,7 @@ public class Emp : MonoBehaviour
 
         GameObject EMPExplosion = Instantiate(explosionEffect, transform.position, transform.rotation);
 
-        Debug.Log(source + "AAAAAAAAAAAAAAAAAAAAA");
+        //Debug.Log(source + "AAAAAAAAAAAAAAAAAAAAA");
 
         //Common.common.ChangePitchAndVolume(source);
         source.PlayOneShot(explosionClip);

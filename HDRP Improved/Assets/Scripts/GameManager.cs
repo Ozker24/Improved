@@ -162,5 +162,8 @@ public class GameManager : MonoBehaviour
     {
         string path = Application.persistentDataPath + "/Player.IMPR";
         File.Delete(path);
+
+        string path2 = Application.persistentDataPath + "/Options.IMPR";
+        File.Delete(path2);
     }
 }

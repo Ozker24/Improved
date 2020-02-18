@@ -553,6 +553,15 @@ public class PlayerController : MonoBehaviour
             items.itemsCount[2] = data.sounds;
             items.itemsCount[1] = data.kits;
             items.itemsCount[0] = data.EMPs;
+
+            WM.weapons[0].currentAmmo = data.pistolInMagazine;
+            WM.weapons[0].ammoReloaded = data.pistolReloaded;
+            WM.weapons[1].currentAmmo = data.shotgunInMagazine;
+            WM.weapons[1].ammoReloaded = data.shotgunReloaded;
+            WM.weapons[2].currentAmmo = data.subInMagazine;
+            WM.weapons[2].ammoReloaded = data.subReloaded;
+            WM.weapons[3].currentAmmo = data.rifleInMagazine;
+            WM.weapons[3].ammoReloaded = data.rifleReloaded;
         }
     }
 }

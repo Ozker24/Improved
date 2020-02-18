@@ -249,7 +249,7 @@ public class EnemyTest : MonoBehaviour
         {
             if (agent.remainingDistance <= distToSearch)
             {
-                Debug.Log("Arrived");
+                Debug.Log("Arrived" + gameObject.name);
                 goToNearPoint = true;
                 comeFromSound = true;
 
@@ -292,6 +292,7 @@ public class EnemyTest : MonoBehaviour
         if (positionWhereSound != Vector3.zero)
         {
             SetLook(positionWhereSound);
+            Debug.Log("Heared something");
         }
 
         if (agent.remainingDistance <= agent.stoppingDistance + 0.01)
@@ -346,7 +347,7 @@ public class EnemyTest : MonoBehaviour
                 else
                 {
                     stationaryTimeCounter += Time.deltaTime;
-                    Debug.Log(waitComeFromSound);
+                    //Debug.Log(waitComeFromSound);
                 }
             }
 
@@ -357,7 +358,7 @@ public class EnemyTest : MonoBehaviour
                     stopOnPoint = true;
                     randomNum = Random.Range(0, 100);
 
-                    Debug.Log(randomNum);
+                    //Debug.Log(randomNum);
                 }
 
                 if (randomNum <= percentageOfWait)
@@ -709,7 +710,7 @@ public class EnemyTest : MonoBehaviour
 
     void GoToNextPathPoints()
     {
-        Debug.Log("PassPoint");
+        //Debug.Log("PassPoint");
 
         currentPoint++;
 
