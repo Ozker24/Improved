@@ -11,7 +11,7 @@ public class ForkLiftFallTrigger_Tutorial : MonoBehaviour
     {
         if (other.tag == ("Player"))
         {
-            checkPoint.SetNewSpawnPoint();
+            //checkPoint.SetNewSpawnPoint();
             forkLift.AudioFinishSet();
             Destroy(gameObject);
         }

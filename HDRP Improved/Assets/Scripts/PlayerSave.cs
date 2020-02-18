@@ -7,6 +7,7 @@ using UnityEngine;
 public class PlayerSave
 {
     public float[] spawnPos;
+    public int actualSpawnPoint;
     public float health;
     public int molotovs;
     public int grenades;
@@ -22,6 +23,8 @@ public class PlayerSave
         spawnPos[0] = player.spawnPos.x;
         spawnPos[1] = player.spawnPos.y;
         spawnPos[2] = player.spawnPos.z;
+
+        actualSpawnPoint = player.GM.checkpointsManager.actualCheckPoint;
 
         health = player.life.health;
         molotovs = player.items.itemsCount[4];

@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\Character Expo\RotateCamera.cs" />
     <Compile Include="Assets\Scripts\Character Expo\SelectCharacter.cs" />
     <Compile Include="Assets\Scripts\CheckPoint.cs" />
+    <Compile Include="Assets\Scripts\CheckpointsManager.cs" />
     <Compile Include="Assets\Scripts\CloseCombat.cs" />
     <Compile Include="Assets\Scripts\CombatArea.cs" />
     <Compile Include="Assets\Scripts\Common.cs" />

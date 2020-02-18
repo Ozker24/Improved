@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class GameManager : MonoBehaviour
 {
@@ -46,6 +47,7 @@ public class GameManager : MonoBehaviour
     public TransitionWinLose winLose;
     [SerializeField]
     public ImprovedWeaponManager IWM;
+    public CheckpointsManager checkpointsManager;
 
     public bool ableToInput = true;
     public bool pause;
@@ -64,6 +66,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         GM = GetComponent<GameManager>();
+        checkpointsManager = GetComponent<CheckpointsManager>();
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         inputs = GameObject.FindGameObjectWithTag("Managers").GetComponent<ImputManager>();
@@ -90,6 +93,9 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         player.Initialize();
+
+        checkpointsManager.SetNewCheckPoint();
+
         inputs.Initialize();
         weapon.Initialize();
         camera.Initialize();
@@ -111,6 +117,11 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.F8))
+        {
+            DelateFiles();
+        }
+
         inputs.CheckSetPause();
         pauseMn.MyUpdate();
 
@@ -145,5 +156,11 @@ public class GameManager : MonoBehaviour
         {
             playerAnims.MyFixedUpdate();
         }
+    }
+
+    public void DelateFiles()
+    {
+        string path = Application.persistentDataPath + "/Player.IMPR";
+        File.Delete(path);
     }
 }

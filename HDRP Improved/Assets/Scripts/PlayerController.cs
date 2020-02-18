@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour
         normalHeight = controler.height;
         charControllercenterOffset = (normalHeight - crouchHeight) / 2;
 
-        //LoadPlayer();
+        LoadPlayer();
     }
 
     public void MyUpdate()
@@ -538,16 +538,21 @@ public class PlayerController : MonoBehaviour
     {
         PlayerSave data = PlayerSaveSystem.LoadPlayer();
 
-        spawnPos.x = data.spawnPos[0];
-        spawnPos.y = data.spawnPos[1];
-        spawnPos.z = data.spawnPos[2];
-        transform.position = spawnPos;
+        if (data != null)
+        {
+            spawnPos.x = data.spawnPos[0];
+            spawnPos.y = data.spawnPos[1];
+            spawnPos.z = data.spawnPos[2];
+            transform.position = spawnPos;
 
-        life.health = data.health;
-        items.itemsCount[4] = data.molotovs;
-        items.itemsCount[3] = data.grenades;
-        items.itemsCount[2] = data.sounds;
-        items.itemsCount[1] = data.kits;
-        items.itemsCount[0] = data.EMPs;
+            GM.checkpointsManager.actualCheckPoint = data.actualSpawnPoint;
+
+            life.health = data.health;
+            items.itemsCount[4] = data.molotovs;
+            items.itemsCount[3] = data.grenades;
+            items.itemsCount[2] = data.sounds;
+            items.itemsCount[1] = data.kits;
+            items.itemsCount[0] = data.EMPs;
+        }
     }
 }
