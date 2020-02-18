@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class TriggerEvents : MonoBehaviour
 {
+    [Header("AppearVictoryDoor")]
+    [SerializeField] GameObject VictoryDoor;
+
     public void Test()
     {
         Debug.Log("HelloThere");
@@ -12,5 +15,10 @@ public class TriggerEvents : MonoBehaviour
     public void TestTwo()
     {
         Debug.Log("GeneralKenobi");
+    }
+
+    public void AppearVictoryDoor()
+    {
+        VictoryDoor.SetActive(true);
     }
 }

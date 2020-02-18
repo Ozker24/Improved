@@ -30,15 +30,20 @@ public class ButtonBehaviour : MonoBehaviour
 
         Application.Quit();
     }
+
+    public void GoToArena()
+    {
+        SceneManager.LoadScene(3);
+    }
     
     public void GoToWin()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(4);
     }
 
     public void GoToLose()
     {
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(5);
     }
 
     public void SetOptions()

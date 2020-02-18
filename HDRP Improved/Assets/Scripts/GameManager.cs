@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
     public bool showControls;
     public bool dead;
     public bool win;
+    public bool toArena;
     public bool options;
 
     [Header("Modes")]

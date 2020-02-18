@@ -54,6 +54,11 @@ public class TransitionWinLose : MonoBehaviour
                     button.GoToWin();
                 }
 
+                else if (GM.toArena)
+                {
+                    button.GoToArena();
+                }
+
                 Time.timeScale = 1;
 
                 Cursor.visible = true;

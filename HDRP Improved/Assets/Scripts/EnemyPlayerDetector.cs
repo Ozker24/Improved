@@ -34,6 +34,12 @@ public class EnemyPlayerDetector : MonoBehaviour
     [Header("Sound Detector Variables")]
     public float distanceToDetectSound;
 
+    [Header("Oclusion")]
+    public Transform startRayPos;
+    public Transform endRayPos;
+    public LayerMask rayLayer;
+    public bool occluding;
+
     public void Initialize()
     {
         enemy = GetComponentInParent<EnemyTest>();
@@ -48,6 +54,8 @@ public class EnemyPlayerDetector : MonoBehaviour
 
     public void MyUpdate()
     {
+        DetectOclusion();
+
         if (enemy.stealth.importantAudio)
         {
             CalculateDistanceSound();
@@ -86,7 +94,7 @@ public class EnemyPlayerDetector : MonoBehaviour
 
     public void CountTimeToDetect()
     {
-        if (!enemy.Detected && !enemy.dead)
+        if (!enemy.Detected && !enemy.dead && !occluding)
         {
             if (timeCounter >= timeToDetect)
             {
@@ -148,6 +156,27 @@ public class EnemyPlayerDetector : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, enemy.player.transform.position) <= closeDistance) soClose = true;
         else soClose = false;
+    }
+
+    void DetectOclusion ()
+    {
+        if (onArea)
+        {
+            RaycastHit hit = new RaycastHit();
+            Physics.Linecast(startRayPos.position, endRayPos.position, out hit, rayLayer);
+
+            if (hit.transform != null)
+            {
+                if (hit.transform.tag == "Player")
+                {
+                    occluding = false;
+                }
+                else
+                {
+                    occluding = true;
+                }
+            }
+        }
     }
 
     public void OnTriggerEnter(Collider other)

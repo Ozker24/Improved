@@ -50,11 +50,11 @@ public class Items : MonoBehaviour
 
     public int maxItems = 3;
 
-    public int molotovCount;
+    /*public int molotovCount;
     public int GranadeCount;
     public int SoundCount;
     public int FirstAidCount;
-    public int EmpCount;
+    public int EmpCount;*/
 
     [Header("Cooldown Variables")]
     public bool canDoItem = true;

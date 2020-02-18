@@ -116,6 +116,7 @@
     <Compile Include="Assets\Scripts\ItemDetector.cs" />
     <Compile Include="Assets\Scripts\Items.cs" />
     <Compile Include="Assets\Scripts\LogoBehaviour.cs" />
+    <Compile Include="Assets\Scripts\MetalDetector.cs" />
     <Compile Include="Assets\Scripts\Molotov.cs" />
     <Compile Include="Assets\Scripts\ObjectSound.cs" />
     <Compile Include="Assets\Scripts\OptionSaveSystem.cs" />

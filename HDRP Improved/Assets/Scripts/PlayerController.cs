@@ -125,9 +125,7 @@ public class PlayerController : MonoBehaviour
         normalHeight = controler.height;
         charControllercenterOffset = (normalHeight - crouchHeight) / 2;
 
-        LoadPlayer();
-
-        Debug.Log(items.EmpCount);
+        //LoadPlayer();
     }
 
     public void MyUpdate()

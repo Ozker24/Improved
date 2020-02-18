@@ -16,7 +16,8 @@ public class VictoryGate : MonoBehaviour
 
     public void GameEnded()
     {
-        GM.win = true;
+        GM.toArena = true;
+
         winLose.doFadeOut = true;
     }
 
