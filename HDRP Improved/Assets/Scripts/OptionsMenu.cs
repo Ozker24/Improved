@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
+using System.IO;
 
 public class OptionsMenu : MonoBehaviour
 {
@@ -25,8 +26,8 @@ public class OptionsMenu : MonoBehaviour
     public float musicValue;
     public int selectedResolution;
     public int selectedQuality;
-    public string cameraYSensitibityPC;
-    public string cameraXSensitibityPC;
+    public float cameraYSensitibityPC;
+    public float cameraXSensitibityPC;
     public float cameraYSensitibityController;
     public float cameraXSensitibityController;
     public bool invertCameraYPC;
@@ -67,6 +68,9 @@ public class OptionsMenu : MonoBehaviour
     public InputField ySensitibityIF;
     public InputField xSensitibityIF;
 
+    public Slider ySensitibitySliderPC;
+    public Slider xSensitibitySliderPC;
+
     public Slider ySensitibitySlider;
     public Slider xSensitibitySlider;
 
@@ -95,6 +99,9 @@ public class OptionsMenu : MonoBehaviour
         Settings = Options.Graphics;
 
         InitializeResolutions();
+
+        /*string path = Application.persistentDataPath + "/Player.IMPR";
+        File.Delete(path);*/
 
         LoadOptions();
 
@@ -334,12 +341,12 @@ public class OptionsMenu : MonoBehaviour
 
     public void SetYSensitibityPC()
     {
-        cameraYSensitibityPC = ySensitibityIF.text;
+        cameraYSensitibityPC = ySensitibitySliderPC.value;
     }
 
     public void SetXSensitibityPC()
     {
-        cameraXSensitibityPC = xSensitibityIF.text;
+        cameraXSensitibityPC = xSensitibitySliderPC.value;
     }
 
     public void CheckEmptyInputField()
@@ -525,8 +532,8 @@ public class OptionsMenu : MonoBehaviour
         musicSlider.value = data.musicValue;
         resolutionDropdown.value = data.selectedResolution;
         dropQuality.value = data.selectedQuality;
-        ySensitibityIF.text = data.cameraYSensitibityPC;
-        xSensitibityIF.text = data.cameraXSensitibityPC;
+        ySensitibitySliderPC.value = data.cameraYSensitibityPC;
+        xSensitibitySliderPC.value = data.cameraXSensitibityPC;
         ySensitibitySlider.value = data.cameraYSensitibityController;
         xSensitibitySlider.value = data.cameraXSensitibityController;
         invertYPC.isOn = data.invertCameraYPC;

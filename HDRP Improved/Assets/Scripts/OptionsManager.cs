@@ -11,8 +11,8 @@ public class OptionsManager
     public float musicValue;
     public int selectedResolution;
     public int selectedQuality;
-    public string cameraYSensitibityPC;
-    public string cameraXSensitibityPC;
+    public float cameraYSensitibityPC;
+    public float cameraXSensitibityPC;
     public float cameraYSensitibityController;
     public float cameraXSensitibityController;
     public bool invertCameraYPC;
