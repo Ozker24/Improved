@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 595.7045, g: 595.7045, b: 661.1997, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -36321,6 +36321,12 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 29.040318, y: 131.1102, z: 47.88984}
   m_Center: {x: -0.000061035156, y: 25.118412, z: 23.94492}
+--- !u!4 &1448548966 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1968486499943149610, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
+    type: 3}
+  m_PrefabInstance: {fileID: 6827900421704650868}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1465673797
 GameObject:
   m_ObjectHideFlags: 0
@@ -70521,6 +70527,17 @@ PrefabInstance:
       propertyPath: modelTrans
       value: 
       objectReference: {fileID: 13851258}
+    - target: {fileID: 6827900420496641493, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
+        type: 3}
+      propertyPath: instantiate
+      value: 
+      objectReference: {fileID: 6783552085775353452, guid: ad2ea9c7e8dbed34a87b78df24c2f1ed,
+        type: 3}
+    - target: {fileID: 6827900420496641493, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
+        type: 3}
+      propertyPath: climbRayTrans
+      value: 
+      objectReference: {fileID: 1448548966}
     - target: {fileID: 6827900420496641494, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -70601,6 +70618,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 4e1328d6d03350148873da664e1a95c9, type: 2}
+    - target: {fileID: 7221500338452393532, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
+        type: 3}
+      propertyPath: m_UpdateMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7797437178362476670, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
         type: 3}
       propertyPath: m_Materials.Array.data[0]

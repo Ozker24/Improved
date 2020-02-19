@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
     [Header("Climb")]
     public Transform climbRayTrans;
     public Vector3 endedClimb;
+    public GameObject instantiate;
     [SerializeField] float climbTime;
     public bool canClimb;
 
@@ -358,6 +359,11 @@ public class PlayerController : MonoBehaviour
 
             RaycastHit hit = new RaycastHit();// que hemos golpeado primero
             Physics.Raycast(climbRayTrans.position, Vector3.down, out hit);
+            Debug.Log(hit.transform.name);
+
+            //Instantiate(instantiate, hit.point, Quaternion.identity);
+            anims.SetAnimClimb();
+
             endedClimb = hit.point;
 
             StartCoroutine(ResetClimb());
@@ -487,6 +493,8 @@ public class PlayerController : MonoBehaviour
     public void Die()
     {
         GM.dead = true;
+        anims.anim.updateMode = AnimatorUpdateMode.UnscaledTime;
+        anims.SetAnimDead();
         baseSource.PlayOneShot(deadSound);
         //PlaySound();
         GM.winLose.doFadeOut = true;

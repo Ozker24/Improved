@@ -115,6 +115,14 @@ public class PlayerAnimations : MonoBehaviour
     {
         anim.SetTrigger("Launch Item");
     }
+    public void SetAnimDead()
+    {
+        anim.SetTrigger("Dead");
+    }
+    public void SetAnimClimb()
+    {
+        anim.SetTrigger("Climb");
+    }
 
     #endregion
 
