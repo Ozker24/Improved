@@ -302,6 +302,8 @@ public class Items : MonoBehaviour
         {
             Debug.Log("Launched molotov");
 
+            player.anims.SetAnimLaunch();
+
             if (ClipsLaunched.clips[itemSelected] != null)
             {
                 baseSource.PlayOneShot(ClipsLaunched.clips[itemSelected]);
@@ -345,6 +347,8 @@ public class Items : MonoBehaviour
         {
             Debug.Log("Launched Granade");
 
+            player.anims.SetAnimLaunch();
+
             InstantiateThings(GranadePrefab);
 
             //audPlay.Play(6, 1, Random.Range(0.95f, 1.05f));
@@ -386,6 +390,9 @@ public class Items : MonoBehaviour
         if (itemSelected == 2 && realised == 1 && itemsCount[2] > 0)
         {
             Debug.Log("Launched Sound");
+
+            player.anims.SetAnimLaunch();
+
             if (ClipsLaunched.clips[itemSelected] != null)
             {
                 baseSource.PlayOneShot(ClipsLaunched.clips[itemSelected]);
@@ -428,6 +435,9 @@ public class Items : MonoBehaviour
                     {
                         Debug.Log("Healed");
                         //healthAnim.SetBool("Health", false);
+
+                        player.anims.SetAnimLaunch();
+
                         TimeCounter = 0;
 
                         peace.Health();
@@ -485,6 +495,9 @@ public class Items : MonoBehaviour
         if (itemSelected == 0 && realised == 1 && itemsCount[0] > 0)
         {
             Debug.Log("Launched EMP");
+
+            player.anims.SetAnimLaunch();
+
             if (ClipsLaunched.clips[itemSelected] != null)
             {
                 baseSource.PlayOneShot(ClipsLaunched.clips[itemSelected]);

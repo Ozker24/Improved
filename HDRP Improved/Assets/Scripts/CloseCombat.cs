@@ -71,6 +71,11 @@ public class CloseCombat : MonoBehaviour
 
     public void DoHit()
     {
+        if (canHit)
+        {
+            player.anims.SetAnimFist();
+        }
+
         if (canHit && !player.canExecute)
         {
             player.crouching = false;

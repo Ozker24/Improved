@@ -24,6 +24,102 @@ public class PlayerAnimations : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
+    public void Update()
+    {
+        SetAnimWalk();
+        SetAnimRun();
+        SetAnimCrouch();
+        SetAnimCrouching();
+        SetAnimAim();
+        SetAnimAimItem();
+    }
+
+    #region Sets
+
+    public void SetAnimWalk()
+    {
+        if (player.walking)
+        {
+            anim.SetBool("Walking", true);
+        }
+        else
+        {
+            anim.SetBool("Walking", false);
+        }
+    }
+    public void SetAnimRun()
+    {
+        if (player.running)
+        {
+            anim.SetBool("Running", true);
+        }
+        else
+        {
+            anim.SetBool("Running", false);
+        }
+    }
+    public void SetAnimCrouch()
+    {
+        if (player.crouching)
+        {
+            anim.SetBool("Crouch",true);
+        }
+        else
+        {
+            anim.SetBool("Crouch", false);
+        }
+    }
+    public void SetAnimCrouching()
+    {
+        if (player.crouching && player.moving)
+        {
+            //anim.SetTrigger("Crouch");
+            anim.SetBool("Crouching", true);
+        }
+        else
+        {
+            anim.SetBool("Crouching", false);
+        }
+    }
+    public void SetAnimFist()
+    {
+        anim.SetTrigger("Fist");
+    }
+    public void SetAnimAim()
+    {
+        if (player.aiming)
+        {
+            anim.SetBool("Aim", true);
+        }
+        else
+        {
+            anim.SetBool("Aim", false);
+        }
+    }
+    public void SetAnimReload()
+    {
+        anim.SetTrigger("Reload");
+    }
+    public void SetAnimAimItem()
+    {
+        if (player.items.pressed)
+        {
+            anim.SetBool("Aim Item", true);
+        }
+        else
+        {
+            anim.SetBool("Aim Item", false);
+        }
+    }
+    public void SetAnimLaunch()
+    {
+        anim.SetTrigger("Launch Item");
+    }
+
+    #endregion
+
+    #region not Interested
+
     public void MyFixedUpdate()
     {
         origin = new Vector3 (transform.position.x, 1 ,transform.position.z);
@@ -121,4 +217,6 @@ public class PlayerAnimations : MonoBehaviour
     {
         //hit.AppearHit();
     }
+
+    #endregion
 }

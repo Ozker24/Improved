@@ -98,7 +98,11 @@ public class WeaponManager : MonoBehaviour
 
     public void Reload()
     {
-        if (!player.climb && !player.stop && items.canDoGun && ableGun && !items.pressed && !player.dodging)  weapons[WeaponSelected].Reload();
+        if (!player.climb && !player.stop && items.canDoGun && ableGun && !items.pressed && !player.dodging)
+        {
+            weapons[WeaponSelected].Reload();
+            player.anims.SetAnimReload();
+        }
     }
 
     public void ReleaseShot()
