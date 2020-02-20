@@ -186,6 +186,8 @@ public class Weapon : MonoBehaviour
 
             basicSource.PlayOneShot(ReloadClips.clips[weapon.WeaponSelected]);
 
+            weapon.player.anims.SetAnimReload();
+
             StartCoroutine(ResetReload());
         }
     }

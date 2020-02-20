@@ -247,7 +247,9 @@ public class EnemyTest : MonoBehaviour
     {
         if(!Detected | !combatArea.detected)
         {
-            if (agent.remainingDistance <= distToSearch)
+            //Debug.Log(agent.remainingDistance);
+
+            if (agent.remainingDistance <= agent.stoppingDistance + 0.01)
             {
                 Debug.Log("Arrived" + gameObject.name);
                 goToNearPoint = true;
@@ -475,14 +477,16 @@ public class EnemyTest : MonoBehaviour
         agent.stoppingDistance = distToSearch;
 
         agent.SetDestination(positionWhereSound);
+        //Debug.Log(positionWhereSound);
 
         positionWhereSound = Vector3.zero;
+        //Debug.Log(positionWhereSound);
 
         wantToHear = true;
 
         stationaryTimeCounter = 0;
 
-        Debug.Log("SoundSet");
+        //Debug.Log("SoundSet");
 
         states = State.Sound;
     }
@@ -490,7 +494,7 @@ public class EnemyTest : MonoBehaviour
     public void SetLook(Vector3 pos)
     {
         //positionWhereSound = Vector3.zero;
-        Debug.Log(pos);
+        //Debug.Log(pos);
 
         stayThere = false;
 

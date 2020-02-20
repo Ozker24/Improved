@@ -14,6 +14,7 @@ public class WeaponManager : MonoBehaviour
     public GameManager gm;
     public Items items;
     public StealthSystem stealth;
+    public WeaponsVisuals WVisuals;
 
     //public bool searchingBullet;
 
@@ -45,6 +46,7 @@ public class WeaponManager : MonoBehaviour
 
     [Header("Sound")]
     public AudioSource baseSource;
+    public AudioSource UiSource;
     public AudioArray changeGunClips;
 
     public void Initialize()
@@ -52,6 +54,7 @@ public class WeaponManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         HUD = GameObject.FindGameObjectWithTag("Managers").GetComponent<HudManager>();
         gm = GameObject.FindGameObjectWithTag("Managers").GetComponent<GameManager>();
+        WVisuals = GetComponent<WeaponsVisuals>();
         stealth = player.stealth;
         items = player.GetComponentInChildren<Items>();
         //audPlay = GetComponent<AudioPlayer>();
@@ -70,8 +73,11 @@ public class WeaponManager : MonoBehaviour
                 if (weaponPreSelected != WeaponSelected && selectingGun)
                 {
                     WeaponSelected = weaponPreSelected;
+
+                    WVisuals.StartChangingGunVisuals();
+
                     ableGun = false;
-                    baseSource.PlayOneShot(changeGunClips.clips[WeaponSelected]);
+                    UiSource.PlayOneShot(changeGunClips.clips[WeaponSelected]);
                     StartCoroutine(AbleGun(timeAbleGun[WeaponSelected]));
                 }
 
@@ -91,7 +97,7 @@ public class WeaponManager : MonoBehaviour
         if (!player.climb && !player.stop && items.canDoGun && ableGun && !items.pressed && !player.dodging)
         {
             weapons[WeaponSelected].Shot();
-            stealth.MakeImportantAudio(distanceToSound[WeaponSelected]);
+            stealth.MakeImportantAudio(distanceToSound[WeaponSelected],player.transform.position);
         }
         //gm.detected = true;
     }
@@ -101,7 +107,6 @@ public class WeaponManager : MonoBehaviour
         if (!player.climb && !player.stop && items.canDoGun && ableGun && !items.pressed && !player.dodging)
         {
             weapons[WeaponSelected].Reload();
-            player.anims.SetAnimReload();
         }
     }
 
@@ -155,6 +160,7 @@ public class WeaponManager : MonoBehaviour
     IEnumerator AbleGun(float time)
     {
         yield return new WaitForSeconds(time);
+        WVisuals.ChangeGunsVisuals();
         ableGun = true;
     }
 

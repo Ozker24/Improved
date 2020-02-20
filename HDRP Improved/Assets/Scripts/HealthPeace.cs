@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class HealthPeace : MonoBehaviour
 {
@@ -27,6 +28,13 @@ public class HealthPeace : MonoBehaviour
     [SerializeField] bool wait;
     [SerializeField] bool doOnce;
 
+    [Header("Audio")]
+    [SerializeField] AudioMixer master;
+    [SerializeField] AudioMixer SFX;
+    [SerializeField] AudioMixerSnapshot lowSnap;
+    [SerializeField] AudioMixerSnapshot normalSnap;
+    [SerializeField] bool transite;
+
 
     public void Initialize()
     {
@@ -34,6 +42,8 @@ public class HealthPeace : MonoBehaviour
         redLowLife = Color.red;
         redMediumLife = redLowLife;
         greenHighLife = Color.green;
+        lowSnap = SFX.FindSnapshot("LowHealth");
+        normalSnap = master.FindSnapshot("Snapshot");
     }
 
     public void MyUpdate()
@@ -41,9 +51,20 @@ public class HealthPeace : MonoBehaviour
         if (health <= healthToLow)
         {
             AnimateHealth();
+            if (!transite)
+            {
+                lowSnap.TransitionTo(0.1f);
+                transite = true;
+            }
         }
         else if (health > healthToLow && health < healthToHigh)
         {
+            if (transite)
+            {
+                normalSnap.TransitionTo(2);
+                transite = false;
+            }
+
             MediumLife();
             brightPercentage = 1;
             doOnce = false;

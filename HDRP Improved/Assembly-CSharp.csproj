@@ -145,6 +145,7 @@
     <Compile Include="Assets\Scripts\VictoryGate.cs" />
     <Compile Include="Assets\Scripts\Weapon.cs" />
     <Compile Include="Assets\Scripts\WeaponManager.cs" />
+    <Compile Include="Assets\Scripts\WeaponsVisuals.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/GitHub Storage/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

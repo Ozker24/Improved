@@ -145,11 +145,14 @@ public class EnemyPlayerDetector : MonoBehaviour
 
     public void CalculateDistanceSound()
     {
-        if (Vector3.Distance(transform.position, enemy.player.transform.position) <= enemy.stealth.actualSoundDistance)
+        if (Vector3.Distance(transform.position, enemy.stealth.lastImportantSoundPosition)<= enemy.stealth.actualSoundDistance) //<= distanceToDetectSound) //lo comentado funciona con el >=.
         {
-            //enemy.Detected = true;
+            Debug.Log("ITS TRUE" + transform.name);
             enemy.positionWhereSound = enemy.stealth.lastImportantSoundPosition;
         }
+
+        //Debug.Log(distanceToDetectSound);
+        //Debug.Log(Vector3.Distance(transform.position, enemy.stealth.lastImportantSoundPosition));
     }
 
     void CloseDetection()

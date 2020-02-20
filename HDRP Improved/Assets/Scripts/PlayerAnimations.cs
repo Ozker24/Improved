@@ -18,6 +18,9 @@ public class PlayerAnimations : MonoBehaviour
     public int dir;
     public Rigidbody rigid;
 
+    [Header("Header")]
+    [SerializeField] bool doAnimEvents;
+
     public void Initialize()
     {
         player = GetComponentInParent<PlayerController>();
@@ -84,10 +87,11 @@ public class PlayerAnimations : MonoBehaviour
     public void SetAnimFist()
     {
         anim.SetTrigger("Fist");
+        DesactiveGuns();
     }
     public void SetAnimAim()
     {
-        if (player.aiming)
+        if (player.aiming && player.WM.ableGun && player.items.canDoGun)
         {
             anim.SetBool("Aim", true);
         }
@@ -102,18 +106,28 @@ public class PlayerAnimations : MonoBehaviour
     }
     public void SetAnimAimItem()
     {
-        if (player.items.pressed)
+        if (player.items.pressed && player.items.canDoItem)
         {
             anim.SetBool("Aim Item", true);
+            if (doAnimEvents)
+            {
+                DesactiveGuns();
+            }
         }
         else
         {
             anim.SetBool("Aim Item", false);
+            if (doAnimEvents)
+            {
+                ActiveGuns();
+                doAnimEvents = false;
+            }
         }
     }
     public void SetAnimLaunch()
     {
         anim.SetTrigger("Launch Item");
+        DesactiveGuns();
     }
     public void SetAnimDead()
     {
@@ -122,6 +136,25 @@ public class PlayerAnimations : MonoBehaviour
     public void SetAnimClimb()
     {
         anim.SetTrigger("Climb");
+    }
+
+    #endregion
+
+    #region Animation Events
+
+    public void DesactiveGuns()
+    {
+        player.WM.WVisuals.StartChangingGunVisuals();
+    }
+
+    public void ActiveGuns()
+    {
+        player.WM.WVisuals.ChangeGunsVisuals();
+    }
+
+    public void SetDoAnimEvents()
+    {
+        doAnimEvents = !doAnimEvents;
     }
 
     #endregion

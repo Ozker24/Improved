@@ -66,12 +66,12 @@ public class StealthSystem : MonoBehaviour
         }
     }
 
-    public void MakeImportantAudio (float distance)
+    public void MakeImportantAudio (float distance, Vector3 pos)
     {
         importantAudio = true;
         actualSoundDistance = distance;
         StartCoroutine(ImportantAudioFalse());
-        lastImportantSoundPosition = player.transform.position;
+        lastImportantSoundPosition = pos;
     }
 
     public void DetectingSound()

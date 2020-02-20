@@ -18,7 +18,7 @@ public class MetalDetector : MonoBehaviour
     {
         if (other.tag == ("Player"))
         {
-            stealth.MakeImportantAudio(soundEmisionDistance);
+            stealth.MakeImportantAudio(soundEmisionDistance, gameObject.transform.position);
             if (source.isPlaying)
             {
                 source.Stop();
