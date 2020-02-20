@@ -770,7 +770,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5348835213635703424
 Transform:
   m_ObjectHideFlags: 0
@@ -831,7 +831,10 @@ MonoBehaviour:
   execution: {fileID: 0}
   combatArea: {fileID: 0}
   attack: {fileID: 0}
-  Detected: 0
+  anim: {fileID: 0}
+  walk: 0
+  run: 0
+  Detected: 1
   chaseSpeed: 5
   player: {fileID: 0}
   playerPos: {x: 0, y: 0, z: 0}
@@ -902,9 +905,9 @@ MonoBehaviour:
   endingAlert: 0
   changeToAlert: 0
   timeToDie: 5
-  dead: 0
+  dead: 1
   addStamina: 20
-  addLife: 20
+  addLife: 10
   absorbTimeCounter: 0
   maxTimeToAbsorb: 5
   absorbPercentage: 0

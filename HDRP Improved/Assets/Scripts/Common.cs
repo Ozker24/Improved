@@ -2,17 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Common 
+public static class Utiles 
 {
-    public static Common common;
-    [SerializeField] float maxVolume;
-    [SerializeField] float minVolume;
-    [SerializeField] float maxPitch;
-    [SerializeField] float minPitch;
-
-    public void ChangePitchAndVolume(AudioSource ComSource)
+    public static void ChangePitchAndVolume(this AudioSource source, float minV, float maxV, float minP, float maxP)
     {
-        ComSource.volume = Random.Range(minVolume, maxVolume);
-        ComSource.pitch = Random.Range(minPitch, maxPitch);
+        source.volume = Random.Range(minV, maxV);
+        source.pitch = Random.Range(minP, maxP);
     }
 }

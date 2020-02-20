@@ -74,7 +74,7 @@ public class Weapon : MonoBehaviour
 
         //audPlay.Play(0, 1, Random.Range(0.95f, 1.05f));
         //ammoReloaded--;
-
+        basicSource.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
         basicSource.PlayOneShot(ShotClips.clips[weapon.WeaponSelected]);
 
         muzzleParticle.Play();

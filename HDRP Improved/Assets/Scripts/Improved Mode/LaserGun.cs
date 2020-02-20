@@ -8,6 +8,10 @@ public class LaserGun : MonoBehaviour
     [SerializeField] Aiming aim;
     [SerializeField] ImprovedWeaponManager IWM;
     [SerializeField] ChargedLaserArea chargedArea;
+    [SerializeField] ParticleSystem chargingParticle;
+    [SerializeField] GameObject chargedParticle;
+    [SerializeField] Transform chargedParticlePos;
+
 
     [Header ("General Laser Variables")]
     [SerializeField] float fireRate;
@@ -147,7 +151,10 @@ public class LaserGun : MonoBehaviour
         timeCounter = 0;
         perceentage = 0;
 
-        chargedLaserShotParticle.Play();
+        //chargedLaserShotParticle.Play();
+
+        GameObject part = Instantiate(chargedParticle, chargedParticlePos.position, Quaternion.Euler(transform.rotation.x,0, transform.rotation.x));
+        Destroy(part, 2);
 
         if (baseSource.isPlaying)
         {
@@ -168,6 +175,8 @@ public class LaserGun : MonoBehaviour
                 enemy.Damage(damage);
             }
         }
+
+        playChargingSound = false;
     }
 
     public void ResetLaserGun()
@@ -184,6 +193,8 @@ public class LaserGun : MonoBehaviour
             {
                 ChargedLaserGun();
             }
+
+            chargingParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
 
             IWM.usingLaserGun = false;
 
@@ -243,6 +254,7 @@ public class LaserGun : MonoBehaviour
 
                             if (!playChargingSound)
                             {
+                                chargingParticle.Play();
                                 baseSource.loop = true;
                                 baseSource.PlayOneShot(chargingChargedShot);
                                 playChargingSound = true;

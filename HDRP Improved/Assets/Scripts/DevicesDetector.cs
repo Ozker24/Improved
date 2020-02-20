@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DevicesDetector : MonoBehaviour
 {
+    //ENUM
     [Header("Controllers")]
     public bool PS4Controller;
     public bool XBoxOneController;
@@ -19,12 +20,12 @@ public class DevicesDetector : MonoBehaviour
 
         for (int x = 0; x < names.Length; x++)
         {
-            if (names[x].Length == 19)
+            if (!PS4Controller && names[x].Length == 19)
             {
                 PS4Controller = true;
                 XBoxOneController = false;
             }
-            else if (names[x].Length == 33)
+            else if (!XBoxOneController && names[x].Length == 33)
             {
                 XBoxOneController = true;
                 PS4Controller = false;

@@ -546,7 +546,7 @@ public class PlayerController : MonoBehaviour
     {
         PlayerSave data = PlayerSaveSystem.LoadPlayer();
 
-        if (data != null)
+        if (data != null && !GM.improved)
         {
             spawnPos.x = data.spawnPos[0];
             spawnPos.y = data.spawnPos[1];

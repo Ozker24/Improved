@@ -260,7 +260,7 @@ public class EnemyTest : MonoBehaviour
         {
             //Debug.Log(agent.remainingDistance);
 
-            if (agent.remainingDistance <= agent.stoppingDistance + 0.01)
+            if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance + 0.01)
             {
                 Debug.Log("Arrived" + gameObject.name);
                 goToNearPoint = true;

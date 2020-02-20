@@ -25,10 +25,17 @@ public class CameraSensitibity : MonoBehaviour
     public float XSensitibityControllers;
     public float finalXSpeedControllers;
 
+    void FindPlayerCam()
+    {
+        if (playerCam == null)
+        {
+            playerCam = GameObject.FindGameObjectWithTag("TPCamera").GetComponent<CinemachineFreeLook>();
+        }
+    }
+
     private void Start()
     {
-        playerCam = GameObject.FindGameObjectWithTag("TPCamera").GetComponent<CinemachineFreeLook>();
-
+        FindPlayerCam();
         //OM = GameObject.FindGameObjectWithTag("Options Menu").GetComponent<OptionsMenu>();
 
         if (devices.PS4Controller && devices.XBoxOneController)
@@ -73,6 +80,7 @@ public class CameraSensitibity : MonoBehaviour
 
     public void SetYSensitivityPc()
     {
+        FindPlayerCam();
         YSensitibityPC = OM.cameraYSensitibityPC;
         finalYSpeedPC = initYSpeedPC * YSensitibityPC;
         playerCam.m_YAxis.m_MaxSpeed = finalYSpeedPC;
@@ -80,6 +88,7 @@ public class CameraSensitibity : MonoBehaviour
 
     public void SetXSensitivityPC()
     {
+        FindPlayerCam();
         XSensitibityPC = OM.cameraXSensitibityPC;
         finalXSpeedPC = initXSpeedPC * XSensitibityPC;
         playerCam.m_XAxis.m_MaxSpeed = finalXSpeedPC;
@@ -87,6 +96,7 @@ public class CameraSensitibity : MonoBehaviour
 
     public void SetYSensitivityControllers()
     {
+        FindPlayerCam();
         YSensitibityControllers = OM.cameraYSensitibityController;
         finalYSpeedControllers = initYSpeedControllers * YSensitibityControllers;
         playerCam.m_YAxis.m_MaxSpeed = finalYSpeedControllers;
@@ -94,6 +104,7 @@ public class CameraSensitibity : MonoBehaviour
 
     public void SetXSensitivityControllers()
     {
+        FindPlayerCam();
         XSensitibityControllers = OM.cameraXSensitibityController;
         finalXSpeedControllers = initXSpeedControllers * XSensitibityControllers;
         playerCam.m_XAxis.m_MaxSpeed = finalXSpeedControllers;

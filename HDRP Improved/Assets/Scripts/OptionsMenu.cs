@@ -99,7 +99,7 @@ public class OptionsMenu : MonoBehaviour
 
         Settings = Options.Graphics;
 
-        InitializeResolutions();
+        //InitializeResolutions();
 
         if (volume != null)
         {
@@ -414,6 +414,8 @@ public class OptionsMenu : MonoBehaviour
         Screen.SetResolution(resolutions[resolutionDropdown.value].width, resolutions[resolutionDropdown.value].height, Screen.fullScreen);
 
         selectedResolution = resolutionDropdown.value;
+
+        //teclear por codigo propiamente las resoluciones.
     }
 
     public void SetGamma()

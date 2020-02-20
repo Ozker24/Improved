@@ -94,7 +94,10 @@ public class GameManager : MonoBehaviour
     {
         player.Initialize();
 
-        checkpointsManager.SetNewCheckPoint();
+        if (!improved)
+        {
+            checkpointsManager.SetNewCheckPoint();
+        }
 
         inputs.Initialize();
         weapon.Initialize();

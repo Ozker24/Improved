@@ -5,6 +5,7 @@ using UnityEngine;
 public class FlameThrower : MonoBehaviour
 {
     [SerializeField] ImprovedWeaponManager IWM;
+    [SerializeField] ParticleSystem flameParticle;
     [SerializeField] Vector3 halfAreaSize;
     [SerializeField] LayerMask layer;
 
@@ -38,6 +39,7 @@ public class FlameThrower : MonoBehaviour
             if (!playSound)
             {
                 playSound = true;
+                flameParticle.Play();
                 source.Play();
             }
             IWM.player.CC.canHit = false;
@@ -52,6 +54,7 @@ public class FlameThrower : MonoBehaviour
         fireing = false;
         IWM.usingFlameThrower = false;
         source.Stop();
+        flameParticle.Stop();
         playSound = false;
     }
 
