@@ -33,6 +33,12 @@ public class HitArea : MonoBehaviour
         {
             Debug.Log("Enemy");
             EnemyTest enemy = other.GetComponent<EnemyTest>();
+
+            if (!enemy.dead)
+            {
+                enemy.anim.SetAnimHit();
+            }
+
             enemy.StunnedSet(StunedTime);
 
             if (!player.GM.improved)

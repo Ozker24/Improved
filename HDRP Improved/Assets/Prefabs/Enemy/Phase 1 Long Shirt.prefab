@@ -1,5 +1,50 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &905317949
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 905317950}
+  - component: {fileID: 905317951}
+  m_Layer: 31
+  m_Name: Collider Gun
+  m_TagString: Flesh
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &905317950
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905317949}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6367000369425631588}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &905317951
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905317949}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.46
+  m_Height: 1.7
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.16, z: 0}
 --- !u!1 &1325958605726076960
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,13 +219,14 @@ GameObject:
   - component: {fileID: 6367000369425631517}
   - component: {fileID: 6367000369425631516}
   - component: {fileID: 6367000369425631586}
+  - component: {fileID: 8071369263904108658}
   m_Layer: 9
   m_Name: Phase 1 Long Shirt
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6367000369425631588
 Transform:
   m_ObjectHideFlags: 0
@@ -199,6 +245,7 @@ Transform:
   - {fileID: 8666946239303121183}
   - {fileID: 1325958605726076961}
   - {fileID: 3882263502896600623}
+  - {fileID: 905317950}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
@@ -241,6 +288,7 @@ MonoBehaviour:
   execution: {fileID: 0}
   combatArea: {fileID: 0}
   attack: {fileID: 0}
+  anim: {fileID: 0}
   Detected: 0
   chaseSpeed: 5
   player: {fileID: 0}
@@ -275,19 +323,20 @@ MonoBehaviour:
   pathPoints:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   currentPoint: 0
   patrolStopDist: 2
   patrolSpeed: 2
   stayThere: 1
   stationaryTimeCounter: 0
-  generalWaitOnPointTime: 1
-  initGeneralWaitOnPointTime: 0
-  waitOnPointTime: 5
-  initWaitOnPointTime: 0
-  initWaitComeFromSound: 0
-  waitComeFromSound: 10
-  percentageOfWait: 20
-  initPercentageOfWait: 0
+  generalWaitOnPointTime: 0
+  initGeneralWaitOnPointTime: 1
+  waitOnPointTime: 0
+  initWaitOnPointTime: 5
+  initWaitComeFromSound: 10
+  waitComeFromSound: 0
+  percentageOfWait: 0
+  initPercentageOfWait: 20
   randomNum: 0
   stopOnThePoints: 0
   stopOnPoint: 0
@@ -394,7 +443,7 @@ AudioSource:
   m_GameObject: {fileID: 6367000369425631515}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: 6d9903779e846ff478a36ce51815bf15,
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 1fbb1c6e394ca8643b49906a74fff7ac,
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
@@ -406,8 +455,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 0.01
-  MaxDistance: 30
+  MinDistance: 4
+  MaxDistance: 20
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -457,7 +506,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.3888889
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -482,6 +531,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8071369263904108658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6367000369425631515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59aac13018f765649afff0f61e95c9a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6367000369454147403
 GameObject:
   m_ObjectHideFlags: 0
@@ -799,19 +860,19 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: c89b638dd8e00d34c8c3a7598288642e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c89b638dd8e00d34c8c3a7598288642e, type: 3}
---- !u!1 &5628501691013204748 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: c89b638dd8e00d34c8c3a7598288642e,
-    type: 3}
-  m_PrefabInstance: {fileID: 4412851855685079557}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8666946239303121183 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: c89b638dd8e00d34c8c3a7598288642e,
+    type: 3}
+  m_PrefabInstance: {fileID: 4412851855685079557}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5628501691013204748 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: c89b638dd8e00d34c8c3a7598288642e,
     type: 3}
   m_PrefabInstance: {fileID: 4412851855685079557}
   m_PrefabAsset: {fileID: 0}
@@ -827,6 +888,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 806ee74918554894f93c2bd74fb598c8, type: 2}
+    - target: {fileID: -6057140222963153312, guid: c730377678d3b194abe9e9e1d45431b0,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 647043e2cbcbf0144a459da919a7ec10, type: 2}
     - target: {fileID: -4216859302048453862, guid: c730377678d3b194abe9e9e1d45431b0,
         type: 3}
       propertyPath: m_LocalPosition.x

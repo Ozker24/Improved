@@ -22,6 +22,11 @@ public class EnemyTest : MonoBehaviour
     [SerializeField] ExecutionArea execution;
     [SerializeField] CombatArea combatArea;
     [SerializeField] EnemyAttackArea attack;
+    public EnemyAnimations anim;
+
+    [Header("States")]
+    public bool walk;
+    public bool run;
 
     [Header("Chase")]
     public bool Detected;
@@ -167,6 +172,10 @@ public class EnemyTest : MonoBehaviour
 
         rigid = GetComponent<Rigidbody>();
 
+        anim = GetComponent<EnemyAnimations>();
+
+        anim.Initialize();
+
         playerDetector.Initialize();
 
         sight.Initialize();
@@ -239,6 +248,8 @@ public class EnemyTest : MonoBehaviour
             default:
                 break;
         }
+
+        anim.MyUpdate();
     }
 
     #region Updates
@@ -472,6 +483,10 @@ public class EnemyTest : MonoBehaviour
     
     public void SoundSet()
     {
+        agent.speed = alertSpeed;
+
+        run = true;
+
         agent.isStopped = false;
         attackTimeCounter = 0;
         agent.stoppingDistance = distToSearch;
@@ -495,12 +510,17 @@ public class EnemyTest : MonoBehaviour
     {
         //positionWhereSound = Vector3.zero;
         //Debug.Log(pos);
-
         stayThere = false;
 
         inAlert = true;
 
         agent.isStopped = true;
+
+        walk = false;
+
+        run = false;
+
+        anim.SetAnimSurprise();
 
         wantToHear = true;
 
@@ -509,6 +529,16 @@ public class EnemyTest : MonoBehaviour
 
     public void PatrolSet()
     {
+        if (!inAlert)
+        {
+            walk = true;
+            run = false;
+        }
+        else
+        {
+            walk = false;
+            run = true;
+        }
         agent.isStopped = false;
         attackTimeCounter = 0;
         agent.stoppingDistance = patrolStopDist;
@@ -555,6 +585,10 @@ public class EnemyTest : MonoBehaviour
     {
         wantToHear = false;
         agent.isStopped = true;
+
+        walk = false;
+        run = false;
+
         stealth.detected = true;
         sight.watchingPlayer = false;
         playerDetector.hearingPlayer = false;
@@ -567,12 +601,18 @@ public class EnemyTest : MonoBehaviour
             stealth.playingDetectingSound = false;
             stealth.stealthAudioSource.Stop();
 
+            anim.SetAnimDetection();
+
             player.baseSource.PlayOneShot(stealth.detectedSound);
         }
     }
 
     public void StationarySet()
     {
+        walk = false;
+
+        run = false;
+
         wantToHear = true;
 
         agent.isStopped = true;
@@ -586,6 +626,10 @@ public class EnemyTest : MonoBehaviour
 
     public void ChaseSet()
     {
+        walk = false;
+
+        run = true;
+
         wantToHear = false;
         agent.isStopped = false;
         agent.stoppingDistance = distToAttack;
@@ -600,6 +644,10 @@ public class EnemyTest : MonoBehaviour
 
         agent.isStopped = true;
 
+        walk = false;
+
+        run = false;
+
         attackTimeCounter = timeAttackFinished - restTimeToAttack;
 
         states = State.Attack;
@@ -610,6 +658,10 @@ public class EnemyTest : MonoBehaviour
         wantToHear = false;
 
         agent.isStopped = true;
+
+        walk = false;
+        run = false;
+
         timeStunned = time;
         states = State.Stunned;
     }
@@ -621,6 +673,12 @@ public class EnemyTest : MonoBehaviour
         executionCollider.enabled = false;
 
         agent.isStopped = true;
+
+        walk = false;
+
+        run = false;
+
+        anim.SetAnimDead();
         //attackArea.enabled = false;
 
         Detected = false;
@@ -670,6 +728,8 @@ public class EnemyTest : MonoBehaviour
     {
         Debug.Log("Attacking");
 
+        anim.SetAnimAttack();
+
         basicSource.PlayOneShot(clips.clips[0]);
 
         if (attack.playerInArea)
@@ -686,6 +746,11 @@ public class EnemyTest : MonoBehaviour
             if (player.items.healing && !player.GM.improved)
             {
                 player.items.CancelHealing();
+            }
+
+            if(player.life.health <= 0)
+            {
+                anim.anim.updateMode = AnimatorUpdateMode.UnscaledTime;
             }
         }
 

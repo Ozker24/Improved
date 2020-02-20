@@ -86,7 +86,7 @@ public class Weapon : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, fireDist, weaponLayer))
             {
-                Debug.Log(hit.collider.tag);
+                //Debug.Log(hit.collider.tag);
                 Debug.Log(hit.collider.name);
 
                 if (hit.collider.tag == "Flesh")
@@ -101,6 +101,7 @@ public class Weapon : MonoBehaviour
                     if (enemy != null)
                     {
                         enemy.Detected = true;
+                        enemy.anim.SetAnimHit();
                     }
                 }
 
@@ -137,6 +138,7 @@ public class Weapon : MonoBehaviour
                         EnemyTest enemy = hit.transform.GetComponent<EnemyTest>();
                         if (enemy != null)
                         {
+                            enemy.anim.SetAnimHit();
                             enemy.Detected = true;
                         }
                     }
