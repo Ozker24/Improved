@@ -133,6 +133,7 @@ public class Absorb : MonoBehaviour
                     if (!playSound)
                     {
                         source.loop = true;
+                        source.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
                         source.PlayOneShot(absorbing);
                         playSound = true;
                     }
@@ -231,7 +232,8 @@ public class Absorb : MonoBehaviour
                     playSound = false;
                 }
 
-                source.PlayOneShot(absorbed);
+                source.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
+                //source.PlayOneShot(absorbed);
             }
             else
             {

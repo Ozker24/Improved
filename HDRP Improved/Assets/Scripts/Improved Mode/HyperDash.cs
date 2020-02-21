@@ -31,7 +31,9 @@ public class HyperDash : MonoBehaviour
     {
         if(IWM.stamina > 0 && !IWM.usingFlameThrower && !IWM.usingHyperJump && !IWM.usingHyperDash && !IWM.usingLaserGun && !IWM.usingMisileLaucher && !IWM.absorbing)
         {
-            source.Play();
+            source.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
+            //source.Play();
+            Debug.LogWarning("HyperDash sound is desactive");
             IWM.usingHyperDash = true;
             IWM.stamina -= restStamina;
             IWM.player.Dodge();

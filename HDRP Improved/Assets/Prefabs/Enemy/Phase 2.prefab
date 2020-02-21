@@ -764,13 +764,14 @@ GameObject:
   - component: {fileID: 5348835213635703545}
   - component: {fileID: 5348835213635703544}
   - component: {fileID: 5348835213635703430}
+  - component: {fileID: 2108117597937349508}
   m_Layer: 9
   m_Name: Phase 2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5348835213635703424
 Transform:
   m_ObjectHideFlags: 0
@@ -834,7 +835,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   walk: 0
   run: 0
-  Detected: 1
+  Detected: 0
   chaseSpeed: 5
   player: {fileID: 0}
   playerPos: {x: 0, y: 0, z: 0}
@@ -1075,6 +1076,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2108117597937349508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5348835213635703551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59aac13018f765649afff0f61e95c9a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 0}
+  enemy: {fileID: 0}
 --- !u!1 &5348835214536151471
 GameObject:
   m_ObjectHideFlags: 0
@@ -1149,9 +1164,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: b2e3f1f2394e6f74e81198bd1e18fd40, type: 3}
-  - {fileID: 8300000, guid: fc118759546d5f04fa3581c40deda860, type: 3}
-  - {fileID: 8300000, guid: 1fad182b3acf9b04eaaa0c403629bf1e, type: 3}
+  - {fileID: 8300000, guid: cdd9da01ed3f4d345b7e2f19a7932fde, type: 3}
+  - {fileID: 8300000, guid: b7439081a6d85fa4e839f9e652025c04, type: 3}
+  - {fileID: 8300000, guid: 23965d30d87884f46a48d2faebd0af3d, type: 3}
 --- !u!1 &5348835214722273826
 GameObject:
   m_ObjectHideFlags: 0
@@ -1814,7 +1829,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: eef6604c6ce5f0a429696e9f57d68d60, type: 2}
+      objectReference: {fileID: 9100000, guid: 647043e2cbcbf0144a459da919a7ec10, type: 2}
     - target: {fileID: -4216859302048453862, guid: ec6b18adc892f8347aa3cdb1696c7555,
         type: 3}
       propertyPath: m_LocalPosition.x

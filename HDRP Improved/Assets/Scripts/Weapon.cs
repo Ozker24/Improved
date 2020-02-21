@@ -33,6 +33,7 @@ public class Weapon : MonoBehaviour
     public float reloadTime;
     public float fireDist;
     public float bulletDamage;
+    public float bulletMetalDamage;
     public float stunedTime;
 
     public int shotGunSpreads;
@@ -108,6 +109,8 @@ public class Weapon : MonoBehaviour
                 else if (hit.collider.tag == "Metal")
                 {
                     GameObject particle = (GameObject)Instantiate(sparklePartcile, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
+                    hit.transform.SendMessage("Damage", bulletMetalDamage , SendMessageOptions.RequireReceiver);
+                    basicSource.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
                     basicSource.PlayOneShot(MetalClip);
                     Destroy(particle, 10);
                 }
@@ -146,6 +149,8 @@ public class Weapon : MonoBehaviour
                     else if (hit.collider.tag == "Metal")
                     {
                         GameObject particle = (GameObject)Instantiate(sparklePartcile, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
+                        hit.transform.SendMessage("Damage", bulletMetalDamage, SendMessageOptions.RequireReceiver);
+                        basicSource.ChangePitchAndVolume(0.7f,1,0.95f,1.05f);
                         basicSource.PlayOneShot(MetalClip);
                         Destroy(particle, 10);
                     }

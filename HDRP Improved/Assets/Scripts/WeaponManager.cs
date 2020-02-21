@@ -77,6 +77,7 @@ public class WeaponManager : MonoBehaviour
                     WVisuals.StartChangingGunVisuals();
 
                     ableGun = false;
+                    UiSource.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
                     UiSource.PlayOneShot(changeGunClips.clips[WeaponSelected]);
                     StartCoroutine(AbleGun(timeAbleGun[WeaponSelected]));
                 }
@@ -151,7 +152,7 @@ public class WeaponManager : MonoBehaviour
     {
         WeaponSelected = weaponPreSelected;
         ableGun = false;
-        baseSource.PlayOneShot(changeGunClips.clips[WeaponSelected]);
+        UiSource.PlayOneShot(changeGunClips.clips[WeaponSelected]);
         StartCoroutine(AbleGun(timeAbleGun[WeaponSelected]));
     }
 

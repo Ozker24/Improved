@@ -53,6 +53,7 @@ public class ObjectSound : MonoBehaviour
         //Get Objects
         Collider[] colliders = Physics.OverlapSphere(transform.position, radius, layer);
 
+        source.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
         source.PlayOneShot(explosionClip);
 
         foreach (Collider nearbyObject in colliders)

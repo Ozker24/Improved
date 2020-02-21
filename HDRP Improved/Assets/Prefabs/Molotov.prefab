@@ -177,13 +177,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8704
   source: {fileID: 9157862703141247879}
-  explosionClip: {fileID: 8300000, guid: 79d47b0302502964a8625632e3a00389, type: 3}
+  explosionClip: {fileID: 8300000, guid: 34468be6de276fb458bb947c78f38827, type: 3}
   mesh: {fileID: 6442462936046615428}
   coll: {fileID: 6442462936046615427}
   rb: {fileID: 6442462936046615426}
   fireZonePrefab: {fileID: 8356352593725634942, guid: ddd571c56b4b16949a63a77e7c2f4254,
     type: 3}
-  initialSound: {fileID: 8300000, guid: 79d47b0302502964a8625632e3a00389, type: 3}
+  initialSound: {fileID: 8300000, guid: da20df0e4ae6de54399ef392880378f7, type: 3}
 --- !u!82 &9157862703141247879
 AudioSource:
   m_ObjectHideFlags: 0

@@ -454,6 +454,7 @@ public class PlayerController : MonoBehaviour
             //CollectItemSource.clip = itemCollected.collectSound;
             //source.playOnAwake = false;
 
+            baseSource.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
             baseSource.PlayOneShot(itemCollected.collectSound);
             //Destroy(source, source.clip.length);
         }
@@ -469,6 +470,7 @@ public class PlayerController : MonoBehaviour
 
         if (itemCollected.collectSound != null)
         {
+            baseSource.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
             baseSource.PlayOneShot(itemCollected.collectSound);
         }
     }
@@ -495,6 +497,8 @@ public class PlayerController : MonoBehaviour
         GM.dead = true;
         anims.anim.updateMode = AnimatorUpdateMode.UnscaledTime;
         anims.SetAnimDead();
+        baseSource.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
+        baseSource.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
         baseSource.PlayOneShot(deadSound);
         //PlaySound();
         GM.winLose.doFadeOut = true;

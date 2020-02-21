@@ -17,7 +17,7 @@ public class Molotov : MonoBehaviour
 
     public GameObject fireZonePrefab;
 
-    public AudioClip initialSound;
+    //public AudioClip initialSound;
 
     public void Update()
     {
@@ -41,6 +41,7 @@ public class Molotov : MonoBehaviour
         // Show Effects
         //Instantiate(explosionEffect, transform.position, transform.rotation);
 
+        source.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
         source.PlayOneShot(explosionClip);
 
         //Get Objects

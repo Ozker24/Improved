@@ -104,6 +104,7 @@ public class CloseCombat : MonoBehaviour
                 improvedModeHit.AppearHit();
             }
 
+            basicSource.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
             basicSource.PlayOneShot(hitClips);
             ActualHit++;
 
@@ -136,6 +137,7 @@ public class CloseCombat : MonoBehaviour
             if (enemyToExecute != null)
             {
                 enemyToExecute.Damage(enemyToExecute.currentLife);
+                basicSource.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
                 basicSource.PlayOneShot(executionClip);
                 enemyToExecute.executionCollider.enabled = false;
                 enemyToExecute = null;

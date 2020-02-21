@@ -164,7 +164,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   source: {fileID: -7613070168422657279}
-  explosionClip: {fileID: 8300000, guid: 5ec66ef857eb38740be3c5bc644d72bb, type: 3}
+  explosionClip: {fileID: 8300000, guid: e8621e57cbc2fa54c8ba7efbbf52ff91, type: 3}
   mesh: {fileID: 8014949743119193745}
   coll: {fileID: 8014949743119193744}
   rb: {fileID: 8014949743119193746}

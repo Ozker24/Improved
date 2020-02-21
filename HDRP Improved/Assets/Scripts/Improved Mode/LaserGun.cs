@@ -114,10 +114,12 @@ public class LaserGun : MonoBehaviour
 
             if(damage == semiAutoDamage)
             {
+                baseSource.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
                 baseSource.PlayOneShot(shotSingleShot);
             }
             else if (damage == sniperDamage)
             {
+                baseSource.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
                 baseSource.PlayOneShot(shotSniperShot);
             }
 
@@ -161,6 +163,7 @@ public class LaserGun : MonoBehaviour
             baseSource.Stop();
         }
 
+        baseSource.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
         baseSource.PlayOneShot(shotChargedShot);
 
         Collider[] enemiesInArea = Physics.OverlapBox(areaPos.position, halfAreaSize, transform.rotation, layer);
@@ -256,6 +259,7 @@ public class LaserGun : MonoBehaviour
                             {
                                 chargingParticle.Play();
                                 baseSource.loop = true;
+                                baseSource.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
                                 baseSource.PlayOneShot(chargingChargedShot);
                                 playChargingSound = true;
                             }

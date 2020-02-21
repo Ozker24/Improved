@@ -283,6 +283,7 @@ public class Items : MonoBehaviour
 
                 if (ClipsSelected.clips[itemSelected] != null)
                 {
+                    baseSource.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
                     baseSource.PlayOneShot(ClipsSelected.clips[itemSelected]);
                 }
 
@@ -306,6 +307,7 @@ public class Items : MonoBehaviour
 
             if (ClipsLaunched.clips[itemSelected] != null)
             {
+                baseSource.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
                 baseSource.PlayOneShot(ClipsLaunched.clips[itemSelected]);
             }
 
@@ -329,6 +331,7 @@ public class Items : MonoBehaviour
 
                 if (ClipsSelected.clips[itemSelected] != null)
                 {
+                    baseSource.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
                     baseSource.PlayOneShot(ClipsSelected.clips[itemSelected]);
                 }
 
@@ -354,6 +357,7 @@ public class Items : MonoBehaviour
             //audPlay.Play(6, 1, Random.Range(0.95f, 1.05f));
             if (ClipsLaunched.clips[itemSelected] != null)
             {
+                baseSource.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
                 baseSource.PlayOneShot(ClipsLaunched.clips[itemSelected]);
             }
 
@@ -373,6 +377,7 @@ public class Items : MonoBehaviour
 
                 if (ClipsSelected.clips[itemSelected] != null)
                 {
+                    baseSource.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
                     baseSource.PlayOneShot(ClipsSelected.clips[itemSelected]);
                 }
                 //audio de apuntando
@@ -395,6 +400,7 @@ public class Items : MonoBehaviour
 
             if (ClipsLaunched.clips[itemSelected] != null)
             {
+                baseSource.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
                 baseSource.PlayOneShot(ClipsLaunched.clips[itemSelected]);
             }
             InstantiateThings(SoundPrefab);
@@ -419,6 +425,7 @@ public class Items : MonoBehaviour
                     //audPlay.Play(3, 1, Random.Range(0.95f, 1.05f));
                     if (ClipsSelected.clips[itemSelected] != null && baseSource != null)
                     {
+                        baseSource.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
                         baseSource.PlayOneShot(ClipsSelected.clips[itemSelected]);
                     }
 
@@ -450,6 +457,7 @@ public class Items : MonoBehaviour
                         //audPlay.Play(4, 1, Random.Range(0.95f, 1.05f));
                         if (ClipsLaunched.clips[itemSelected] != null)
                         {
+                            baseSource.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
                             baseSource.PlayOneShot(ClipsLaunched.clips[itemSelected]);
                         }
 
@@ -478,6 +486,7 @@ public class Items : MonoBehaviour
                 Debug.Log("EMP");
                 if (ClipsSelected.clips[itemSelected] != null)
                 {
+                    baseSource.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
                     baseSource.PlayOneShot(ClipsSelected.clips[itemSelected]);
                 }
                 //audio de apuntando
@@ -500,6 +509,7 @@ public class Items : MonoBehaviour
 
             if (ClipsLaunched.clips[itemSelected] != null)
             {
+                baseSource.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
                 baseSource.PlayOneShot(ClipsLaunched.clips[itemSelected]);
             }
 
@@ -561,20 +571,6 @@ public class Items : MonoBehaviour
         firstTime = first;
 
         StartCoroutine(CanDoItem());
-    }
-
-    public void PlaySound(int index)
-    {
-        AudioSource source = gameObject.AddComponent<AudioSource>();
-
-        //source.PlayOneShot
-
-        // Configurar audiosource
-        source.playOnAwake = false;
-        source.clip = ClipsLaunched.clips[index];
-        source.Play();
-
-        Destroy(source, source.clip.length);
     }
 
     IEnumerator StopCancelling()

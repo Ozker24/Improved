@@ -289,6 +289,8 @@ MonoBehaviour:
   combatArea: {fileID: 0}
   attack: {fileID: 0}
   anim: {fileID: 0}
+  walk: 0
+  run: 0
   Detected: 0
   chaseSpeed: 5
   player: {fileID: 0}
@@ -543,6 +545,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59aac13018f765649afff0f61e95c9a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
+  enemy: {fileID: 0}
 --- !u!1 &6367000369454147403
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,9 +667,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: b2e3f1f2394e6f74e81198bd1e18fd40, type: 3}
-  - {fileID: 8300000, guid: fc118759546d5f04fa3581c40deda860, type: 3}
-  - {fileID: 8300000, guid: 2da7e48336627334c89042687ae4b67f, type: 3}
+  - {fileID: 8300000, guid: cdd9da01ed3f4d345b7e2f19a7932fde, type: 3}
+  - {fileID: 8300000, guid: b7439081a6d85fa4e839f9e652025c04, type: 3}
+  - {fileID: 8300000, guid: 23965d30d87884f46a48d2faebd0af3d, type: 3}
 --- !u!1 &6367000370511677894
 GameObject:
   m_ObjectHideFlags: 0

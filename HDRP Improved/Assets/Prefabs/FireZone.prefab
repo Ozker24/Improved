@@ -4877,6 +4877,7 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 8704
+  source: {fileID: -882694557556095056}
 --- !u!82 &-882694557556095056
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4888,8 +4889,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 1fbb1c6e394ca8643b49906a74fff7ac,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 09e0914beb7870e49a40be6cd782baa3, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 67c9eb2b5341e8b4aa27892b011cacfa, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1

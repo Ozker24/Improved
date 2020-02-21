@@ -771,6 +771,7 @@ public class EnemyTest : MonoBehaviour
             currentLife = 0;
             if (!dead)
             {
+                basicSource.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
                 basicSource.PlayOneShot(clips.clips[2]);
             }
             DieSet();

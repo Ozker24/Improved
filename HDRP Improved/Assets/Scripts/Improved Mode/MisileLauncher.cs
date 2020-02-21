@@ -48,6 +48,7 @@ public class MisileLauncher : MonoBehaviour
                     IWM.usingMisileLaucher = false;
                     StartCoroutine(ResetCanLaunch());
 
+                    source.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
                     source.Play();
 
                     nextMisilePos = hit.point;

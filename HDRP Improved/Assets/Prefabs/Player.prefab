@@ -138,11 +138,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 24673336b97a4024897dcac8439f0513, type: 3}
+  - {fileID: 8300000, guid: 347951b33796f9c4d9080dcf2c6e913e, type: 3}
   - {fileID: 8300000, guid: dc369455e0fed8740902cc2af2814001, type: 3}
-  - {fileID: 8300000, guid: dd486457f071ea64b87e188bbba70163, type: 3}
-  - {fileID: 8300000, guid: 79d47b0302502964a8625632e3a00389, type: 3}
-  - {fileID: 8300000, guid: fc118759546d5f04fa3581c40deda860, type: 3}
+  - {fileID: 8300000, guid: 347951b33796f9c4d9080dcf2c6e913e, type: 3}
+  - {fileID: 8300000, guid: 347951b33796f9c4d9080dcf2c6e913e, type: 3}
+  - {fileID: 8300000, guid: 347951b33796f9c4d9080dcf2c6e913e, type: 3}
 --- !u!1 &232874400003868960
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7271ef501679e904db9d0d436f25207d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 60
   healthToLow: 10
   healthToHigh: 50
   addHealth: 15
@@ -1794,9 +1794,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 049d88856765b7549be5f406d071dd8e, type: 3}
+  - {fileID: 8300000, guid: 4f1c5b048e1e08248b26f3164f7d49d6, type: 3}
   - {fileID: 8300000, guid: dd486457f071ea64b87e188bbba70163, type: 3}
-  - {fileID: 8300000, guid: 2e3d2df66f5a0b04d936c92ebe11342c, type: 3}
+  - {fileID: 8300000, guid: 24673336b97a4024897dcac8439f0513, type: 3}
   - {fileID: 8300000, guid: bc3dccea12d08814c9b0539941ae7fff, type: 3}
 --- !u!1 &2878375546994331843
 GameObject:
@@ -2911,7 +2911,7 @@ MonoBehaviour:
   canAbsorb: 0
   interrumpt: 0
   source: {fileID: 5671954500632674522}
-  absorbing: {fileID: 8300000, guid: dc369455e0fed8740902cc2af2814001, type: 3}
+  absorbing: {fileID: 8300000, guid: 12aeb8949bc1b3547b20dc6a2abbb1c6, type: 3}
   absorbed: {fileID: 8300000, guid: 24673336b97a4024897dcac8439f0513, type: 3}
   playSound: 0
 --- !u!82 &5671954500632674522
@@ -2926,7 +2926,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: 1f5880c92c526ec4baa963fc2ca32566,
     type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -2935,8 +2935,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 2
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -2971,7 +2971,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -4219,6 +4219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IWM: {fileID: 0}
+  flameParticle: {fileID: 0}
   halfAreaSize: {x: 0.3, y: 1, z: 2.5}
   layer:
     serializedVersion: 2
@@ -4239,7 +4240,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 1fbb1c6e394ca8643b49906a74fff7ac,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: c5b125aad0623c845bcfd8ca0548563b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: cd5bf5549d3add942b33a4ff2306d6a5, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -4401,10 +4402,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 049d88856765b7549be5f406d071dd8e, type: 3}
-  - {fileID: 8300000, guid: dd486457f071ea64b87e188bbba70163, type: 3}
-  - {fileID: 8300000, guid: 2e3d2df66f5a0b04d936c92ebe11342c, type: 3}
-  - {fileID: 8300000, guid: bc3dccea12d08814c9b0539941ae7fff, type: 3}
+  - {fileID: 8300000, guid: 662ae1fee7ea60a47979872bc67c599b, type: 3}
+  - {fileID: 8300000, guid: 662ae1fee7ea60a47979872bc67c599b, type: 3}
+  - {fileID: 8300000, guid: 662ae1fee7ea60a47979872bc67c599b, type: 3}
+  - {fileID: 8300000, guid: 662ae1fee7ea60a47979872bc67c599b, type: 3}
 --- !u!1 &6226902709745955249
 GameObject:
   m_ObjectHideFlags: 0
@@ -5557,11 +5558,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 049d88856765b7549be5f406d071dd8e, type: 3}
-  - {fileID: 8300000, guid: dd486457f071ea64b87e188bbba70163, type: 3}
-  - {fileID: 8300000, guid: 2e3d2df66f5a0b04d936c92ebe11342c, type: 3}
-  - {fileID: 8300000, guid: bc3dccea12d08814c9b0539941ae7fff, type: 3}
-  - {fileID: 8300000, guid: cdffdb4dadc11d94fa48870e28df9105, type: 3}
+  - {fileID: 8300000, guid: c4b516dfc3e6b5345ab74507e55892c9, type: 3}
+  - {fileID: 8300000, guid: 792c286f883303d42a1511c39fcfb1c8, type: 3}
+  - {fileID: 8300000, guid: fe31dbb5fb31c404c956c0e0b9d2e4dd, type: 3}
+  - {fileID: 8300000, guid: 6952cbc73fc28b94c951a8076d29787a, type: 3}
+  - {fileID: 8300000, guid: da20df0e4ae6de54399ef392880378f7, type: 3}
 --- !u!1 &7021870579056663758
 GameObject:
   m_ObjectHideFlags: 0
@@ -6247,6 +6248,8 @@ MonoBehaviour:
   IWM: {fileID: 0}
   chargedArea: {fileID: 0}
   chargingParticle: {fileID: 0}
+  chargedParticle: {fileID: 0}
+  chargedParticlePos: {fileID: 0}
   fireRate: 1
   damage: 0
   distance: 0
@@ -6284,11 +6287,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   baseSource: {fileID: 7461142799519887289}
-  shotSingleShot: {fileID: 8300000, guid: 2da7e48336627334c89042687ae4b67f, type: 3}
-  shotSniperShot: {fileID: 8300000, guid: 5ec66ef857eb38740be3c5bc644d72bb, type: 3}
-  shotChargedShot: {fileID: 8300000, guid: 8212b412fc8eac0469ac0b347a25b030, type: 3}
-  chargingChargedShot: {fileID: 8300000, guid: c5b125aad0623c845bcfd8ca0548563b, type: 3}
-  finalyCharged: {fileID: 8300000, guid: 19b44a57dc054f94c973accb00c43246, type: 3}
+  shotSingleShot: {fileID: 8300000, guid: 983efff886a55024887ca91efe0269ee, type: 3}
+  shotSniperShot: {fileID: 8300000, guid: 6050e9a72bfa2444c9913755b1146ba2, type: 3}
+  shotChargedShot: {fileID: 8300000, guid: f91b8afeea17fbe4ba02bad2b9e9c044, type: 3}
+  chargingChargedShot: {fileID: 8300000, guid: 32f0df0982437cc44ae0d81ab047e50b, type: 3}
+  finalyCharged: {fileID: 8300000, guid: 20bc26111257afd418dc8d0e7fe7c4b6, type: 3}
   playChargingSound: 0
 --- !u!82 &7461142799519887289
 AudioSource:
@@ -6457,7 +6460,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 1fbb1c6e394ca8643b49906a74fff7ac,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: b2e3f1f2394e6f74e81198bd1e18fd40, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f4531afcecd4df84e913999b4e29e46a, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -7019,10 +7022,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clips:
+  - {fileID: 8300000, guid: 159fd37e59fda5b4ba24c66cae1f1e17, type: 3}
   - {fileID: 8300000, guid: 049d88856765b7549be5f406d071dd8e, type: 3}
-  - {fileID: 8300000, guid: dd486457f071ea64b87e188bbba70163, type: 3}
-  - {fileID: 8300000, guid: 2e3d2df66f5a0b04d936c92ebe11342c, type: 3}
-  - {fileID: 8300000, guid: bc3dccea12d08814c9b0539941ae7fff, type: 3}
+  - {fileID: 8300000, guid: fab66f9841983b3408eaba0513617729, type: 3}
+  - {fileID: 8300000, guid: 2da7e48336627334c89042687ae4b67f, type: 3}
 --- !u!1 &8570445454783754602
 GameObject:
   m_ObjectHideFlags: 0

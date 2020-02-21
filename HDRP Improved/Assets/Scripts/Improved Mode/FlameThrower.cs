@@ -40,6 +40,7 @@ public class FlameThrower : MonoBehaviour
             {
                 playSound = true;
                 flameParticle.Play();
+                source.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
                 source.Play();
             }
             IWM.player.CC.canHit = false;

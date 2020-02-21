@@ -103,6 +103,7 @@ public class Misil : MonoBehaviour
     {
         if (!playOneTime)
         {
+            source.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
             source.Play();
             Instantiate(explosionParticle, transform.position, Quaternion.identity);
             playOneTime = true;

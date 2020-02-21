@@ -10,6 +10,13 @@ public class FireZone : MonoBehaviour
     public Vector3 halfSize;
 
     public LayerMask layer;
+    [SerializeField] AudioSource source;
+
+    public void Start()
+    {
+        source.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
+        source.Play();
+    }
 
     public void Update()
     {

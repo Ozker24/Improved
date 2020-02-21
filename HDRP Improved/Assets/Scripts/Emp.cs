@@ -49,6 +49,7 @@ public class Emp : MonoBehaviour
         //Debug.Log(source + "AAAAAAAAAAAAAAAAAAAAA");
 
         //Common.common.ChangePitchAndVolume(source);
+        source.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
         source.PlayOneShot(explosionClip);
 
         Destroy(EMPExplosion, 10);

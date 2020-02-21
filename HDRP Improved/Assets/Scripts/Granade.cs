@@ -46,6 +46,7 @@ public class Granade : MonoBehaviour
 
         Destroy(GranadeExplosion, 10);
 
+        source.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
         source.PlayOneShot(explosionClip);
 
         //Get Objects
