@@ -5,7 +5,8 @@ using UnityEngine;
 public class TriggerEvents : MonoBehaviour
 {
     [Header("AppearVictoryDoor")]
-    [SerializeField] GameObject VictoryDoor;
+    public GameObject VictoryDoor;
+    public AudioSource source;
 
     public void Test()
     {
@@ -19,6 +20,7 @@ public class TriggerEvents : MonoBehaviour
 
     public void AppearVictoryDoor()
     {
+        source.Play();
         VictoryDoor.SetActive(true);
     }
 }

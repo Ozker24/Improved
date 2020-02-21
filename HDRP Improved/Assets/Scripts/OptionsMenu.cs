@@ -99,6 +99,7 @@ public class OptionsMenu : MonoBehaviour
 
         Settings = Options.Graphics;
 
+        ChangeResolution();
         //InitializeResolutions();
 
         if (volume != null)
@@ -336,6 +337,25 @@ public class OptionsMenu : MonoBehaviour
         musicValue = volume;
     }
 
+    public void ChangeResolution()
+    {
+        if (resolutionDropdown.value == 0)
+        {
+            Screen.SetResolution(1280, 720, true);
+            Debug.Log("1280");
+        }
+        else if (resolutionDropdown.value == 1)
+        {
+            Screen.SetResolution(1600, 1200, true);
+            Debug.Log("1600");
+        }
+        else if (resolutionDropdown.value == 2)
+        {
+            Screen.SetResolution(1920, 1080, true);
+            Debug.Log("1920");
+        }
+    }
+
     public void ChangeInputSettings()
     {
         if (inInputSettings)
@@ -411,9 +431,10 @@ public class OptionsMenu : MonoBehaviour
 
     public void AsignResolution()
     {
-        Screen.SetResolution(resolutions[resolutionDropdown.value].width, resolutions[resolutionDropdown.value].height, Screen.fullScreen);
+        //Screen.SetResolution(resolutions[resolutionDropdown.value].width, resolutions[resolutionDropdown.value].height, Screen.fullScreen);
 
         selectedResolution = resolutionDropdown.value;
+        ChangeResolution();
 
         //teclear por codigo propiamente las resoluciones.
     }

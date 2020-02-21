@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1998316879945888050}
   - component: {fileID: 5226422927324122571}
   - component: {fileID: 6730707599810268865}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: cargo_Red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5817293898003691799}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 15.094883, y: 1.46, z: -41.613712}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 0}
 --- !u!33 &1998316879945888050
 MeshFilter:
   m_ObjectHideFlags: 0

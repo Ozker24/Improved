@@ -6,11 +6,6 @@ public class InterruptorTrigger : MonoBehaviour
 {
     [SerializeField] Interruptor interruptor;
 
-    private void Start()
-    {
-        interruptor = GetComponentInParent<Interruptor>();
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
