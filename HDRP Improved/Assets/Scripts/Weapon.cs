@@ -110,6 +110,14 @@ public class Weapon : MonoBehaviour
                 {
                     GameObject particle = (GameObject)Instantiate(sparklePartcile, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
                     hit.transform.SendMessage("Damage", bulletMetalDamage , SendMessageOptions.RequireReceiver);
+
+                    EnemyTest enemy = hit.transform.GetComponent<EnemyTest>();
+                    if (enemy != null)
+                    {
+                        enemy.Detected = true;
+                        enemy.anim.SetAnimHit();
+                    }
+
                     basicSource.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
                     basicSource.PlayOneShot(MetalClip);
                     Destroy(particle, 10);
