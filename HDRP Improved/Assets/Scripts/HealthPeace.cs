@@ -91,10 +91,11 @@ public class HealthPeace : MonoBehaviour
         mediumLifePercentage = (mediumLifePercentage - 1) * (-1); // invertir el valor del porcentaje
         redMediumLife.a = mediumLifePercentage;
 
-        healthRender.material.SetColor("_BaseColor", redMediumLife);
-        //healthRender.material.EnableKeyword("_EMISSION");
+        healthRender.sharedMaterial.SetColor("_BaseColor", redMediumLife);
+        //healthRender.sharedMaterial.EnableKeyword("_EMISSION");
         //DynamicGI.UpdateEnvironment();
-        //healthRender.material.SetColor("_EmissionColor", redMediumLife);
+        redMediumLife.a = 1f;
+        healthRender.sharedMaterial.SetColor("_EmissiveColorLDR", redMediumLife);
     }
 
     void HighLife()
@@ -103,10 +104,21 @@ public class HealthPeace : MonoBehaviour
 
         greenHighLife.a = highLifePercentage;
 
-        healthRender.material.SetColor("_BaseColor", greenHighLife);
+        greenHighLife.r = Random.Range(0f, 3f);
+        greenHighLife.g = Random.Range(0f, 3f);
+        greenHighLife.b = Random.Range(0f, 3f);
+        greenHighLife.a = 1f;
+        healthRender.sharedMaterial.SetColor("_BaseColor", greenHighLife);
         //healthRender.material.EnableKeyword("_EMISSION");
         //DynamicGI.UpdateEnvironment();
-        //healthRender.material.SetColor("_EmissionColor", greenHighLife);
+
+        //greenHighLife.r = Random.Range(0f, 1f);
+        //greenHighLife.g = Random.Range(0f, 1f);
+        //greenHighLife.b = Random.Range(0f, 1f);
+        //greenHighLife.a = Random.Range(0f, 1f);
+        healthRender.sharedMaterial.SetColor("_EmissiveColor", greenHighLife);
+        healthRender.sharedMaterial.SetColor("_EmissiveColorLDR", greenHighLife);
+        //healthRender.sharedMaterial.SetFloat("_EmissiveIntensity", 10000f);
 
     }
 
@@ -164,10 +176,11 @@ public class HealthPeace : MonoBehaviour
 
         redLowLife.a = brightPercentage;
 
-        healthRender.material.SetColor("_BaseColor", redLowLife);
+        healthRender.sharedMaterial.SetColor("_BaseColor", redLowLife);
         //healthRender.material.EnableKeyword("_EMISSION");
         //DynamicGI.UpdateEnvironment();
-        //healthRender.material.SetColor("_EmissionColor", redLowLife);
+        redLowLife.a = 1f;
+        healthRender.sharedMaterial.SetColor("_EmissiveColorLDR", redLowLife);
     }
 
     public void Health()
