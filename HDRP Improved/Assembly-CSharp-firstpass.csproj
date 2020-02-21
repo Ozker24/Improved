@@ -2,6 +2,8 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
+    <CscToolPath>C:\Program Files\Unity\Hub\Editor\2019.3.0f6\Editor\Data\Tools\RoslynScripts</CscToolPath>
+    <CscToolExe>unity_csc.bat</CscToolExe>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -52,9 +54,6 @@
     <UnityVersion>2019.3.0f6</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2019.3.0f6\Editor\Data\Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -100,94 +99,94 @@
     <None Include="Assets\Plugins\RealtimeCSG\License.txt" />
     <None Include="Assets\Plugins\RealtimeCSG\Release-notes.txt" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>D:/GitHub Storage/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/Users/Alumnos/Desktop/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Cinemachine">
-      <HintPath>D:/GitHub Storage/Improved/HDRP Improved/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+      <HintPath>C:/Users/Alumnos/Desktop/Improved/HDRP Improved/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>D:/GitHub Storage/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>C:/Users/Alumnos/Desktop/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ProBuilder">
-      <HintPath>D:/GitHub Storage/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.ProBuilder.dll</HintPath>
+      <HintPath>C:/Users/Alumnos/Desktop/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.ProBuilder.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Formats.Fbx.Editor">
-      <HintPath>D:/GitHub Storage/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.Formats.Fbx.Editor.dll</HintPath>
+      <HintPath>C:/Users/Alumnos/Desktop/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.Formats.Fbx.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Editor">
-      <HintPath>D:/GitHub Storage/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
+      <HintPath>C:/Users/Alumnos/Desktop/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ProBuilder.Editor">
-      <HintPath>D:/GitHub Storage/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.ProBuilder.Editor.dll</HintPath>
+      <HintPath>C:/Users/Alumnos/Desktop/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.ProBuilder.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
-      <HintPath>D:/GitHub Storage/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
+      <HintPath>C:/Users/Alumnos/Desktop/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
-      <HintPath>D:/GitHub Storage/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+      <HintPath>C:/Users/Alumnos/Desktop/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Recorder.Editor">
-      <HintPath>D:/GitHub Storage/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.Recorder.Editor.dll</HintPath>
+      <HintPath>C:/Users/Alumnos/Desktop/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.Recorder.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualEffectGraph.Runtime">
-      <HintPath>D:/GitHub Storage/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.VisualEffectGraph.Runtime.dll</HintPath>
+      <HintPath>C:/Users/Alumnos/Desktop/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.VisualEffectGraph.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>D:/GitHub Storage/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/Alumnos/Desktop/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Recorder">
-      <HintPath>D:/GitHub Storage/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.Recorder.dll</HintPath>
+      <HintPath>C:/Users/Alumnos/Desktop/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.Recorder.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>D:/GitHub Storage/Improved/HDRP Improved/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/Alumnos/Desktop/Improved/HDRP Improved/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>D:/GitHub Storage/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/Users/Alumnos/Desktop/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>D:/GitHub Storage/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/Alumnos/Desktop/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.HighDefinition.Runtime">
-      <HintPath>D:/GitHub Storage/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.RenderPipelines.HighDefinition.Runtime.dll</HintPath>
+      <HintPath>C:/Users/Alumnos/Desktop/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.RenderPipelines.HighDefinition.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>D:/GitHub Storage/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>C:/Users/Alumnos/Desktop/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
-      <HintPath>D:/GitHub Storage/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
+      <HintPath>C:/Users/Alumnos/Desktop/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.HighDefinition.Config.Runtime">
-      <HintPath>D:/GitHub Storage/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.RenderPipelines.HighDefinition.Config.Runtime.dll</HintPath>
+      <HintPath>C:/Users/Alumnos/Desktop/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.RenderPipelines.HighDefinition.Config.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.Fbx">
-      <HintPath>D:/GitHub Storage/Improved/HDRP Improved/Library/ScriptAssemblies/Autodesk.Fbx.dll</HintPath>
+      <HintPath>C:/Users/Alumnos/Desktop/Improved/HDRP Improved/Library/ScriptAssemblies/Autodesk.Fbx.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.cinemachine.editor">
-      <HintPath>D:/GitHub Storage/Improved/HDRP Improved/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
+      <HintPath>C:/Users/Alumnos/Desktop/Improved/HDRP Improved/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualEffectGraph.Editor">
-      <HintPath>D:/GitHub Storage/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.VisualEffectGraph.Editor.dll</HintPath>
+      <HintPath>C:/Users/Alumnos/Desktop/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.VisualEffectGraph.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ProBuilder.AddOns.Editor">
-      <HintPath>D:/GitHub Storage/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.ProBuilder.AddOns.Editor.dll</HintPath>
+      <HintPath>C:/Users/Alumnos/Desktop/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.ProBuilder.AddOns.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ShaderGraph.Editor">
-      <HintPath>D:/GitHub Storage/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
+      <HintPath>C:/Users/Alumnos/Desktop/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.HighDefinition.Editor">
-      <HintPath>D:/GitHub Storage/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.RenderPipelines.HighDefinition.Editor.dll</HintPath>
+      <HintPath>C:/Users/Alumnos/Desktop/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.RenderPipelines.HighDefinition.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
-      <HintPath>D:/GitHub Storage/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+      <HintPath>C:/Users/Alumnos/Desktop/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>D:/GitHub Storage/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/Alumnos/Desktop/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Formats.Fbx.Runtime">
-      <HintPath>D:/GitHub Storage/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.Formats.Fbx.Runtime.dll</HintPath>
+      <HintPath>C:/Users/Alumnos/Desktop/Improved/HDRP Improved/Library/ScriptAssemblies/Unity.Formats.Fbx.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>D:/GitHub Storage/Improved/HDRP Improved/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/Alumnos/Desktop/Improved/HDRP Improved/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

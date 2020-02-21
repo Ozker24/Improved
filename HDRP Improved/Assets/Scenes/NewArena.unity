@@ -291,12 +291,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa4d484e846d7e7469aea1a84062554a, type: 3}
---- !u!198 &17130650 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 4308007929008696618, guid: 2f0b9a3cf525deb429f4bb2106added0,
-    type: 3}
-  m_PrefabInstance: {fileID: 145654662}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &18728156 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2507703840287610976, guid: 19fe9dd861e6ec54fbe88df5ecaf0efb,
@@ -455,85 +449,6 @@ CapsuleCollider:
   m_Height: 1.7
   m_Direction: 1
   m_Center: {x: 0, y: -0.16, z: 0}
---- !u!1001 &145654662
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1019592052}
-    m_Modifications:
-    - target: {fileID: 78660390335000274, guid: 2f0b9a3cf525deb429f4bb2106added0,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.63
-      objectReference: {fileID: 0}
-    - target: {fileID: 78660390335000274, guid: 2f0b9a3cf525deb429f4bb2106added0,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.65
-      objectReference: {fileID: 0}
-    - target: {fileID: 78660390335000274, guid: 2f0b9a3cf525deb429f4bb2106added0,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 78660390335000274, guid: 2f0b9a3cf525deb429f4bb2106added0,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 78660390335000274, guid: 2f0b9a3cf525deb429f4bb2106added0,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 78660390335000274, guid: 2f0b9a3cf525deb429f4bb2106added0,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 78660390335000274, guid: 2f0b9a3cf525deb429f4bb2106added0,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 78660390335000274, guid: 2f0b9a3cf525deb429f4bb2106added0,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 78660390335000274, guid: 2f0b9a3cf525deb429f4bb2106added0,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 78660390335000274, guid: 2f0b9a3cf525deb429f4bb2106added0,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 78660390335000274, guid: 2f0b9a3cf525deb429f4bb2106added0,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1634670934593578103, guid: 2f0b9a3cf525deb429f4bb2106added0,
-        type: 3}
-      propertyPath: m_Name
-      value: FlameThrower
-      objectReference: {fileID: 0}
-    - target: {fileID: 4308007929008696618, guid: 2f0b9a3cf525deb429f4bb2106added0,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4308007929008696618, guid: 2f0b9a3cf525deb429f4bb2106added0,
-        type: 3}
-      propertyPath: moveWithTransform
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2f0b9a3cf525deb429f4bb2106added0, type: 3}
 --- !u!1 &186856294
 GameObject:
   m_ObjectHideFlags: 0
@@ -1245,12 +1160,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 16251978}
   m_PrefabAsset: {fileID: 0}
---- !u!198 &716103225 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 6136806029353772362, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
-    type: 3}
-  m_PrefabInstance: {fileID: 6827900421704650868}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &736401492 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2507703840123186443, guid: 19fe9dd861e6ec54fbe88df5ecaf0efb,
@@ -1607,7 +1516,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &826392276
 Transform:
   m_ObjectHideFlags: 0
@@ -1703,7 +1612,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 876096895}
-  m_LocalRotation: {x: 0.06231797, y: 0.014317454, z: -0.00089400855, w: 0.99795324}
+  m_LocalRotation: {x: 0.06231797, y: 0.014317445, z: -0.00089400803, w: 0.99795324}
   m_LocalPosition: {x: 0, y: 0, z: 0.000015258789}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2143,12 +2052,6 @@ Transform:
   m_Father: {fileID: 289716392}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 20.410002, y: -281.075, z: -148.886}
---- !u!4 &1019592052 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3167622770839594011, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
-    type: 3}
-  m_PrefabInstance: {fileID: 6827900421704650868}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1062509388
 GameObject:
   m_ObjectHideFlags: 0
@@ -2935,47 +2838,11 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6827900421704650868}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1210185701
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1210185702}
-  m_Layer: 0
-  m_Name: Charged Laser pos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1210185702
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1210185701}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5100002, y: 1.21, z: 0.379}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1646368857}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1220652481 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2507703840708090014, guid: 19fe9dd861e6ec54fbe88df5ecaf0efb,
     type: 3}
   m_PrefabInstance: {fileID: 2507703839772669279}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &1221526246 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 6136806028615551616, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
-    type: 3}
-  m_PrefabInstance: {fileID: 6827900421704650868}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1277552870 stripped
 MonoBehaviour:
@@ -3257,12 +3124,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 163b9400e9444e74fb103aa19d24d9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1646368857 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2145042583858890173, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
-    type: 3}
-  m_PrefabInstance: {fileID: 6827900421704650868}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1659721103 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5965247790193530554, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
@@ -4694,69 +4555,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2005808679644398298, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
-        type: 3}
-      propertyPath: flameParticle
-      value: 
-      objectReference: {fileID: 17130650}
-    - target: {fileID: 6136806028615551616, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
-        type: 3}
-      propertyPath: SubModule.subEmitters.Array.data[0].emitter
-      value: 
-      objectReference: {fileID: 716103225}
-    - target: {fileID: 6136806028615551616, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxColor.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6136806028615551616, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6136806028615551616, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6136806028615551623, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.51
-      objectReference: {fileID: 0}
     - target: {fileID: 6373944704350986486, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
         type: 3}
       propertyPath: inv
       value: 
       objectReference: {fileID: 1277552870}
-    - target: {fileID: 6775255497368999091, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
-        type: 3}
-      propertyPath: chargeParticle
-      value: 
-      objectReference: {fileID: 3137743370862285238, guid: 712e6096d5e55924ab9689bca93c97fe,
-        type: 3}
-    - target: {fileID: 6775255497368999091, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
-        type: 3}
-      propertyPath: chargedLaser
-      value: 
-      objectReference: {fileID: 8531360408434682423, guid: 9b2a7d22bc46c8043b32d54107f0f5dd,
-        type: 3}
-    - target: {fileID: 6775255497368999091, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
-        type: 3}
-      propertyPath: chargingParticle
-      value: 
-      objectReference: {fileID: 1221526246}
-    - target: {fileID: 6775255497368999091, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
-        type: 3}
-      propertyPath: chargedParticlePos
-      value: 
-      objectReference: {fileID: 1210185702}
-    - target: {fileID: 6775255497368999091, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
-        type: 3}
-      propertyPath: chargedParticle
-      value: 
-      objectReference: {fileID: 8088586674542585614, guid: 74aa637fc6be7ae4db872253296d27ee,
-        type: 3}
     - target: {fileID: 6827900420496641492, guid: 90b3c2faeab051a4a8bf446d36a4fc15,
         type: 3}
       propertyPath: m_Name
