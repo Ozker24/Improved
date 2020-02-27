@@ -34,6 +34,7 @@ public class HealthPeace : MonoBehaviour
     [SerializeField] AudioMixerSnapshot lowSnap;
     [SerializeField] AudioMixerSnapshot normalSnap;
     [SerializeField] bool transite;
+    [SerializeField] bool firstEnter;
 
 
     public void Initialize()
@@ -44,10 +45,19 @@ public class HealthPeace : MonoBehaviour
         greenHighLife = Color.green;
         lowSnap = SFX.FindSnapshot("LowHealth");
         normalSnap = master.FindSnapshot("Snapshot");
+
+        firstEnter = true;
     }
 
     public void MyUpdate()
     {
+
+        if (firstEnter)
+        {
+            normalSnap.TransitionTo(0.1f);
+            firstEnter = false;
+        }
+
         if (health <= healthToLow)
         {
             AnimateHealth();

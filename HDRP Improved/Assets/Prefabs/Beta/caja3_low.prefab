@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8139882499007047531}
   - component: {fileID: 1975106032}
   - component: {fileID: 1975106033}
+  - component: {fileID: 5244259905968441686}
   m_Layer: 13
   m_Name: caja3_low
   m_TagString: Untagged
@@ -111,3 +112,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.2928299, y: 0.5889142, z: 0.23622061}
   m_Center: {x: 0.000000014079858, y: -0.000000014079805, z: 0.11811027}
+--- !u!208 &5244259905968441686
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7550981922418709431}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.14600001, y: 0.294, z: 0.11800001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0.11800001}
+  m_TimeToStationary: 0.5

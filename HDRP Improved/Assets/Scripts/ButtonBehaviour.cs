@@ -43,7 +43,7 @@ public class ButtonBehaviour : MonoBehaviour
 
     public void GoToLose()
     {
-        SceneManager.LoadScene(5);
+        SceneManager.LoadScene(SceneManager.sceneCountInBuildSettings - 1);
     }
 
     public void SetOptions()

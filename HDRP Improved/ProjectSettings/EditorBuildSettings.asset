@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/Scenes/WinScene.unity
     guid: c16687fc189426c42821daa3b716057f
   - enabled: 1
+    path: Assets/Scenes/Character Expo.unity
+    guid: 22fbb7766fa2fe444bc82c286f736738
+  - enabled: 1
     path: Assets/Scenes/LoseScene.unity
     guid: 84cb03d8c6113534784a4ee331aeb28b
   - enabled: 0

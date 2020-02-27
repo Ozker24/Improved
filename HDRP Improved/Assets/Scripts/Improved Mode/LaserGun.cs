@@ -155,8 +155,8 @@ public class LaserGun : MonoBehaviour
 
         //chargedLaserShotParticle.Play();
 
-        GameObject part = Instantiate(chargedParticle, chargedParticlePos.position, Quaternion.Euler(transform.rotation.x,0, transform.rotation.x));
-        Destroy(part, 2);
+        //GameObject part = Instantiate(chargedParticle, chargedParticlePos.position, Quaternion.Euler(transform.rotation.x,0, transform.rotation.x));
+        //Destroy(part, 2);
 
         if (baseSource.isPlaying)
         {
@@ -197,7 +197,7 @@ public class LaserGun : MonoBehaviour
                 ChargedLaserGun();
             }
 
-            chargingParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+            //chargingParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
 
             IWM.usingLaserGun = false;
 
@@ -257,7 +257,7 @@ public class LaserGun : MonoBehaviour
 
                             if (!playChargingSound)
                             {
-                                chargingParticle.Play();
+                                //chargingParticle.Play();
                                 baseSource.loop = true;
                                 baseSource.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
                                 baseSource.PlayOneShot(chargingChargedShot);

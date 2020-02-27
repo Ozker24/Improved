@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2050030860}
   - component: {fileID: 5499120212780919046}
   - component: {fileID: 7275402844319900524}
+  - component: {fileID: 4795314053936985708}
   m_Layer: 13
   m_Name: pantalla_low
   m_TagString: Untagged
@@ -138,3 +139,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.8023863, y: 0.046171177, z: 0.5941229}
   m_Center: {x: -0.000000059604634, y: -0.15881902, z: 0.45446134}
+--- !u!208 &4795314053936985708
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3120245682372699123}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.40100002, y: 0.23300001, z: 0.374}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0.37800002}
+  m_TimeToStationary: 0.5

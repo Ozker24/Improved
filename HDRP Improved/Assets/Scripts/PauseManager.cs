@@ -6,7 +6,7 @@ public class PauseManager : MonoBehaviour
 {
     public GameManager GM;
     public GameObject pauseMenu;
-    public GameObject previousControls;
+    //public GameObject previousControls;
 
     public bool ableToPause;
 
@@ -14,24 +14,24 @@ public class PauseManager : MonoBehaviour
     {
         GM = GameObject.FindGameObjectWithTag("Managers").GetComponent<GameManager>();
         pauseMenu.SetActive(false);
-        previousControls.SetActive(true);
+        //previousControls.SetActive(true);
 
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
     }
 
     public void MyUpdate()
     {
-        if (GM.showControls)
+        /*if (GM.showControls)
         {
             if ( Input.anyKeyDown)
             {
                 Time.timeScale = 1;
 
                 GM.showControls = false;
-                previousControls.SetActive(false);
+                //previousControls.SetActive(false);
                 StartCoroutine(AbleToPause());
             }
-        }
+        }*/
     }
 
     public void Pause()
