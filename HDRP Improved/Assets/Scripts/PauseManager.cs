@@ -39,6 +39,7 @@ public class PauseManager : MonoBehaviour
         if (ableToPause && !GM.options)
         {
             GM.pause = !GM.pause;
+            Debug.Log(GM.pause);
             CheckPause();
         }
     }
