@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    [Header("Dependencies")]
     public WeaponManager weapon;
 
     public AudioPlayer audPlay;
 
-    public int totalAmmo; //municion total
+    //public int totalAmmo; //municion total
 
     //public float timeForBullet;
 
@@ -16,6 +17,11 @@ public class Weapon : MonoBehaviour
 
     //public float timeForFirstMagazine;
 
+    [Header ("Gun Reference")]
+    public int gunReference;
+    public bool slot;
+
+    [Header("Ammo")]
     public int ammoReloaded; //municion recargada total
 
     public int magazineAmmo; //capacidad del cargador
@@ -24,11 +30,13 @@ public class Weapon : MonoBehaviour
 
     public int maxAmmo;
 
+    [Header("States")]
     public bool isShoting;
     public bool isReloading;
     public bool isAutomatic;
     public bool canSHootAgain;
 
+    [Header("Stats")]
     public float fireRate;
     public float reloadTime;
     public float fireDist;
@@ -39,6 +47,12 @@ public class Weapon : MonoBehaviour
     public int shotGunSpreads;
     public float spread;
 
+    public float timeAbleGun;
+    public float itemTimeToGun;
+    public float timeToAim;
+    public float distanceToSound;
+
+    [Header("Particles")]
     public GameObject bloodParticle;
     public ParticleSystem muzzleParticle;
     public GameObject sparklePartcile;
@@ -191,7 +205,7 @@ public class Weapon : MonoBehaviour
         if (isShoting || isReloading) return;
         if (currentAmmo >= magazineAmmo) return;
 
-        if (ammoReloaded <= 0)
+        if (weapon.ammoCollected[weapon.weapons[weapon.WeaponSelected].gunReference] <= 0)
         {
             //sound of no ammo
         }
@@ -232,17 +246,17 @@ public class Weapon : MonoBehaviour
         isReloading = false;
 
         int diff = magazineAmmo - currentAmmo;
-        if (diff <= ammoReloaded)
+        if (diff <= weapon.ammoCollected[weapon.weapons[weapon.WeaponSelected].gunReference])
         {
-            ammoReloaded -= diff;
+            weapon.ammoCollected[weapon.weapons[weapon.WeaponSelected].gunReference] -= diff;
 
             currentAmmo += diff;
         }
         else
         {
-            currentAmmo += ammoReloaded;
+            currentAmmo += weapon.ammoCollected[weapon.weapons[weapon.WeaponSelected].gunReference];
 
-            ammoReloaded = 0;
+            weapon.ammoCollected[weapon.weapons[weapon.WeaponSelected].gunReference] = 0;
         }
     }
 

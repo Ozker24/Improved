@@ -564,8 +564,8 @@ public class Items : MonoBehaviour
     public void CantGunCantItem(bool gun, bool item, bool first)
     {
         canDoGun = gun;
-        StartCoroutine(CanDoGun(WM.itemTimeToGun[WM.WeaponSelected]));
-        Debug.Log(WM.itemTimeToGun[WM.WeaponSelected]);
+        StartCoroutine(CanDoGun(WM.weapons[WM.WeaponSelected].itemTimeToGun));
+        //Debug.Log(WM.itemTimeToGun[WM.WeaponSelected]);
 
         canDoItem = item;
         firstTime = first;

@@ -405,7 +405,7 @@ public class ImputManager : MonoBehaviour
         ReleaseAbsorb();
     }
 
-    public void ShortcutGuns()
+    /*public void ShortcutGuns()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -430,5 +430,5 @@ public class ImputManager : MonoBehaviour
             WM.weaponPreSelected = 3;
             WM.GunShortcuts();
         }
-    }
+    }*/
 }

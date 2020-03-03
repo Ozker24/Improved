@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class ItemBase : MonoBehaviour
 {
+    public enum ItemType { Item, Ammo, Gun};
+    public ItemType type;
+
     public PlayerController player;
     public HudManager HUD;
 
-    public int WhichItem;
+    public int indexValue;
     public int bullets;
-    public int ForWhatGun;
     public bool ammo;
     public AudioClip collectSound;
 
@@ -24,7 +26,7 @@ public class ItemBase : MonoBehaviour
         if (other.tag == "Player")
         {
             HUD.actualItem = gameObject;
-            HUD.whatItem = WhichItem;
+            HUD.whatItem = indexValue;
         }
     }
 
@@ -35,7 +37,7 @@ public class ItemBase : MonoBehaviour
             if (HUD.actualItem == null)
             {
                 HUD.actualItem = gameObject;
-                HUD.whatItem = WhichItem;
+                HUD.whatItem = indexValue;
             }
         }
     }

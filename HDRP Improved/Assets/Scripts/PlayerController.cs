@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     public bool stop;
     public bool climb;
     public bool aiming;
+    public bool graving;
 
     [Header("Speed Values")]
     public float speed;
@@ -87,6 +88,9 @@ public class PlayerController : MonoBehaviour
     public bool dodgeForGravity;
     public bool canDodge = true;
     public bool dodging = true;
+
+    [Header("Collect")]
+    public float gravingTime;
 
     [Header("Gravity Values")]
     private float forceToGround = Physics.gravity.y;
@@ -376,9 +380,13 @@ public class PlayerController : MonoBehaviour
         {
             ItemBase itemCollected = itemDetector.closestItem.GetComponent<ItemBase>();
 
-            if (!itemCollected.ammo)
+            graving = true;
+            GM.ableToInput = false;
+            StartCoroutine(ResetGraving());
+
+            if (itemCollected.type == ItemBase.ItemType.Item)
             {
-                if (items.itemsCount[itemCollected.WhichItem] < items.maxItems)
+                if (items.itemsCount[itemCollected.indexValue] < items.maxItems)
                 {
                     CheckItems();
 
@@ -391,19 +399,34 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            else
+            else if (itemCollected.type == ItemBase.ItemType.Ammo)
             {
-                if (WM.weapons[itemCollected.ForWhatGun].ammoReloaded + itemCollected.bullets < WM.weapons[itemCollected.ForWhatGun].maxAmmo)
+                //if (WM.ammoCollected[itemCollected.indexValue] + itemCollected.bullets < WM.weapons[itemCollected.indexValue].maxAmmo)
+                CheckAmmo();
+
+                itemDetector.closestItem.SetActive(false);
+                Destroy(itemDetector.closestItem, 10);
+                itemDetector.closestItem = null;
+                //HUD.actualLogo = null;
+
+                //PUT HERE SOUND
+            }
+
+            else if (itemCollected.type == ItemBase.ItemType.Gun)
+            {
+                
+                if(!WM.weaponsType[itemCollected.indexValue].Slot)
                 {
-                    CheckAmmo();
-
-                    itemDetector.closestItem.SetActive(false);
-                    Destroy(itemDetector.closestItem, 10);
-                    itemDetector.closestItem = null;
-                    //HUD.actualLogo = null;
-
-                    //PUT HERE SOUND
+                    WM.ChangeStats(0, itemCollected.indexValue);
                 }
+                else
+                {
+                    WM.ChangeStats(1, itemCollected.indexValue);
+                }
+
+                itemDetector.closestItem.SetActive(false);
+                Destroy(itemDetector.closestItem, 10);
+                itemDetector.closestItem = null;
             }
         }
     }
@@ -412,35 +435,35 @@ public class PlayerController : MonoBehaviour
     {
         ItemBase itemCollected = itemDetector.closestItem.GetComponent<ItemBase>();
 
-        if (itemCollected.WhichItem == 4)
+        if (itemCollected.indexValue == 4)
         {
             items.itemsCount[4]++;
             items.visualItemsCount[4]++;
 
             items.molotovVisuals[items.visualItemsCount[4] - 1].SetActive(true);
         }
-        if (itemCollected.WhichItem == 3)
+        if (itemCollected.indexValue == 3)
         {
             items.itemsCount[3]++;
             items.visualItemsCount[3]++;
 
             items.granadeVisuals[items.visualItemsCount[3] - 1].SetActive(true);
         }
-        if (itemCollected.WhichItem == 2)
+        if (itemCollected.indexValue == 2)
         {
             items.itemsCount[2]++;
             items.visualItemsCount[2]++;
 
             items.soundGranadeVisuals[items.visualItemsCount[2] - 1].SetActive(true);
         }
-        if (itemCollected.WhichItem == 1)
+        if (itemCollected.indexValue == 1)
         {
             items.itemsCount[1]++;
             items.visualItemsCount[1]++;
 
             items.firstAidVisuals[items.visualItemsCount[1] - 1].SetActive(true);
         }
-        if (itemCollected.WhichItem == 0)
+        if (itemCollected.indexValue == 0)
         {
             items.itemsCount[0]++;
             items.visualItemsCount[0]++;
@@ -466,7 +489,7 @@ public class PlayerController : MonoBehaviour
 
         //if (itemCollected.ammo) WM.weapons[itemCollected.ForWhatGun].ammoReloaded += itemCollected.bullets;
 
-        WM.weapons[itemCollected.ForWhatGun].ammoReloaded += itemCollected.bullets;
+        WM.ammoCollected[itemCollected.indexValue] += itemCollected.bullets;
 
         if (itemCollected.collectSound != null)
         {
@@ -528,6 +551,13 @@ public class PlayerController : MonoBehaviour
         transform.position = endedClimb;
     }
 
+    IEnumerator ResetGraving()
+    {
+        yield return new WaitForSeconds(gravingTime);
+        GM.ableToInput = true;
+        graving = false;
+    }
+
     public void PlaySound()
     {
         AudioSource source = gameObject.AddComponent<AudioSource>();
@@ -570,10 +600,10 @@ public class PlayerController : MonoBehaviour
             WM.weapons[0].ammoReloaded = data.pistolReloaded;
             WM.weapons[1].currentAmmo = data.shotgunInMagazine;
             WM.weapons[1].ammoReloaded = data.shotgunReloaded;
-            WM.weapons[2].currentAmmo = data.subInMagazine;
-            WM.weapons[2].ammoReloaded = data.subReloaded;
-            WM.weapons[3].currentAmmo = data.rifleInMagazine;
-            WM.weapons[3].ammoReloaded = data.rifleReloaded;
+            //WM.weapons[2].currentAmmo = data.subInMagazine;
+            //WM.weapons[2].ammoReloaded = data.subReloaded;
+            //WM.weapons[3].currentAmmo = data.rifleInMagazine;
+            //WM.weapons[3].ammoReloaded = data.rifleReloaded;
         }
     }
 }

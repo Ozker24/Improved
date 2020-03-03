@@ -76,7 +76,7 @@ public class Aiming : MonoBehaviour
                 else if (timeCounter < timeOfZoom) //while the time counter does not arrive to the limit
                 {
                     freeLook.m_Lens.FieldOfView = Mathf.Lerp(actualLens, aimLens, timeCounter);
-                    timeCounter += Time.deltaTime * WM.timeToAim[WM.WeaponSelected];
+                    timeCounter += Time.deltaTime * WM.weapons[WM.WeaponSelected].timeToAim;
                 }
                 else if (timeCounter >= timeOfZoom) // when the time counter aarives to the limit
                 {
@@ -95,7 +95,7 @@ public class Aiming : MonoBehaviour
                     else if (timeCounter < timeOfZoom) //while the time counter does not arrive to the limit
                     {
                         freeLook.m_Lens.FieldOfView = Mathf.Lerp(actualLens, originalLens, timeCounter);
-                        timeCounter += Time.deltaTime * WM.timeToAim[WM.WeaponSelected];
+                        timeCounter += Time.deltaTime * WM.weapons[WM.WeaponSelected].timeToAim;
                     }
                     else if (timeCounter >= timeOfZoom) // when the time counter aarives to the limit
                     {

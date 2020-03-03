@@ -20,6 +20,10 @@ public class WeaponManager : MonoBehaviour
 
     [Header("Weapons Ammount")]
     public Weapon[] weapons;
+    public WeaponStats[] weaponsType;
+
+    [Header("Ammo Supply")]
+    public int[] ammoCollected;
 
     [Header("Weapon Selection")]
     public int weaponPreSelected;
@@ -59,7 +63,10 @@ public class WeaponManager : MonoBehaviour
         items = player.GetComponentInChildren<Items>();
         //audPlay = GetComponent<AudioPlayer>();
         maxWeapons = weapons.Length;
-        timeToSelect = inv.timeToVanish;
+
+        ChangeStats(0, weapons[0].gunReference);
+        ChangeStats(1, weapons[1].gunReference);
+        //timeToSelect = inv.timeToVanish;
     }
 
     public void MyUpdate()
@@ -79,7 +86,7 @@ public class WeaponManager : MonoBehaviour
                     ableGun = false;
                     UiSource.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
                     UiSource.PlayOneShot(changeGunClips.clips[WeaponSelected]);
-                    StartCoroutine(AbleGun(timeAbleGun[WeaponSelected]));
+                    StartCoroutine(AbleGun(weapons[WeaponSelected].timeAbleGun));
                 }
 
                 timeCounter = 0;
@@ -98,7 +105,7 @@ public class WeaponManager : MonoBehaviour
         if (!player.climb && !player.stop && items.canDoGun && ableGun && !items.pressed && !player.dodging)
         {
             weapons[WeaponSelected].Shot();
-            stealth.MakeImportantAudio(distanceToSound[WeaponSelected],player.transform.position);
+            stealth.MakeImportantAudio(weapons[WeaponSelected].distanceToSound,player.transform.position);
         }
         //gm.detected = true;
     }
@@ -148,13 +155,35 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
-    public void GunShortcuts()
+    public void ChangeStats(int weaponIndex, int typeIndex)
+    {
+        weapons[weaponIndex].magazineAmmo = weaponsType[typeIndex].magazineAmmo;
+        weapons[weaponIndex].currentAmmo = weaponsType[typeIndex].currentAmmo;
+        weapons[weaponIndex].maxAmmo = weaponsType[typeIndex].maxAmmo;
+        weapons[weaponIndex].fireRate = weaponsType[typeIndex].fireRate;
+        weapons[weaponIndex].reloadTime = weaponsType[typeIndex].reloadTime;
+        weapons[weaponIndex].fireDist = weaponsType[typeIndex].fireDist;
+        weapons[weaponIndex].bulletDamage = weaponsType[typeIndex].bulletDamage;
+        weapons[weaponIndex].bulletMetalDamage = weaponsType[typeIndex].bulletMetalDamage;
+        weapons[weaponIndex].stunedTime = weaponsType[typeIndex].stunedTime;
+        weapons[weaponIndex].shotGunSpreads = weaponsType[typeIndex].shotGunSpreads;
+        weapons[weaponIndex].spread = weaponsType[typeIndex].spread;
+        weapons[weaponIndex].timeAbleGun = weaponsType[typeIndex].timeAbleGun;
+        weapons[weaponIndex].itemTimeToGun = weaponsType[typeIndex].itemTimeToGun;
+        weapons[weaponIndex].timeToAim = weaponsType[typeIndex].timeToAim;
+        weapons[weaponIndex].distanceToSound = weaponsType[typeIndex].distanceToSound;
+        weapons[weaponIndex].isAutomatic = weaponsType[typeIndex].isAutomatic;
+        weapons[weaponIndex].slot = weaponsType[typeIndex].Slot;
+        weapons[weaponIndex].gunReference = weaponsType[typeIndex].gunReference;
+    }
+
+    /*public void GunShortcuts()
     {
         WeaponSelected = weaponPreSelected;
         ableGun = false;
         UiSource.PlayOneShot(changeGunClips.clips[WeaponSelected]);
         StartCoroutine(AbleGun(timeAbleGun[WeaponSelected]));
-    }
+    }*/
 
     #region Corrutines
 
