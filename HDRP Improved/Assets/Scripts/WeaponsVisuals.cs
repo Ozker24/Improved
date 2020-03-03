@@ -8,17 +8,18 @@ public class WeaponsVisuals : MonoBehaviour
     [SerializeField] GameObject[] handGuns;
     [SerializeField] GameObject[] bagGuns;
 
-    public void Start()
+    public void Initialize()
     {
         WM = GetComponent<WeaponManager>();
 
-        ChangeGunsVisuals();
+        ActiveAllGunsBack();
+        handGuns[WM.weapons[WM.WeaponSelected].gunReference].SetActive(true);
+        bagGuns[WM.weapons[WM.WeaponSelected].gunReference].SetActive(false);
     }
 
     public void ChangeGunsVisuals()
     {
-        DesactiveHandsGuns();
-        ActiveBagGuns();
+        SetGunVisuals();
     }
 
     public void StartChangingGunVisuals()
@@ -27,17 +28,36 @@ public class WeaponsVisuals : MonoBehaviour
         ActiveAllGunsBack();
     }
 
-    void DesactiveHandsGuns()
+    void SetGunVisuals()
     {
         for (int i = 0; i < handGuns.Length; i++)
         {
             handGuns[i].SetActive(false);
         }
 
-        handGuns[WM.WeaponSelected].SetActive(true);
+        for (int i = 0; i < bagGuns.Length; i++)
+        {
+            bagGuns[i].SetActive(false);
+        }
+
+
+        handGuns[WM.weapons[WM.WeaponSelected].gunReference].SetActive(true);
+        bagGuns[WM.weapons[WM.WeaponSelected].gunReference].SetActive(false);
+
+        if (WM.WeaponSelected == 0)
+        {
+            handGuns[WM.weapons[1].gunReference].SetActive(false);
+            bagGuns[WM.weapons[1].gunReference].SetActive(true);
+        }
+
+        else if (WM.WeaponSelected == 1)
+        {
+            handGuns[WM.weapons[0].gunReference].SetActive(false);
+            bagGuns[WM.weapons[0].gunReference].SetActive(true);
+        }
     }
 
-    void DesactiveAllGunsHand()
+    public void DesactiveAllGunsHand()
     {
         for (int i = 0; i < handGuns.Length; i++)
         {
@@ -47,10 +67,8 @@ public class WeaponsVisuals : MonoBehaviour
 
     void ActiveAllGunsBack()
     {
-        for (int i = 0; i < bagGuns.Length; i++)
-        {
-            bagGuns[i].SetActive(true);
-        }
+        bagGuns[WM.weapons[0].gunReference].SetActive(true);
+        bagGuns[WM.weapons[1].gunReference].SetActive(true);
     }
 
     void ActiveBagGuns()
@@ -60,6 +78,6 @@ public class WeaponsVisuals : MonoBehaviour
             bagGuns[i].SetActive(true);
         }
 
-        bagGuns[WM.WeaponSelected].SetActive(false);
+        bagGuns[WM.weapons[WM.WeaponSelected].gunReference].SetActive(false);
     }
 }

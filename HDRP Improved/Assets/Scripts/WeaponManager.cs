@@ -18,9 +18,11 @@ public class WeaponManager : MonoBehaviour
 
     //public bool searchingBullet;
 
-    [Header("Weapons Ammount")]
+    [Header("Weapons")]
     public Weapon[] weapons;
     public WeaponStats[] weaponsType;
+    public GameObject weaponItem;
+    public Transform posReleasedGun;
 
     [Header("Ammo Supply")]
     public int[] ammoCollected;
@@ -59,6 +61,7 @@ public class WeaponManager : MonoBehaviour
         HUD = GameObject.FindGameObjectWithTag("Managers").GetComponent<HudManager>();
         gm = GameObject.FindGameObjectWithTag("Managers").GetComponent<GameManager>();
         WVisuals = GetComponent<WeaponsVisuals>();
+        WVisuals.Initialize();
         stealth = player.stealth;
         items = player.GetComponentInChildren<Items>();
         //audPlay = GetComponent<AudioPlayer>();
@@ -158,7 +161,7 @@ public class WeaponManager : MonoBehaviour
     public void ChangeStats(int weaponIndex, int typeIndex)
     {
         weapons[weaponIndex].magazineAmmo = weaponsType[typeIndex].magazineAmmo;
-        weapons[weaponIndex].currentAmmo = weaponsType[typeIndex].currentAmmo;
+        //weapons[weaponIndex].currentAmmo = weaponsType[typeIndex].currentAmmo;
         weapons[weaponIndex].maxAmmo = weaponsType[typeIndex].maxAmmo;
         weapons[weaponIndex].fireRate = weaponsType[typeIndex].fireRate;
         weapons[weaponIndex].reloadTime = weaponsType[typeIndex].reloadTime;

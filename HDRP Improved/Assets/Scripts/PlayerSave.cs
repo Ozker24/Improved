@@ -14,14 +14,14 @@ public class PlayerSave
     public int sounds;
     public int kits;
     public int EMPs;
-    public int pistolInMagazine;
-    public int pistolReloaded;
-    public int shotgunInMagazine;
-    public int shotgunReloaded;
-    public int subInMagazine;
-    public int subReloaded;
-    public int rifleInMagazine;
-    public int rifleReloaded;
+    public int slot1Ref;
+    public int slot2Ref;
+    public int slot1CurrentAmmo;
+    public int slot2CurrentAmmo;
+    public int pistolAmmoCollected;
+    public int shotgunAmmoCollected;
+    public int automaticAmmoCollected;
+    public int rifleAmmoCollected;
 
 
     public PlayerSave(PlayerController player)
@@ -40,14 +40,13 @@ public class PlayerSave
         sounds = player.items.itemsCount[2];
         kits = player.items.itemsCount[1];
         EMPs = player.items.itemsCount[0];
-
-        pistolInMagazine = player.WM.weapons[0].currentAmmo;
-        pistolReloaded = player.WM.weapons[0].ammoReloaded;
-        shotgunInMagazine = player.WM.weapons[1].currentAmmo;
-        shotgunReloaded = player.WM.weapons[1].ammoReloaded;
-        subInMagazine = player.WM.weapons[2].currentAmmo;
-        subReloaded = player.WM.weapons[2].ammoReloaded;
-        rifleInMagazine = player.WM.weapons[3].currentAmmo;
-        rifleReloaded = player.WM.weapons[3].ammoReloaded;
+        slot1Ref = player.WM.weapons[0].gunReference;
+        slot2Ref = player.WM.weapons[1].gunReference;
+        slot1CurrentAmmo = player.WM.weapons[0].currentAmmo;
+        slot2CurrentAmmo = player.WM.weapons[1].currentAmmo;
+        pistolAmmoCollected = player.WM.ammoCollected[0];
+        shotgunAmmoCollected = player.WM.ammoCollected[1];
+        automaticAmmoCollected = player.WM.ammoCollected[2];
+        rifleAmmoCollected = player.WM.ammoCollected[3];
     }
 }

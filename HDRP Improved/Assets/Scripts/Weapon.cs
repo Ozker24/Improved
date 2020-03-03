@@ -90,11 +90,11 @@ public class Weapon : MonoBehaviour
         //audPlay.Play(0, 1, Random.Range(0.95f, 1.05f));
         //ammoReloaded--;
         basicSource.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
-        basicSource.PlayOneShot(ShotClips.clips[weapon.WeaponSelected]);
+        basicSource.PlayOneShot(ShotClips.clips[gunReference]);
 
         muzzleParticle.Play();
 
-        if (weapon.WeaponSelected != 1)
+        if (gunReference != 1)
         {
             Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
             RaycastHit hit = new RaycastHit();// que hemos golpeado primero
@@ -213,7 +213,7 @@ public class Weapon : MonoBehaviour
         {
             isReloading = true;
 
-            basicSource.PlayOneShot(ReloadClips.clips[weapon.WeaponSelected]);
+            basicSource.PlayOneShot(ReloadClips.clips[gunReference]);
 
             weapon.player.anims.SetAnimReload();
 

@@ -378,7 +378,8 @@ public class PlayerController : MonoBehaviour
     {
         if (itemDetector.closestItem != null && itemDetector.canGrab)
         {
-            ItemBase itemCollected = itemDetector.closestItem.GetComponent<ItemBase>();
+            ItemBase itemCollected = itemDetector.closestItem.GetComponentInParent<ItemBase>();
+            Debug.Log(itemCollected.name);
 
             graving = true;
             GM.ableToInput = false;
@@ -414,19 +415,41 @@ public class PlayerController : MonoBehaviour
 
             else if (itemCollected.type == ItemBase.ItemType.Gun)
             {
-                
-                if(!WM.weaponsType[itemCollected.indexValue].Slot)
+                if (WM.weapons[0].gunReference != itemCollected.indexValue && WM.weapons[1].gunReference != itemCollected.indexValue)
                 {
-                    WM.ChangeStats(0, itemCollected.indexValue);
+                    GameObject gunItem = Instantiate(WM.weaponItem, WM.posReleasedGun.position, Quaternion.identity);
+
+                    if (!WM.weaponsType[itemCollected.indexValue].Slot)
+                    {
+                        gunItem.GetComponent<ItemBase>().indexValue = WM.weapons[0].gunReference;
+                        gunItem.GetComponent<ItemBase>().bullets = WM.weapons[0].currentAmmo;
+
+                        WM.weapons[0].currentAmmo = itemCollected.bullets;
+                        WM.ChangeStats(0, itemCollected.indexValue);
+                    }
+                    else
+                    {
+                        gunItem.GetComponent<ItemBase>().indexValue = WM.weapons[1].gunReference;
+                        gunItem.GetComponent<ItemBase>().bullets = WM.weapons[1].currentAmmo;
+
+                        WM.weapons[1].currentAmmo = itemCollected.bullets;
+                        WM.ChangeStats(1, itemCollected.indexValue);
+                    }
+
+                    WM.WVisuals.ChangeGunsVisuals();
+
+                    itemDetector.closestItem.SetActive(false);
+                    Destroy(itemDetector.closestItem, 10);
+                    itemDetector.closestItem = null;
                 }
                 else
                 {
-                    WM.ChangeStats(1, itemCollected.indexValue);
+                    WM.ammoCollected[itemCollected.indexValue] += itemCollected.bullets;
+                    itemCollected.bullets = 0;
                 }
 
-                itemDetector.closestItem.SetActive(false);
-                Destroy(itemDetector.closestItem, 10);
-                itemDetector.closestItem = null;
+                baseSource.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
+                baseSource.PlayOneShot(itemCollected.collectSound);
             }
         }
     }
@@ -554,6 +577,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator ResetGraving()
     {
         yield return new WaitForSeconds(gravingTime);
+        //WM.WVisuals.ChangeGunsVisuals();
         GM.ableToInput = true;
         graving = false;
     }
@@ -596,14 +620,14 @@ public class PlayerController : MonoBehaviour
             items.itemsCount[1] = data.kits;
             items.itemsCount[0] = data.EMPs;
 
-            WM.weapons[0].currentAmmo = data.pistolInMagazine;
-            WM.weapons[0].ammoReloaded = data.pistolReloaded;
-            WM.weapons[1].currentAmmo = data.shotgunInMagazine;
-            WM.weapons[1].ammoReloaded = data.shotgunReloaded;
-            //WM.weapons[2].currentAmmo = data.subInMagazine;
-            //WM.weapons[2].ammoReloaded = data.subReloaded;
-            //WM.weapons[3].currentAmmo = data.rifleInMagazine;
-            //WM.weapons[3].ammoReloaded = data.rifleReloaded;
+            WM.weapons[0].gunReference = data.slot1Ref;
+            WM.weapons[1].gunReference = data.slot2Ref;
+            WM.weapons[0].currentAmmo = data.slot1CurrentAmmo;
+            WM.weapons[1].currentAmmo = data.slot2CurrentAmmo;
+            WM.ammoCollected[0] = data.pistolAmmoCollected;
+            WM.ammoCollected[1] = data.shotgunAmmoCollected;
+            WM.ammoCollected[2] = data.automaticAmmoCollected;
+            WM.ammoCollected[3] = data.rifleAmmoCollected;
         }
     }
 }

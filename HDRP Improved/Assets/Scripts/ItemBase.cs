@@ -7,6 +7,8 @@ public class ItemBase : MonoBehaviour
     public enum ItemType { Item, Ammo, Gun};
     public ItemType type;
 
+    public GameObject[] gunVisual;
+
     public PlayerController player;
     public HudManager HUD;
 
@@ -19,6 +21,11 @@ public class ItemBase : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         HUD = GameObject.FindGameObjectWithTag("Managers").GetComponent<HudManager>();
+
+        if (type == ItemType.Gun)
+        {
+            gunVisual[indexValue].SetActive(true);
+        }
     }
 
     public void OnTriggerEnter(Collider other)
