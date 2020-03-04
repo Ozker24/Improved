@@ -5,31 +5,25 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/LogoScene.unity
-    guid: e8465357512d7a24592ccd6231575507
+    path: Assets/Scenes/Logo_SCN.unity
+    guid: a45bab05cb5f81c449fb27ab99d9e095
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
+    path: Assets/Scenes/MainMenu_SCN.unity
     guid: 3ad26a0d84dc90741b80b312949d2264
   - enabled: 1
-    path: Assets/Scenes/HDRP Improved Test 2.unity
+    path: Assets/Scenes/Gameplay_SCN.unity
     guid: c17a3b1900262c649836a995fcd86686
   - enabled: 1
-    path: Assets/Scenes/NewArena.unity
+    path: Assets/Scenes/Arena_SCN.unity
     guid: b4cda8bd995df234d926f544eaf70910
   - enabled: 1
-    path: Assets/Scenes/WinScene.unity
+    path: Assets/Scenes/Win_SCN.unity
     guid: c16687fc189426c42821daa3b716057f
   - enabled: 1
-    path: Assets/Scenes/Character Expo.unity
+    path: Assets/Scenes/CharacterExpo_SCN.unity
     guid: 22fbb7766fa2fe444bc82c286f736738
   - enabled: 1
-    path: Assets/Scenes/LoseScene.unity
+    path: Assets/Scenes/Lose_SCN.unity
     guid: 84cb03d8c6113534784a4ee331aeb28b
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   m_configObjects: {}
