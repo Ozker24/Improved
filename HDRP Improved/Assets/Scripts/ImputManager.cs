@@ -256,7 +256,8 @@ public class ImputManager : MonoBehaviour
     {
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
-            inv.UpInventory();
+            //inv.UpInventory();
+            Items.SelectFirstAid();
         }
     }
 
@@ -264,7 +265,8 @@ public class ImputManager : MonoBehaviour
     {
         if (Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
-            inv.DownInventory();
+            //inv.DownInventory();
+            Items.SelectItem();
         }
     }
 

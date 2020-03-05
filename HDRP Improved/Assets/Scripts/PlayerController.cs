@@ -379,7 +379,7 @@ public class PlayerController : MonoBehaviour
         if (itemDetector.closestItem != null && itemDetector.canGrab)
         {
             ItemBase itemCollected = itemDetector.closestItem.GetComponentInParent<ItemBase>();
-            Debug.Log(itemCollected.name);
+            //Debug.Log(itemCollected.name);
 
             graving = true;
             GM.ableToInput = false;
@@ -387,16 +387,79 @@ public class PlayerController : MonoBehaviour
 
             if (itemCollected.type == ItemBase.ItemType.Item)
             {
-                if (items.itemsCount[itemCollected.indexValue] < items.maxItems)
+                if (items.itemSelected == itemCollected.indexValue)
                 {
-                    CheckItems();
+                    if (items.itemCount < items.maxItems)
+                    {
+                        items.itemSelected = itemCollected.indexValue;
+                        items.savedItemSelected = items.itemSelected;
 
-                    itemDetector.closestItem.SetActive(false);
-                    Destroy(itemDetector.closestItem, 10);
-                    itemDetector.closestItem = null;
-                    //HUD.actualLogo = null;
+                        CheckItems(itemCollected.indexValue);
+                        ChangeItems();
+                    }
+                }
+                else
+                {
+                    if (itemCollected.indexValue != 1)
+                    {
+                        if (items.itemSelected == 4)
+                        {
+                            for (int i = 0; i < items.molotovVisuals.Length; i++)
+                            {
+                                items.molotovVisuals[i].SetActive(false);
+                            }
+                        }
+                        else if (items.itemSelected == 3)
+                        {
+                            for (int i = 0; i < items.granadeVisuals.Length; i++)
+                            {
+                                items.granadeVisuals[i].SetActive(false);
+                            }
+                        }
+                        else if (items.itemSelected == 2)
+                        {
+                            for (int i = 0; i < items.soundGranadeVisuals.Length; i++)
+                            {
+                                items.soundGranadeVisuals[i].SetActive(false);
+                            }
+                        }
+                        /*else if (items.itemSelected == 1)
+                        {
+                            for (int i = 0; i < items.firstAidVisuals.Length; i++)
+                            {
+                                items.firstAidVisuals[i].SetActive(false);
+                            }
+                        }*/
+                        else if (items.itemSelected == 0)
+                        {
+                            for (int i = 0; i < items.EMPVisuals.Length; i++)
+                            {
+                                items.EMPVisuals[i].SetActive(false);
+                            }
+                        }
 
-                    //PUY HERE SOUND
+                        for (int i = 0; i < items.itemCount; i++)
+                        {
+                            GameObject Item = Instantiate(items.itemDrop, WM.posReleasedGun.position, Quaternion.identity);
+
+                            Item.GetComponent<ItemBase>().indexValue = items.itemSelected;
+                        }
+
+                        items.itemCount = 0;
+                        items.itemSelected = itemCollected.indexValue;
+                        items.savedItemSelected = items.itemSelected;
+
+                        CheckItems(itemCollected.indexValue);
+                        ChangeItems();
+                    }
+                    else
+                    {
+                        items.firstAidCount++;
+                        items.visualItemsCount[1]++;
+                        items.firstAidVisuals[items.itemCount - 1].SetActive(true);
+
+                        ChangeItems();
+                    }
                 }
             }
 
@@ -454,56 +517,49 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void CheckItems()
+    public void CheckItems(int index)
     {
-        ItemBase itemCollected = itemDetector.closestItem.GetComponent<ItemBase>();
+        ItemBase itemCollected = itemDetector.closestItem.GetComponentInParent<ItemBase>();
 
-        if (itemCollected.indexValue == 4)
+        items.itemCount++;
+        items.visualItemsCount[index]++;
+
+        if (items.itemSelected == 4)
         {
-            items.itemsCount[4]++;
-            items.visualItemsCount[4]++;
-
-            items.molotovVisuals[items.visualItemsCount[4] - 1].SetActive(true);
+            items.molotovVisuals[items.itemCount - 1].SetActive(true);
         }
-        if (itemCollected.indexValue == 3)
+        else if (items.itemSelected == 3)
         {
-            items.itemsCount[3]++;
-            items.visualItemsCount[3]++;
-
-            items.granadeVisuals[items.visualItemsCount[3] - 1].SetActive(true);
+            items.granadeVisuals[items.itemCount - 1].SetActive(true);
         }
-        if (itemCollected.indexValue == 2)
+        else if (items.itemSelected == 2)
         {
-            items.itemsCount[2]++;
-            items.visualItemsCount[2]++;
-
-            items.soundGranadeVisuals[items.visualItemsCount[2] - 1].SetActive(true);
+            items.soundGranadeVisuals[items.itemCount - 1].SetActive(true);
         }
-        if (itemCollected.indexValue == 1)
+        else if (items.itemSelected == 1)
         {
-            items.itemsCount[1]++;
-            items.visualItemsCount[1]++;
-
-            items.firstAidVisuals[items.visualItemsCount[1] - 1].SetActive(true);
+            items.firstAidVisuals[items.itemCount - 1].SetActive(true);
         }
-        if (itemCollected.indexValue == 0)
+        else if (items.itemSelected == 0)
         {
-            items.itemsCount[0]++;
-            items.visualItemsCount[0]++;
-
-            items.EMPVisuals[items.visualItemsCount[0] - 1].SetActive(true);
+            items.EMPVisuals[items.itemCount - 1].SetActive(true);
         }
 
         if (itemCollected.collectSound != null)
         {
-            //AudioSource source = gameObject.AddComponent<AudioSource>();
-            //CollectItemSource.clip = itemCollected.collectSound;
-            //source.playOnAwake = false;
-
             baseSource.ChangePitchAndVolume(0.7f, 1, 0.95f, 1.05f);
             baseSource.PlayOneShot(itemCollected.collectSound);
-            //Destroy(source, source.clip.length);
         }
+    }
+    public void ChangeItems()
+    {
+        itemDetector.closestItem.SetActive(false);
+        Destroy(itemDetector.closestItem, 10);
+        itemDetector.closestItem = null;
+
+        //HUD.actualLogo = null;
+
+        //PUY HERE SOUND
     }
 
     public void CheckAmmo()
@@ -614,11 +670,10 @@ public class PlayerController : MonoBehaviour
             GM.checkpointsManager.actualCheckPoint = data.actualSpawnPoint;
 
             life.health = data.health;
-            items.itemsCount[4] = data.molotovs;
-            items.itemsCount[3] = data.grenades;
-            items.itemsCount[2] = data.sounds;
-            items.itemsCount[1] = data.kits;
-            items.itemsCount[0] = data.EMPs;
+
+            items.itemSelected = data.selectedItem;
+            items.itemCount = data.itemCount;
+            items.firstAidCount = data.firstAidCount;
 
             WM.weapons[0].gunReference = data.slot1Ref;
             WM.weapons[1].gunReference = data.slot2Ref;

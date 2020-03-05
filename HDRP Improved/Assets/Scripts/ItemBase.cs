@@ -8,6 +8,7 @@ public class ItemBase : MonoBehaviour
     public ItemType type;
 
     public GameObject[] gunVisual;
+    public GameObject[] itemVisual;
 
     public PlayerController player;
     public HudManager HUD;
@@ -25,6 +26,10 @@ public class ItemBase : MonoBehaviour
         if (type == ItemType.Gun)
         {
             gunVisual[indexValue].SetActive(true);
+        }
+        else if (type == ItemType.Item)
+        {
+            itemVisual[indexValue].SetActive(true);
         }
     }
 

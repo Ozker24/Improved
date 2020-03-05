@@ -9,11 +9,9 @@ public class PlayerSave
     public float[] spawnPos;
     public int actualSpawnPoint;
     public float health;
-    public int molotovs;
-    public int grenades;
-    public int sounds;
-    public int kits;
-    public int EMPs;
+    public int selectedItem;
+    public int itemCount;
+    public int firstAidCount;
     public int slot1Ref;
     public int slot2Ref;
     public int slot1CurrentAmmo;
@@ -35,11 +33,9 @@ public class PlayerSave
         actualSpawnPoint = player.GM.checkpointsManager.actualCheckPoint;
 
         health = player.life.health;
-        molotovs = player.items.itemsCount[4];
-        grenades = player.items.itemsCount[3];
-        sounds = player.items.itemsCount[2];
-        kits = player.items.itemsCount[1];
-        EMPs = player.items.itemsCount[0];
+        selectedItem = player.items.itemSelected;
+        itemCount = player.items.itemCount;
+        firstAidCount = player.items.firstAidCount;
         slot1Ref = player.WM.weapons[0].gunReference;
         slot2Ref = player.WM.weapons[1].gunReference;
         slot1CurrentAmmo = player.WM.weapons[0].currentAmmo;

@@ -41,11 +41,11 @@ public class HudManager : MonoBehaviour
 
     public void UpdateInventory()
     {
-        UpdateMolotov(items.itemsCount[4]);
-        UpdateGrande(items.itemsCount[3]);
-        UpdateSound(items.itemsCount[2]);
-        UpdateFirstAid(items.itemsCount[1]);
-        UpdateEMP(items.itemsCount[0]);
+        //UpdateMolotov(items.itemsCount[4]);
+        //UpdateGrande(items.itemsCount[3]);
+        //UpdateSound(items.itemsCount[2]);
+        //UpdateFirstAid(items.itemsCount[1]);
+        //UpdateEMP(items.itemsCount[0]);
         UpdatePistol(weapon.ammoCollected[weapon.WeaponSelected] + weapon.weapons[0].currentAmmo);
         UpdateShotgun(weapon.ammoCollected[weapon.WeaponSelected] + weapon.weapons[1].currentAmmo);
         //UpdateRifle(weapon.weapons[2].ammoReloaded + weapon.weapons[2].currentAmmo);

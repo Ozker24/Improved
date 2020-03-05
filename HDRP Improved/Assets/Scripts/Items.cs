@@ -17,6 +17,9 @@ public class Items : MonoBehaviour
 
     [Header("Imputs")]
     public int itemSelected;
+    public int savedItemSelected;
+    public enum actualItem {Item, FirstAid };
+    public actualItem actItem;
     public bool pressed;
     public int realised;
 
@@ -38,8 +41,9 @@ public class Items : MonoBehaviour
     public float throwForce;
 
     [Header("Items Count")]
-
     public int[] itemsCount;
+    public int itemCount;
+    public int firstAidCount;
     public int[] visualItemsCount;
 
     public GameObject[] molotovVisuals;
@@ -47,6 +51,7 @@ public class Items : MonoBehaviour
     public GameObject[] soundGranadeVisuals;
     public GameObject[] firstAidVisuals;
     public GameObject[] EMPVisuals;
+    public GameObject itemDrop;
 
     public int maxItems = 3;
 
@@ -93,45 +98,58 @@ public class Items : MonoBehaviour
         trajectoryPrefab.SetActive(false);
         trajectory = trajectoryPrefab.GetComponent<Trajectory>();
 
+        savedItemSelected = itemSelected;
+
         InitializeVisuals();
     }
 
     private void InitializeVisuals()
     {
-        for (int i = 0; i < itemsCount[4]; i++)
+        if (itemSelected == 4)
         {
-            molotovVisuals[i].SetActive(true);
-            visualItemsCount[4]++;
+            for (int i = 0; i < itemCount; i++)
+            {
+                molotovVisuals[i].SetActive(true);
+                visualItemsCount[4]++;
+            }
+        }
+        else if (itemSelected == 3)
+        {
+            for (int i = 0; i < itemCount; i++)
+            {
+                granadeVisuals[i].SetActive(true);
+                visualItemsCount[3]++;
+            }
         }
 
-        for (int i = 0; i < itemsCount[3]; i++)
+        else if (itemSelected == 2)
         {
-            granadeVisuals[i].SetActive(true);
-            visualItemsCount[3]++;
+            for (int i = 0; i < itemCount; i++)
+            {
+                soundGranadeVisuals[i].SetActive(true);
+                visualItemsCount[2]++;
+            }
         }
 
-        for (int i = 0; i < itemsCount[2]; i++)
+        else if (itemSelected == 0)
         {
-            soundGranadeVisuals[i].SetActive(true);
-            visualItemsCount[2]++;
+            for (int i = 0; i < itemCount; i++)
+            {
+                EMPVisuals[i].SetActive(true);
+                visualItemsCount[0]++;
+            }
         }
 
-        for (int i = 0; i < itemsCount[1]; i++)
+        for (int i = 0; i < firstAidCount; i++)
         {
             firstAidVisuals[i].SetActive(true);
             visualItemsCount[1]++;
-        }
-
-        for (int i = 0; i < itemsCount[0]; i++)
-        {
-            EMPVisuals[i].SetActive(true);
-            visualItemsCount[0]++;
         }
     }
 
     public void MyUpdate()
     {
-        itemSelected = inv.actualItem;
+        //itemSelected = inv.actualItem;
 
         trajectory.direction = cam.transform.forward;
         trajectory.velocity = throwForce;
@@ -149,6 +167,24 @@ public class Items : MonoBehaviour
         }
     }
 
+    public void SelectItem()
+    {
+        if (actItem != actualItem.Item)
+        {
+            actItem = actualItem.Item;
+            itemSelected = savedItemSelected;
+        }
+    }
+
+    public void SelectFirstAid()
+    {
+        if (actItem != actualItem.FirstAid)
+        {
+            actItem = actualItem.FirstAid;
+            itemSelected = 1;
+        }
+    }
+
     public void ActiveItem()
     {
         if (!player.stop && !player.climb && !inv.startCountdown && !Canceled)
@@ -163,7 +199,7 @@ public class Items : MonoBehaviour
 
     public void SetButtonPressed()
     {
-        if (itemsCount[itemSelected] > 0) //&& player.WM.ableGun)
+        if (itemCount > 0) //&& player.WM.ableGun)
         {
             pressed = true;
 
@@ -275,7 +311,7 @@ public class Items : MonoBehaviour
     #region WhatItemsDo
     public void Molotov()
     {
-        if (itemSelected == 4 && pressed &&  itemsCount [4] > 0)
+        if (itemSelected == 4 && pressed &&  itemCount > 0)
         {
             if (!firstTime)
             {
@@ -299,7 +335,7 @@ public class Items : MonoBehaviour
             Debug.Log("Apunting with Molotov");
         }
 
-        if (itemSelected == 4 && realised == 1 && itemsCount[4] > 0)
+        if (itemSelected == 4 && realised == 1 && itemCount > 0)
         {
             Debug.Log("Launched molotov");
 
@@ -314,7 +350,7 @@ public class Items : MonoBehaviour
             //audPlay.Play(5, 1, Random.Range(0.95f, 1.05f)); // esta antes por temas de velocidad del audio
             InstantiateThings(MolotovPrefab);
 
-            itemsCount[4]--;
+            itemCount--;
 
             CantGunCantItem(false, false, false);
         }
@@ -322,7 +358,7 @@ public class Items : MonoBehaviour
 
     public void Granade()
     {
-        if (itemSelected == 3 && pressed && itemsCount[3] > 0)
+        if (itemSelected == 3 && pressed && itemCount > 0)
         {
             if (!firstTime)
             {
@@ -346,7 +382,7 @@ public class Items : MonoBehaviour
             Debug.Log("Apunting with Granade");
         }
 
-        if (itemSelected == 3 && realised == 1 && itemsCount[3] > 0)
+        if (itemSelected == 3 && realised == 1 && itemCount > 0)
         {
             Debug.Log("Launched Granade");
 
@@ -361,7 +397,7 @@ public class Items : MonoBehaviour
                 baseSource.PlayOneShot(ClipsLaunched.clips[itemSelected]);
             }
 
-            itemsCount[3]--;
+            itemCount--;
 
             CantGunCantItem(false, false, false);
         }
@@ -369,7 +405,7 @@ public class Items : MonoBehaviour
 
     public void SoundItem()
     {
-        if (itemSelected == 2 && pressed && itemsCount[2] > 0)
+        if (itemSelected == 2 && pressed && itemCount > 0)
         {
             if (!firstTime)
             {
@@ -392,7 +428,7 @@ public class Items : MonoBehaviour
             Debug.Log("Apunting with Sound");
         }
 
-        if (itemSelected == 2 && realised == 1 && itemsCount[2] > 0)
+        if (itemSelected == 2 && realised == 1 && itemCount > 0)
         {
             Debug.Log("Launched Sound");
 
@@ -405,7 +441,7 @@ public class Items : MonoBehaviour
             }
             InstantiateThings(SoundPrefab);
 
-            itemsCount[2]--;
+            itemCount--;
 
             CantGunCantItem(false, false, false);
         }
@@ -413,7 +449,7 @@ public class Items : MonoBehaviour
 
     public void FirstAid()
     {
-        if (itemSelected == 1 && itemsCount[1] > 0 && player.life.health < 100)
+        if (itemSelected == 1 && firstAidCount > 0 && player.life.health < 100)
         {
             if (pressed && realised != 1)
             {
@@ -463,9 +499,16 @@ public class Items : MonoBehaviour
 
                         pressed = false;
 
-                        itemsCount[1]--;
+                        firstAidCount--;
 
                         CantGunCantItem(false, false, false);
+
+                        if (firstAidCount == 0)
+                        {
+                            actItem = Items.actualItem.Item;
+                            itemSelected = savedItemSelected;
+                        }
+                        healing = false;
                     }
                     else
                     {
@@ -479,7 +522,7 @@ public class Items : MonoBehaviour
 
     public void EMP()
     {
-        if (itemSelected == 0 && pressed && itemsCount[0] > 0)
+        if (itemSelected == 0 && pressed && itemCount > 0)
         {
             if (!firstTime)
             {
@@ -501,7 +544,7 @@ public class Items : MonoBehaviour
             Debug.Log("Apunting with EMP");
         }
 
-        if (itemSelected == 0 && realised == 1 && itemsCount[0] > 0)
+        if (itemSelected == 0 && realised == 1 && itemCount > 0)
         {
             Debug.Log("Launched EMP");
 
@@ -515,7 +558,7 @@ public class Items : MonoBehaviour
 
             InstantiateThings(empPrefab);
 
-            itemsCount[0]--;
+            itemCount--;
 
             CantGunCantItem(false, false, false);
         }
